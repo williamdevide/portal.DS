@@ -1,0 +1,123 @@
+"aulas_semanas": [
+    {
+      "semana_numero": "01",
+      "titulo": "Recepção, mercado de dados, plano de ensino e introdução a SGBD",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Início oficial da SA1: Fundamentos e Modelagem. É o momento de acolhimento e nivelamento. O objetivo é quebrar o gelo, apresentar o plano de ensino, e tirar a visão de que Banco de Dados é 'apenas uma planilha'. A meta é introduzir os alunos ao papel estratégico e de alta responsabilidade do Arquiteto de Dados e do DBA (Database Administrator) no mercado de tecnologia e backend.",
+},      
+
+{
+      "semana_numero": "02",
+      "titulo": "Relacional x Não Relacional e Setup do ambiente (XAMPP/MySQL)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Continuação da SA1. Com as bases estabelecidas e o mercado compreendido, os alunos vão entender a diferença estrutural entre os modelos de bancos. O desafio central é sair da teoria e colocar a mão na massa para montar a infraestrutura inicial, instalando, configurando e subindo o servidor MySQL (XAMPP) em suas máquinas locais."
+    },
+    {
+      "semana_numero": "03",
+      "titulo": "Tabelas, Tipos de Dados e Criação de Dicionário e MER (draw.db)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Avançando na SA1. O foco desta semana é a arte da abstração. Os alunos começam a atuar como verdadeiros modeladores de dados, entendendo a estrutura lógica e iniciando a criação do Dicionário de Dados e do Modelo Entidade-Relacionamento (MER/DER) através de ferramentas visuais como o draw.db."
+    },
+    {
+      "semana_numero": "04",
+      "titulo": "Modelagem II (Chaves) e Aplicação de Normalização",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Aprofundamento crítico na SA1. Modelar não é só criar caixas, é organizar o caos. Os alunos vão aprender a aplicar as regras de Normalização (1FN a 3FN) para evitar a corrupção do sistema e estabelecer as ligações lógicas perfeitas entre as entidades por meio de Chaves Primárias (PK) e Estrangeiras (FK)."
+    },
+    {
+      "semana_numero": "05",
+      "titulo": "Linguagem DDL (CREATE, ALTER, DROP) e Kickoff do Projeto 1",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Reta final da SA1. É o momento de traduzir os modelos visuais e lógicos do draw.db para a construção física através de códigos da Linguagem de Definição de Dados (DDL). Também é feito o lançamento do Projeto 1, que testará a autonomia das equipes na criação da estrutura de um banco do zero."
+    },
+    {
+      "semana_numero": "06",
+      "titulo": "Entrega do Projeto 1 e Linguagem DML Básica (INSERT, UPDATE, DELETE)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Fechamento da SA1. Os alunos entregam a estrutura do primeiro projeto (avaliando autogestão e cumprimento de prazos) e dão os primeiros passos na manipulação da base, inserindo, alterando e excluindo registros vitais do sistema."
+    },
+    {
+      "semana_numero": "07",
+      "titulo": "Comandos SELECT, WHERE e Atividade Prática 2 (Gincana SQL Humana)",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Início da SA2: Consultas e Inteligência de Dados. A estrutura está pronta, agora o foco é buscar a informação correta. Os alunos irão extrair dados do banco e vivenciarão fisicamente a lógica de filtragem (WHERE) através da Gincana SQL Humana, correndo pelo pátio do SENAI para assimilar o pensamento analítico exigido nas consultas."
+    },
+    {
+      "semana_numero": "08",
+      "titulo": "Funções Nativas (Data/Hora, Matemáticas e String)",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Continuação da SA2. Com a habilidade de buscar dados estabelecida, agora os alunos aprenderão a manipular e tratar essa informação diretamente no banco de dados. O uso de funções nativas otimiza o trabalho de formatação que seria enviado para o backend da aplicação."
+    },
+    {
+      "semana_numero": "09",
+      "titulo": "Agrupamento e União (GROUP BY, UNION, Agregação)",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Aprofundamento da SA2. Em um ambiente real, gestores precisam de respostas rápidas de bases massivas. O desafio da semana é gerar inteligência de negócios através da criação de queries e relatórios totalizadores usando funções de agregação, uniões e agrupamento condicional."
+    },
+    {
+      "semana_numero": "10",
+      "titulo": "Cruzamento de Dados (INNER JOIN, LEFT/RIGHT JOIN, OUTER)",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Ponto alto da SA2. Os alunos enfrentarão um dos maiores desafios técnicos da extração de dados: cruzar informações dispersas em múltiplas tabelas normalizadas. O domínio das relações e dos diferentes tipos de JOINs é um requisito obrigatório e decisivo em vagas de desenvolvimento backend."
+    },
+    {
+      "semana_numero": "11",
+      "titulo": "Subconsultas (IN, EXISTS, ANY, ALL)",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Reta final da SA2. O foco é elevar o raciocínio analítico ao limite na construção de queries independentes e embutidas (subconsultas). Eles devem resolver investigações de dados que não podem ser atendidas apenas com associações convencionais de tabelas."
+    },
+    {
+      "semana_numero": "12",
+      "titulo": "Otimização e Atividade Prática 3 (Escape Room Digital / Investigador Forense)",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Encerramento imersivo da SA2. Consolidação de todo o módulo de inteligência de dados. Os alunos entram no laboratório assumindo o papel de peritos de dados em um Escape Room. O único meio de desvendar um crime simulado no sistema do SENAI é escrevendo consultas complexas e precisas, testando a resiliência técnica sob pressão."
+    },
+    {
+      "semana_numero": "13",
+      "titulo": "Migração (Import/Export), TCL (COMMIT/ROLLBACK) e Lançamento do Projeto 2",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Início da SA3: Administração e Programação Avançada. O foco volta-se para a infraestrutura, migração de dados e segurança de transações críticas (TCL). É realizado o Kickoff do Projeto 2, o grande desafio final de estruturação e automação de um banco completo, que começará a ser planejado de forma autônoma pelas equipes."
+    },
+    {
+      "semana_numero": "14",
+      "titulo": "Atividade Prática 1 (Operação Ransomware) e Revisão TCL",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Dinâmica de crise da SA3. O conhecimento sobre administração de bancos e transações é posto à prova na Operação Ransomware. As turmas enfrentam uma crise simulada concorrente em um banco de dados hospedado na nuvem. Precisam aplicar correções imediatas sob fogo cruzado para salvar o sistema e treinar o controle emocional de um DBA em situações de emergência."
+    },
+    {
+      "semana_numero": "15",
+      "titulo": "Programação BD I: Criação de VIEW e EVENT",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Avanço prático na SA3. O servidor deixa de ser apenas um 'gaveteiro' de dados e os alunos passam a atuar como programadores da base. O objetivo é criar 'janelas' lógicas de visualização (Views) e eventos temporizados automáticos que darão robustez ao sistema do Projeto 2."
+    },
+    {
+      "semana_numero": "16",
+      "titulo": "Programação BD II: STORED PROCEDURES",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Aprofundamento na programação da SA3. O desafio técnico da semana é modularizar as lógicas operacionais e regras de negócio pesadas dentro do próprio banco (Stored Procedures), visando o ganho de segurança e performance nas execuções de um sistema real."
+    },
+    {
+      "semana_numero": "17",
+      "titulo": "Programação BD III: FUNCTION e TRIGGERS",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Reta final da automação na SA3. Os alunos constroem funções customizadas e, principalmente, focam nos gatilhos de auditoria e segurança (Triggers). Eles programarão o banco de dados do Projeto Final para reagir de forma automática e independente diante de qualquer inserção ou deleção de dados críticos."
+    },
+    {
+      "semana_numero": "18",
+      "titulo": "Avaliação: A Entrevista de Emprego (Simulação Técnica e Comportamental)",
+      "situacao_aprendizagem": "Entrevista",
+      "contexto": "Avaliação somativa central da MSEP. Pausa técnica para uma imersão focada na carreira do desenvolvedor/DBA. O aluno é submetido a uma simulação real de recrutamento, com postura corporativa, inteligência emocional e um 'teste de quadro branco' ou escrito para a resolução de problemas de modelagem e SQL."
+    },
+    {
+      "semana_numero": "19",
+      "titulo": "Segurança (DCL - GRANT/REVOKE) e Apresentação/Entrega do Projeto 2",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Encerramento oficial da SA3. O último pilar técnico da administração é a segurança de acessos através da DCL (Princípio do Menor Privilégio). Na sequência, os alunos assumem o palco no 'Demo Day' para entregar e defender toda a arquitetura, segurança e programação que criaram no banco de dados do Projeto 2."
+    },
+    {
+      "semana_numero": "20",
+      "titulo": "Recuperação e Encerramento",
+      "situacao_aprendizagem": "Recuperação",
+      "contexto": "Fechamento do semestre letivo. Esta semana é dedicada ao 'Protocolo de Recuperação', com foco humanizado e técnico para o resgate de alunos que não atingiram a proficiência mínima nos Critérios Críticos. Realiza-se o plantão de dúvidas, a aplicação da avaliação substitutiva e o feedback final sobre o crescimento profissional de cada integrante."
+    }
+]

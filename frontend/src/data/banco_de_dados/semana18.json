@@ -1,0 +1,135 @@
+{
+  "semana_numero": "18",
+  "titulo": "Missão 18: A Entrevista de Emprego - Sabatina e Quadro Branco!",
+  "situacao_aprendizagem": "Mercado e Carreira",
+  "contexto_aluno": "Fala, Dev! A máquina está pronta. O seu banco tem tabelas, regras inquebráveis, dados complexos cruzados em tempo real, rotinas autônomas e gatilhos de segurança. Mas e você? No mundo real, escrever código não basta. Hoje o laboratório do SENAI deixou de existir e se tornou uma multinacional de tecnologia. O professor agora é um Tech Recruiter impiedoso. Vocês vão provar que sabem justificar as arquiteturas que construíram e demonstrar resiliência sob a pressão de um processo seletivo corporativo real. O jogo acadêmico acabou. O jogo do mercado começou!",
+  "bloco_A": {
+    "titulo": "Etapa 1 e 2: Filtragem e Nivelamento Técnico",
+    "conteudo": "Sua Inteligência Emocional (CS 3) será a primeira a ser testada na dinâmica de abertura. Em círculo, cada candidato terá apenas 1 minuto para realizar o seu Pitch Profissional de vendas, lidando com perguntas intimidadoras do Tech Recruiter para checar postura. Passado o filtro comportamental, caímos no filtro técnico de RH: silêncio absoluto para o Teste de Nivelamento, uma avaliação com 20 questões de múltipla escolha abarcando desde a diferença entre modelos de banco de dados até a reação correta diante de um Deadlock nos servidores.",
+    "atividade_pratica": {
+      "nome": "O Pitch e a Prova",
+      "instrucoes": "Prepare sua postura corporativa, contato visual e fala assertiva para o Pitch (explicando quem você é e qual desafio arquitetural você superou no semestre). Na Etapa 2, utilize toda a sua memória técnica adquirida na jornada para responder e passar pelo crivo da Avaliação de Conceitos de Múltipla Escolha."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Etapa 3 e 4: O Teste de Quadro Branco e a Sabatina",
+    "conteudo": "Você passou pelo RH! Agora é o momento em que 90% dos candidatos tremem. O cenário surpresa é entregue (ex: Um sistema de 'Locadora de Veículos'). A regra primordial: Autonomia absoluta. Nada de Google, nada de documentação, sem ajudas e com um prazo de relógio implacável. Vocês terão que projetar do diagrama ao script SQL. Assim que o código estiver escrito, começa a Sabatina Oral: o recrutador apontará o dedo para a tela e fará perguntas duras de engenharia (ex: 'Por que você escolheu VARCHAR aqui? Explique a quebra dessa Chave').",
+    "atividade_pratica": {
+      "nome": "Sobrevivência no Quadro Branco",
+      "instrucoes": "Acessem seus terminais sob máxima pressão de tempo. Desenvolvam a modelagem lógica e os scripts DDL exigidos no desafio surpresa. Quando acionados pelo recrutador, levantem-se, expliquem o racional do próprio código e não deixem que as perguntas de pressão desestabilizem as suas defesas técnicas e estruturais."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana18.pdf",
+    "resumo_audio": "BCD-Podcast-Semana18 - O_teste_de_sobrevivência_da_Semana_18.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem01-Jornada_do_Arquiteto_de_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que o seu perfil agrada ao Tech Recruiter? Revise os conceitos das 20 questões originais da nossa prova e veja se você passaria no Nivelamento do RH!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a principal diferença estrutural entre um modelo Relacional e Não-Relacional?",
+        "opcoes": [
+          "a) O Relacional organiza dados em tabelas interligadas rigidamente; o Não-Relacional é flexível, usando documentos ou chave-valor.",
+          "b) O Não-Relacional é sempre mais lento.",
+          "c) O Relacional armazena vídeos, enquanto o Não-Relacional apenas textos.",
+          "d) Ambos não aceitam linguagem SQL."
+        ],
+        "resposta_correta": "a) O Relacional organiza dados em tabelas interligadas rigidamente; o Não-Relacional é flexível, usando documentos ou chave-valor."
+      },
+      {
+        "pergunta": "O que significa a sigla ACID em bancos de dados relacionais?",
+        "opcoes": [
+          "a) Automação, Controle, Integração, Dados.",
+          "b) Atomicidade, Consistência, Isolamento, Durabilidade.",
+          "c) Acesso, Commit, Isolamento, Deleção.",
+          "d) Analítico, Capacidade, Identidade, Dados."
+        ],
+        "resposta_correta": "b) Atomicidade, Consistência, Isolamento, Durabilidade."
+      },
+      {
+        "pergunta": "Na modelagem, a 3ª Forma Normal (3FN) exige estritamente que:",
+        "opcoes": [
+          "a) Todas as tabelas tenham 3 colunas.",
+          "b) Os dados fiquem em letras maiúsculas.",
+          "c) Não existam dependências transitivas, ou seja, atributos não-chave não dependam de outros atributos não-chave, apenas da Chave Primária.",
+          "d) Nenhuma tabela se comunique com outra."
+        ],
+        "resposta_correta": "c) Não existam dependências transitivas, ou seja, atributos não-chave não dependam de outros atributos não-chave, apenas da Chave Primária."
+      },
+      {
+        "pergunta": "O que o Dicionário de Dados faz em um projeto?",
+        "opcoes": [
+          "a) Traduz os comandos SQL para português.",
+          "b) Guarda a documentação de senhas dos programadores.",
+          "c) Mapeia formalmente o nome, o tipo e o tamanho de cada atributo antes da codificação, servindo como guia arquitetural.",
+          "d) Instala o servidor XAMPP."
+        ],
+        "resposta_correta": "c) Mapeia formalmente o nome, o tipo e o tamanho de cada atributo antes da codificação, servindo como guia arquitetural."
+      },
+      {
+        "pergunta": "Qual é a consequência de executar um comando UPDATE sem a cláusula WHERE?",
+        "opcoes": [
+          "a) Apenas a primeira linha será atualizada.",
+          "b) O banco não permitirá a execução devido a erros.",
+          "c) Todas as linhas da tabela serão atualizadas com o mesmo valor, corrompendo os dados originais.",
+          "d) Será criada uma tabela de backup automaticamente."
+        ],
+        "resposta_correta": "c) Todas as linhas da tabela serão atualizadas com o mesmo valor, corrompendo os dados originais."
+      },
+      {
+        "pergunta": "Qual comando destrói fisicamente e irreversivelmente a estrutura inteira de uma tabela?",
+        "opcoes": [
+          "a) DELETE FROM",
+          "b) REMOVE TABLE",
+          "c) DROP TABLE",
+          "d) ERASE"
+        ],
+        "resposta_correta": "c) DROP TABLE"
+      },
+      {
+        "pergunta": "Para agrupar as vendas totais por Estado e exibir o resultado consolidado, qual cláusula deve ser combinada com a função de agregação SUM()?",
+        "opcoes": [
+          "a) ORDER BY",
+          "b) LIMIT",
+          "c) UNION",
+          "d) GROUP BY"
+        ],
+        "resposta_correta": "d) GROUP BY"
+      },
+      {
+        "pergunta": "Em uma investigação de fraude com Subquery, o que a cláusula IN faz na query externa?",
+        "opcoes": [
+          "a) Insere novos registros.",
+          "b) Apaga valores nulos.",
+          "c) Permite que a cláusula WHERE filtre e compare dados com uma lista inteira de múltiplos valores gerada por uma subconsulta interna.",
+          "d) Formata textos matematicamente."
+        ],
+        "resposta_correta": "c) Permite que a cláusula WHERE filtre e compare dados com uma lista inteira de múltiplos valores gerada por uma subconsulta interna."
+      },
+      {
+        "pergunta": "O que é uma transação controlada (TCL) como o START TRANSACTION, COMMIT e ROLLBACK?",
+        "opcoes": [
+          "a) Uma função de conversão de moedas.",
+          "b) Um bloco isolado de segurança que garante o 'tudo ou nada', permitindo salvar permanentemente se houver sucesso, ou reverter para a estaca zero caso a operação sofra pane no meio.",
+          "c) Um comando para hackear servidores externos.",
+          "d) Uma trigger que desliga a máquina."
+        ],
+        "resposta_correta": "b) Um bloco isolado de segurança que garante o 'tudo ou nada', permitindo salvar permanentemente se houver sucesso, ou reverter para a estaca zero caso a operação sofra pane no meio."
+      },
+      {
+        "pergunta": "Como um DBA sênior reage a uma pane concorrente com Locks (travamentos de tabela) num servidor em produção?",
+        "opcoes": [
+          "a) Reinicia o computador pelo botão físico para resolver.",
+          "b) Culpa os desenvolvedores Front-end pela lentidão.",
+          "c) Apaga o banco de dados e foge da empresa.",
+          "d) Demonstra inteligência emocional, diagnostica as conexões no console, usa ROLLBACK em transações problemáticas abandonadas para destravar a fila e recobra o sistema com frieza."
+        ],
+        "resposta_correta": "d) Demonstra inteligência emocional, diagnostica as conexões no console, usa ROLLBACK em transações problemáticas abandonadas para destravar a fila e recobra o sistema com frieza."
+      }
+    ]
+  }
+}

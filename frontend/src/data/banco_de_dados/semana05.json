@@ -1,0 +1,138 @@
+{
+  "semana_numero": "05",
+  "titulo": "Missão 05: O Cimento Armado do Código - A Fundação DDL!",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Fala, Dev! Você já tem a planta-baixa (DER) e o dicionário de dados prontos, revisados e livres de anomalias. Mas você sabe que papel não roda sistema, certo? Desenhos e caixinhas não conseguem guardar transações reais. Chegou o grande momento de levantar as paredes do nosso banco de dados! Hoje, você assume oficialmente o papel de construtor físico do backend. Vamos aprender a traduzir todas aquelas caixinhas lógicas em comandos de código puro usando a Linguagem de Definição de Dados (DDL). É a hora da verdade: ligar os motores do MySQL, abrir o terminal e ver os scripts criando as suas tabelas em milissegundos. Preparado para o Kickoff do seu primeiro projeto corporativo?",
+  "bloco_A": {
+    "titulo": "Do Papel para a Máquina: A Fundação DDL",
+    "conteudo": "A Linguagem de Definição de Dados (DDL) é o maquinário pesado da nossa obra. Ela não lida com as informações dos usuários ainda, mas sim com a construção das gavetas onde esses dados vão morar. Com o comando `CREATE`, atuamos como o guindaste que constrói bancos e tabelas do zero. Com o `ALTER`, usamos o maçarico para adicionar ou modificar colunas em uma tabela que já existe. E com o temido `DROP`, assumimos a bola de demolição, aniquilando estruturas de forma irreversível. Além disso, é no DDL que declaramos as restrições vitais (Constraints) que dão segurança ao banco, como `PRIMARY KEY` (a chave principal), `NOT NULL` (para não aceitar campos vazios) e o `AUTO_INCREMENT` (para o banco contar os IDs sozinho). O backend precisa ser à prova de falhas desde a sua fundação!",
+    "atividade_pratica": {
+      "nome": "Desafio Prático: O Primeiro Script",
+      "instrucoes": "Sem usar o servidor ainda! Em um bloco de notas puro, sua missão individual é escrever o seu primeiro script de criação. Codifique do zero a instrução SQL (`CREATE TABLE`) para uma tabela simples chamada `PRODUTOS`. Ela precisa ter 3 campos tipados corretamente: um id_produto (que deve ser PK e Auto Incremento), um nome do produto e o seu preço. Atenção máxima à identação, vírgulas e ao ponto e vírgula no final da instrução!"
+    }
+  },
+  "bloco_B": {
+    "titulo": "Console SQL e o Kickoff do Projeto 1",
+    "conteudo": "A sintaxe está desenhada. Agora as coisas ficam sérias. Acabamos de lançar oficialmente o **Projeto 1: Modelagem Física**. Eu serei o 'Cliente' extremamente exigente que precisa dessa infraestrutura no ar para a próxima semana. Vocês operarão no nível de autonomia máximo (AUT) e eu atuarei apenas como Tech Lead para destrinchar erros críticos. O console do MySQL não perdoa erros de digitação: se esquecer um parêntese, a tela jogará um erro vermelho enorme. Não entre em pânico! Ler o log de erro e fazer o *troubleshooting* do próprio código é uma das *soft skills* mais valiosas de um Desenvolvedor Sênior.",
+    "atividade_pratica": {
+      "nome": "Laboratório do DBA: Subindo o Banco do Projeto 1",
+      "instrucoes": "1. Liguem o Apache e o MySQL no XAMPP (resolvam eventuais conflitos na porta 3306 sozinhos). 2. Acessem o console ou phpMyAdmin. 3. Com base no briefing do cliente, comecem a codificar os scripts DDL das tabelas principais do Projeto 1 e executem no servidor. 4. Surpresa do cliente no meio da obra: O escopo mudou! Vocês precisarão usar o comando `ALTER TABLE ADD COLUMN` para inserir uma nova coluna obrigatória que não estava prevista. 5. Garantam que todas as Chaves Estrangeiras (FOREIGN KEY) estejam declaradas no código SQL para fechar a integridade referencial."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana05.pdf",
+    "resumo_audio": "BCD-Podcast-Semana05 - Do_diagrama_ao_código_real_com_DDL.m4a",
+    "videos_correlacionados": [
+      "BCD-Vídeo05-Odisseia.mp4",
+      "BCD-VídeoAbertura-A_Jornada_do_Arquiteto.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "BCD-Imagem02-Guia_do_Arquiteto_de_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você está pronto para trocar a caneta pelo teclado e começar a programar a infraestrutura? Teste seus conhecimentos em SQL DDL agora!",
+    "perguntas": [
+      {
+        "pergunta": "O que significa a sigla DDL no universo de Banco de Dados?",
+        "opcoes": [
+          "a) Data Design Local",
+          "b) Documento de Dados Livres",
+          "c) Data Definition Language (Linguagem de Definição de Dados)",
+          "d) Database Direct Login"
+        ],
+        "resposta_correta": "c) Data Definition Language (Linguagem de Definição de Dados)"
+      },
+      {
+        "pergunta": "Qual comando SQL é responsável por criar a estrutura física de uma nova tabela do zero?",
+        "opcoes": [
+          "a) INSERT TABLE",
+          "b) CREATE TABLE",
+          "c) BUILD TABLE",
+          "d) NEW TABLE"
+        ],
+        "resposta_correta": "b) CREATE TABLE"
+      },
+      {
+        "pergunta": "Na nossa metáfora de construção, a linguagem DDL é responsável por:",
+        "opcoes": [
+          "a) Trazer os móveis e eletrodomésticos para dentro de casa.",
+          "b) Levantar as paredes, o teto e construir as portas da casa (estrutura).",
+          "c) Apagar arquivos de imagem do sistema operacional.",
+          "d) Fazer o design gráfico da interface do aplicativo."
+        ],
+        "resposta_correta": "b) Levantar as paredes, o teto e construir as portas da casa (estrutura)."
+      },
+      {
+        "pergunta": "Imagine que a tabela já está pronta e com registros, mas o cliente solicitou uma nova coluna de 'CPF'. Qual comando DDL deve ser usado?",
+        "opcoes": [
+          "a) MODIFY TABLE",
+          "b) DROP TABLE",
+          "c) UPDATE TABLE",
+          "d) ALTER TABLE"
+        ],
+        "resposta_correta": "d) ALTER TABLE"
+      },
+      {
+        "pergunta": "Qual comando DDL atua como a 'Bola de Demolição', destruindo irreversivelmente a estrutura inteira de uma tabela?",
+        "opcoes": [
+          "a) ERASE TABLE",
+          "b) DELETE TABLE",
+          "c) REMOVE TABLE",
+          "d) DROP TABLE"
+        ],
+        "resposta_correta": "d) DROP TABLE"
+      },
+      {
+        "pergunta": "Como definimos via código DDL que o banco de dados deve gerar a numeração do identificador (ID) de forma automática e sequencial?",
+        "opcoes": [
+          "a) AUTO_INCREMENT",
+          "b) PRIMARY_ID",
+          "c) GENERATE_NUMBER",
+          "d) DEFAULT_COUNT"
+        ],
+        "resposta_correta": "a) AUTO_INCREMENT"
+      },
+      {
+        "pergunta": "O que a constraint (restrição) 'NOT NULL' faz quando aplicada a uma coluna durante a sua criação?",
+        "opcoes": [
+          "a) Impede que o usuário digite o número zero.",
+          "b) Garante que a coluna aceite apenas textos curtos.",
+          "c) Exige obrigatoriamente que a coluna seja preenchida durante o cadastro, proibindo valores vazios.",
+          "d) Criptografa o dado salvo."
+        ],
+        "resposta_correta": "c) Exige obrigatoriamente que a coluna seja preenchida durante o cadastro, proibindo valores vazios."
+      },
+      {
+        "pergunta": "Como declaramos explicitamente que uma coluna é o identificador único daquela tabela?",
+        "opcoes": [
+          "a) UNIQUE KEY",
+          "b) FIRST KEY",
+          "c) FOREIGN KEY",
+          "d) PRIMARY KEY"
+        ],
+        "resposta_correta": "d) PRIMARY KEY"
+      },
+      {
+        "pergunta": "Durante a execução no console, se você receber um erro vermelho de 'Syntax Error' apontando a falha, qual a atitude esperada com base na metodologia de Autonomia (AUT)?",
+        "opcoes": [
+          "a) Fechar o console e reiniciar o computador.",
+          "b) Chamar o professor imediatamente sem ler a mensagem.",
+          "c) Ler a linha do log para investigar onde esqueceu o ponto-e-vírgula ou a aspa, antes de pedir ajuda.",
+          "d) Apagar toda a query e não tentar novamente."
+        ],
+        "resposta_correta": "c) Ler a linha do log para investigar onde esqueceu o ponto-e-vírgula ou a aspa, antes de pedir ajuda."
+      },
+      {
+        "pergunta": "Ao ligar os motores no XAMPP para o laboratório, qual é a principal porta de rede que precisamos garantir que esteja com o sinal verde livre para o MySQL rodar?",
+        "opcoes": [
+          "a) 8080",
+          "b) 3306",
+          "c) 443",
+          "d) 80"
+        ],
+        "resposta_correta": "b) 3306"
+      }
+    ]
+  }
+}

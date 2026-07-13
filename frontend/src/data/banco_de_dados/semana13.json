@@ -1,0 +1,135 @@
+{
+  "semana_numero": "13",
+  "titulo": "Missão 13: O Save Game do Banco de Dados - Transações e Migração!",
+  "situacao_aprendizagem": "SA3",
+  "contexto_aluno": "Fala, Dev! Parabéns por ter sobrevivido ao Escape Room e concluído a SA2! A partir de hoje, a sua responsabilidade muda. Bem-vindo à SA3: Administração e Programação Avançada. Você deixa de ser apenas um 'Detetive' que busca dados e assume o posto de Arquiteto/DBA Oficial do servidor. Se um banco de dados gigantesco de um e-commerce trava ou tem dados apagados por engano, a empresa inteira vai à falência. Como garantimos que isso não aconteça? Hoje, você vai conhecer o 'Botão de Desfazer da Vida Real': a linguagem de Controle de Transações (TCL). Prepare-se para dominar o COMMIT, o ROLLBACK e a arte de migrar (Dump) bancos de dados corporativos!",
+  "bloco_A": {
+    "titulo": "O Botão de Desfazer da Vida Real (TCL e Migração)",
+    "conteudo": "No seu computador local, se você executa um DELETE errado, não há 'Ctrl+Z'. Mas em um sistema profissional, nós usamos a linguagem TCL para criar uma redoma de segurança. Iniciamos a operação com o comando `START TRANSACTION`. A partir desse momento, todas as alterações que você fizer (INSERT, UPDATE, DELETE) ficam apenas na memória temporária. Se tudo der certo, você envia o comando `COMMIT` para salvar definitivamente no disco. Se algo der errado (como acabar a energia ou o código atualizar a linha errada), você grita `ROLLBACK` e o banco volta magicamente no tempo, restaurando tudo ao estado original! É o princípio ACID (Atomicidade, Consistência, Isolamento e Durabilidade) agindo para salvar a sua carreira.",
+    "atividade_pratica": {
+      "nome": "Desafio: O Teste de Confiança",
+      "instrucoes": "Vamos testar o 'Save Game' na prática. No console, você criará uma tabela rápida de 'Contas'. Inicie uma `START TRANSACTION`. Agora, seja caótico: execute um DELETE para apagar todas as contas da tabela propositalmente! Faça um SELECT e comprove que o banco está vazio. Imediatamente após, respire fundo e execute o comando `ROLLBACK`. Dê um novo SELECT e comemore ao ver seus dados intactos novamente."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: Kickoff do Projeto 2 e Resgate de Dados",
+    "conteudo": "A segurança foi estabelecida na teoria. Agora é hora de assumir o seu maior desafio no semestre letivo: O lançamento do Projeto 2! Vocês terão que construir um sistema corporativo completo com automações no banco. Mas o primeiro pedido do seu cliente fictício é resgatar um banco de dados antigo corrompido que ele trouxe de outra empresa. Vocês deverão importar (Restore) esse arquivo no servidor local, desativar o auto-commit e operar como DBAs seniores.",
+    "atividade_pratica": {
+      "nome": "Operação: Resgatar o Cliente Legado",
+      "instrucoes": "Importem o arquivo de banco corrompido ('bcd_banco_legado.sql') nas máquinas de vocês. O cliente exige 3 atualizações salariais críticas (UPDATEs). Vocês deverão desativar o Auto-Commit do MySQL, abrir a transação de segurança, rodar os DMLs com precisão, validar se o resultado está correto e, só então, consolidar com o `COMMIT`. Por fim, utilizem a ferramenta de exportação para gerar o Dump (.sql) do novo banco higienizado como prova de sucesso!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana13.pdf",
+    "resumo_audio": "BCD-Podcast-Semana13 - Sobreviva_ao_temido_delete_sem_where.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem04-Arquitetura_Avançada_de_Bancos_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você sabe proteger um banco de dados corporativo contra acidentes? Teste o seu domínio sobre TCL e migração de dados neste quiz rápido!",
+    "perguntas": [
+      {
+        "pergunta": "O que significa a sigla TCL no universo de bancos de dados?",
+        "opcoes": [
+          "a) Tabelas de Comando Lógico",
+          "b) Transaction Control Language (Linguagem de Controle de Transações)",
+          "c) Transferência de Código Local",
+          "d) Table Creation Language"
+        ],
+        "resposta_correta": "b) Transaction Control Language (Linguagem de Controle de Transações)"
+      },
+      {
+        "pergunta": "Na nossa metáfora do 'Save Game', qual comando é responsável por criar o ambiente isolado de segurança indicando ao banco que uma operação crítica vai começar?",
+        "opcoes": [
+          "a) BEGIN GAME",
+          "b) START TRANSACTION",
+          "c) CREATE BACKUP",
+          "d) INITIALIZE"
+        ],
+        "resposta_correta": "b) START TRANSACTION"
+      },
+      {
+        "pergunta": "Após verificar que todas as instruções (UPDATE/INSERT/DELETE) dentro de uma transação estão corretas, qual comando o DBA deve enviar para salvar os dados definitivamente no disco rígido?",
+        "opcoes": [
+          "a) SAVE ALL",
+          "b) PUSH",
+          "c) COMMIT",
+          "d) CONFIRM"
+        ],
+        "resposta_correta": "c) COMMIT"
+      },
+      {
+        "pergunta": "Se ocorrer uma queda de energia no backend ou o DBA perceber que deletou registros a mais por engano, qual comando reverte as ações e desfaz a transação?",
+        "opcoes": [
+          "a) CTRL_Z",
+          "b) ROLLBACK",
+          "c) REVERSE",
+          "d) RESTORE"
+        ],
+        "resposta_correta": "b) ROLLBACK"
+      },
+      {
+        "pergunta": "O que significa o conceito de 'Atomicidade' (o 'A' da sigla ACID)?",
+        "opcoes": [
+          "a) O banco de dados se divide em átomos para rodar mais rápido.",
+          "b) A garantia do 'Tudo ou Nada': ou todas as operações da transação (ex: o débito na conta A e o crédito na conta B) são executadas com sucesso, ou o banco desfaz tudo.",
+          "c) A possibilidade de apagar tabelas nucleares.",
+          "d) A proteção contra radiação nos servidores."
+        ],
+        "resposta_correta": "b) A garantia do 'Tudo ou Nada': ou todas as operações da transação (ex: o débito na conta A e o crédito na conta B) são executadas com sucesso, ou o banco desfaz tudo."
+      },
+      {
+        "pergunta": "O que acontece se o DBA executar um DELETE dentro de uma transação e, sem enviar o COMMIT ou ROLLBACK, fechar abruptamente a janela do console SQL?",
+        "opcoes": [
+          "a) O MySQL efetiva o DELETE e salva no disco automaticamente.",
+          "b) O MySQL entende como falha e executa um ROLLBACK automático, descartando as alterações não commitadas e mantendo os dados seguros.",
+          "c) A tabela inteira é bloqueada para sempre.",
+          "d) O banco envia um alerta ao cliente."
+        ],
+        "resposta_correta": "b) O MySQL entende como falha e executa um ROLLBACK automático, descartando as alterações não commitadas e mantendo os dados seguros."
+      },
+      {
+        "pergunta": "No mercado corporativo, o termo 'Fazer um Dump' do banco de dados refere-se a:",
+        "opcoes": [
+          "a) Apagar o banco de dados.",
+          "b) Gerar um script de backup (.sql) com toda a estrutura e os dados do sistema para migração ou salvaguarda.",
+          "c) Reiniciar o servidor da nuvem.",
+          "d) Transformar dados relacionais em NoSQL."
+        ],
+        "resposta_correta": "b) Gerar um script de backup (.sql) com toda a estrutura e os dados do sistema para migração ou salvaguarda."
+      },
+      {
+        "pergunta": "Por que o comando DDL (como CREATE TABLE ou DROP TABLE) é perigoso se executado no meio de uma transação que o DBA pretendia reverter?",
+        "opcoes": [
+          "a) Porque comandos DDL causam um 'Commit Implícito', fechando a transação imediatamente e gravando as alterações no disco sem chance de dar ROLLBACK.",
+          "b) Porque o DDL apaga os comandos DML.",
+          "c) Porque o MySQL não suporta CREATE TABLE.",
+          "d) Porque o DDL renomeia o banco de dados."
+        ],
+        "resposta_correta": "a) Porque comandos DDL causam um 'Commit Implícito', fechando a transação imediatamente e gravando as alterações no disco sem chance de dar ROLLBACK."
+      },
+      {
+        "pergunta": "O comando SAVEPOINT serve para qual objetivo avançado dentro do TCL?",
+        "opcoes": [
+          "a) Salvar o jogo do usuário no Front-end.",
+          "b) Criar um ponto de restauração no meio de uma transação muito grande, permitindo dar ROLLBACK apenas até aquele ponto sem perder todo o trabalho anterior.",
+          "c) Exportar a base em formato Excel.",
+          "d) Trocar a senha do administrador."
+        ],
+        "resposta_correta": "b) Criar um ponto de restauração no meio de uma transação muito grande, permitindo dar ROLLBACK apenas até aquele ponto sem perder todo o trabalho anterior."
+      },
+      {
+        "pergunta": "Qual capacidade foi amplamente exigida na atividade 'Resgate do Cliente Legado', além de saber programar?",
+        "opcoes": [
+          "a) Autogestão e responsabilidade, pois manipular e migrar um banco em ambiente de crise exige calma e aplicação rigorosa da teoria TCL.",
+          "b) Habilidade em design gráfico para o aplicativo.",
+          "c) Saber criar servidores Linux do zero.",
+          "d) Digitação mais rápida da sala."
+        ],
+        "resposta_correta": "a) Autogestão e responsabilidade, pois manipular e migrar um banco em ambiente de crise exige calma e aplicação rigorosa da teoria TCL."
+      }
+    ]
+  }
+}

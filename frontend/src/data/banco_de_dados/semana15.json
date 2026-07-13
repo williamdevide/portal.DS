@@ -1,0 +1,135 @@
+{
+  "semana_numero": "15",
+  "titulo": "Missão 15: Janelas Fumê e Robôs Cronometrados - VIEWs e EVENTs!",
+  "situacao_aprendizagem": "SA3",
+  "contexto_aluno": "Fala, Dev! Vocês provaram ser DBAs casca-grossa durante o ataque Ransomware da semana passada. Agora, o nível sobe. Um servidor de banco de dados não precisa ser um gaveteiro burro de informações que só responde quando um aplicativo backend em Node.js ou C# manda uma requisição. Hoje, vocês vão atuar como PROGRAMADORES da base de dados. Imagine um recepcionista de hospital que precisa ver o nome do paciente, mas é proibido de ver o salário do médico. Como escondemos isso criando uma 'tabela fantasma'? E se o sistema precisar apagar logs inúteis às 3 da manhã de um domingo sem nenhum humano acordado? Bem-vindos ao universo da abstração e automação com VIEWs e EVENTs!",
+  "bloco_A": {
+    "titulo": "As Janelas e o Relógio Automático",
+    "conteudo": "A `CREATE VIEW` atua como uma janela fumê blindada. Você junta 10 tabelas em um INNER JOIN monstruoso e esconde tudo isso sob um apelido falso. O desenvolvedor front-end olha pela janela e vê uma tabelinha super simples e enxuta, protegendo o núcleo corporativo (Princípio de Segurança e Abstração). Já o `CREATE EVENT` (o famoso Event Scheduler do MySQL) transforma o banco em um relógio. É um robô interno programado (ex: ON SCHEDULE EVERY 1 DAY) para varrer as tabelas, recalcular preços ou deletar contas banidas enquanto você dorme. Reduz drasticamente a rede da empresa e corta custos operacionais da infraestrutura.",
+    "atividade_pratica": {
+      "nome": "O Ilusionista de Dados",
+      "instrucoes": "Hora de fazer mágica. Sem encostar na máquina ainda, abram os cadernos. Vocês receberão uma regra de negócio de faturamento confidencial. A missão da dupla é desenhar o código de criação de uma VIEW (`vw_produto_seguro`) que faça projeção de colunas exibindo o Nome do Produto e o Código de Barras, mas que oculte de forma brutal e indetectável a coluna 'Preço de Custo' aos olhos de qualquer usuário comum."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: Programando Visões e Rotinas no Projeto 2",
+    "conteudo": "A mágica funcionou no papel, agora vamos implementá-la em grande escala! O cliente fictício de vocês analisou a modelagem do Projeto 2 e fez exigências claras. Ele quer acessar relatórios estratégicos super complexos com uma única linha de código, e exige que lixos temporários (como tokens expirados ou carrinhos de compra abandonados) se autodestruam da base de dados para não consumirem espaço em disco do servidor na nuvem. Hoje o código SQL ganha autonomia e tempo próprio de execução.",
+    "atividade_pratica": {
+      "nome": "A Automação do Projeto 2",
+      "instrucoes": "Diretamente na arquitetura do Projeto Final (P2) da equipe: 1) Entreguem a codificação e criação de pelo menos duas VIEWs gerenciais focadas em inteligência de dados (contendo JOINs e agrupamentos). 2) Verifiquem o motor do relógio do servidor usando `SET GLOBAL event_scheduler = ON;`. 3) Programem pelo menos 1 EVENTO automático que atue como o 'Lixeiro da Madrugada', focado em varrer sua tabela a cada hora e dar DELETE em registros inúteis/expirados."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana15.pdf",
+    "resumo_audio": "BCD-Podcast-Semana15 - Views_e_eventos_dão_vida_aos_dados.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem04-Arquitetura_Avançada_de_Bancos_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Você transformou seu banco em um organismo quase vivo! Responda o quiz para testar se domina o ilusionismo das VIEWs e o relógio dos EVENTs.",
+    "perguntas": [
+      {
+        "pergunta": "Do ponto de vista físico no HD do servidor, o que uma VIEW realmente guarda?",
+        "opcoes": [
+          "a) Ela guarda uma cópia duplicada (Backup) de todas as linhas de dados da tabela original.",
+          "b) Ela guarda e salva um novo banco de dados em formato NoSQL.",
+          "c) Ela não guarda dados físicos, guarda apenas a 'Pergunta Lógica' (o código SELECT mascarado) e invoca os dados em tempo real quando consultada.",
+          "d) Ela guarda senhas de usuários criptografadas em texto."
+        ],
+        "resposta_correta": "c) Ela não guarda dados físicos, guarda apenas a 'Pergunta Lógica' (o código SELECT mascarado) e invoca os dados em tempo real quando consultada."
+      },
+      {
+        "pergunta": "Qual é a analogia utilizada na narrativa para explicar a função de segurança de uma VIEW?",
+        "opcoes": [
+          "a) Um botão de reset do computador.",
+          "b) Uma janela fumê de carro blindado: o usuário externo vê apenas os dados mascarados e limitados que queremos exibir, ocultando colunas vitais como salários ou IDs críticos.",
+          "c) Um pendrive USB removível.",
+          "d) Uma planilha aberta para todos da empresa editarem livremente."
+        ],
+        "resposta_correta": "b) Uma janela fumê de carro blindado: o usuário externo vê apenas os dados mascarados e limitados que queremos exibir, ocultando colunas vitais como salários ou IDs críticos."
+      },
+      {
+        "pergunta": "No dia a dia do desenvolvimento de sistemas, como o uso de uma VIEW ajuda drasticamente a vida do programador Front-end (que constrói a tela)?",
+        "opcoes": [
+          "a) Força o programador Front-end a aprender a instalar o XAMPP.",
+          "b) Impede que o Frontend acesse qualquer dado do sistema.",
+          "c) Ele pode fazer um simples 'SELECT * FROM vw_relatorio' e receber a inteligência pronta, sem precisar digitar no código dele os cruzamentos complexos de 5 INNER JOINs da retaguarda.",
+          "d) Obriga o Front-end a desenhar diagramas no draw.db."
+        ],
+        "resposta_correta": "c) Ele pode fazer um simples 'SELECT * FROM vw_relatorio' e receber a inteligência pronta, sem precisar digitar no código dele os cruzamentos complexos de 5 INNER JOINs da retaguarda."
+      },
+      {
+        "pergunta": "O que faz a instrução CREATE EVENT no ecossistema do SGBD MySQL?",
+        "opcoes": [
+          "a) Cria uma notificação visual na tela do Windows.",
+          "b) Deleta todas as tabelas temporárias imediatamente.",
+          "c) Cria um agendamento temporizado nativo (um robô interno) para rodar rotinas SQL, cálculos ou limpezas automáticas no banco em horários ou ciclos pré-estabelecidos.",
+          "d) Cria um novo projeto na IDE do desenvolvedor."
+        ],
+        "resposta_correta": "c) Cria um agendamento temporizado nativo (um robô interno) para rodar rotinas SQL, cálculos ou limpezas automáticas no banco em horários ou ciclos pré-estabelecidos."
+      },
+      {
+        "pergunta": "Para que os eventos programados pela equipe no laboratório realmente funcionem de madrugada sem intervenção humana, qual variável global crítica do MySQL precisa obrigatoriamente estar em 'ON'?",
+        "opcoes": [
+          "a) set_global_lock",
+          "b) auto_commit_system",
+          "c) event_scheduler",
+          "d) trigger_timer_active"
+        ],
+        "resposta_correta": "c) event_scheduler"
+      },
+      {
+        "pergunta": "Se uma tabela raiz (Ex: tb_cliente) receber 10 novos clientes hoje, a VIEW (Ex: vw_cliente_simples) atrelada a ela refletirá esses novos clientes?",
+        "opcoes": [
+          "a) Não, as Views são relatórios estáticos imutáveis em PDF.",
+          "b) Sim, pois a VIEW executa a query em tempo real sobre a tabela matriz e exibirá instantaneamente a atualização sempre que consultada.",
+          "c) Apenas se desligarmos o servidor local.",
+          "d) Sim, mas apaga os antigos."
+        ],
+        "resposta_correta": "b) Sim, pois a VIEW executa a query em tempo real sobre a tabela matriz e exibirá instantaneamente a atualização sempre que consultada."
+      },
+      {
+        "pergunta": "Ao programar o evento 'Lixeiro da Madrugada', qual o principal ganho estrutural para a empresa ao transferir essa função de limpeza cíclica para dentro do banco de dados ao invés de deixá-la no Backend (em C#/PHP)?",
+        "opcoes": [
+          "a) Economiza o tráfego de dados massivos de rede, reduz a latência e libera o processamento dos servidores web, centralizando a rotina nativamente na base.",
+          "b) Torna o layout da aplicação mais colorido e amigável.",
+          "c) Protege o sistema contra Ransomwares na nuvem.",
+          "d) Permite que a empresa apague os HDs do servidor."
+        ],
+        "resposta_correta": "a) Economiza o tráfego de dados massivos de rede, reduz a latência e libera o processamento dos servidores web, centralizando a rotina nativamente na base."
+      },
+      {
+        "pergunta": "O que indica a cláusula 'ON SCHEDULE EVERY 1 DAY' em um Evento no MySQL?",
+        "opcoes": [
+          "a) Que o evento vai excluir o banco após 1 dia.",
+          "b) Que o evento é executado diariamente, num ciclo ininterrupto.",
+          "c) Que o banco funcionará de forma gratuita por um dia.",
+          "d) Que o backup demorará um dia inteiro."
+        ],
+        "resposta_correta": "b) Que o evento é executado diariamente, num ciclo ininterrupto."
+      },
+      {
+        "pergunta": "Qual foi a atitude de 'Autonomia' (CS 4) exigida pelo Instrutor quando um aluno rodou o CREATE EVENT sem erros de sintaxe, mas o evento simplesmente não executou no horário marcado?",
+        "opcoes": [
+          "a) Ler que o 'event_scheduler' estava desligado nas variáveis globais do banco e ativar por conta própria antes de pedir ajuda ao Tech Lead.",
+          "b) Desistir e enviar o código quebrado.",
+          "c) Reiniciar a máquina 5 vezes.",
+          "d) Deletar todas as linhas manualmente."
+        ],
+        "resposta_correta": "a) Ler que o 'event_scheduler' estava desligado nas variáveis globais do banco e ativar por conta própria antes de pedir ajuda ao Tech Lead."
+      },
+      {
+        "pergunta": "Se uma VIEW for construída utilizando funções de agrupamento massivas (GROUP BY) ou funções matemáticas (SUM), e o aluno não batizar a coluna usando o Alias (AS), qual problema de infraestrutura ele encontrará?",
+        "opcoes": [
+          "a) A tabela será deletada pelo banco de dados.",
+          "b) O SGBD enviará um vírus.",
+          "c) O banco lançará erro de nomenclatura de metadados, pois não aceita colunas virtuais nomeadas com lógicas matemáticas brutas, forçando o aluno a adotar a liderança técnica do uso de 'AS nome_coluna'.",
+          "d) A VIEW só poderá ser acessada de segunda a sexta-feira."
+        ],
+        "resposta_correta": "c) O banco lançará erro de nomenclatura de metadados, pois não aceita colunas virtuais nomeadas com lógicas matemáticas brutas, forçando o aluno a adotar a liderança técnica do uso de 'AS nome_coluna'."
+      }
+    ]
+  }
+}

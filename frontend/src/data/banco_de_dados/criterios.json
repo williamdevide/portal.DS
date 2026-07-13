@@ -1,0 +1,469 @@
+{
+  "descricao": "A avaliação é baseada no desenvolvimento de competências MSEP. Focamos no 'saber', 'saber fazer' e 'saber ser', avaliando a aplicação prática através de projetos, gamificação e entrevistas.",
+  "matriz_criterios": [
+    {
+      "id": "CT 1",
+      "capacidade": "Identificar as características de banco de dados relacionais e não-relacionais.",
+      "conhecimento": "1. Sistema Gerenciador de Banco de Dados (SGBD) (1.1 - Definição, 1.2 - Tipos [1.2.1 - Relacional, 1.2.2 - Não relacional], 1.3 - Características).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Diferenciação de Modelos",
+      "descricao_criterio": "Identifica a diferença estrutural entre banco relacional e não-relacional.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 1, 2)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 1",
+      "capacidade": "Identificar as características de banco de dados relacionais e não-relacionais.",
+      "conhecimento": "1. Sistema Gerenciador de Banco de Dados (SGBD) (1.1 - Definição, 1.2 - Tipos [1.2.1 - Relacional, 1.2.2 - Não relacional], 1.3 - Características).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Argumentação Técnica",
+      "descricao_criterio": "Justifica tecnicamente a escolha do banco conforme a escala do negócio.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 1, 2)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 2",
+      "capacidade": "Configurar o ambiente para utilização de banco de dados relacional.",
+      "conhecimento": "1. Sistema Gerenciador de Banco de Dados (SGBD) (1.5 - Instalação e configuração).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Setup e Conexão",
+      "descricao_criterio": "Instala o ambiente (XAMPP) e acessa o console com sucesso.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 2)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 2",
+      "capacidade": "Configurar o ambiente para utilização de banco de dados relacional.",
+      "conhecimento": "1. Sistema Gerenciador de Banco de Dados (SGBD) (1.5 - Instalação e configuração).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Troubleshooting",
+      "descricao_criterio": "Resolve conflitos de porta ou serviços travados no ambiente.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 2)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 3",
+      "capacidade": "Utilizar tipos de dados para definição dos atributos do banco de dados.",
+      "conhecimento": "1. Sistema Gerenciador de Banco de Dados (SGBD) (1.4 - Estrutura [1.4.1 - Tabela, 1.4.2 - Registro, 1.4.3 - Campo, 1.4.4 - Tipos de dados]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Aplicação de Tipos",
+      "descricao_criterio": "Aplica tipos básicos (INT, VARCHAR, DATE) na modelagem.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 3, 5)",
+        "SA3 (Sem. 13)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 3",
+      "capacidade": "Utilizar tipos de dados para definição dos atributos do banco de dados.",
+      "conhecimento": "1. Sistema Gerenciador de Banco de Dados (SGBD) (1.4 - Estrutura [1.4.1 - Tabela, 1.4.2 - Registro, 1.4.3 - Campo, 1.4.4 - Tipos de dados]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Otimização",
+      "descricao_criterio": "Escolhe tipos que otimizam espaço (ex: TINYINT, limites em VARCHAR).",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA3 (Sem. 13)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 4",
+      "capacidade": "Elaborar diagramas de modelagem do banco de dados de acordo com a arquitetura definida.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.2 - Modelo Entidade Relacionamento - MER, 2.1.3 - Diagrama Entidade Relacionamento - DER]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Construção Lógica",
+      "descricao_criterio": "Desenha o DER no software com as entidades e atributos.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 3, 4)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 4",
+      "capacidade": "Elaborar diagramas de modelagem do banco de dados de acordo com a arquitetura definida.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.2 - Modelo Entidade Relacionamento - MER, 2.1.3 - Diagrama Entidade Relacionamento - DER]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Fidelidade ao Negócio",
+      "descricao_criterio": "Mapeia regras complexas do cliente para o diagrama.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 5",
+      "capacidade": "Utilizar relacionamentos entre as tabelas do banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.2 - MER, 2.1.3 - DER], 2.11 - Associação de tabelas [2.11.1 - WHERE, 2.11.2 - CROSS JOIN, 2.11.3 - INNER JOIN, 2.11.4 - OUTER JOIN, 2.11.5 - LEFT, 2.11.6 - RIGHT]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Ligação de Entidades",
+      "descricao_criterio": "Estabelece relacionamentos usando Chaves Primárias e Estrangeiras.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4)",
+        "SA2 (Sem. 10)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 5",
+      "capacidade": "Utilizar relacionamentos entre as tabelas do banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.2 - MER, 2.1.3 - DER], 2.11 - Associação de tabelas [2.11.1 - WHERE, 2.11.2 - CROSS JOIN, 2.11.3 - INNER JOIN, 2.11.4 - OUTER JOIN, 2.11.5 - LEFT, 2.11.6 - RIGHT]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Integridade Referencial",
+      "descricao_criterio": "Prepara restrições de cascata (CASCADE/RESTRICT).",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4)",
+        "SA2 (Sem. 10)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 6",
+      "capacidade": "Normalizar a estrutura do banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.4 - Formas normais]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Aplicação de 1FN a 3FN",
+      "descricao_criterio": "Quebra tabelas eliminando redundâncias e dependências transitivas.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 6",
+      "capacidade": "Normalizar a estrutura do banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.4 - Formas normais]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Desnormalização Estratégica",
+      "descricao_criterio": "Identifica quando quebrar a normalização ajuda na performance do sistema.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4)",
+        "SA2 (Sem. 12)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 7",
+      "capacidade": "Documentar a estrutura do banco de dados por meio de dicionário de dados.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.1 - Dicionário de dados]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Mapeamento Básico",
+      "descricao_criterio": "Descreve nome, tipo e tamanho de cada campo.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 3)",
+        "SA3 (Sem. 13)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 7",
+      "capacidade": "Documentar a estrutura do banco de dados por meio de dicionário de dados.",
+      "conhecimento": "2. Modelo relacional (2.1 - Modelagem [2.1.1 - Dicionário de dados]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Padronização Universal",
+      "descricao_criterio": "Usa nomenclaturas sem caracteres especiais e com padrões de mercado.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 3)",
+        "SA3 (Sem. 13)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 8",
+      "capacidade": "Configurar usuário e permissões de acesso ao banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.3 - DCL (Data Control Language) [2.3.1 - GRANT, 2.3.2 - REVOKE]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Atribuição de Acesso",
+      "descricao_criterio": "Cria usuários e dá permissões via comando GRANT.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 19)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 8",
+      "capacidade": "Configurar usuário e permissões de acesso ao banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.3 - DCL (Data Control Language) [2.3.1 - GRANT, 2.3.2 - REVOKE]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Menor Privilégio",
+      "descricao_criterio": "Revoga acessos excedentes (REVOKE) para garantir segurança.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 19)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 9",
+      "capacidade": "Utilizar linguagem de definição de dados (DDL).",
+      "conhecimento": "2. Modelo relacional (2.4 - DDL (Data Definition Language) [2.4.1 - CREATE DATABASE, 2.4.2 - DROP DATABASE, 2.4.3 - USE, 2.4.4 - CREATE TABLE, 2.4.5 - ALTER TABLE, 2.4.6 - DROP TABLE, 2.4.7 - CREATE INDEX, 2.4.8 - DROP INDEX]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Criação de Estruturas",
+      "descricao_criterio": "Cria tabelas e bancos via script (CREATE DATABASE/TABLE).",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5, 6)",
+        "SA3 (Sem. 14)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 9",
+      "capacidade": "Utilizar linguagem de definição de dados (DDL).",
+      "conhecimento": "2. Modelo relacional (2.4 - DDL (Data Definition Language) [2.4.1 - CREATE DATABASE, 2.4.2 - DROP DATABASE, 2.4.3 - USE, 2.4.4 - CREATE TABLE, 2.4.5 - ALTER TABLE, 2.4.6 - DROP TABLE, 2.4.7 - CREATE INDEX, 2.4.8 - DROP INDEX]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Manutenção DDL",
+      "descricao_criterio": "Altera tabelas populadas (ALTER TABLE) sem corromper os dados.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA3 (Sem. 14)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 10",
+      "capacidade": "Utilizar linguagem de manipulação de dados (DML).",
+      "conhecimento": "2. Modelo relacional (2.2 - SQL, 2.6 - DML [2.6.1 - INSERT, 2.6.2 - UPDATE, 2.6.3 - DELETE, 2.6.4 - SELECT], 2.7 - Operadores [2.7.1 - Aritméticos, 2.7.2 - Relacionais, 2.7.3 - Lógicos, 2.7.4 - Auxiliares], 2.11 - Associação de tabelas, 2.12 - Subconsultas).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "CRUD Básico",
+      "descricao_criterio": "Usa INSERT, UPDATE, DELETE com cláusulas WHERE seguras.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA2 (Sem. 7)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 10",
+      "capacidade": "Utilizar linguagem de manipulação de dados (DML).",
+      "conhecimento": "2. Modelo relacional (2.2 - SQL, 2.6 - DML [2.6.1 - INSERT, 2.6.2 - UPDATE, 2.6.3 - DELETE, 2.6.4 - SELECT], 2.7 - Operadores [2.7.1 - Aritméticos, 2.7.2 - Relacionais, 2.7.3 - Lógicos, 2.7.4 - Auxiliares], 2.11 - Associação de tabelas, 2.12 - Subconsultas).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Consultas Complexas",
+      "descricao_criterio": "Extrai relatórios avançados cruzando tabelas com JOINs e Subqueries.",
+      "aplicacao_aulas": [
+        "SA2 (Sem. 10, 11, 12)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 11",
+      "capacidade": "Utilizar funções nativas do banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.8 - Funções [2.8.1 - Data e hora, 2.8.2 - Matemáticas, 2.8.3 - String, 2.8.4 - De agregação], 2.9 - Agrupamento de dados (GROUP BY), 2.10 - União de dados (UNION)).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Agregação de Dados",
+      "descricao_criterio": "Usa SUM, AVG, COUNT e GROUP BY para relatórios totalizadores.",
+      "aplicacao_aulas": [
+        "SA2 (Sem. 8, 9)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 11",
+      "capacidade": "Utilizar funções nativas do banco de dados.",
+      "conhecimento": "2. Modelo relacional (2.8 - Funções [2.8.1 - Data e hora, 2.8.2 - Matemáticas, 2.8.3 - String, 2.8.4 - De agregação], 2.9 - Agrupamento de dados (GROUP BY), 2.10 - União de dados (UNION)).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Tratamento de Strings",
+      "descricao_criterio": "Manipula datas e textos direto no SQL, entregando o dado formatado.",
+      "aplicacao_aulas": [
+        "SA2 (Sem. 8)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 12",
+      "capacidade": "Aplicar programação em banco de dados utilizando functions, stored procedures, triggers e eventos.",
+      "conhecimento": "2. Modelo relacional (2.14 - VIEW, 2.15 - STORED PROCEDURE, 2.16 - FUNCTION, 2.17 - TRIGGERS, 2.18 - EVENT).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Automação de Rotinas",
+      "descricao_criterio": "Cria visões e procedimentos armazenados para processos backend.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 15, 16)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 12",
+      "capacidade": "Aplicar programação em banco de dados utilizando functions, stored procedures, triggers e eventos.",
+      "conhecimento": "2. Modelo relacional (2.14 - VIEW, 2.15 - STORED PROCEDURE, 2.16 - FUNCTION, 2.17 - TRIGGERS, 2.18 - EVENT).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Gatilhos de Segurança",
+      "descricao_criterio": "Implementa Triggers para popular logs de auditoria automaticamente.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 13",
+      "capacidade": "Executar importação e exportação da base de dados.",
+      "conhecimento": "2. Modelo relacional (2.5 - Migração de dados [2.5.1 - Exportação de dados, 2.5.2 - Importação de dados], 2.13 - TCL (Transaction Control Language) [2.13.1 - COMMIT, 2.13.2 - ROLLBACK, 2.13.3 - SAVEPOINT]).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Backup e Restore",
+      "descricao_criterio": "Gera e importa scripts .sql preservando as estruturas.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 13)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 13",
+      "capacidade": "Executar importação e exportação da base de dados.",
+      "conhecimento": "2. Modelo relacional (2.5 - Migração de dados [2.5.1 - Exportação de dados, 2.5.2 - Importação de dados], 2.13 - TCL (Transaction Control Language) [2.13.1 - COMMIT, 2.13.2 - ROLLBACK, 2.13.3 - SAVEPOINT]).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Gestão de Transações",
+      "descricao_criterio": "Usa COMMIT e ROLLBACK durante crises para evitar falhas.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 14)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 1",
+      "capacidade": "Demonstrar autogestão.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Cumprimento de Prazos",
+      "descricao_criterio": "Entrega os scripts e projetos no tempo estipulado.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA2 (Sem. 12)",
+        "SA3 (Sem. 19)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 1",
+      "capacidade": "Demonstrar autogestão.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Organização do Código",
+      "descricao_criterio": "Mantém a sintaxe SQL identada, limpa e comentada.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA2 (Sem. 12)",
+        "SA3 (Sem. 19)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 2",
+      "capacidade": "Demonstrar pensamento analítico.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Tradução de Regras",
+      "descricao_criterio": "Converte fluxos e problemas do cliente em modelagem lógica.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 2",
+      "capacidade": "Demonstrar pensamento analítico.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Investigação (Debugging)",
+      "descricao_criterio": "Lê erros no console do MySQL e corrige a query analiticamente.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 12)",
+        "SA3 (Sem. 14)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 3",
+      "capacidade": "Demonstrar inteligência emocional.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Postura Colaborativa",
+      "descricao_criterio": "Ouve e decide tecnicamente em equipe, respeitando colegas.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA2 (Sem. 7)",
+        "SA3 (Sem. 19)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 3",
+      "capacidade": "Demonstrar inteligência emocional.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Resiliência Técnica",
+      "descricao_criterio": "Mantém o foco durante a 'queda' do banco e recupera o sistema.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 14)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 4",
+      "capacidade": "Demonstrar autonomia.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Execução Prática",
+      "descricao_criterio": "Inicia o código SQL sem necessitar de roteiro guiado constante.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 10)",
+        "SA3 (Sem. 16)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 4",
+      "capacidade": "Demonstrar autonomia.",
+      "conhecimento": "Transversal (1. Sistema Gerenciador de Banco de Dados (SGBD), 2. Modelo relacional).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Busca Independente",
+      "descricao_criterio": "Pesquisa documentações na web para aplicar funções não vistas em aula.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    }
+  ]
+}

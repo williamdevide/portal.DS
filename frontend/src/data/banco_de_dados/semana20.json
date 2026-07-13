@@ -1,0 +1,135 @@
+{
+  "semana_numero": "20",
+  "titulo": "Missão 20: O Último Commit - Recuperação e Encerramento!",
+  "situacao_aprendizagem": "Encerramento",
+  "contexto_aluno": "Fala, Dev! Chegamos à linha de chegada dessa jornada massiva de 20 semanas. Transformamos planilhas glorificadas em cofres digitais complexos de inteligência e automação. O SENAI tem a política irrevogável de que 'nenhum desenvolvedor fica para trás'. Hoje, a nossa missão não é punitiva, é de resgate técnico e estrutural profundo. Realizaremos o Protocolo de Recuperação para quem tropeçou em algum critério crítico no meio da guerra dos dados, revisando lógicas pelo Troubleshooting Reverso, aplicando testes justos e celebrando o crescimento formidável de quem já construiu sua autonomia sênior. O último commit do semestre começou!",
+  "bloco_A": {
+    "titulo": "A Clínica de Código: Pair Programming e Teoria",
+    "conteudo": "A programação é feita de resiliência. O professor deixa a lousa e assume a cadeira ao seu lado na 'Clínica de Código' fazendo o Pair Programming. O foco é a Investigação e o Troubleshooting Reverso: nós vamos pegar o código exato que falhou no seu projeto e debugar juntos, desconstruindo o porquê do erro SQL até o conceito fazer sentido na sua cabeça. Após afiarmos o cérebro, você fará a Prova Teórica Substitutiva focada estritamente nos conceitos críticos de fundação (Normalização, DDL, DML e JOINs).",
+    "atividade_pratica": {
+      "nome": "O Debug Reverso",
+      "instrucoes": "Apresentem os scripts e comandos do console que originaram bloqueios ao longo da SA2 ou SA3. Analisem junto com o professor as mensagens em vermelho até dominarem a lógica da correção. Em seguida, foco total na execução do Teste Teórico Substitutivo final para resgatar os critérios essenciais das capacidades técnicas."
+    }
+  },
+  "bloco_B": {
+    "titulo": "A Reconstrução Prática e o Legado",
+    "conteudo": "A teoria substitutiva validou os conceitos, mas o coração do Backend vive no código rodando. A Prova Prática Substitutiva exige que os alunos refaçam um projeto partindo do caos: receberão um esquema (DER) totalmente desnormalizado e deverão, de forma autônoma, criar as tabelas DDL consistentes (PK/FK), inserir registros vitais via DML e extrair o relatório cruzando as tabelas refatoradas com um INNER JOIN em tempo real. E quem já foi aprovado? Esses atuarão no Legado da turma!",
+    "atividade_pratica": {
+      "nome": "Protocolo Final e Mapas Mentais",
+      "instrucoes": "Para quem está no resgate: Acessem seus terminais de XAMPP/MySQL para realizar a Prova Prática e recuperar os critérios definitivos validando as chaves. Para os alunos aprovados de Nível AUT que vieram celebrar: A missão de vocês é colaborativa (CS 3). Construam de forma visual materiais rápidos ou mapas mentais das cláusulas SQL para afixarmos no laboratório para a próxima turma. Ao final, teremos o grande e emocionante Feedback de Encerramento."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana20.pdf",
+    "resumo_audio": "BCD-Podcast-Semana20 - A_Clínica_de_Código_na_Semana_20.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem01-Jornada_do_Arquiteto_de_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "É hora de provar que você domina toda a cadeia do servidor! Faça nossa revisão geral baseada na Prova Substitutiva para recuperar seus atributos críticos.",
+    "perguntas": [
+      {
+        "pergunta": "O que estabelece o pilar central de um Banco de Dados Relacional?",
+        "opcoes": [
+          "a) A capacidade de guardar apenas dados de texto.",
+          "b) A criação de interfaces web automáticas.",
+          "c) A estruturação dos dados em tabelas que se comunicam através da amarração lógica e inquebrável de chaves, mantendo a Integridade Referencial.",
+          "d) A execução contínua de blocos WHILE."
+        ],
+        "resposta_correta": "c) A estruturação dos dados em tabelas que se comunicam através da amarração lógica e inquebrável de chaves, mantendo a Integridade Referencial."
+      },
+      {
+        "pergunta": "Qual o tipo de dado fundamental ideal e otimizado no MySQL para armazenar a idade de uma pessoa (valores de 0 a 150)?",
+        "opcoes": [
+          "a) LONGTEXT",
+          "b) VARCHAR(255)",
+          "c) TINYINT",
+          "d) DECIMAL(10,2)"
+        ],
+        "resposta_correta": "c) TINYINT"
+      },
+      {
+        "pergunta": "O que exige fundamentalmente a 1ª Forma Normal (1FN) durante a modelagem contra a redundância?",
+        "opcoes": [
+          "a) Garantir que os atributos de uma célula sejam atômicos (indivisíveis), eliminando a chance de colunas com valores em formato de lista (ex: 3 telefones juntos).",
+          "b) Criar senhas no Dicionário de Dados.",
+          "c) Apagar a tabela e desenhá-la novamente.",
+          "d) Substituir a PK por uma FK nula."
+        ],
+        "resposta_correta": "a) Garantir que os atributos de uma célula sejam atômicos (indivisíveis), eliminando a chance de colunas com valores em formato de lista (ex: 3 telefones juntos)."
+      },
+      {
+        "pergunta": "Em um relacionamento Clássico '1 para N' (Um para Muitos), como a comunicação de chaves deve ser projetada?",
+        "opcoes": [
+          "a) Criando uma terceira tabela que guarde o ID de ambos.",
+          "b) A Chave Primária (PK) da tabela do lado '1' é migrada como Chave Estrangeira (FK) para morar na tabela do lado 'N' (Muitos).",
+          "c) Apagando o lado 'N' (Muitos).",
+          "d) A FK fica sempre no lado do '1'."
+        ],
+        "resposta_correta": "b) A Chave Primária (PK) da tabela do lado '1' é migrada como Chave Estrangeira (FK) para morar na tabela do lado 'N' (Muitos)."
+      },
+      {
+        "pergunta": "Quais comandos representam especificamente a Linguagem de Manipulação de Dados (DML)?",
+        "opcoes": [
+          "a) CREATE, ALTER, DROP",
+          "b) GRANT, REVOKE",
+          "c) COMMIT, ROLLBACK",
+          "d) INSERT, UPDATE, DELETE"
+        ],
+        "resposta_correta": "d) INSERT, UPDATE, DELETE"
+      },
+      {
+        "pergunta": "No SGBD MySQL, se precisarmos descobrir quantos clientes no total foram cadastrados pela empresa, combinamos um SELECT com qual função vital de agregação?",
+        "opcoes": [
+          "a) SUM(id)",
+          "b) GROUP(id)",
+          "c) COUNT(id)",
+          "d) AVG(id)"
+        ],
+        "resposta_correta": "c) COUNT(id)"
+      },
+      {
+        "pergunta": "Comandos puramente DDL (como ALTER TABLE) são comumente aplicados para:",
+        "opcoes": [
+          "a) Adicionar, modificar ou excluir colunas/estruturas físicas da arquitetura da tabela no servidor sem necessariamente perder a massa de dados que lá existe.",
+          "b) Trocar senhas esquecidas.",
+          "c) Criar views temporárias no front-end.",
+          "d) Fazer rollback de emergência."
+        ],
+        "resposta_correta": "a) Adicionar, modificar ou excluir colunas/estruturas físicas da arquitetura da tabela no servidor sem necessariamente perder a massa de dados que lá existe."
+      },
+      {
+        "pergunta": "Durante uma subconsulta (Subquery), quando a engine do MySQL processa a instrução externa definitiva?",
+        "opcoes": [
+          "a) O motor lê primeiro a query de fora e apaga a de dentro.",
+          "b) A query externa só roda e só pode ser resolvida pelo SGBD DEPOIS que a instrução interna (dentro dos parênteses) roda, processa e 'cospe' o resultado como filtro/parâmetro.",
+          "c) Somente após fechar o console.",
+          "d) As duas rodam simultaneamente numa disputa."
+        ],
+        "resposta_correta": "b) A query externa só roda e só pode ser resolvida pelo SGBD DEPOIS que a instrução interna (dentro dos parênteses) roda, processa e 'cospe' o resultado como filtro/parâmetro."
+      },
+      {
+        "pergunta": "Se cruzarmos Clientes e Vendas com INNER JOIN, qual é o resultado visível garantido matematicamente no relatório final?",
+        "opcoes": [
+          "a) O resultado traz todos os clientes, inclusive os que nunca compraram nada.",
+          "b) O banco apaga os clientes sem compras.",
+          "c) O resultado traz todos os registros que tiveram correspondência cruzada (o 'casamento' exato) entre a Chave da esquerda e a Chave da direita nas duas tabelas.",
+          "d) Multiplica as linhas e trava o disco do servidor."
+        ],
+        "resposta_correta": "c) O resultado traz todos os registros que tiveram correspondência cruzada (o 'casamento' exato) entre a Chave da esquerda e a Chave da direita nas duas tabelas."
+      },
+      {
+        "pergunta": "Para que um Banco de Dados garanta a funcionalidade vital do 'Coração do Backend', além da digitação da sintaxe e da infraestrutura, a MSEP atesta que o Arquiteto/DBA precisa desenvolver qual pilar humano?",
+        "opcoes": [
+          "a) A velocidade estrita de teclado cego.",
+          "b) O hábito de usar o Excel permanentemente para backup em nuvem.",
+          "c) Aprender a colocar layouts coloridos no script SQL.",
+          "d) Pensamento Analítico para transformar regras de negócios em lógica normalizada, Autonomia na resolução de gargalos e Inteligência Emocional sob pressão estrutural e de bloqueios no código."
+        ],
+        "resposta_correta": "d) Pensamento Analítico para transformar regras de negócios em lógica normalizada, Autonomia na resolução de gargalos e Inteligência Emocional sob pressão estrutural e de bloqueios no código."
+      }
+    ]
+  }
+}

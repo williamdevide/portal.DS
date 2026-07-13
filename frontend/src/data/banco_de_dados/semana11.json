@@ -1,0 +1,135 @@
+{
+  "semana_numero": "11",
+  "titulo": "Missão 11: Inception de Dados - A Boneca Russa das Queries!",
+  "situacao_aprendizagem": "SA2",
+  "contexto_aluno": "Fala, Dev! Você já aprendeu a buscar os dados e até a costurá-los com o JOIN. Mas, às vezes, a pergunta de negócio que o seu cliente faz é tão complexa que não pode ser resolvida com cruzamentos diretos. E se você precisar de uma resposta antes de poder fazer a pergunta principal? Exemplo corporativo real: 'Quero saber o nome de todos os funcionários que ganham mais que a média salarial da empresa'. Para responder a isso, você precisa primeiro calcular qual é a média, certo? Bem-vindo ao universo das Subconsultas (Subqueries). Hoje vamos aprender a embutir uma pesquisa inteira DENTRO de outra pesquisa. É o verdadeiro 'Inception de Dados'. Preparado para dominar a técnica que separa os júniores dos sêniores?",
+  "bloco_A": {
+    "titulo": "A Boneca Russa: A Query dentro da Query",
+    "conteudo": "Na programação SQL, a regra de ouro das subconsultas é: a query interna (aquela que fica protegida entre parênteses) roda primeiro. O banco de dados processa essa pergunta escondida, descobre um 'número mágico' ou uma lista de valores, e entrega esse resultado para a query externa consumir. Nós usamos operadores relacionais clássicos (como =, >, <) quando a subquery retorna um único valor (escalar), e operadores de conjunto (como IN, NOT IN, ANY, ALL ou EXISTS) quando ela retorna uma lista inteira de resultados. O uso do EXISTS, em especial, é uma arma de altíssima performance para validar se um dado órfão está ou não presente no sistema.",
+    "atividade_pratica": {
+      "nome": "Desafio: Passa a Bola",
+      "instrucoes": "Para entendermos o fluxo de execução antes de codificar, faremos um desafio lógico na lousa. O Professor passará um problema de negócio. O Aluno A deverá desenhar a subquery interna no caderno e calcular o seu resultado fictício. Em seguida, ele 'passa a bola' (o resultado) para o Aluno B, que deve ir à lousa e escrever a query externa, consumindo a resposta do parceiro para formar a consulta aninhada perfeita."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: Investigação Profunda",
+    "conteudo": "As teorias das camadas estão estabelecidas. Fechem os cadernos e liguem os motores do XAMPP/MySQL. Vocês entrarão num banco de dados universitário corrompido e sob suspeita de fraudes. O setor de auditoria fará perguntas tortuosas que um simples JOIN não consegue responder. Aqui, vocês usarão todo o arsenal de Subqueries para rastrear anomalias complexas. Atenção máxima: em bancos de dados gigantes, uma subquery mal escrita pode causar o temido 'Full Table Scan' e derrubar a performance do servidor.",
+    "atividade_pratica": {
+      "nome": "A Auditoria Universitária e o Treino Supremo",
+      "instrucoes": "Importem o banco 'bcd_universidade.sql'. A missão de vocês é responder aos enigmas do Inspetor codificando subqueries com IN, EXISTS e funções matemáticas. Se a sua equipe terminar rápido (Nível AUT), vocês devem encarar 'O Combate de Performance': escrevam a mesma solução com JOIN e depois com Subquery para debatermos qual é a mais rápida. Por fim, enfrentem 'O Treino Supremo', que exigirá criar uma única query colossal unificando INNER JOIN, GROUP BY e uma Subquery na mesma instrução! Treinem duro, pois a próxima semana será o Escape Room Digital!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana11.pdf",
+    "resumo_audio": "BCD-Podcast-Semana11 - A_lógica_e_performance_das_subconsultas_SQL.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem03-Guia_Mestre_de_Consultas_SQL.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você consegue desvendar o Inception de Dados? Prove que você está pronto para o Escape Room resolvendo este quiz sobre Subconsultas!",
+    "perguntas": [
+      {
+        "pergunta": "Na metáfora 'A Boneca Russa', o que representa a criação de uma Subconsulta (Subquery) no banco de dados?",
+        "opcoes": [
+          "a) Criar um backup idêntico do banco de dados.",
+          "b) Embutir uma pesquisa SQL inteira dentro de outra pesquisa SQL (uma query dentro da query).",
+          "c) Alterar o tipo de dado de uma coluna usando o comando ALTER.",
+          "d) Usar um comando DDL para deletar tabelas repetidas."
+        ],
+        "resposta_correta": "b) Embutir uma pesquisa SQL inteira dentro de outra pesquisa SQL (uma query dentro da query)."
+      },
+      {
+        "pergunta": "Qual é a regra de ouro sobre a ordem de execução do processamento quando escrevemos uma Subquery?",
+        "opcoes": [
+          "a) As duas queries rodam ao mesmo tempo simultaneamente.",
+          "b) A query externa roda primeiro e dita as regras para a interna.",
+          "c) A query interna (entre parênteses) roda primeiro, descobre o resultado, e o entrega para a query externa processar.",
+          "d) A subquery só roda se o usuário confirmar a senha no terminal."
+        ],
+        "resposta_correta": "c) A query interna (entre parênteses) roda primeiro, descobre o resultado, e o entrega para a query externa processar."
+      },
+      {
+        "pergunta": "Se precisamos listar os funcionários que ganham um salário MAIOR que a média salarial geral, como a subquery atua na prática?",
+        "opcoes": [
+          "a) A subquery calcula a média primeiro (Ex: 3500) e a query externa filtra WHERE salario > 3500.",
+          "b) A subquery apaga quem ganha menos.",
+          "c) A subquery ordena os funcionários em ordem alfabética.",
+          "d) A subquery força o JOIN entre as tabelas de Salário e Pagamento."
+        ],
+        "resposta_correta": "a) A subquery calcula a média primeiro (Ex: 3500) e a query externa filtra WHERE salario > 3500."
+      },
+      {
+        "pergunta": "Quando uma subquery retorna múltiplos resultados (uma lista de valores, não um único valor escalar), qual operador de conjunto devemos usar na query externa?",
+        "opcoes": [
+          "a) O operador de igualdade (=)",
+          "b) O operador de soma (+)",
+          "c) O operador lógico IN ou NOT IN",
+          "d) A cláusula ON"
+        ],
+        "resposta_correta": "c) O operador lógico IN ou NOT IN"
+      },
+      {
+        "pergunta": "O que acontece catastroficamente no console se usarmos um operador de igualdade escalar (ex: WHERE id = ...) seguido de uma Subquery que retorna uma coluna inteira cheia de vários IDs diferentes?",
+        "opcoes": [
+          "a) O banco gera um erro, pois o sinal de igual (=) só consegue comparar um lado com um único valor exato do outro lado.",
+          "b) O banco converte tudo para números decimais.",
+          "c) O MySQL pega apenas o primeiro ID e ignora os outros em silêncio.",
+          "d) O banco cria uma tabela nova para guardar os IDs sobressalentes."
+        ],
+        "resposta_correta": "a) O banco gera um erro, pois o sinal de igual (=) só consegue comparar um lado com um único valor exato do outro lado."
+      },
+      {
+        "pergunta": "Qual é a principal função e vantagem em usar o operador EXISTS em uma investigação forense de dados?",
+        "opcoes": [
+          "a) Ele cria registros novos baseados na pesquisa.",
+          "b) Ele deleta dados que já existem na tabela.",
+          "c) Ele funciona como uma validação booleana super rápida: testa se a query interna retorna verdadeiro (se achou pelo menos uma linha que atenda à condição) e para a busca, economizando recursos.",
+          "d) Ele existe apenas para cruzar bancos NoSQL."
+        ],
+        "resposta_correta": "c) Ele funciona como uma validação booleana super rápida: testa se a query interna retorna verdadeiro (se achou pelo menos uma linha que atenda à condição) e para a busca, economizando recursos."
+      },
+      {
+        "pergunta": "Qual foi o principal objetivo do desafio 'O Combate de Performance' realizado pelas equipes Nível AUT no laboratório?",
+        "opcoes": [
+          "a) Competir quem digitava a query mais rápido.",
+          "b) Hackear o banco de dados do Senai.",
+          "c) Resolver o mesmo problema usando Subquery e depois usando INNER JOIN para debater e analisar qual das estruturas exige menos esforço de processamento do servidor.",
+          "d) Ver qual consulta gerava menos erros de digitação."
+        ],
+        "resposta_correta": "c) Resolver o mesmo problema usando Subquery e depois usando INNER JOIN para debater e analisar qual das estruturas exige menos esforço de processamento do servidor."
+      },
+      {
+        "pergunta": "No exercício extra 'O Treino Supremo', os alunos precisam descobrir qual é o nome do curso (JOIN) com o total de matrículas (GROUP BY) maior que a média geral de todos os cursos (SUBQUERY). O que isso desenvolve no Desenvolvedor Backend?",
+        "opcoes": [
+          "a) O entendimento de como usar o comando DELETE.",
+          "b) A capacidade de criar usuários e senhas.",
+          "c) A maturidade analítica máxima para unificar múltiplos conceitos (associação, agregação e aninhamento) na mesma instrução SQL para resolver cenários pesados corporativos.",
+          "d) A habilidade de desenhar a planta-baixa no draw.db."
+        ],
+        "resposta_correta": "c) A maturidade analítica máxima para unificar múltiplos conceitos (associação, agregação e aninhamento) na mesma instrução SQL para resolver cenários pesados corporativos."
+      },
+      {
+        "pergunta": "Durante a dinâmica 'Passa a Bola' no Bloco A, o que a transferência de dados do Aluno A para o Aluno B tentou simular na prática?",
+        "opcoes": [
+          "a) O fluxo interno do SGBD, onde a memória ram avalia a subquery primeiro, extrai o resultado, e o disponibiliza como parâmetro para a instrução principal externa rodar.",
+          "b) A criação de chaves estrangeiras.",
+          "c) A formatação do texto de minúsculo para maiúsculo.",
+          "d) A queda do servidor."
+        ],
+        "resposta_correta": "a) O fluxo interno do SGBD, onde a memória ram avalia a subquery primeiro, extrai o resultado, e o disponibiliza como parâmetro para a instrução principal externa rodar."
+      },
+      {
+        "pergunta": "Tudo o que construímos até hoje na SA2 (Filtros, Joins, Agrupamentos e Subconsultas) está preparando a turma para qual grande evento simulado da próxima semana?",
+        "opcoes": [
+          "a) A entrega de um certificado teórico em papel.",
+          "b) O Escape Room Digital, onde eles usarão o banco de dados do SENAI como investigadores forenses sob extrema pressão para descobrir um culpado.",
+          "c) Uma palestra sobre hardware e montagem de redes.",
+          "d) A instalação de cabos nos laboratórios."
+        ],
+        "resposta_correta": "b) O Escape Room Digital, onde eles usarão o banco de dados do SENAI como investigadores forenses sob extrema pressão para descobrir um culpado."
+      }
+    ]
+  }
+}

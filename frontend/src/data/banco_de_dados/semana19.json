@@ -1,0 +1,135 @@
+{
+  "semana_numero": "19",
+  "titulo": "Missão 19: As Chaves do Castelo e o Demo Day - DCL!",
+  "situacao_aprendizagem": "SA3",
+  "contexto_aluno": "Fala, Dev! Você sobreviveu à entrevista de emprego e montou uma arquitetura espetacular. Mas de nada adianta um cofre-forte com a porta escancarada! Se o estagiário fizer login com a senha 'Root' (administrador máximo) e apagar o banco por engano, a culpa é sua por ter dado a permissão. Hoje, no nosso último aprendizado técnico, vocês vão dominar a Linguagem de Controle de Dados (DCL) e o Princípio do Menor Privilégio: criar usuários, conceder poderes cirúrgicos (GRANT) e revogar acessos (REVOKE). Logo em seguida, liguem os telões: O Demo Day do Projeto Final vai começar e as equipes apresentarão seus ecossistemas ao vivo!",
+  "bloco_A": {
+    "titulo": "Os Guardiões do Banco (A Segurança da DCL)",
+    "conteudo": "A DCL blinda a infraestrutura contra ameaças internas e externas. Usamos o comando `CREATE USER` para dar identidade ao acesso. A regra de ouro corporativa é o Princípio do Menor Privilégio: uma aplicação de relatórios deve receber apenas um `GRANT SELECT` nas views, sendo terminantemente bloqueada de dar um UPDATE. Da mesma forma, quando um funcionário é desligado, a remoção letal de seus privilégios através do `REVOKE` (ou do DROP USER) deve ser executada com urgência.",
+    "atividade_pratica": {
+      "nome": "Desafio: O Cofre Seguro",
+      "instrucoes": "Com o banco protegido pela equipe, vocês atuarão como DBAs de segurança. Criem um usuário local chamado 'vendedor_jr'. Usando a instrução GRANT, deem acesso apenas de leitura (SELECT) a uma de suas tabelas. Façam o teste de fogo: loguem no banco como o vendedor_jr e tentem aplicar um DELETE agressivo. Recebam e comemorem o bloqueio 'Access Denied' na tela, comprovando a blindagem DCL de vocês!"
+    }
+  },
+  "bloco_B": {
+    "titulo": "O Palco Final: DEMO DAY (Apresentação do Projeto 2)",
+    "conteudo": "A segurança foi atestada e a arquitetura finalizada. Chegou o grande encerramento de entregas da SA3! O cliente final (Professor) e os possíveis investidores (a própria turma) assumirão seus lugares na plateia para homologar os softwares e a infraestrutura desenvolvidos ao longo das últimas semanas.",
+    "atividade_pratica": {
+      "nome": "A Defesa do Projeto e Auditoria dos Investidores",
+      "instrucoes": "Cada equipe terá 15 minutos cronometrados. Vocês devem projetar o Modelo Relacional (DER) no telão e, imediatamente, rodar o projeto ao vivo no servidor: disparem uma Procedure no console, mostrem a Trigger interceptando e registrando em tabelas de auditoria invisivelmente. Para as turmas de nível AUT, abriremos a 'Auditoria de Investidores', onde os alunos da plateia testarão o sistema dos colegas lançando perguntas táticas de segurança e lógica em tempo real."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana19.pdf",
+    "resumo_audio": "BCD-Podcast-Semana19 - DCL_e_as_chaves_do_castelo.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem04-Arquitetura_Avançada_de_Bancos_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Você tem a responsabilidade de guardar a chave do banco da empresa. Prove que domina as regras de acessos DCL resolvendo este quiz!",
+    "perguntas": [
+      {
+        "pergunta": "O que determina a política fundamental de cibersegurança chamada 'Princípio do Menor Privilégio'?",
+        "opcoes": [
+          "a) Todo mundo precisa usar a senha root (administrador) do banco de dados.",
+          "b) Os privilégios de acesso custam menos para os usuários da empresa.",
+          "c) Cada cargo, sistema ou usuário deve receber estritamente apenas as permissões essenciais para fazer o seu trabalho, bloqueando qualquer outro comando excedente.",
+          "d) Usuários não podem ter acesso ao MySQL."
+        ],
+        "resposta_correta": "c) Cada cargo, sistema ou usuário deve receber estritamente apenas as permissões essenciais para fazer o seu trabalho, bloqueando qualquer outro comando excedente."
+      },
+      {
+        "pergunta": "Qual comando principal pertencente à DCL (Data Control Language) é usado especificamente para CONCEDER privilégios a um usuário?",
+        "opcoes": [
+          "a) ALLOW",
+          "b) CREATE PRIVILEGE",
+          "c) GIVE",
+          "d) GRANT"
+        ],
+        "resposta_correta": "d) GRANT"
+      },
+      {
+        "pergunta": "E, caso o cenário corporativo mude e a empresa precise RETIRAR (revogar) uma permissão específica que havia sido concedida previamente, qual o comando DCL?",
+        "opcoes": [
+          "a) DELETE PRIVILEGE",
+          "b) DROP",
+          "c) REVOKE",
+          "d) REMOVE"
+        ],
+        "resposta_correta": "c) REVOKE"
+      },
+      {
+        "pergunta": "A query `GRANT SELECT ON db_loja.* TO 'auditor'@'localhost';` significa exatamente o quê?",
+        "opcoes": [
+          "a) O auditor pode apagar o banco de dados loja.",
+          "b) O auditor tem acesso total a todas as tabelas, podendo ler, inserir e deletar dados.",
+          "c) O usuário 'auditor' recebeu permissão restrita de apenas realizar consultas de leitura (SELECT) em todas as tabelas do banco 'db_loja'.",
+          "d) O usuário 'auditor' foi bloqueado."
+        ],
+        "resposta_correta": "c) O usuário 'auditor' recebeu permissão restrita de apenas realizar consultas de leitura (SELECT) em todas as tabelas do banco 'db_loja'."
+      },
+      {
+        "pergunta": "Qual o enorme perigo sistêmico ao permitir que a aplicação Web/Frontend de um site utilize o login de 'Root' para se conectar ao banco de dados?",
+        "opcoes": [
+          "a) A rede ficará muito mais lenta para carregar as fotos.",
+          "b) É uma falha crítica, pois se o site for invadido (ex: SQL Injection), o hacker herdará os privilégios máximos de administrador, podendo apagar, encriptar ou roubar todo o banco sem restrições DCL para impedi-lo.",
+          "c) A aplicação Web precisará de mais memória RAM.",
+          "d) Não há nenhum perigo."
+        ],
+        "resposta_correta": "b) É uma falha crítica, pois se o site for invadido (ex: SQL Injection), o hacker herdará os privilégios máximos de administrador, podendo apagar, encriptar ou roubar todo o banco sem restrições DCL para impedi-lo."
+      },
+      {
+        "pergunta": "Após criar e alterar os acessos diretamente nas tabelas de controle interno do MySQL, que comando vital deve ser rodado para forçar o servidor a recarregar as permissões e sincronizar a segurança em tempo real?",
+        "opcoes": [
+          "a) LOAD SECURITY",
+          "b) RELOAD ALL",
+          "c) FLUSH PRIVILEGES",
+          "d) SYNC NOW"
+        ],
+        "resposta_correta": "c) FLUSH PRIVILEGES"
+      },
+      {
+        "pergunta": "No comando de criação `CREATE USER 'dev_junior'@'%' IDENTIFIED BY 'Senha#123';`, o que o caractere de wildcard '%' representa estrategicamente no acesso ao host?",
+        "opcoes": [
+          "a) Significa que o usuário só pode logar presencialmente no próprio servidor (localhost).",
+          "b) Significa que o usuário pode se conectar remotamente de qualquer IP ou máquina na rede.",
+          "c) Bloqueia o acesso totalmente.",
+          "d) Indica que o usuário não tem senha."
+        ],
+        "resposta_correta": "b) Significa que o usuário pode se conectar remotamente de qualquer IP ou máquina na rede."
+      },
+      {
+        "pergunta": "Na dinâmica do Demo Day, as equipes precisavam apresentar Views, Procedures e Triggers rodando em harmonia. Do ponto de vista de mercado, isso prova que:",
+        "opcoes": [
+          "a) O banco de dados se tornou uma entidade burra, dependente do Front-end.",
+          "b) O banco de dados foi construído com uma inteligência autônoma, modular e com automações de proteção integradas que atuam independente de quem o consome.",
+          "c) Apenas as consultas de SELECT importam no dia a dia.",
+          "d) A DDL substituiu a DML."
+        ],
+        "resposta_correta": "b) O banco de dados foi construído com uma inteligência autônoma, modular e com automações de proteção integradas que atuam independente de quem o consome."
+      },
+      {
+        "pergunta": "Durante o 'Desafio do Cofre Seguro', o que comprovou tecnicamente que o DBA havia feito o seu trabalho bem feito de segurança?",
+        "opcoes": [
+          "a) O banco pegou fogo e caiu.",
+          "b) O usuário 'vendedor_jr' realizou com sucesso um comando DELETE na tabela de clientes.",
+          "c) O banco disparou a mensagem de erro 'Access Denied' no momento em que o 'vendedor_jr' tentou executar um DELETE que lhe havia sido barrado, comprovando que a trava blindou a exclusão.",
+          "d) O usuário 'vendedor_jr' assumiu os acessos de root."
+        ],
+        "resposta_correta": "c) O banco disparou a mensagem de erro 'Access Denied' no momento em que o 'vendedor_jr' tentou executar um DELETE que lhe havia sido barrado, comprovando que a trava blindou a exclusão."
+      },
+      {
+        "pergunta": "E caso o DBA decida erradicar totalmente um ex-funcionário da rede de acesso do SGBD de forma irreversível (removendo não só permissões, mas a própria entidade), qual comando deve ser usado?",
+        "opcoes": [
+          "a) DROP USER",
+          "b) ALTER USER",
+          "c) DELETE USER",
+          "d) REVOKE ALL"
+        ],
+        "resposta_correta": "a) DROP USER"
+      }
+    ]
+  }
+}

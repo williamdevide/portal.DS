@@ -1,0 +1,137 @@
+{
+  "semana_numero": "06",
+  "titulo": "Missão 06: A Casa Vazia e o Perigo do UPDATE Sem WHERE!",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Fala, Dev! Chegamos ao grande marco de encerramento da nossa primeira Situação de Aprendizagem. Você já estruturou toda a arquitetura física do seu banco com a Linguagem DDL, levantando as paredes do sistema. Mas uma 'casa vazia' não tem utilidade para o cliente, certo? Chegou a hora de trazer a mobília e dar vida ao banco de dados através da Linguagem de Manipulação de Dados (DML). Além da aguardada entrega oficial do Projeto 1, nós vamos aprender como cadastrar, alterar e excluir dados vitais. Mas atenção: com grandes poderes vêm grandes responsabilidades. Hoje, você será apresentado ao pesadelo que já causou demissões sumárias no mundo corporativo: o temido comando 'UPDATE sem WHERE'!",
+  "bloco_A": {
+    "titulo": "Povoando o Sistema: A Fundação DML",
+    "conteudo": "A Linguagem de Manipulação de Dados (DML) é o que permite ao usuário final interagir com a informação. Você aprenderá a usar o comando `INSERT INTO` para registrar novos dados, o `UPDATE SET` para atualizar registros obsoletos e o `DELETE FROM` para remover o que não serve mais. Mas o foco central desta etapa será a segurança. Se você rodar um comando de alteração ou exclusão e esquecer da cláusula de filtro (o `WHERE`), não haverá 'Ctrl+Z' para salvar sua pele: toda a base de dados do cliente será alterada simultaneamente! Vamos entender a sintaxe perfeita para que você não destrua sua própria obra.",
+    "atividade_pratica": {
+      "nome": "O Refém do UPDATE",
+      "instrucoes": "Antes de abrirmos o console real, você fará um teste de mesa. No papel ou no bloco de notas, você deverá redigir três comandos SQL vitais (um INSERT com seu nome, um UPDATE ajustando uma idade, e um DELETE). O segredo aqui é a revisão por pares: o colega ao lado atuará como o 'Servidor' que vai auditar e validar se o seu código não possui erros de aspas ou esquecimentos de filtros de segurança antes de autorizar a execução."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: Entrega P1 e DML em Ação",
+    "conteudo": "Chegou a hora da verdade corporativa! O seu 'Cliente' exigirá a entrega definitiva da estrutura física (scripts DDL) do Projeto 1. Com a casa aprovada, vocês colocarão a mão na massa no XAMPP/MySQL para realizar o povoamento maciço das tabelas. Será o momento de verificar na prática se todas as Chaves Estrangeiras (FK) que vocês declararam na semana passada estão realmente garantindo a integridade dos dados ou se permitirão fraudes (os famosos dados órfãos).",
+    "atividade_pratica": {
+      "nome": "O Povoamento e a Quebra de Chave",
+      "instrucoes": "Após entregarem oficialmente os arquivos do Projeto 1, o desafio da equipe será codificar diversos INSERTs autênticos para as tabelas criadas, realizar UPDATEs seguros e exclusões cirúrgicas. Se vocês buscarem o nível máximo de Autonomia (AUT), as missões extras envolvem aprender a realizar o 'Bulk Insert' (mandar vários registros em apenas uma viagem ao banco) e tentar propositalmente causar o Erro de Integridade 1452, provando que o banco de vocês bloqueia inserções ilegais de chaves estrangeiras."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana06.pdf",
+    "resumo_audio": "BCD-Podcast-Semana06 - O_perigo_do_comando_UPDATE_sem_WHERE.m4a",
+    "videos_correlacionados": [
+      "BCD-Vídeo06-Pacman.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "BCD-Imagem02-Guia_do_Arquiteto_de_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você consegue mobiliar a base de dados sem explodir tudo? Responda este quiz e prove que domina os perigos e a força da Linguagem DML!",
+    "perguntas": [
+      {
+        "pergunta": "Quais são os principais comandos que compõem a Linguagem de Manipulação de Dados (DML)?",
+        "opcoes": [
+          "a) CREATE, ALTER, DROP",
+          "b) GRANT, REVOKE",
+          "c) INSERT, UPDATE, DELETE",
+          "d) START TRANSACTION, COMMIT, ROLLBACK"
+        ],
+        "resposta_correta": "c) INSERT, UPDATE, DELETE"
+      },
+      {
+        "pergunta": "Na metáfora da 'Casa Vazia' apresentada em aula, qual é a diferença entre as linguagens DDL e DML?",
+        "opcoes": [
+          "a) A DDL faz backup e a DML apaga arquivos velhos.",
+          "b) A DDL levanta as paredes e estrutura a casa (tabelas), enquanto a DML traz os móveis e povoa a casa (registros).",
+          "c) A DML é usada para desenhar diagramas visuais, enquanto a DDL é usada para código SQL.",
+          "d) Ambas são exclusivas para gerenciar a segurança e senhas do banco de dados."
+        ],
+        "resposta_correta": "b) A DDL levanta as paredes e estrutura a casa (tabelas), enquanto a DML traz os móveis e povoa a casa (registros)."
+      },
+      {
+        "pergunta": "Qual é a grave consequência de executar um comando UPDATE sem a cláusula WHERE em um banco de produção?",
+        "opcoes": [
+          "a) O comando simplesmente não roda, travando o console.",
+          "b) Cria-se uma nova coluna vazia na tabela.",
+          "c) Todos os registros de toda a tabela são alterados com o mesmo valor de forma simultânea e irreversível, corrompendo a base.",
+          "d) Apenas a primeira linha da tabela será afetada sem avisar o usuário."
+        ],
+        "resposta_correta": "c) Todos os registros de toda a tabela são alterados com o mesmo valor de forma simultânea e irreversível, corrompendo a base."
+      },
+      {
+        "pergunta": "Ao preencher a cláusula VALUES durante um INSERT, o que precisa ser tratado obrigatoriamente com aspas simples (' ')?",
+        "opcoes": [
+          "a) O nome do banco de dados.",
+          "b) Os números inteiros e os decimais (como preços).",
+          "c) O nome da tabela que receberá o dado.",
+          "d) Os dados textuais (VARCHAR) e as informações de data (DATE)."
+        ],
+        "resposta_correta": "d) Os dados textuais (VARCHAR) e as informações de data (DATE)."
+      },
+      {
+        "pergunta": "Se um DBA deseja excluir exclusivamente o funcionário de código 42 do sistema, qual é o comando exato que previne desastres?",
+        "opcoes": [
+          "a) DELETE * FROM funcionario WHERE 42;",
+          "b) DELETE FROM funcionario WHERE id_funcionario = 42;",
+          "c) REMOVE funcionario 42;",
+          "d) DROP TABLE funcionario WHERE id_funcionario = 42;"
+        ],
+        "resposta_correta": "b) DELETE FROM funcionario WHERE id_funcionario = 42;"
+      },
+      {
+        "pergunta": "O que significa realizar a tarefa extra conhecida como 'Bulk Insert'?",
+        "opcoes": [
+          "a) Apagar todas as tabelas em formato Bulk.",
+          "b) Atualizar todos os preços do sistema sem WHERE.",
+          "c) Executar um único comando INSERT contendo múltiplos parênteses de VALUES, inserindo várias linhas em uma única viagem ao servidor.",
+          "d) Importar uma tabela inteira de um arquivo Excel automaticamente."
+        ],
+        "resposta_correta": "c) Executar um único comando INSERT contendo múltiplos parênteses de VALUES, inserindo várias linhas em uma única viagem ao servidor."
+      },
+      {
+        "pergunta": "Na dinâmica extra do Bloco B, tentar fazer um INSERT de uma Chave Estrangeira (ex: id_curso = 99) que NÃO EXISTE na tabela principal gera o Erro 1452. O que isso comprova positivamente sobre o seu banco?",
+        "opcoes": [
+          "a) Que a Integridade Referencial arquitetada por você está agindo e bloqueando o surgimento de registros inconsistentes/órfãos.",
+          "b) Que a sua conexão com a porta 3306 caiu.",
+          "c) Que a tabela de cursos atingiu o limite de memória.",
+          "d) Que o servidor XAMPP travou a placa de rede."
+        ],
+        "resposta_correta": "a) Que a Integridade Referencial arquitetada por você está agindo e bloqueando o surgimento de registros inconsistentes/órfãos."
+      },
+      {
+        "pergunta": "Qual capacidade socioemocional foi fortemente avaliada no momento em que as equipes precisaram entregar o Projeto 1 na data e hora estipuladas pelo cliente?",
+        "opcoes": [
+          "a) Argumentação Técnica.",
+          "b) Cumprimento de Prazos (Autogestão).",
+          "c) Diferenciação de Modelos.",
+          "d) Debugging e Investigação de Código."
+        ],
+        "resposta_correta": "b) Cumprimento de Prazos (Autogestão)."
+      },
+      {
+        "pergunta": "Durante a revisão 'O Refém do UPDATE', qual era a responsabilidade principal do colega que atuava como o 'Servidor' lendo o código?",
+        "opcoes": [
+          "a) Executar o código na nuvem imediatamente.",
+          "b) Criar o layout da aplicação no Front-end.",
+          "c) Validar rigorosamente a sintaxe SQL e checar a existência das aspas simples, vírgulas, ponto e vírgula e do WHERE.",
+          "d) Deletar o banco de dados do parceiro em caso de erro."
+        ],
+        "resposta_correta": "c) Validar rigorosamente a sintaxe SQL e checar a existência das aspas simples, vírgulas, ponto e vírgula e do WHERE."
+      },
+      {
+        "pergunta": "Quando um aluno realiza uma tarefa não roteirizada, como pesquisar de forma autônoma a matemática para atualizar e aumentar todos os salários em 10% de uma só vez via UPDATE, ele demonstra qual nível de proficiência técnica?",
+        "opcoes": [
+          "a) AP (Auxílio Permanente)",
+          "b) NE (Não Executa)",
+          "c) Nível Básico (Planilha)",
+          "d) AUT (Autônomo / Busca Independente)"
+        ],
+        "resposta_correta": "d) AUT (Autônomo / Busca Independente)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "semana_numero": "04",
+  "titulo": "Missão 04: A Ordem no Caos - Chaves e Normalização!",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Fala, Dev! Modelar um banco de dados não é só desenhar caixinhas e ligá-las de qualquer jeito; é organizar o caos. Imagine uma planilha de uma clínica médica onde o telefone do paciente está repetido em 50 consultas diferentes. Se esse paciente trocar de número, quem vai atualizar as 50 linhas? E se o recepcionista esquecer uma? Esse é o temido 'Efeito Dominó do Caos', que pode corromper e destruir a confiabilidade de um sistema inteiro. Hoje, você vai atuar como um verdadeiro 'Cirurgião de Dados'. Sua missão é aplicar as regras de Normalização (1FN a 3FN) para fatiar esses tabelões perigosos e reconectar tudo com perfeição usando Chaves Primárias (PK) e Chaves Estrangeiras (FK). Bora construir uma arquitetura à prova de falhas?",
+  "bloco_A": {
+    "titulo": "A Ordem no Caos: Chaves e o Efeito Dominó",
+    "conteudo": "Para evitar que dados repetidos destruam o seu sistema, usamos um processo matemático chamado Normalização. A ideia é simples: quebrar uma tabela gigante cheia de anomalias em tabelas menores e mais específicas (Paciente, Médico, Consulta). Mas, ao fatiar essas informações, como o banco de dados sabe de quem é cada consulta? É aí que entram as Chaves! A Chave Primária (PK) é o 'CPF' do registro. Quando essa PK viaja para outra tabela para criar um vínculo, ela passa a ser chamada de Chave Estrangeira (FK). É essa amarração lógica que garante a Integridade Referencial, impedindo, por exemplo, que você apague um cliente que já tem pedidos atrelados a ele no sistema.",
+    "atividade_pratica": {
+      "nome": "Desafio: O Cirurgião de Dados",
+      "instrucoes": "Em duplas, vocês receberão uma tabela completamente desnormalizada (cheia de redundâncias e dados misturados na mesma célula). Esqueçam os softwares por um momento! Usando apenas o caderno ou bloco de notas, atuem como cirurgiões: identifiquem as anomalias e reescrevam as colunas dividindo essa massa de dados bruta em tabelas menores até alcançarem a 3ª Forma Normal (3FN)."
+    }
+  },
+  "bloco_B": {
+    "titulo": "O Laboratório de Refatoração no draw.db",
+    "conteudo": "A teoria da quebra está validada! O diagrama que vocês fizeram na Semana 03 era apenas um rascunho primário. Agora, como Arquitetos de Dados Seniores, é hora de auditar e refatorar a própria obra no laboratório. Lembrem-se da nossa metodologia MSEP: esperamos nível AUT (Autônomo). Vocês aplicarão as Formas Normais e usarão linhas de relacionamento visual (1:N, N:M) para conectar as entidades no draw.db. A regra de ouro de ouro do relacionamento 1:N é: o lado 'N' (Muitos) é sempre quem recebe a Chave Estrangeira (FK)!",
+    "atividade_pratica": {
+      "nome": "Engenharia Lógica: As Linhas de Relacionamento",
+      "instrucoes": "Acessem o draw.db e abram o modelo da semana passada. Vocês devem desenhar as linhas de ligação conectando corretamente as chaves (indicando de onde sai a PK e onde entra a FK). Se esbarrarem em uma relação 'Muitos-para-Muitos' (N:M), acionem o Pensamento Analítico: deduzam a necessidade de criar uma terceira tabela associativa intermediária. Ah, e não esqueçam de atualizar o Dicionário de Dados no Excel com as novas chaves criadas!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana04.pdf",
+    "resumo_audio": "BCD-Podcast-Semana04 - Normalização_de_dados_contra_o_efeito_dominó.m4a",
+    "videos_correlacionados": [
+      "BCD-Vídeo03-O_Cirurgião_de_Dados.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "BCD-Imagem04-Arquitetura_Avançada_de_Bancos_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você está pronto para ser o cirurgião que vai salvar o sistema do caos? Responda a este quiz e prove que domina as Chaves e a Normalização!",
+    "perguntas": [
+      {
+        "pergunta": "O que descreve perfeitamente o 'Efeito Dominó do Caos' mencionado no início da nossa missão?",
+        "opcoes": [
+          "a) A queda de energia no servidor local.",
+          "b) O perigo de ter dados redundantes e repetidos em uma mesma tabela, onde a mudança de uma informação (como um telefone) exige a atualização manual de dezenas de linhas.",
+          "c) O travamento do software draw.db por falta de memória.",
+          "d) A lentidão causada ao escolher o modelo Não-Relacional."
+        ],
+        "resposta_correta": "b) O perigo de ter dados redundantes e repetidos em uma mesma tabela, onde a mudança de uma informação (como um telefone) exige a atualização manual de dezenas de linhas."
+      },
+      {
+        "pergunta": "Qual é a função principal de uma Chave Estrangeira (FK - Foreign Key)?",
+        "opcoes": [
+          "a) Criptografar os dados de usuários estrangeiros.",
+          "b) Gerar números aleatórios para senhas.",
+          "c) Criar uma amarração lógica referenciando a Chave Primária (PK) de outra tabela, garantindo o relacionamento entre as entidades.",
+          "d) Apagar registros duplicados automaticamente."
+        ],
+        "resposta_correta": "c) Criar uma amarração lógica referenciando a Chave Primária (PK) de outra tabela, garantindo o relacionamento entre as entidades."
+      },
+      {
+        "pergunta": "Na regra de ouro dos relacionamentos '1 para N' (Um para Muitos), onde a Chave Estrangeira (FK) deve ser obrigatoriamente alocada?",
+        "opcoes": [
+          "a) A FK sempre vai para a tabela do lado '1' (Um).",
+          "b) A FK deve ser substituída por um arquivo de texto.",
+          "c) A FK sempre vai para a tabela do lado 'N' (Muitos), que recebe a chave da tabela pai.",
+          "d) Nenhuma tabela recebe a FK, cria-se uma terceira tabela."
+        ],
+        "resposta_correta": "c) A FK sempre vai para a tabela do lado 'N' (Muitos), que recebe a chave da tabela pai."
+      },
+      {
+        "pergunta": "A 1ª Forma Normal (1FN) combate qual anomalia clássica na modelagem de dados?",
+        "opcoes": [
+          "a) Atributos multivalorados (ex: colocar três telefones na mesma célula), exigindo que cada atributo seja atômico/indivisível.",
+          "b) A falta de senhas nos usuários.",
+          "c) O uso do comando SELECT de forma incorreta.",
+          "d) A escolha de nomes grandes para o banco de dados."
+        ],
+        "resposta_correta": "a) Atributos multivalorados (ex: colocar três telefones na mesma célula), exigindo que cada atributo seja atômico/indivisível."
+      },
+      {
+        "pergunta": "Em uma modelagem de sistema de biblioteca, um AUTOR escreve vários LIVROS e um LIVRO pode ter vários AUTORES. Trata-se de uma relação 'N:M' (Muitos para Muitos). O que a arquitetura relacional exige que seja feito?",
+        "opcoes": [
+          "a) Ignorar um dos autores para virar 1:N.",
+          "b) Colocar o nome de todos os autores separados por vírgula na tabela Livro.",
+          "c) Criar uma terceira tabela associativa intermediária (ex: tb_livro_autor) que receberá as duas chaves estrangeiras.",
+          "d) Salvar os dados em uma planilha paralela."
+        ],
+        "resposta_correta": "c) Criar uma terceira tabela associativa intermediária (ex: tb_livro_autor) que receberá as duas chaves estrangeiras."
+      },
+      {
+        "pergunta": "O que significa 'Integridade Referencial' no contexto de bancos de dados?",
+        "opcoes": [
+          "a) É a regra que impede a existência de 'dados órfãos', bloqueando, por exemplo, a deleção de um cliente que já possui vendas vinculadas a ele através de uma FK.",
+          "b) É a capacidade do servidor de ficar ligado 24 horas por dia.",
+          "c) É o processo de fazer o backup do banco de dados na nuvem.",
+          "d) É a garantia de que a porta 3306 não será hackeada."
+        ],
+        "resposta_correta": "a) É a regra que impede a existência de 'dados órfãos', bloqueando, por exemplo, a deleção de um cliente que já possui vendas vinculadas a ele através de uma FK."
+      },
+      {
+        "pergunta": "Durante o desafio 'O Cirurgião de Dados', por que utilizamos papel e caneta (ou bloco de notas bruto) antes de ir para o software?",
+        "opcoes": [
+          "a) Porque os computadores estavam atualizando o Windows.",
+          "b) Para forçar o cérebro a focar puramente na lógica de divisão de tabelas e normalização, sem os atalhos ou distrações de ferramentas visuais.",
+          "c) Porque o SENAI proíbe softwares na SA1.",
+          "d) Porque o draw.db não aceita modelagem de tabelas."
+        ],
+        "resposta_correta": "b) Para forçar o cérebro a focar puramente na lógica de divisão de tabelas e normalização, sem os atalhos ou distrações de ferramentas visuais."
+      },
+      {
+        "pergunta": "A 3ª Forma Normal (3FN) resolve o problema das 'Dependências Transitivas'. Qual é a regra básica dela?",
+        "opcoes": [
+          "a) Toda tabela deve ter 3 colunas no máximo.",
+          "b) Atributos não-chave não podem depender de outros atributos não-chave. Todos devem depender diretamente da Chave Primária.",
+          "c) O sistema deve fazer backup 3 vezes ao dia.",
+          "d) A tabela deve ter pelo menos 3 chaves estrangeiras."
+        ],
+        "resposta_correta": "b) Atributos não-chave não podem depender de outros atributos não-chave. Todos devem depender diretamente da Chave Primária."
+      },
+      {
+        "pergunta": "Segundo a Metodologia MSEP, demonstrar 'Pensamento Analítico' na hora de traçar linhas no draw.db inclui:",
+        "opcoes": [
+          "a) Deixar as tabelas soltas e esperar que o software as ligue sozinho.",
+          "b) Avaliar logicamente o fluxo de negócio para deduzir corretamente se a relação é 1:N ou N:M, nomeando as FKs de forma clara.",
+          "c) Trocar a cor das caixinhas para deixar o diagrama mais bonito.",
+          "d) Copiar o diagrama da equipe ao lado."
+        ],
+        "resposta_correta": "b) Avaliar logicamente o fluxo de negócio para deduzir corretamente se a relação é 1:N ou N:M, nomeando as FKs de forma clara."
+      },
+      {
+        "pergunta": "Após concluir a refatoração do diagrama de banco de dados (MER) e aplicar todas as Formas Normais e Chaves, qual deve ser a sua próxima atitude técnica?",
+        "opcoes": [
+          "a) Desligar o servidor XAMPP.",
+          "b) Apagar a planilha Excel antiga e não documentar mais nada.",
+          "c) Atualizar obrigatoriamente o Dicionário de Dados para refletir as novas chaves criadas e a nova arquitetura normalizada.",
+          "d) Alterar a senha do MySQL."
+        ],
+        "resposta_correta": "c) Atualizar obrigatoriamente o Dicionário de Dados para refletir as novas chaves criadas e a nova arquitetura normalizada."
+      }
+    ]
+  }
+}

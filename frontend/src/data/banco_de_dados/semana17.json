@@ -1,0 +1,135 @@
+{
+  "semana_numero": "17",
+  "titulo": "Missão 17: As Armadilhas Inteligentes - Functions e Triggers!",
+  "situacao_aprendizagem": "SA3",
+  "contexto_aluno": "Fala, Dev! Você já deixou o seu banco inteligente chamando Stored Procedures. Mas até agora, essas rotinas precisam de uma ação humana: alguém tem que digitar o comando CALL para elas rodarem. E se o sistema pudesse reagir sozinho, invisivelmente, diante de uma fraude ou inserção? Quando você faz uma transação suspeita no cartão, não há um humano apertando o botão 'Avisar Fraude'; há um 'Gatilho' que sente a mutação do dado e dispara a defesa em milissegundos. Hoje, na nossa última semana de programação, vocês aprenderão a construir Triggers (Gatilhos de Reação) e Functions para criar a Malha de Segurança Definitiva do servidor!",
+  "bloco_A": {
+    "titulo": "A Malha de Reação e Gatilhos (Triggers)",
+    "conteudo": "As Triggers são blocos de código programados para disparar automaticamente em resposta a eventos DML (INSERT, UPDATE, DELETE). A mágica acontece definindo a sua temporalidade: ela atua ANTES do dado encostar no disco (BEFORE) para poder bloquear fraudes, ou atua DEPOIS do disco (AFTER) para alimentar tabelas de auditoria. Para fazer isso, nós usamos as variáveis de memória de estado NEW e OLD. Se você altera o seu salário, o OLD.salario tem o valor antigo, e o NEW.salario traz o valor novo que está tentando entrar. Você pode programar o Trigger para salvar essas variáveis de memória silenciosamente em uma tabela de log!",
+    "atividade_pratica": {
+      "nome": "Desafio: O Auditor Lógico",
+      "instrucoes": "Com o caderno aberto, resolveremos o problema do 'Campo Minado'. O professor passará o enigma oral: 'O cliente exige que, toda vez que o preço de um produto for atualizado, o preço antigo seja salvo em uma tabela de histórico'. As duplas devem debater e responder em lacunas: 1) O gatilho será BEFORE ou AFTER? 2) O evento será INSERT ou UPDATE? 3) Usaremos NEW.preco ou OLD.preco? Estruturem a lógica da armadilha mentalmente!"
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: A Malha de Auditoria (Projeto 2)",
+    "conteudo": "A lógica dos gatilhos está pronta! Vamos aplicá-la em ambiente real no Projeto 2. O cliente aprovou o sistema, mas a equipe de cibersegurança fez uma exigência rigorosa antes do Demo Day: Nenhum registro crítico do banco de dados (como clientes ou vendas) pode ser modificado ou excluído sem que a empresa saiba o horário, quem alterou e qual era o valor antigo daquele dado.",
+    "atividade_pratica": {
+      "nome": "Operação: O Log Passivo e Segurança",
+      "instrucoes": "Nas suas máquinas, criem uma Tabela de Auditoria (ex: `tbl_log_seguranca`). Em seguida, programem e acoplem uma Trigger AFTER DELETE/UPDATE na tabela principal do Projeto 2 de vocês. Façam testes: excluam um registro normalmente e vejam a Trigger preenchendo o Log silenciosamente com os valores OLD. Para as equipes de Nível AUT, o desafio extra é violento: Criem uma Trigger BEFORE UPDATE usando `SIGNAL SQLSTATE '45000'` para barrar a transação caso alguém tente abaixar o preço de um produto abaixo de seu custo!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana17.pdf",
+    "resumo_audio": "BCD-Podcast-Semana17 - Blindagem_de_bancos_com_Functions_e_Triggers.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem04-Arquitetura_Avançada_de_Bancos_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que sua base de dados sabe se defender sozinha? Teste os seus conhecimentos em Functions e Triggers!",
+    "perguntas": [
+      {
+        "pergunta": "O que caracteriza fundamentalmente o comportamento de uma TRIGGER (Gatilho) no SGBD?",
+        "opcoes": [
+          "a) É uma rotina que o usuário final aciona usando o comando CALL no sistema.",
+          "b) É uma interface gráfica criada para gerar relatórios financeiros.",
+          "c) É um código que dispara automática e invisivelmente em resposta a um evento DML (INSERT, UPDATE ou DELETE) que ocorra em uma tabela específica.",
+          "d) É um alarme que toca nos alto-falantes do laboratório."
+        ],
+        "resposta_correta": "c) É um código que dispara automática e invisivelmente em resposta a um evento DML (INSERT, UPDATE ou DELETE) que ocorra em uma tabela específica."
+      },
+      {
+        "pergunta": "Qual evento de temporalidade devemos usar em uma Trigger se o nosso objetivo for validar um dado (ex: impedir preço negativo) ANTES de ele ser efetivamente gravado no disco rígido?",
+        "opcoes": [
+          "a) AFTER",
+          "b) BEFORE",
+          "c) ON CHANGE",
+          "d) PRE-CHECK"
+        ],
+        "resposta_correta": "b) BEFORE"
+      },
+      {
+        "pergunta": "Ao atualizarmos o salário de um funcionário de R$ 2.000 para R$ 3.000, qual variável de estado de memória a Trigger usará para armazenar o valor '2.000' (o dado que vai deixar de existir)?",
+        "opcoes": [
+          "a) NEW.salario",
+          "b) PAST.salario",
+          "c) OLD.salario",
+          "d) HISTORY.salario"
+        ],
+        "resposta_correta": "c) OLD.salario"
+      },
+      {
+        "pergunta": "Por outro lado, em um evento de INSERT, quando uma nova linha está tentando entrar no banco de dados, qual é a única variável de estado disponível para o SGBD auditar?",
+        "opcoes": [
+          "a) OLD, pois o dado é antigo.",
+          "b) NEW, pois o dado está chegando e ainda não existe um histórico dele no disco.",
+          "c) Nenhuma variável funciona no INSERT.",
+          "d) UPDATE_STATE"
+        ],
+        "resposta_correta": "b) NEW, pois o dado está chegando e ainda não existe um histórico dele no disco."
+      },
+      {
+        "pergunta": "Na nossa metáfora de aula, uma Trigger AFTER DELETE é a ferramenta ideal para qual situação corporativa?",
+        "opcoes": [
+          "a) Apagar o sistema todo.",
+          "b) Permitir exclusões, mas acionar o gatilho DEPOIS para gravar silenciosamente na tabela de auditoria quem deletou e qual dado foi apagado (OLD).",
+          "c) Barrar a exclusão e jogar um erro na tela.",
+          "d) Atualizar as cores do aplicativo."
+        ],
+        "resposta_correta": "b) Permitir exclusões, mas acionar o gatilho DEPOIS para gravar silenciosamente na tabela de auditoria quem deletou e qual dado foi apagado (OLD)."
+      },
+      {
+        "pergunta": "Uma FUNCTION (Função customizada), diferente de uma Procedure e de uma Trigger, tem uma obrigatoriedade matemática estrita de comportamento. Qual é?",
+        "opcoes": [
+          "a) Ela não precisa retornar nada.",
+          "b) Ela dispara sozinha.",
+          "c) Ela apaga tabelas conectadas.",
+          "d) Ela tem que processar um valor e devolver obrigatoriamente um único valor escalar usando o comando RETURN (Ex: RETURN imposto_calculado)."
+        ],
+        "resposta_correta": "d) Ela tem que processar um valor e devolver obrigatoriamente um único valor escalar usando o comando RETURN (Ex: RETURN imposto_calculado)."
+      },
+      {
+        "pergunta": "Se criarmos uma Trigger que atualiza a Tabela de Vendas toda vez que a própria Tabela de Vendas for atualizada, o SGBD explodirá um erro e travará tudo. Qual é o nome desse erro catastrófico?",
+        "opcoes": [
+          "a) Recursividade infinita (A tabela atira nela mesma sem parar).",
+          "b) Segurança Segregada.",
+          "c) Delete sem Where.",
+          "d) Loop Fabricado."
+        ],
+        "resposta_correta": "a) Recursividade infinita (A tabela atira nela mesma sem parar)."
+      },
+      {
+        "pergunta": "Durante o desafio Extra de Nível AUT, as equipes usaram o `SIGNAL SQLSTATE '45000'` dentro da Trigger. Qual foi o objetivo?",
+        "opcoes": [
+          "a) Fazer o SGBD desligar.",
+          "b) Disparar um sinal de erro customizado de banco de dados, barrando ativamente a transação e enviando uma mensagem para o Backend (ex: 'O preço não pode ser menor que custo!').",
+          "c) Apagar a tabela de usuários.",
+          "d) Enviar um SMS."
+        ],
+        "resposta_correta": "b) Disparar um sinal de erro customizado de banco de dados, barrando ativamente a transação e enviando uma mensagem para o Backend (ex: 'O preço não pode ser menor que custo!')."
+      },
+      {
+        "pergunta": "Ao usar OLD e NEW juntos em uma Trigger de UPDATE, a nossa malha de auditoria consegue gravar:",
+        "opcoes": [
+          "a) Apenas o que o usuário apagou.",
+          "b) A fotografia do dado 'Como Era' (OLD) versus a fotografia do dado 'Como Ficou' (NEW), mantendo a linha do tempo perfeita de alterações do sistema.",
+          "c) Apenas as senhas erradas.",
+          "d) Somente os dados de administradores."
+        ],
+        "resposta_correta": "b) A fotografia do dado 'Como Era' (OLD) versus a fotografia do dado 'Como Ficou' (NEW), mantendo a linha do tempo perfeita de alterações do sistema."
+      },
+      {
+        "pergunta": "A Semana 17 conclui todo o currículo de engenharia estrutural e de programação autônoma da disciplina. O que as turmas se prepararão para enfrentar no próximo encontro letivo (Semana 18)?",
+        "opcoes": [
+          "a) Instalação de impressoras no SENAI.",
+          "b) Um descanso absoluto de teoria.",
+          "c) Uma avaliação imersiva focada no mundo corporativo: A Entrevista de Emprego Simulada (Sabatina, Pitch Comportamental e o Teste de Quadro Branco).",
+          "d) Criar um jogo 3D do zero."
+        ],
+        "resposta_correta": "c) Uma avaliação imersiva focada no mundo corporativo: A Entrevista de Emprego Simulada (Sabatina, Pitch Comportamental e o Teste de Quadro Branco)."
+      }
+    ]
+  }
+}

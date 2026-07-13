@@ -1,0 +1,135 @@
+{
+  "semana_numero": "12",
+  "titulo": "Missão 12: A Cena do Crime e o Escape Room Digital!",
+  "situacao_aprendizagem": "SA2",
+  "contexto_aluno": "Fala, Dev! Chegamos ao encerramento épico da nossa segunda Situação de Aprendizagem (SA2). Você já aprendeu a buscar, cruzar, agrupar e embutir pesquisas de dados complexas. Mas saber a teoria não é suficiente. Na última terça-feira, um componente de altíssimo valor sumiu do laboratório de automação do SENAI. O sistema de câmeras falhou, mas os logs do banco de dados (catracas, cantina, empréstimos de ferramentas) registraram absolutamente tudo. O laboratório vai ser trancado e você assumirá o papel de Investigador Forense Digital em um Escape Room de SQL. A inteligência de dados é a sua única testemunha para resolver este mistério. Prepare-se para a pressão!",
+  "bloco_A": {
+    "titulo": "A Preparação do Detetive: Revisão e Otimização",
+    "conteudo": "Antes de entrarmos na cena do crime, precisamos revisar o nosso arsenal. Um bom detetive não atira para todo o lado; ele otimiza as suas buscas. Faremos uma revisão estratégica de como unir as tabelas da escola (JOINs), contar suspeitos (Funções de Agregação) e cruzar álibis complexos (Subconsultas). Vamos debater como a performance é vital numa investigação: uma query mal escrita (gerando um Produto Cartesiano, por exemplo) pode demorar horas para processar milhões de registros, travando a máquina e permitindo que o culpado escape. O foco mental e a resiliência serão suas maiores armas.",
+    "atividade_pratica": {
+      "nome": "Desafio: Análise de Pistas (Aquecimento)",
+      "instrucoes": "O professor passará um mini-desafio lúdico na lousa. Sem abrir o MySQL ainda, você deverá escrever no caderno a estrutura exata da query SQL que descobriria: 'Quem comprou café na cantina exatamente às 10h?'. É o momento de calibrar o seu raciocínio lógico e estruturar mentalmente a consulta antes da operação real começar."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório Físico: O Investigador Forense SQL",
+    "conteudo": "As portas estão trancadas! Vocês receberão o banco de dados oficial do SENAI com os registros reais do dia do crime. O mistério foi lançado e não haverá dicas textuais. O arquivo da próxima pista está protegido por senha, e a senha é sempre o 'Result Set' (resultado exato) da query SQL da fase atual. Vocês precisarão lidar com o cruzamento de dados em massa sob extrema pressão de tempo. A Inteligência Emocional (Capacidade CS 3 da MSEP) será colocada à prova: não adianta surtar quando o console lançar um erro ou a query retornar vazia. Respire, leia os metadados e corrija o seu SQL!",
+    "atividade_pratica": {
+      "nome": "Escape Room Digital: As 4 Fases",
+      "instrucoes": "Em equipes (Squads), vocês devem importar o banco 'bcd_logs_senai.sql'. O objetivo é resolver os 4 enigmas: Fase 1 (O Horário) onde buscarão quem saiu entre 18:45 e 18:50; Fase 2 (O Álibi) onde cruzarão com a cantina via INNER JOIN; Fase 3 (A Ferramenta) usando Subquery para ver quem NÃO estava na cantina; e Fase 4 (O Culpado) usando Funções de Agregação (HAVING COUNT) para achar quem teve mais acessos negados na semana. Se a sua equipe for rápida (Nível AUT), tentem 'A Auditoria do Crime', unindo 4 JOINs simultâneos, e depois atue como hacker 'Limpando os Rastros' com o comando DELETE!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana12.pdf",
+    "resumo_audio": "BCD-Podcast-Semana12 - SQL_na_cena_do_crime_digital.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem03-Guia_Mestre_de_Consultas_SQL.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que a sua inteligência forense escapará do laboratório? Resolva este quiz e prove que você está pronto para dominar os logs do banco de dados!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é o objetivo central pedagógico e técnico da dinâmica do Escape Room Digital (O Investigador Forense SQL)?",
+        "opcoes": [
+          "a) Aprender a desenhar modelos visuais no software draw.db.",
+          "b) Consolidar todo o aprendizado da SA2, obrigando o aluno a cruzar dados e embutir subconsultas sob forte pressão de tempo para desvendar um crime simulado.",
+          "c) Configurar as portas de rede (3306) do XAMPP localmente.",
+          "d) Ensinar como instalar o sistema operacional em servidores."
+        ],
+        "resposta_correta": "b) Consolidar todo o aprendizado da SA2, obrigando o aluno a cruzar dados e embutir subconsultas sob forte pressão de tempo para desvendar um crime simulado."
+      },
+      {
+        "pergunta": "Durante a Fase 1 (O Horário), para interceptar a janela de tempo e descobrir quem passou na catraca entre 18:45 e 18:50, qual combinação de SQL deve ser utilizada?",
+        "opcoes": [
+          "a) O comando UPDATE junto com funções matemáticas de adição.",
+          "b) O comando DROP TABLE na tabela de horários.",
+          "c) O comando SELECT aliado à cláusula WHERE e o operador de faixa BETWEEN.",
+          "d) O comando CREATE EVENT marcando as 18:45."
+        ],
+        "resposta_correta": "c) O comando SELECT aliado à cláusula WHERE e o operador de faixa BETWEEN."
+      },
+      {
+        "pergunta": "Para cruzar o ID suspeito da catraca com os dados da cantina (Fase 2 - O Álibi) para descobrir o que ele comprou, o investigador precisa de qual instrução SQL?",
+        "opcoes": [
+          "a) LEFT JOIN, para trazer também as compras que não foram feitas.",
+          "b) INNER JOIN, para realizar o cruzamento perfeito entre a Chave Primária de uma tabela e a Chave Estrangeira da outra.",
+          "c) DELETE FROM cantina, para apagar os falsos suspeitos.",
+          "d) UNION, para empilhar as duas tabelas textualmente."
+        ],
+        "resposta_correta": "b) INNER JOIN, para realizar o cruzamento perfeito entre a Chave Primária de uma tabela e a Chave Estrangeira da outra."
+      },
+      {
+        "pergunta": "Na Fase 3 (A Ferramenta), a missão exige descobrir quem pegou a 'Chave Torx' mas cujo ID NÃO ESTÁ na lista da cantina. Qual técnica resolve essa exclusão de álibi perfeitamente?",
+        "opcoes": [
+          "a) Usar a matemática SUM() na cantina.",
+          "b) Usar INNER JOIN duas vezes e torcer pelo resultado.",
+          "c) Utilizar uma Subconsulta (Subquery) aliada ao operador de negação NOT IN ou NOT EXISTS.",
+          "d) Apagar manualmente quem estiver nas duas listas usando DELETE."
+        ],
+        "resposta_correta": "c) Utilizar uma Subconsulta (Subquery) aliada ao operador de negação NOT IN ou NOT EXISTS."
+      },
+      {
+        "pergunta": "Na Fase 4 (O Culpado), é preciso descobrir 'qual aluno teve o MAIOR NÚMERO de acessos negados no laboratório na mesma semana'. Qual é a combinação SQL para contar e filtrar esse grupo?",
+        "opcoes": [
+          "a) GROUP BY associado à função COUNT(), possivelmente refinando com a cláusula HAVING ou ORDER BY DESC.",
+          "b) WHERE acessos = MAX().",
+          "c) CREATE VIEW de acessos e depois aplicar um JOIN.",
+          "d) SELECT COUNT(*) sem agrupar."
+        ],
+        "resposta_correta": "a) GROUP BY associado à função COUNT(), possivelmente refinando com a cláusula HAVING ou ORDER BY DESC."
+      },
+      {
+        "pergunta": "Ao executar o desafio extra 'Limpando os Rastros', a equipe precisou usar um comando DML (DELETE) para apagar a entrada do culpado. Qual cuidado absoluto devemos ter ao fazer isso?",
+        "opcoes": [
+          "a) Aumentar o limite de memória do banco antes de deletar.",
+          "b) Desligar o servidor de internet local.",
+          "c) Nunca executar esse comando sem uma cláusula WHERE apontando de forma restritiva para o ID do registro específico, para não corromper ou perder a base inteira.",
+          "d) Usar sempre o DELETE acompanhado do comando ADD COLUMN."
+        ],
+        "resposta_correta": "c) Nunca executar esse comando sem uma cláusula WHERE apontando de forma restritiva para o ID do registro específico, para não corromper ou perder a base inteira."
+      },
+      {
+        "pergunta": "O que representa conceitualmente a tabela de 'logs' que as equipes investigam durante o Escape Room?",
+        "opcoes": [
+          "a) Uma tabela de registros de auditoria e histórico passivo, que guarda carimbos de data/hora e as ações dos usuários no sistema corporativo.",
+          "b) Uma lista de nomes de professores que não trabalham mais no SENAI.",
+          "c) Um diretório onde as imagens (fotos) ficam salvas.",
+          "d) Uma tabela vazia usada para treinamentos."
+        ],
+        "resposta_correta": "a) Uma tabela de registros de auditoria e histórico passivo, que guarda carimbos de data/hora e as ações dos usuários no sistema corporativo."
+      },
+      {
+        "pergunta": "Por que o professor deve avaliar e forçar a Inteligência Emocional (Capacidade CS 3) durante a atividade?",
+        "opcoes": [
+          "a) Porque os alunos começam a rir muito durante o desafio.",
+          "b) Porque eles precisam conversar apenas em inglês.",
+          "c) Porque a pressão do relógio e as mensagens de 'Syntax Error' no console causam enorme frustração. O profissional deve manter o foco, investigar a falha e recuperar o raciocínio sob alta pressão.",
+          "d) Para forçá-los a entregar o projeto no dia seguinte."
+        ],
+        "resposta_correta": "c) Porque a pressão do relógio e as mensagens de 'Syntax Error' no console causam enorme frustração. O profissional deve manter o foco, investigar a falha e recuperar o raciocínio sob alta pressão."
+      },
+      {
+        "pergunta": "Se uma equipe entra em pânico e executa o cruzamento massivo das catracas sem colocar a condição na cláusula ON, o banco trava por falta de memória. Como se chama esse erro desastroso?",
+        "opcoes": [
+          "a) Indexação Nula.",
+          "b) Chave Primária Quebrada.",
+          "c) Produto Cartesiano (a multiplicação de todas as linhas de uma tabela por todas as da outra).",
+          "d) Limpeza Expressa."
+        ],
+        "resposta_correta": "c) Produto Cartesiano (a multiplicação de todas as linhas de uma tabela por todas as da outra)."
+      },
+      {
+        "pergunta": "O fim deste Escape Room também representa a conclusão oficial da Situação de Aprendizagem 2 (SA2). O que os alunos se preparam para enfrentar nas semanas seguintes (SA3)?",
+        "opcoes": [
+          "a) Voltarão a desenhar tabelas em planilhas Excel.",
+          "b) A criar botões visuais para a interface do celular.",
+          "c) A deixarão de atuar apenas como 'Detetives' que buscam os dados e se transformarão em DBAs administradores que cuidam de segurança, transações TCL e automação do servidor.",
+          "d) A trocar o MySQL pelo MongoDB Não-Relacional permanentemente."
+        ],
+        "resposta_correta": "c) A deixarão de atuar apenas como 'Detetives' que buscam os dados e se transformarão em DBAs administradores que cuidam de segurança, transações TCL e automação do servidor."
+      }
+    ]
+  }
+}

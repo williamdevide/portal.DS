@@ -1,0 +1,135 @@
+{
+  "semana_numero": "09",
+  "titulo": "Missão 09: O Fim do Achismo - Agrupamentos e Inteligência de Negócios!",
+  "situacao_aprendizagem": "SA2",
+  "contexto_aluno": "Fala, Dev! Você já aprendeu a buscar dados e a formatá-los, mas em um ambiente corporativo real, os gestores precisam de respostas rápidas vindas de bases massivas [1]. A diretoria não quer rolar a tela por 10.000 linhas confusas de vendas no sistema; eles querem inteligência estratégica e respostas exatas como: 'Qual filial vendeu mais?' ou 'Qual a média de lucro?' [2, 3]. O desafio desta semana é gerar inteligência de negócios através da criação de relatórios totalizadores [1]. Vamos dar um fim ao achismo usando Funções de Agregação, uniões e o comando GROUP BY para esmagar milhares de linhas em frações de segundo [1, 4]. Preparado para extrair a verdadeira essência dos dados?",
+  "bloco_A": {
+    "titulo": "Inteligência de Negócios: Agregação e Agrupamento",
+    "conteudo": "Para transformar montanhas de dados brutos em relatórios gerenciais, usamos as Funções de Agregação: SUM (soma), COUNT (contagem), MAX (maior valor), MIN (menor valor) e AVG (média) [2, 5]. A verdadeira mágica acontece quando aplicamos o comando GROUP BY, que 'esmaga' registros idênticos em uma única linha para aplicar a matemática sobre eles [5]. Você também vai dominar a diferença crítica entre o WHERE, que filtra o dado cru antes do grupo, e o HAVING, que atua na matemática depois do grupo já estar formado [5]. Além disso, veremos o comando UNION para mesclar tabelas e bases de dados distintas em uma só exibição [2, 4].",
+    "atividade_pratica": {
+      "nome": "Desafio: O Contador Rápido",
+      "instrucoes": "Um desafio com uma tabela simples de funcionários contendo Nome, Departamento e Salário será projetado na lousa [5, 6]. Sem tocar no teclado, você deverá processar a query mentalmente: quantas linhas restarão e quais serão os valores exatos se aplicarmos instruções de contagem e média agrupadas pelo departamento? [5, 6] Anote o seu raciocínio no caderno e prepare-se para bater os seus resultados mentais com a teoria antes de ligar o motor do banco de dados [4]."
+    }
+  },
+  "bloco_B": {
+    "titulo": "O Laboratório do DBA: Relatórios Gerenciais e Dashboard SQL",
+    "conteudo": "A equipe de Backend recebeu um e-mail urgente da diretoria informando que haverá uma reunião de conselho em 2 horas e o painel de gráficos principal caiu [7]. O sistema de leitura está às cegas [7]. Como DBA operando em alto nível de autonomia, você assumirá o controle do console MySQL para extrair os totais diretamente do servidor, resolvendo os problemas de negócio vitais da empresa [7, 8]. Fique atento ao temido erro de colunas não agrupadas e aprenda a deduzir a lógica matemática por trás dos atributos selecionados para conseguir salvar a reunião [9].",
+    "atividade_pratica": {
+      "nome": "O E-mail Urgente da Diretoria",
+      "instrucoes": "Restaurem o arquivo de banco de dados 'bcd_banco_ecommerce.sql' nas suas máquinas [7]. Resolvam os 5 problemas apontados no e-mail da diretoria codificando consultas que combinem o GROUP BY com as funções SUM(), AVG() e COUNT() [7, 8]. Para as Missões Extras (Nível AUT), utilizem a cláusula HAVING para aplicar 'O Filtro Avançado', exibindo apenas os estados que tiveram mais de 100 vendas [8]. Em seguida, executem 'A União de Mundos', usando a instrução UNION para consolidar clientes novos e antigos em uma única lista de e-mails [9]."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana09.pdf",
+    "resumo_audio": "BCD-Podcast-Semana09 - GROUP_BY_e_o_fim_do_achismo.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem03-Guia_Mestre_de_Consultas_SQL.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "A reunião de conselho está prestes a começar! Responda a este quiz rapidamente para provar que você domina a inteligência de dados e as agregações em SQL.",
+    "perguntas": [
+      {
+        "pergunta": "Na nossa narrativa 'O Fim do Achismo', qual é o conceito central de utilizar o banco de dados para Business Intelligence?",
+        "opcoes": [
+          "a) Criar tabelas com nomes coloridos para facilitar a leitura no console.",
+          "b) Transformar montanhas de dados confusos (como 10.000 linhas de vendas) em relatórios curtos, estratégicos e totalizadores para a tomada de decisão.",
+          "c) Fazer backup dos dados todos os dias às 18h.",
+          "d) Desligar o banco de dados à noite para economizar energia do servidor."
+        ],
+        "resposta_correta": "b) Transformar montanhas de dados confusos (como 10.000 linhas de vendas) em relatórios curtos, estratégicos e totalizadores para a tomada de decisão."
+      },
+      {
+        "pergunta": "O que o comando GROUP BY faz internamente quando executado em uma consulta SQL?",
+        "opcoes": [
+          "a) Ele apaga os registros que estão duplicados no banco de dados.",
+          "b) Ele mistura todos os dados em uma única coluna gigante de texto.",
+          "c) Ele 'esmaga' registros que possuem informações idênticas em uma única linha, permitindo que o sistema faça cálculos matemáticos em bloco sobre esse grupo.",
+          "d) Ele envia um e-mail automaticamente para o administrador do banco."
+        ],
+        "resposta_correta": "c) Ele 'esmaga' registros que possuem informações idênticas em uma única linha, permitindo que o sistema faça cálculos matemáticos em bloco sobre esse grupo."
+      },
+      {
+        "pergunta": "Se a diretoria solicitar a 'média' salarial de um departamento, qual função de agregação deve ser codificada?",
+        "opcoes": [
+          "a) MAX()",
+          "b) SUM()",
+          "c) COUNT()",
+          "d) AVG()"
+        ],
+        "resposta_correta": "d) AVG()"
+      },
+      {
+        "pergunta": "Qual função nativa o DBA utiliza para descobrir a quantidade exata (o total de registros) de vendas realizadas?",
+        "opcoes": [
+          "a) NUMBER()",
+          "b) SUM()",
+          "c) COUNT()",
+          "d) TOTAL()"
+        ],
+        "resposta_correta": "c) COUNT()"
+      },
+      {
+        "pergunta": "Existe uma diferença crítica de ciclo de processamento entre o WHERE e o HAVING. Qual é a correta?",
+        "opcoes": [
+          "a) O HAVING só funciona se o banco de dados for NoSQL, enquanto o WHERE é para SQL.",
+          "b) O WHERE filtra o dado cru linha por linha antes do agrupamento, enquanto o HAVING aplica o filtro sobre a matemática dos blocos depois do grupo já estar formado.",
+          "c) O WHERE serve para criar colunas, e o HAVING serve para apagá-las.",
+          "d) Ambos fazem exatamente a mesma coisa e podem ser usados de forma alternada sem impacto."
+        ],
+        "resposta_correta": "b) O WHERE filtra o dado cru linha por linha antes do agrupamento, enquanto o HAVING aplica o filtro sobre a matemática dos blocos depois do grupo já estar formado."
+      },
+      {
+        "pergunta": "Para empilhar e unificar o resultado de duas tabelas com colunas semelhantes (ex: clientes da filial antiga com os clientes da filial nova) em uma única visualização, qual comando usamos?",
+        "opcoes": [
+          "a) MERGE",
+          "b) JOIN_ALL",
+          "c) UNION",
+          "d) APPEND"
+        ],
+        "resposta_correta": "c) UNION"
+      },
+      {
+        "pergunta": "Durante a extração do painel gerencial, o MySQL lançou o erro 'Expression is not in GROUP BY clause'. Qual foi a provável causa sistêmica?",
+        "opcoes": [
+          "a) A conexão de internet com o servidor caiu.",
+          "b) O banco de dados foi excluído acidentalmente.",
+          "c) O usuário tentou exibir no SELECT uma coluna comum que não faz parte da regra de agrupamento e que não possui uma função de agregação aplicada a ela.",
+          "d) O usuário esqueceu de colocar aspas duplas no nome da tabela."
+        ],
+        "resposta_correta": "c) O usuário tentou exibir no SELECT uma coluna comum que não faz parte da regra de agrupamento e que não possui uma função de agregação aplicada a ela."
+      },
+      {
+        "pergunta": "Por que realizamos o desafio mental 'O Contador Rápido' antes de abrir o console do servidor?",
+        "opcoes": [
+          "a) Porque os computadores do laboratório estavam atualizando.",
+          "b) Para forçar a compreensão lógica e analítica de como o SGBD agrupa e faz a matemática por trás dos panos, evitando que o desenvolvedor dependa apenas de tentativa e erro.",
+          "c) Para treinar a digitação rápida dos alunos.",
+          "d) Porque o MySQL não consegue processar funções matemáticas em tempo real."
+        ],
+        "resposta_correta": "b) Para forçar a compreensão lógica e analítica de como o SGBD agrupa e faz a matemática por trás dos panos, evitando que o desenvolvedor dependa apenas de tentativa e erro."
+      },
+      {
+        "pergunta": "Se um relatório exige visualizar 'O maior valor e o menor valor' das transações de hoje, quais funções atuam juntas no SELECT?",
+        "opcoes": [
+          "a) BIG() e SMALL()",
+          "b) MAX() e MIN()",
+          "c) TOP() e BOTTOM()",
+          "d) UP() e DOWN()"
+        ],
+        "resposta_correta": "b) MAX() e MIN()"
+      },
+      {
+        "pergunta": "Na nossa missão extra, ao usar 'HAVING COUNT(id) > 100', o que exatamente o banco de dados filtrará e exibirá no resultado?",
+        "opcoes": [
+          "a) Apenas as vendas cujo valor financeiro seja maior que R$ 100,00.",
+          "b) Apenas as linhas que possuem o código identificador (ID) maior que 100.",
+          "c) Apenas os grupos/estados que tiveram um volume acumulado superior a 100 registros de vendas contadas.",
+          "d) Apenas os clientes que têm mais de 100 anos de idade."
+        ],
+        "resposta_correta": "c) Apenas os grupos/estados que tiveram um volume acumulado superior a 100 registros de vendas contadas."
+      }
+    ]
+  }
+}

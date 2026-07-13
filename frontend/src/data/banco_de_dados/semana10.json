@@ -1,0 +1,135 @@
+{
+  "semana_numero": "10",
+  "titulo": "Missão 10: O Casamenteiro de Dados - A Magia dos JOINs!",
+  "situacao_aprendizagem": "SA2",
+  "contexto_aluno": "Fala, Dev! Lembra-se de quando usamos as regras de Normalização na SA1 para dividir um tabelão perigoso em várias tabelas separadas, garantindo a integridade do sistema? Foi perfeito para o servidor, mas o usuário final não entende de IDs! O Front-end do aplicativo agora precisa carregar a tela de 'Detalhes do Pedido' do cliente, e essas informações estão estilhaçadas em quatro tabelas diferentes. Como você reconstrói e costura isso tudo em milissegundos sem derrubar a API? Chegou o grande momento da SA2: o Cruzamento de Dados. Hoje você vai dominar os JOINs, o conceito de SQL mais cobrado em entrevistas de emprego para Desenvolvedor Backend e Engenheiro de Dados. Prepare-se para juntar os pedaços do caos!",
+  "bloco_A": {
+    "titulo": "O Casamenteiro de Dados: A Teoria dos Conjuntos",
+    "conteudo": "Para costurar tabelas separadas, utilizamos a Lógica dos Conjuntos (os famosos Diagramas de Venn) aplicada diretamente ao SQL. O comando estrela é o INNER JOIN: ele cria a 'intersecção perfeita', trazendo apenas os registros que possuem um casamento exato entre a Chave Primária e a Chave Estrangeira usando a cláusula ON. Mas nem sempre queremos apenas os casamentos perfeitos. E se precisarmos listar todos os nossos produtos, inclusive aqueles que NUNCA foram vendidos? É aí que entram o LEFT JOIN e o RIGHT JOIN, que forçam o banco a preservar os dados de um lado, mesmo que não haja correspondência do outro, preenchendo o vazio com o valor NULL.",
+    "atividade_pratica": {
+      "nome": "Desafio: Ligue os Pontos Lógico",
+      "instrucoes": "Com duas pequenas tabelas desenhadas na lousa pelo Tech Lead (Professor), sua dupla deverá processar mentalmente e anotar no caderno qual seria o 'Result Set' (quais linhas exatas apareceriam) se aplicássemos um INNER JOIN, e como esse resultado mudaria se utilizássemos um LEFT JOIN. Preveja a matriz antes de abrir o computador!"
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: O Grande Cruzamento",
+    "conteudo": "A teoria está clara, mas a sintaxe real é impiedosa. A tela do 'Detalhes do Pedido' está em branco. No laboratório de hoje, você assumirá o comando do XAMPP/MySQL para criar a 'Query Perfeita'. Para isso, será necessário encadear múltiplos comandos JOIN cruzando até 4 tabelas ao mesmo tempo. E atenção: se duas tabelas tiverem colunas com o mesmo nome (como um campo 'id' na tabela Cliente e um 'id' na Produto), o banco lançará o erro fatal de 'Ambiguous column name'. O uso de 'Aliases' (Apelidos de Tabela) será obrigatório para manter o código à prova de falhas.",
+    "atividade_pratica": {
+      "nome": "Operação: A Query Perfeita e Alias Mastery",
+      "instrucoes": "Em suas máquinas, codifiquem a consulta encadeando as 4 tabelas vitais (Cliente, Pedido, Item_Pedido e Produto) referenciando corretamente as Chaves Estrangeiras na cláusula ON. Apliquem os 'Table Aliases' (ex: 'tb_cliente c') para deixar o código limpo. Para o Nível AUT (Autônomo): Usem o LEFT JOIN para virarem 'Caçadores de Órfãos' e descobrirem quais produtos da loja nunca tiveram saída (onde venda.id IS NULL). Em seguida, combinem JOIN com GROUP BY para entregar o gasto total (SUM) por cliente!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana10.pdf",
+    "resumo_audio": "BCD-Podcast-Semana10 - Cruzar_tabelas_sem_derrubar_o_sistema.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem03-Guia_Mestre_de_Consultas_SQL.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você está pronto para costurar o banco de dados e passar no teste mais cobiçado pelos Tech Recruiters? Prove seu domínio sobre os JOINs agora!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a função principal do comando INNER JOIN na extração de relatórios do banco de dados?",
+        "opcoes": [
+          "a) Apagar registros em duplicidade no sistema.",
+          "b) Cruzar tabelas e retornar exclusivamente as linhas onde existe um 'casamento' exato entre as chaves nas duas partes.",
+          "c) Forçar o banco a retornar todos os dados da tabela esquerda, independentemente da correspondência.",
+          "d) Criar novas tabelas baseadas nos dados agrupados."
+        ],
+        "resposta_correta": "b) Cruzar tabelas e retornar exclusivamente as linhas onde existe um 'casamento' exato entre as chaves nas duas partes."
+      },
+      {
+        "pergunta": "Qual cláusula do comando JOIN é utilizada obrigatoriamente para estabelecer a condição de ligação entre a Chave Primária (PK) e a Chave Estrangeira (FK)?",
+        "opcoes": [
+          "a) WHERE",
+          "b) IN",
+          "c) LIKE",
+          "d) ON"
+        ],
+        "resposta_correta": "d) ON"
+      },
+      {
+        "pergunta": "Diferente da intersecção perfeita, o comando LEFT JOIN se destaca porque:",
+        "opcoes": [
+          "a) Retorna apenas os erros do banco de dados.",
+          "b) Retorna todos os dados da tabela esquerda, preservando-os mesmo que não haja correspondência na tabela da direita (marcando como NULL os espaços vazios).",
+          "c) Apaga os dados órfãos da tabela esquerda automaticamente.",
+          "d) Funciona apenas em tabelas que não possuem Chave Estrangeira."
+        ],
+        "resposta_correta": "b) Retorna todos os dados da tabela esquerda, preservando-os mesmo que não haja correspondência na tabela da direita (marcando como NULL os espaços vazios)."
+      },
+      {
+        "pergunta": "Durante um cruzamento de 4 tabelas, o console apontou o erro 'Ambiguous column name' para a coluna 'nome'. Qual é a causa técnica desse erro?",
+        "opcoes": [
+          "a) O nome do cliente é muito longo para o varchar.",
+          "b) A coluna 'nome' existe em mais de uma das tabelas unidas, e você não informou ao SGBD exatamente de qual tabela ele deve puxar aquele dado.",
+          "c) O banco de dados MySQL não suporta colunas chamadas 'nome'.",
+          "d) Você esqueceu o ponto-e-vírgula no final do SELECT."
+        ],
+        "resposta_correta": "b) A coluna 'nome' existe em mais de uma das tabelas unidas, e você não informou ao SGBD exatamente de qual tabela ele deve puxar aquele dado."
+      },
+      {
+        "pergunta": "Como o DBA deve aplicar a técnica de 'Table Aliases' (Apelidos) para solucionar colunas ambíguas de forma corporativa e limpa?",
+        "opcoes": [
+          "a) Alterar permanentemente a tabela usando ALTER TABLE.",
+          "b) Apelidar a tabela no FROM (ex: tb_cliente c) e usar o prefixo em todas as colunas no SELECT (ex: c.nome).",
+          "c) Apagar uma das colunas conflitantes usando DROP.",
+          "d) Deixar o SGBD escolher aleatoriamente usando a função RAND()."
+        ],
+        "resposta_correta": "b) Apelidar a tabela no FROM (ex: tb_cliente c) e usar o prefixo em todas as colunas no SELECT (ex: c.nome)."
+      },
+      {
+        "pergunta": "Em um cenário corporativo (Nível AUT), se usarmos um LEFT JOIN cruzando 'Produtos' com 'Vendas' e filtrarmos com a cláusula 'WHERE id_venda IS NULL', o que exatamente estamos descobrindo?",
+        "opcoes": [
+          "a) Todos os produtos que foram vendidos perfeitamente com desconto nulo.",
+          "b) Os clientes que compraram produtos gratuitos.",
+          "c) O banco lançará um erro pois IS NULL é proibido em JOINs.",
+          "d) Os produtos 'órfãos' no cruzamento, ou seja, produtos do catálogo que nunca tiveram sequer uma venda realizada."
+        ],
+        "resposta_correta": "d) Os produtos 'órfãos' no cruzamento, ou seja, produtos do catálogo que nunca tiveram sequer uma venda realizada."
+      },
+      {
+        "pergunta": "A narrativa 'Juntando os Pedaços do Caos' faz um contraponto direto a um conteúdo que aprendemos na Situação de Aprendizagem 1. Qual é esse conteúdo?",
+        "opcoes": [
+          "a) A Normalização, onde dividimos os dados em partes separadas para garantir a integridade. Agora com o JOIN, unimos tudo de volta para a leitura do usuário.",
+          "b) A criação de usuários e senhas (DCL).",
+          "c) A instalação do XAMPP local no computador.",
+          "d) O uso da matemática de agregação (SUM e AVG)."
+        ],
+        "resposta_correta": "a) A Normalização, onde dividimos os dados em partes separadas para garantir a integridade. Agora com o JOIN, unimos tudo de volta para a leitura do usuário."
+      },
+      {
+        "pergunta": "O que acontece catastroficamente com o servidor se executarmos o cruzamento cego de duas grandes tabelas usando vírgula 'SELECT * FROM cliente, pedido' SEM utilizar uma cláusula de ligação (ON / WHERE)?",
+        "opcoes": [
+          "a) A consulta roda mais rápido.",
+          "b) Gera um 'Produto Cartesiano', multiplicando todas as linhas de uma tabela por todas as da outra, podendo travar a memória do servidor com milhões de resultados inúteis.",
+          "c) O SGBD cria as chaves estrangeiras automaticamente.",
+          "d) Retorna a intersecção perfeita com sucesso."
+        ],
+        "resposta_correta": "b) Gera um 'Produto Cartesiano', multiplicando todas as linhas de uma tabela por todas as da outra, podendo travar a memória do servidor com milhões de resultados inúteis."
+      },
+      {
+        "pergunta": "É possível combinar o poder das Funções de Agregação (Semana 09) em relatórios baseados em consultas multitabelas com JOIN (Semana 10)?",
+        "opcoes": [
+          "a) Sim, podemos usar INNER JOIN para juntar Cliente e Pedido, e em seguida aplicar GROUP BY e SUM() para exibir o total gasto por aquele cliente.",
+          "b) Não, funções de agregação só funcionam em consultas de tabela única.",
+          "c) Sim, mas apenas se usarmos um SGBD Não-Relacional.",
+          "d) Não, pois o comando ON cancela qualquer função matemática."
+        ],
+        "resposta_correta": "a) Sim, podemos usar INNER JOIN para juntar Cliente e Pedido, e em seguida aplicar GROUP BY e SUM() para exibir o total gasto por aquele cliente."
+      },
+      {
+        "pergunta": "Em relação à performance de hardware (uso de disco), por que as ligações ON do INNER JOIN costumam ser insanamente rápidas em um banco de dados real?",
+        "opcoes": [
+          "a) Porque os dados da rede são processados lentamente na nuvem.",
+          "b) Porque fazemos ligações cruzando nomes de rua e bairro.",
+          "c) Porque comparamos campos de texto longo como os nomes dos usuários.",
+          "d) Porque o relacionamento é feito de maneira cirúrgica comparando campos numéricos inteiros indexados na memória (PK e FK)."
+        ],
+        "resposta_correta": "d) Porque o relacionamento é feito de maneira cirúrgica comparando campos numéricos inteiros indexados na memória (PK e FK)."
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "semana_numero": "02",
+  "titulo": "Missão 02: A Guerra dos Modelos e a Casa das Máquinas!",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Fala, Dev! Na nossa primeira missão, você entendeu que os dados são o coração do backend. Hoje, as coisas ficam muito mais táticas. Antes de escrever qualquer código, você precisará tomar uma das decisões mais críticas para o sucesso de uma startup corporativa: escolher o modelo de arquitetura ideal. Vamos entender a fundo a 'Guerra Fria' entre Bancos Relacionais (o rigor total) e Não-Relacionais (a flexibilidade caótica). Mas não paramos na teoria: no segundo bloco, vamos descer para a 'casa das máquinas'. Você vai instalar a infraestrutura e subir o seu próprio servidor local de banco de dados. Preparado para enfrentar os primeiros conflitos de rede e fazer o terminal rodar?",
+  "bloco_A": {
+    "titulo": "A Guerra dos Modelos: O Arquivo Fiscal vs O Galpão Flexível",
+    "conteudo": "No mercado de tecnologia, existem duas filosofias dominantes. De um lado, temos os Bancos de Dados Relacionais (SQL, como MySQL e Oracle). Eles funcionam como um arquivo de contabilidade extremamente rigoroso: dados organizados em tabelas perfeitas, regras inquebráveis e precisão absoluta – o modelo ideal para garantir que seu dinheiro não suma em uma transação do PIX. Do outro lado, estão os Bancos Não-Relacionais (NoSQL, como MongoDB e Redis). Eles são como um galpão de estoque da Amazon gigante e sem divisórias rígidas: não usam tabelas fixas, armazenam dados como documentos e são insanamente rápidos para lidar com o volume caótico de redes sociais ou streamings de vídeos. O bom Arquiteto de Dados não escolhe um lado por moda, ele avalia a necessidade de negócio e o volume de acessos para decidir o que implantar.",
+    "atividade_pratica": {
+      "nome": "O Conselho de Arquitetura",
+      "instrucoes": "Trabalhando em squads (equipes), vocês assumirão o papel de CTOs. Vocês receberão 3 cenários de sistemas famosos do mundo real (ex: um app financeiro, um feed infinito de rede social e um e-commerce gigantesco). A missão da equipe é debater, entrar em um consenso e justificar tecnicamente qual modelo (Relacional ou Não-Relacional) deve ser escolhido para sustentar cada sistema sem quebrar."
+    }
+  },
+  "bloco_B": {
+    "titulo": "O Laboratório do DBA: Subindo o Servidor Local",
+    "conteudo": "A arquitetura está decidida, mas um Arquiteto de Dados não trabalha apenas com papel e imaginação. Chegou a hora de transformar os computadores do laboratório em verdadeiros servidores de persistência. Vamos instalar e configurar o XAMPP, um pacote de software que trará o motor do MySQL à vida na sua máquina. O desafio aqui é desenvolver a sua autonomia e resiliência (uma soft skill crítica). No mundo real de infraestrutura, portas de rede entram em conflito e serviços travam. Quando o seu servidor se recusar a ligar e lançar um erro em texto vermelho na tela, você terá de ler esse log, agir com calma e resolver o bloqueio.",
+    "atividade_pratica": {
+      "nome": "Operação Setup: O Desbloqueio da Porta 3306",
+      "instrucoes": "Você fará o download e a instalação do ambiente XAMPP de forma autônoma. O objetivo final é conseguir ativar o serviço do MySQL e ver a famosa porta de rede '3306' rodando em verde no seu painel. Se a porta estiver bloqueada por outro programa do seu computador, você deverá aplicar técnicas de 'troubleshooting': ler o log de erros, acessar os arquivos de configuração '.ini' e remapear as portas de comunicação para concluir sua missão."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana02.pdf",
+    "resumo_audio": "BCD-Podcast-Semana02 - Bancos_relacionais_e_a_porta_3306.m4a",
+    "videos_correlacionados": [
+      "BCD-Vídeo02-A_Guerra_dos_Bancos-.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "BCD-Imagem02-Guia_do_Arquiteto_de_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "O servidor subiu e a poeira baixou? Responda a este quiz rápido para provar que você está dominando a guerra arquitetônica e os macetes de infraestrutura local!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a principal analogia utilizada para explicar o Banco de Dados Relacional?",
+        "opcoes": [
+          "a) Uma pasta de arquivos de texto soltos na área de trabalho.",
+          "b) Um arquivo de contabilidade rigoroso, onde tudo é estruturado em tabelas.",
+          "c) Um galpão flexível que aceita qualquer formato de dado misturado.",
+          "d) Uma galeria de fotos de celular."
+        ],
+        "resposta_correta": "b) Um arquivo de contabilidade rigoroso, onde tudo é estruturado em tabelas."
+      },
+      {
+        "pergunta": "Qual das características a seguir pertence aos Bancos Não-Relacionais (NoSQL)?",
+        "opcoes": [
+          "a) Eles dependem estritamente de tabelas com colunas imutáveis.",
+          "b) São otimizados para garantir o rigor em transações bancárias e financeiras clássicas.",
+          "c) São flexíveis, não usam o modelo de tabelas rígidas e lidam muito bem com volumes gigantescos de formatos mistos.",
+          "d) Eles só aceitam informações baseadas em texto puro sem formatação."
+        ],
+        "resposta_correta": "c) São flexíveis, não usam o modelo de tabelas rígidas e lidam muito bem com volumes gigantescos de formatos mistos."
+      },
+      {
+        "pergunta": "Em um cenário de desenvolvimento para um banco digital (PIX), qual seria a arquitetura principal escolhida e o porquê?",
+        "opcoes": [
+          "a) Relacional, porque assegura o rigor transacional (ACID) onde a falta de integridade não é tolerada.",
+          "b) Não-Relacional, pois é mais rápido e permite perder transações durante picos de rede.",
+          "c) Arquivo Excel corporativo, por ser mais barato para a startup.",
+          "d) Banco de imagens, pois o comprovante é o que importa."
+        ],
+        "resposta_correta": "a) Relacional, porque assegura o rigor transacional (ACID) onde a falta de integridade não é tolerada."
+      },
+      {
+        "pergunta": "O que é o XAMPP no nosso ecossistema de desenvolvimento de banco de dados?",
+        "opcoes": [
+          "a) É a linguagem de programação que criará a tela do aplicativo.",
+          "b) É uma marca de servidor de nuvem internacional.",
+          "c) É o programa antivírus usado para proteger as senhas dos alunos.",
+          "d) É um pacote de software que instala e gerencia o servidor Apache e o motor do MySQL no computador local."
+        ],
+        "resposta_correta": "d) É um pacote de software que instala e gerencia o servidor Apache e o motor do MySQL no computador local."
+      },
+      {
+        "pergunta": "Qual é a porta de comunicação padrão usada pela rede para acessar o MySQL?",
+        "opcoes": [
+          "a) 80",
+          "b) 8080",
+          "c) 3306",
+          "d) 443"
+        ],
+        "resposta_correta": "c) 3306"
+      },
+      {
+        "pergunta": "Durante a aula de laboratório, se o painel do XAMPP avisar em vermelho que a porta 3306 está bloqueada, o que se espera da atitude de um Arquiteto de Dados Autônomo?",
+        "opcoes": [
+          "a) Investigar a mensagem de erro (log), acessar o arquivo .ini de configuração e tentar mudar a porta sozinho.",
+          "b) Desligar o computador da tomada para forçar a parada do sistema.",
+          "c) Levantar a mão imediatamente e pedir que o professor arrume a máquina.",
+          "d) Ignorar a mensagem e achar que o MySQL rodará sozinho por milagre."
+        ],
+        "resposta_correta": "a) Investigar a mensagem de erro (log), acessar o arquivo .ini de configuração e tentar mudar a porta sozinho."
+      },
+      {
+        "pergunta": "O que significa escalar um servidor 'horizontalmente'?",
+        "opcoes": [
+          "a) Adicionar mais memória RAM em uma única máquina gigantesca.",
+          "b) Adicionar novos servidores (várias máquinas) lado a lado dividindo o trabalho de processamento.",
+          "c) Trocar a tela do servidor por um modelo Ultrawide.",
+          "d) Deitar a torre do computador na prateleira para evitar o aquecimento."
+        ],
+        "resposta_correta": "b) Adicionar novos servidores (várias máquinas) lado a lado dividindo o trabalho de processamento."
+      },
+      {
+        "pergunta": "Numa grande rede social como o TikTok, o volume de vídeos, comentários e reações sobe numa velocidade impressionante. Qual banco de dados é habitualmente usado nesse cenário de Big Data flexível?",
+        "opcoes": [
+          "a) Microsoft Access",
+          "b) Relacional Clássico",
+          "c) Bancos Físicos de Papel",
+          "d) Não-Relacional (NoSQL)"
+        ],
+        "resposta_correta": "d) Não-Relacional (NoSQL)"
+      },
+      {
+        "pergunta": "De acordo com o material abordado, o que acontece com uma empresa quando seu banco de dados e os seus servidores caem (sofrem 'down')?",
+        "opcoes": [
+          "a) A interface continua funcionando perfeitamente, usando arquivos temporários.",
+          "b) Os clientes jogam offline.",
+          "c) O sistema todo para, pois a infraestrutura do backend perde a capacidade de consultar e salvar dados vitais.",
+          "d) O banco de dados envia e-mails pedindo desculpas automaticamente."
+        ],
+        "resposta_correta": "c) O sistema todo para, pois a infraestrutura do backend perde a capacidade de consultar e salvar dados vitais."
+      },
+      {
+        "pergunta": "Na nossa dinâmica 'Conselho de Arquitetura', argumentar tecnicamente significa:",
+        "opcoes": [
+          "a) Escolher a arquitetura pelo logotipo mais bacana da tecnologia.",
+          "b) Escolher o modelo Relacional para absolutamente tudo, pois as tabelas são mais famosas.",
+          "c) Não importar-se com a escalabilidade, focando apenas no layout.",
+          "d) Entender as necessidades do cliente, o tipo de dado gerado e usar a lógica para defender a escolha mais segura ou flexível."
+        ],
+        "resposta_correta": "d) Entender as necessidades do cliente, o tipo de dado gerado e usar a lógica para defender a escolha mais segura ou flexível."
+      }
+    ]
+  }
+}

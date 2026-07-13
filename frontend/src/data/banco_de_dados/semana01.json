@@ -1,0 +1,139 @@
+{
+  "semana_numero": "01",
+  "titulo": "Missão 01: O Despertar dos Dados - Muito Além das Planilhas!",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Fala, Dev! Bem-vindo ao motor de tudo o que existe na internet. Se você acha que Banco de Dados é só uma 'planilha glorificada' para guardar nomes e telefones, prepare-se para mudar essa visão. A partir de hoje, você assume a cadeira de um Arquiteto de Dados e DBA (Database Administrator). No mercado de tecnologia, dados são o novo petróleo e o banco de dados é o coração pulsante do backend. Cada transação no PIX, cada match no Tinder e cada série na Netflix dependem de uma infraestrutura robusta, segura e absurdamente rápida. Sua jornada no desenvolvimento backend começa agora!",
+  "bloco_A": {
+    "titulo": "SGBD: O Coração do Backend e o Mercado de Dados",
+    "conteudo": "Você vai descobrir o que é um Sistema Gerenciador de Banco de Dados (SGBD) e por que aplicativos perfeitos visualmente podem falhar miseravelmente se não tiverem uma boa fundação de dados. Vamos entender as características que diferenciam um SGBD robusto de planilhas comuns, explorando conceitos como segurança, concorrência e alto volume de dados. Além disso, vamos explorar o mercado de trabalho real, os salários e quais tecnologias as grandes empresas estão exigindo hoje para quem domina essa área.",
+    "atividade_pratica": {
+      "nome": "Desafio: Caçadores de Vagas",
+      "instrucoes": "Em duplas, vocês farão uma varredura nas principais plataformas de emprego do mercado (como LinkedIn e Catho). O objetivo é buscar vagas reais para Database Administrator (DBA), Engenheiro de Dados e Desenvolvedor Backend. Vocês deverão mapear as faixas salariais, as responsabilidades e descobrir quais são os SGBDs mais exigidos pelas empresas para compartilhar com a turma."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório de Abstração: As Regras do Jogo",
+    "conteudo": "Neste laboratório, conheceremos as regras da nossa jornada de 20 semanas e como seremos avaliados pela Metodologia SENAI de Educação Profissional (MSEP), onde a sua Autonomia e Pensamento Analítico valem tanto quanto o seu código. Em seguida, vamos colocar a mão na massa para introduzir o modelo relacional de forma totalmente intuitiva, entendendo na prática como os dados se dividem em Tabelas, Registros (linhas) e Atributos (colunas) sem usar o computador para codificar ainda.",
+    "atividade_pratica": {
+      "nome": "O Desafio da Modelagem Intuitiva (O SENAI como Banco de Dados)",
+      "instrucoes": "Esquecendo as planilhas, como o SENAI organiza e armazena os seus dados de forma segura e interligada? Utilizando post-its ou o bloco de notas, sua missão será abstrair esse cenário e criar Tabelas lógicas para ALUNOS, CURSOS e NOTAS. O grande desafio é: como definir as colunas de cada tabela evitando a repetição perigosa de informações?"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana01.pdf",
+    "resumo_audio": "BCD-Podcast-Semana01 - Primeiros_passos_com_MySQL_e_SGBD.m4a",
+    "videos_correlacionados": [
+      "BCD-Vídeo04-Pirata.mp4",
+      "BCD-VídeoAbertura-A_Jornada_do_Arquiteto.mp4",
+      "BCD-Vídeo01-O_Motor_da_Internet_.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "BCD-Imagem01-Jornada_do_Arquiteto_de_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Bora testar se você sobrevive ao primeiro dia no setor de infraestrutura? Resolva esse quiz e prove que você já entende o básico de arquitetura de dados!",
+    "perguntas": [
+      {
+        "pergunta": "O que significa a sigla SGBD abordada nesta aula?",
+        "opcoes": [
+          "a) Sistema de Gestão e Busca de Dados",
+          "b) Sistema Gerenciador de Banco de Dados",
+          "c) Software Global de Banco Digital",
+          "d) Serviço Gerador de Base de Dados"
+        ],
+        "resposta_correta": "b) Sistema Gerenciador de Banco de Dados"
+      },
+      {
+        "pergunta": "Por que grandes sistemas (como iFood ou Netflix) não utilizam planilhas do Excel como seu banco de dados principal?",
+        "opcoes": [
+          "a) Porque planilhas não rodam em servidores na nuvem.",
+          "b) Porque o Excel não suporta milhares de transações simultâneas com velocidade e segurança (concorrência).",
+          "c) Porque planilhas não possuem interface gráfica bonita para o usuário final.",
+          "d) Porque planilhas são exclusivas para dados financeiros."
+        ],
+        "resposta_correta": "b) Porque o Excel não suporta milhares de transações simultâneas com velocidade e segurança (concorrência)."
+      },
+      {
+        "pergunta": "Na nossa metáfora inicial, o banco de dados representa qual parte de um sistema de software?",
+        "opcoes": [
+          "a) A vitrine visual (Frontend)",
+          "b) A rede de internet (Roteadores)",
+          "c) O coração pulsante e cofre-forte (Backend)",
+          "d) O sistema operacional do usuário"
+        ],
+        "resposta_correta": "c) O coração pulsante e cofre-forte (Backend)"
+      },
+      {
+        "pergunta": "No mercado de tecnologia, qual é o papel principal de um DBA (Database Administrator)?",
+        "opcoes": [
+          "a) Criar a interface visual de botões do aplicativo.",
+          "b) Administrar, garantir o desempenho e manter a segurança de um banco de dados.",
+          "c) Vender planos de internet para hospedar o banco.",
+          "d) Desenhar o logotipo da empresa de software."
+        ],
+        "resposta_correta": "b) Administrar, garantir o desempenho e manter a segurança de um banco de dados."
+      },
+      {
+        "pergunta": "No modelo relacional que começamos a abstrair, como chamamos as 'colunas' que guardam informações específicas (ex: nome, idade)?",
+        "opcoes": [
+          "a) Entidades",
+          "b) Registros",
+          "c) Atributos",
+          "d) Relacionamentos"
+        ],
+        "resposta_correta": "c) Atributos"
+      },
+      {
+        "pergunta": "E como chamamos as 'linhas' de uma tabela, que representam um conjunto de dados preenchido?",
+        "opcoes": [
+          "a) Registros",
+          "b) Atributos",
+          "c) Chaves",
+          "d) Diagramas"
+        ],
+        "resposta_correta": "a) Registros"
+      },
+      {
+        "pergunta": "O que significa a capacidade socioemocional de 'Autonomia' que será muito avaliada pela metodologia MSEP ao longo do semestre?",
+        "opcoes": [
+          "a) Trabalhar sempre sozinho sem falar com a equipe.",
+          "b) Pesquisar, investigar e tentar corrigir erros lógicos por conta própria antes de pedir a resposta pronta ao professor.",
+          "c) Entregar as atividades no último dia do prazo.",
+          "d) Ignorar os erros no console e recomeçar do zero."
+        ],
+        "resposta_correta": "b) Pesquisar, investigar e tentar corrigir erros lógicos por conta própria antes de pedir a resposta pronta ao professor."
+      },
+      {
+        "pergunta": "Durante o 'Desafio da Modelagem Intuitiva', por que seria um erro grave colocar a coluna 'Carga_Horaria_Curso' diretamente dentro da tabela 'ALUNOS'?",
+        "opcoes": [
+          "a) Porque os alunos não precisam saber a carga horária.",
+          "b) Porque isso gera redundância: se a carga horária mudar, você teria que alterar manualmente as linhas de todos os alunos daquele curso.",
+          "c) Porque nomes de colunas não podem ter 'underline' (_).",
+          "d) Porque o banco de dados proíbe colunas de tempo na tabela de alunos."
+        ],
+        "resposta_correta": "b) Porque isso gera redundância: se a carga horária mudar, você teria que alterar manualmente as linhas de todos os alunos daquele curso."
+      },
+      {
+        "pergunta": "Em qual Situação de Aprendizagem (SA) estamos entrando agora nas primeiras semanas do curso?",
+        "opcoes": [
+          "a) SA1: Fundamentos e Modelagem",
+          "b) SA2: Consultas e Inteligência de Dados",
+          "c) SA3: Administração e Programação Avançada",
+          "d) SA4: Redes e Infraestrutura"
+        ],
+        "resposta_correta": "a) SA1: Fundamentos e Modelagem"
+      },
+      {
+        "pergunta": "Qual foi o objetivo prático do desafio 'Caçadores de Vagas' realizado no Bloco A?",
+        "opcoes": [
+          "a) Encontrar vagas de emprego em outras áreas fora de TI.",
+          "b) Analisar a realidade do mercado, mapeando faixas salariais e descobrindo quais bancos de dados são mais exigidos hoje nas empresas.",
+          "c) Aprender a criar um currículo no Word.",
+          "d) Baixar os softwares necessários para a aula."
+        ],
+        "resposta_correta": "b) Analisar a realidade do mercado, mapeando faixas salariais e descobrindo quais bancos de dados são mais exigidos hoje nas empresas."
+      }
+    ]
+  }
+}

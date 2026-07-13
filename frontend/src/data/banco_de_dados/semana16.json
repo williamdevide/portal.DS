@@ -1,0 +1,135 @@
+{
+  "semana_numero": "16",
+  "titulo": "Missão 16: A Caixa Preta de Desempenho - Stored Procedures!",
+  "situacao_aprendizagem": "SA3",
+  "contexto_aluno": "Fala, Dev! Você já programou rotinas que rodam por tempo (EVENTs) e criou janelas fumê (VIEWs). Mas até agora, o banco só sabe executar uma instrução SQL por vez. E se ele pudesse tomar decisões lógicas? E se ele pudesse usar variáveis, criar loops e rodar blocos IF/ELSE diretamente nas veias do SGBD com velocidade insana? É hora de abandonar as dezenas de viagens pela rede entre o Backend (C#/Node) e o Servidor de Banco. Hoje, vamos modularizar as regras de negócio mais pesadas usando as Stored Procedures. Prepare-se para dominar o motor interno!",
+  "bloco_A": {
+    "titulo": "O Motor Interno: Procedures, Variáveis e IFs",
+    "conteudo": "Fazer uma venda complexa envolve: verificar o estoque, diminuir o produto, gerar a fatura e criar o log de auditoria. Fazer tudo isso pelo Backend exige 4 requisições na rede. Com uma Stored Procedure, você empacota esses 4 passos num bloco de código interno. O desenvolvedor apenas envia o comando 'CALL' e a 'Caixa Preta' do banco executa tudo internamente de uma vez só! Mas para ensinar o banco a ler blocos de código complexos sem se perder nos pontos-e-vírgulas, precisamos dominar o comando DELIMITER, além de declarar parâmetros de entrada (IN) e saída (OUT) e estruturar lógicas condicionais (IF/THEN/ELSE).",
+    "atividade_pratica": {
+      "nome": "Desafio: O Primeiro Procedimento",
+      "instrucoes": "No seu ambiente de desenvolvimento (bloco de notas puro), você e sua dupla redigirão a sintaxe bruta de uma Procedure chamada `sp_dar_desconto`. Ela deve receber um ID de produto e diminuir o seu valor em 10%, aplicando corretamente a alteração do DELIMITER, a abertura com BEGIN e o fechamento com END //."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: Modularizando o Sistema (Projeto 2)",
+    "conteudo": "A sintaxe foi validada no papel. Agora, vocês aplicarão a inteligência procedimental no Projeto 2 de vocês. O cliente de vocês exige que as operações centrais do sistema (como cadastros críticos ou vendas) não sejam feitas por comandos INSERT/UPDATE soltos enviados pelo frontend, pois isso abre margem para ataques de SQL Injection. Vocês encapsularão as regras de negócio dentro de Procedures robustas.",
+    "atividade_pratica": {
+      "nome": "Operação: Inteligência Procedural e o Comando CALL",
+      "instrucoes": "Elegam as duas operações mais complexas do seu Projeto Final (Ex: Realizar_Matricula ou Fechar_Pedido). Codifiquem as Stored Procedures para essas lógicas. Compilem sem erros de Delimiter no MySQL. Em seguida, testem a execução no console utilizando a sintaxe `CALL sp_nome_da_rotina(parametros)`. Para o Nível AUT: Pesquisem e implementem a estrutura WHILE...DO para criar um 'Loop Fabril', gerando uma Procedure que insira 5 registros de testes sequenciais com um único CALL."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana16.pdf",
+    "resumo_audio": "BCD-Podcast-Semana16 - Stored_Procedures_dão_inteligência_ao_banco.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem04-Arquitetura_Avançada_de_Bancos_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você sabe orquestrar lógicas avançadas dentro do servidor? Teste o seu domínio sobre Stored Procedures agora!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a principal vantagem de utilizar uma Stored Procedure (Procedimento Armazenado) em um sistema corporativo?",
+        "opcoes": [
+          "a) Criar interfaces gráficas e botões animados para o utilizador.",
+          "b) Ocupar mais espaço no disco rígido para encarecer o servidor.",
+          "c) Encapsular lógicas de negócio pesadas dentro do banco, reduzindo o tráfego de rede e garantindo segurança e extrema performance.",
+          "d) Executar consultas sem precisar da cláusula WHERE."
+        ],
+        "resposta_correta": "c) Encapsular lógicas de negócio pesadas dentro do banco, reduzindo o tráfego de rede e garantindo segurança e extrema performance."
+      },
+      {
+        "pergunta": "Qual comando usamos para alterar temporariamente o interpretador léxico do MySQL, permitindo que escrevamos um bloco de código inteiro (com vários ';') sem que ele seja executado prematuramente?",
+        "opcoes": [
+          "a) CHANGE_SYMBOL",
+          "b) DELIMITER //",
+          "c) SET END",
+          "d) ALTER END"
+        ],
+        "resposta_correta": "b) DELIMITER //"
+      },
+      {
+        "pergunta": "Ao declarar os parâmetros de uma Procedure, qual prefixo usamos para indicar que um valor está sendo enviado DE FORA para DENTRO da rotina (ex: o ID do cliente que fará a compra)?",
+        "opcoes": [
+          "a) IN",
+          "b) OUT",
+          "c) GET",
+          "d) SET"
+        ],
+        "resposta_correta": "a) IN"
+      },
+      {
+        "pergunta": "Qual é o comando obrigatório utilizado pelo desenvolvedor Frontend/Backend para 'chamar' (executar) a rotina armazenada no banco de dados?",
+        "opcoes": [
+          "a) RUN",
+          "b) EXECUTE",
+          "c) CALL",
+          "d) START"
+        ],
+        "resposta_correta": "c) CALL"
+      },
+      {
+        "pergunta": "Diferente de consultas SQL normais, as Stored Procedures suportam linguagens de controle de fluxo. Quais dessas estruturas podemos utilizar dentro de um bloco BEGIN...END?",
+        "opcoes": [
+          "a) INNER JOIN e LEFT JOIN",
+          "b) CREATE e DROP",
+          "c) IF, ELSE, e WHILE",
+          "d) Apenas SELECT"
+        ],
+        "resposta_correta": "c) IF, ELSE, e WHILE"
+      },
+      {
+        "pergunta": "Para armazenar um valor temporário dentro da execução de uma Procedure (ex: guardar o estoque atual para verificar se é maior que zero), qual comando usamos para criar essa variável local?",
+        "opcoes": [
+          "a) NEW VAR",
+          "b) CREATE VARIABLE",
+          "c) LET",
+          "d) DECLARE"
+        ],
+        "resposta_correta": "d) DECLARE"
+      },
+      {
+        "pergunta": "O que acontece na segurança do sistema (Prevenção a SQL Injection) quando obrigamos a aplicação C#/PHP a usar um `CALL sp_cadastrar(?, ?)` em vez de permitir que enviem comandos INSERT concatenados com texto direto do site?",
+        "opcoes": [
+          "a) A aplicação fica mais exposta a ataques.",
+          "b) O servidor desliga o firewall.",
+          "c) O banco blindará as entradas, tratando os valores digitados no site estritamente como parâmetros/dados, impedindo que comandos maliciosos ('hacker') sejam executados.",
+          "d) A senha do administrador será apagada."
+        ],
+        "resposta_correta": "c) O banco blindará as entradas, tratando os valores digitados no site estritamente como parâmetros/dados, impedindo que comandos maliciosos ('hacker') sejam executados."
+      },
+      {
+        "pergunta": "Um aluno criou a procedure e rodou, mas ela acusou o erro 'Column ambiguously defined'. Isso ocorreu porque ele nomeou o parâmetro IN de entrada de 'id_produto' e usou no WHERE contra a coluna 'id_produto' da tabela. Como resolvemos esse conflito de escopo?",
+        "opcoes": [
+          "a) Apagamos a coluna da tabela.",
+          "b) É proibido usar parâmetros no WHERE.",
+          "c) Nomeamos o parâmetro com um prefixo distinto (ex: p_id_produto) para que o interpretador diferencie a variável recebida da coluna física da tabela.",
+          "d) Fechamos e abrimos o XAMPP."
+        ],
+        "resposta_correta": "c) Nomeamos o parâmetro com um prefixo distinto (ex: p_id_produto) para que o interpretador diferencie a variável recebida da coluna física da tabela."
+      },
+      {
+        "pergunta": "Qual a principal diferença visível de comportamento entre a VIEW (Semana 15) e a PROCEDURE (Semana 16)?",
+        "opcoes": [
+          "a) A View apaga dados, a Procedure apenas exibe.",
+          "b) A View é como uma 'tabela virtual' estática que nós consultamos com SELECT, enquanto a Procedure é uma 'ação/rotina' procedimental que nós chamamos com CALL.",
+          "c) Não existe diferença, fazem exatamente a mesma coisa.",
+          "d) As Procedures só funcionam no Excel."
+        ],
+        "resposta_correta": "b) A View é como uma 'tabela virtual' estática que nós consultamos com SELECT, enquanto a Procedure é uma 'ação/rotina' procedimental que nós chamamos com CALL."
+      },
+      {
+        "pergunta": "No desafio nível AUT (O Loop Fabril), o uso do WHILE...DO permite:",
+        "opcoes": [
+          "a) Repetir e iterar um bloco de comandos SQL automaticamente até que uma condição seja satisfeita (ex: inserir 5 testes automáticos).",
+          "b) Apagar todas as tabelas em um loop infinito.",
+          "c) Fazer backup contínuo para a nuvem.",
+          "d) Impedir que o usuário digite senhas erradas."
+        ],
+        "resposta_correta": "a) Repetir e iterar um bloco de comandos SQL automaticamente até que uma condição seja satisfeita (ex: inserir 5 testes automáticos)."
+      }
+    ]
+  }
+}

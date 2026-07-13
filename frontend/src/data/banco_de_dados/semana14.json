@@ -1,0 +1,137 @@
+{
+  "semana_numero": "14",
+  "titulo": "Missão 14: Fogo Cruzado na Nuvem - Operação Ransomware!",
+  "situacao_aprendizagem": "SA3",
+  "contexto_aluno": "Fala, Dev! Vocês acabaram de dominar o botão de desfazer (TCL) em um ambiente local super seguro. Mas como isso funciona num ecossistema global tipo a Black Friday? Operar um banco de dados de alta demanda não é apenas sobre digitar queries, é sobre gerenciar o caos! Quando milhares de pessoas acessam a mesma tabela na nuvem simultaneamente, o servidor entra em colapso. Pior ainda, e se o seu banco estiver sob ataque? A aula de hoje arrancará vocês do isolamento. O laboratório local fica de lado e todas as equipes serão logadas no mesmo servidor em nuvem. Preparem-se para enfrentar o temido 'Table Lock', resolver problemas sob pressão de tempo e combater a 'Operação Ransomware' ao vivo!",
+  "bloco_A": {
+    "titulo": "O Cenário de Guerra (Concorrência e Locks)",
+    "conteudo": "A teoria das transações (ACID) diz que os eventos devem ser isolados. Mas o que acontece se o usuário A está no meio de um UPDATE na linha do produto (sem ter dado COMMIT ainda), e o usuário B tenta comprar esse exato mesmo produto? O banco de dados gera um 'Lock' (Travamento). O usuário B vai ficar com a tela carregando infinitamente até o A soltar a linha. E se duas transações se travarem mutuamente, temos o temível 'Deadlock'. No mundo corporativo de um DBA, a Inteligência Emocional (CS 3) é tão vital quanto o código. Surtem no simulador hoje para não derrubarem os servidores das Big Techs no futuro!",
+    "atividade_pratica": {
+      "nome": "O Simulador de Pânico",
+      "instrucoes": "Vamos testar o raciocínio frio de vocês. O professor apresentará um cenário verbal caótico (ex: 'Alguém apagou a chave estrangeira da tabela de vendas na filial de São Paulo'). Em apenas 5 minutos, sem usar os computadores, a equipe deverá descrever mentalmente no papel o passo a passo e a ordem exata dos comandos SQL/TCL que usariam para conter o erro, limpar os dados falsos e reconectar as tabelas com segurança."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório do DBA: Operação Ransomware na Nuvem",
+    "conteudo": "A teoria de guerra acabou, o ataque começou de verdade! Vocês já devem estar conectados ao IP externo (na nuvem) fornecido pelo professor. Todas as equipes da sala estão dividindo o mesmo banco de dados da empresa fictícia. De repente, problemas vão pipocar na tela: dados corrompidos, tabelas vitais sendo apagadas e ataques hackers em tempo real. Quem tiver a técnica mais precisa e o melhor controle emocional salvará os dados corporativos.",
+    "atividade_pratica": {
+      "nome": "A Batalha Concorrente (Ransomware)",
+      "instrucoes": "As falhas vão aparecer no telão (ex: 'Os nomes dos clientes de SP viraram códigos hexadecimais!'). A primeira equipe que diagnosticar o erro e rodar o UPDATE de correção fatura os pontos. Mas atenção: É EXPRESSAMENTE OBRIGATÓRIO envolver o seu código em um `START TRANSACTION`. Se você rodar a correção errada e destruir a base para todos os seus colegas de sala, você afundará junto. Conserte a falha e registre a sua solução na `tbl_logs_correcao`. Se der erro de Lock (travamento na tela), lembre-se: é porque alguma outra equipe travou a tabela e esqueceu de dar o COMMIT! O primeiro a resolver com segurança vence a guerra."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana14.pdf",
+    "resumo_audio": "BCD-Podcast-Semana14 - Sobrevivendo_ao_pânico_nos_servidores.m4a",
+    "videos_correlacionados": [
+      "BCD-Vídeo08-Operação_Ransomware_.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "BCD-Imagem04-Arquitetura_Avançada_de_Bancos_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "A poeira baixou e os servidores voltaram a responder. Prove que a sua resiliência e a sua mente de DBA sobreviveram ao ataque e responda este quiz de infraestrutura!",
+    "perguntas": [
+      {
+        "pergunta": "O que significa o termo técnico 'Table Lock' (ou Row Lock) em um banco de dados relacional que está sofrendo concorrência?",
+        "opcoes": [
+          "a) É a criptografia total dos dados pelos hackers.",
+          "b) É o travamento de segurança gerado pelo SGBD quando uma transação está alterando uma linha/tabela, bloqueando que outros usuários a modifiquem até que o primeiro dê o COMMIT.",
+          "c) É o processo de criar uma chave estrangeira.",
+          "d) É quando o servidor perde a conexão com a internet."
+        ],
+        "resposta_correta": "b) É o travamento de segurança gerado pelo SGBD quando uma transação está alterando uma linha/tabela, bloqueando que outros usuários a modifiquem até que o primeiro dê o COMMIT."
+      },
+      {
+        "pergunta": "No pior dos cenários concorrentes, o que caracteriza um 'Deadlock'?",
+        "opcoes": [
+          "a) A exclusão permanente de todas as tabelas.",
+          "b) O desligamento do servidor por superaquecimento.",
+          "c) Um impasse onde duas ou mais transações se bloqueiam mutuamente, cada uma aguardando a liberação dos recursos travados pela outra, exigindo intervenção do sistema.",
+          "d) A falha na criação de um Dicionário de Dados."
+        ],
+        "resposta_correta": "c) Um impasse onde duas ou mais transações se bloqueiam mutuamente, cada uma aguardando a liberação dos recursos travados pela outra, exigindo intervenção do sistema."
+      },
+      {
+        "pergunta": "Por que rodar um UPDATE massivo sem a cláusula WHERE em um servidor em nuvem com alta concorrência (como um e-commerce em Black Friday) é infinitamente mais destrutivo do que no XAMPP local?",
+        "opcoes": [
+          "a) Porque na nuvem o UPDATE não aceita a função SUM().",
+          "b) Porque além de corromper ou apagar a massa de dados inteira sem a chance de reverter, ele trancará (Lock) a tabela para todos os usuários reais, derrubando a API e gerando perdas milionárias instantâneas.",
+          "c) Porque a nuvem roda mais devagar.",
+          "d) Porque servidores em nuvem não possuem backups."
+        ],
+        "resposta_correta": "b) Porque além de corromper ou apagar a massa de dados inteira sem a chance de reverter, ele trancará (Lock) a tabela para todos os usuários reais, derrubando a API e gerando perdas milionárias instantâneas."
+      },
+      {
+        "pergunta": "Durante a 'Operação Ransomware', qual era o comando primordial que as equipes eram obrigadas a utilizar ANTES de tentar corrigir as anomalias da tabela para não corromperem a base dos colegas?",
+        "opcoes": [
+          "a) DROP DATABASE",
+          "b) SELECT * FROM",
+          "c) START TRANSACTION",
+          "d) CREATE EVENT"
+        ],
+        "resposta_correta": "c) START TRANSACTION"
+      },
+      {
+        "pergunta": "Em um cenário corporativo, a 'Inteligência Emocional' (Capacidade CS 3 da MSEP) cobrada do DBA sob pressão significa:",
+        "opcoes": [
+          "a) Culpar imediatamente os desenvolvedores Front-end pelo travamento.",
+          "b) Manter a frieza, ler o log de erros analiticamente, diagnosticar conexões travadas, aplicar o ROLLBACK quando necessário e agir com precisão cirúrgica no meio do caos.",
+          "c) Desligar o computador pelo botão de energia para parar o erro.",
+          "d) Deletar toda a base e usar o backup de 3 anos atrás."
+        ],
+        "resposta_correta": "b) Manter a frieza, ler o log de erros analiticamente, diagnosticar conexões travadas, aplicar o ROLLBACK quando necessário e agir com precisão cirúrgica no meio do caos."
+      },
+      {
+        "pergunta": "Se você diagnostica um erro crítico e precisa fazer um backup imediato e ultrarrápido da tabela atacada por segurança antes de alterá-la (Contingência Rápida), qual comando SQL estrutural resolve isso em milissegundos?",
+        "opcoes": [
+          "a) DELETE * FROM tbl_backup;",
+          "b) CREATE TABLE tbl_backup AS SELECT * FROM tbl_atacada;",
+          "c) INSERT INTO tbl_backup VALUES (todos);",
+          "d) ALTER TABLE tbl_atacada RENAME;"
+        ],
+        "resposta_correta": "b) CREATE TABLE tbl_backup AS SELECT * FROM tbl_atacada;"
+      },
+      {
+        "pergunta": "O que acontece na prática se duas equipes diferentes abrirem um START TRANSACTION, não fizerem COMMIT, e tentarem atualizar exatamente o mesmo ID de cliente simultaneamente?",
+        "opcoes": [
+          "a) O banco mistura os dados das duas equipes.",
+          "b) A segunda equipe ficará com a tela travada (Lock waiting for timeout) aguardando eternamente a primeira liberar o recurso.",
+          "c) O banco apaga o registro inteiro.",
+          "d) O MySQL desliga sozinho por segurança."
+        ],
+        "resposta_correta": "b) A segunda equipe ficará com a tela travada (Lock waiting for timeout) aguardando eternamente a primeira liberar o recurso."
+      },
+      {
+        "pergunta": "Na simulação 'O Simulador de Pânico', por que a ação mental e a revisão sem teclados era exigida antes da nuvem?",
+        "opcoes": [
+          "a) Porque os PCs do laboratório estavam estragados.",
+          "b) Para forçar a maturidade arquitetural: pensar na solução, nas chaves e nos riscos antes de atirar código impulsivamente num ambiente de alta criticalidade.",
+          "c) Para ensinar os alunos a escrever à mão.",
+          "d) Porque a MSEP proíbe código na primeira aula."
+        ],
+        "resposta_correta": "b) Para forçar a maturidade arquitetural: pensar na solução, nas chaves e nos riscos antes de atirar código impulsivamente num ambiente de alta criticalidade."
+      },
+      {
+        "pergunta": "Qual foi a função sistêmica da `tbl_logs_correcao` durante o desafio gamificado da Semana 14?",
+        "opcoes": [
+          "a) Guardar senhas de Wi-Fi do SENAI.",
+          "b) Armazenar imagens dos alunos.",
+          "c) Atuar como uma tabela de auditoria e registro de provas: a equipe vencedora provava através do INSERT no log que corrigiu a falha primeiro.",
+          "d) Deletar dados ociosos do sistema."
+        ],
+        "resposta_correta": "c) Atuar como uma tabela de auditoria e registro de provas: a equipe vencedora provava através do INSERT no log que corrigiu a falha primeiro."
+      },
+      {
+        "pergunta": "A Situação de Aprendizagem 3 (SA3) eleva o aluno de desenvolvedor passivo a administrador robusto. Concluída a guerra das transações, qual a próxima fronteira lógica da semana 15?",
+        "opcoes": [
+          "a) Instalar o Word no Windows.",
+          "b) Parar de defender os dados ativamente e aprender a construir automações e janelas ocultas programadas diretamente no motor do banco (VIEWs e EVENTs).",
+          "c) Criar telas animadas usando CSS.",
+          "d) Desligar servidores na nuvem."
+        ],
+        "resposta_correta": "b) Parar de defender os dados ativamente e aprender a construir automações e janelas ocultas programadas diretamente no motor do banco (VIEWs e EVENTs)."
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "semana_numero": "03",
+  "titulo": "Missão 03: A Planta-Baixa do Sistema e os Tipos de Dados!",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Fala, Dev! Você construiria um prédio de 10 andares sem uma planta-baixa arquitetônica? Se você fizer isso, as paredes vão ficar tortas e os canos vão estourar na primeira semana. No mundo do software, a regra é exatamente a mesma! Antes de abrirmos o terminal e escrevermos qualquer código SQL definitivo, precisamos ser arquitetos minuciosos. Hoje, vamos definir os 'materiais de construção' do nosso banco de dados: os Tipos de Dados (INT, VARCHAR, DATE, DECIMAL) e construir o nosso Dicionário de Dados. Em seguida, vamos para a prancheta digital desenhar o nosso primeiro Diagrama Entidade-Relacionamento (MER/DER). Prepare-se para abstrair e traduzir as regras do mundo real para a linguagem da máquina!",
+  "bloco_A": {
+    "titulo": "A Prancheta do Arquiteto: Dicionário e Tipos de Dados",
+    "conteudo": "Para cada informação que um aplicativo coleta, o banco de dados precisa saber exatamente qual é o 'formato' e o 'tamanho' desse dado para otimizar espaço de memória e garantir a velocidade do servidor. Um nome é um texto variável? Usamos VARCHAR. Um preço possui centavos exatos? Usamos DECIMAL. Uma idade? Um simples INT. Além disso, no mercado corporativo, não utilizamos espaços ou acentos para nomear colunas; adotamos as boas práticas do 'snake_case' (exemplo: nome_completo). O Dicionário de Dados é o documento sagrado que mapeia formalmente todas essas decisões antes da codificação.",
+    "atividade_pratica": {
+      "nome": "Desafio: O Tradutor de Dados",
+      "instrucoes": "Sua missão é pegar uma lista de 15 dados 'bagunçados' do dia a dia (como 'R$ 1.500,55', 'São Paulo - SP' ou '10/05/2026') e atuar como um tradutor de dados. Utilizando um template de Dicionário de Dados no Excel, você deverá criar um 'Nome do Campo' padronizado em snake_case e definir o 'Tipo de Dado e Tamanho' ideal no ecossistema MySQL para armazenar aquela informação sem desperdiçar memória do servidor."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Laboratório de Modelagem Visual no draw.db",
+    "conteudo": "O Dicionário de Dados está pronto! Agora é a hora de transformar essa documentação em uma arquitetura visual profissional usando a plataforma draw.db. Aqui, o seu Pensamento Analítico (Capacidade CS 2 da metodologia MSEP) é crucial. Você vai desenhar as 'Entidades' (Tabelas) e inserir os 'Atributos' (Colunas) declarando seus respectivos tipos. E atenção à sua Autonomia (Nível AUT): não saia alocando espaço sobrando para tudo. Precisamos mesmo gastar a memória de um VARCHAR(255) para guardar uma sigla de estado (UF) que possui apenas 2 letras?",
+    "atividade_pratica": {
+      "nome": "O Primeiro MER Visual (Laboratório Prático)",
+      "instrucoes": "Acesse a ferramenta de modelagem draw.db. O seu desafio prático é transferir todo o escopo do Dicionário de Dados construído anteriormente para um Diagrama Entidade-Relacionamento (MER/DER) totalmente visual. Desenhe as caixas das tabelas, adicione os atributos com os tipos otimizados e não se esqueça de definir a Chave Primária (PK) de cada entidade, que funcionará como o identificador único (o 'CPF') do registro."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-Semana03.pdf",
+    "resumo_audio": "BCD-Podcast-Semana03 - A_planta_baixa_do_banco_de_dados.m4a",
+    "videos_correlacionados": [
+      "BCD-VídeoAbertura-A_Jornada_do_Arquiteto.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "BCD-Imagem01-Jornada_do_Arquiteto_de_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que você já tem o olhar clínico de um verdadeiro Arquiteto de Dados? Resolva este quiz para testar seu domínio sobre os tipos de dados e a modelagem inicial!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a principal função de um Dicionário de Dados na construção de um sistema?",
+        "opcoes": [
+          "a) Traduzir as informações do banco de dados para outros idiomas.",
+          "b) Mapear formalmente o nome, o tipo e o tamanho de cada campo/atributo antes da codificação.",
+          "c) Gerar senhas de segurança para o administrador do banco de dados.",
+          "d) Criar automaticamente a interface gráfica (frontend) do aplicativo."
+        ],
+        "resposta_correta": "b) Mapear formalmente o nome, o tipo e o tamanho de cada campo/atributo antes da codificação."
+      },
+      {
+        "pergunta": "Se precisamos armazenar o preço de um produto de e-commerce (ex: 1500.55), qual é o tipo de dado mais adequado no MySQL?",
+        "opcoes": [
+          "a) INT",
+          "b) VARCHAR",
+          "c) DECIMAL",
+          "d) DATE"
+        ],
+        "resposta_correta": "c) DECIMAL"
+      },
+      {
+        "pergunta": "Por que não é uma boa prática utilizar o tipo VARCHAR(255) para armazenar a sigla de um estado (ex: 'SP' ou 'RJ')?",
+        "opcoes": [
+          "a) Porque o VARCHAR(255) não aceita letras maiúsculas.",
+          "b) Porque isso desperdiça espaço de memória do servidor para armazenar apenas 2 caracteres, sendo mais eficiente usar CHAR(2).",
+          "c) Porque siglas de estados devem ser armazenadas como números (INT).",
+          "d) Porque o MySQL bloqueia automaticamente campos muito grandes."
+        ],
+        "resposta_correta": "b) Porque isso desperdiça espaço de memória do servidor para armazenar apenas 2 caracteres, sendo mais eficiente usar CHAR(2)."
+      },
+      {
+        "pergunta": "O que representa uma Chave Primária (PK - Primary Key) na modelagem de uma tabela?",
+        "opcoes": [
+          "a) É a senha de acesso do usuário ao banco de dados.",
+          "b) É o identificador único, exclusivo e não nulo de um registro dentro de uma tabela, funcionando como o seu 'CPF'.",
+          "c) É uma coluna que sempre armazena números com casas decimais.",
+          "d) É a chave de criptografia do servidor local."
+        ],
+        "resposta_correta": "b) É o identificador único, exclusivo e não nulo de um registro dentro de uma tabela, funcionando como o seu 'CPF'."
+      },
+      {
+        "pergunta": "Qual o padrão de nomenclatura (boa prática de mercado) recomendado para nomear atributos no banco de dados?",
+        "opcoes": [
+          "a) Usar espaços e acentos (ex: Nome do Cliente).",
+          "b) Usar hífens separando as palavras (ex: nome-cliente).",
+          "c) Usar o padrão 'snake_case', com letras minúsculas separadas por underline (ex: nome_cliente).",
+          "d) Usar apenas números (ex: 12345)."
+        ],
+        "resposta_correta": "c) Usar o padrão 'snake_case', com letras minúsculas separadas por underline (ex: nome_cliente)."
+      },
+      {
+        "pergunta": "A sigla MER, muito utilizada durante a fase de planejamento visual do banco de dados, significa:",
+        "opcoes": [
+          "a) Máquina de Execução Rápida.",
+          "b) Método de Extração de Registros.",
+          "c) Modelo Entidade-Relacionamento.",
+          "d) Mapeamento Estrutural Restrito."
+        ],
+        "resposta_correta": "c) Modelo Entidade-Relacionamento."
+      },
+      {
+        "pergunta": "Durante o desafio 'O Tradutor de Dados', como você modelaria a coluna para guardar a 'Data de Nascimento' de um usuário?",
+        "opcoes": [
+          "a) nome_campo: data_nascimento | tipo: DATE",
+          "b) nome_campo: Data Nascimento | tipo: VARCHAR(50)",
+          "c) nome_campo: nasc | tipo: INT",
+          "d) nome_campo: data-nascimento | tipo: DECIMAL"
+        ],
+        "resposta_correta": "a) nome_campo: data_nascimento | tipo: DATE"
+      },
+      {
+        "pergunta": "Qual ferramenta visual web (open-source) foi apresentada e será utilizada para criar nossos diagramas nesta etapa do curso?",
+        "opcoes": [
+          "a) Microsoft Excel",
+          "b) draw.db",
+          "c) Adobe Photoshop",
+          "d) XAMPP Console"
+        ],
+        "resposta_correta": "b) draw.db"
+      },
+      {
+        "pergunta": "Na nossa metáfora de aula, codificar um banco de dados em SQL sem antes ter feito o Dicionário de Dados e o MER é comparável a:",
+        "opcoes": [
+          "a) Cozinhar seguindo rigorosamente uma receita.",
+          "b) Construir um prédio de vários andares sem desenhar a planta-baixa antes, correndo o risco da estrutura desabar.",
+          "c) Comprar um carro novo em uma concessionária.",
+          "d) Instalar um aplicativo no celular."
+        ],
+        "resposta_correta": "b) Construir um prédio de vários andares sem desenhar a planta-baixa antes, correndo o risco da estrutura desabar."
+      },
+      {
+        "pergunta": "De acordo com a Metodologia MSEP, demonstrar 'Pensamento Analítico' durante a modelagem no draw.db significa:",
+        "opcoes": [
+          "a) Escolher tipos de dados de forma automática sem analisar a regra de negócios.",
+          "b) Avaliar a real necessidade de cada campo e otimizar os tipos de dados (ex: trocar VARCHAR por CHAR quando necessário) para economizar recursos da máquina.",
+          "c) Fazer o diagrama o mais rápido possível apenas para entregar no prazo.",
+          "d) Esperar que o colega decida os tamanhos das colunas por você."
+        ],
+        "resposta_correta": "b) Avaliar a real necessidade de cada campo e otimizar os tipos de dados (ex: trocar VARCHAR por CHAR quando necessário) para economizar recursos da máquina."
+      }
+    ]
+  }
+}

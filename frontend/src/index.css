@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/* Configuração do Tema Light e Dark por meio de variáveis CSS nativas */
+:root {
+  --bg-color: #fafafa;            /* Offwhite */
+  --card-bg: #ffffff;             /* Branco para cards */
+  --text-color: #09090b;          /* Preto para títulos */
+  --text-muted: #575757;          /* Cinza para textos secundários */
+  --border-color: #e4e4e7;        /* Cinza claro para bordas */
+  --accent-color: #E30613;        /* Vermelho SENAI */
+  --accent-hover: #b8050f;
+  --accent-glow: rgba(227, 6, 19, 0.15);
+}
+
+html.dark {
+  --bg-color: #121214;            /* Grafite */
+  --card-bg: #1c1c1f;             /* Grafite médio para cards */
+  --text-color: #f5f5f7;          /* Offwhite */
+  --text-muted: #8e8e93;          /* Cinza */
+  --border-color: #2c2c2e;        /* Grafite claro para bordas */
+  --accent-color: #007acc;        /* Azul */
+  --accent-hover: #005ca9;
+  --accent-glow: rgba(0, 122, 204, 0.15);
+}
+
+@theme {
+  --font-sans: 'Outfit', 'Inter', sans-serif;
+  --animate-fade-in: fadeIn 0.4s ease-out forwards;
+  --animate-slide-up: slideUp 0.4s ease-out forwards;
+
+  /* Cores dinâmicas registradas para utilitários e gradientes do Tailwind v4 */
+  --color-custom-bg: var(--bg-color);
+  --color-custom-card: var(--card-bg);
+  --color-custom-text: var(--text-color);
+  --color-custom-muted: var(--text-muted);
+  --color-custom-border: var(--border-color);
+  --color-custom-accent: var(--accent-color);
+  --color-custom-accent-hover: var(--accent-hover);
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    @apply transition-colors duration-300 antialiased font-sans;
+  }
+}
+
+/* Utilities baseadas nas variáveis CSS dinâmicas */
+@utility bg-custom-bg {
+  background-color: var(--bg-color);
+}
+@utility bg-custom-card {
+  background-color: var(--card-bg);
+}
+@utility text-custom-text {
+  color: var(--text-color);
+}
+@utility text-custom-muted {
+  color: var(--text-muted);
+}
+@utility border-custom-border {
+  border-color: var(--border-color);
+}
+@utility bg-custom-accent {
+  background-color: var(--accent-color);
+}
+@utility bg-custom-accent-hover {
+  &:hover {
+    background-color: var(--accent-hover);
+  }
+}
+@utility text-custom-accent {
+  color: var(--accent-color);
+}
+@utility border-custom-accent {
+  border-color: var(--accent-color);
+}
+@utility shadow-custom-accent {
+  box-shadow: 0 10px 15px -3px var(--accent-glow), 0 4px 6px -4px var(--accent-glow);
+}
+
+/* Efeito Ken Burns para movimento cinematográfico em imagens de fundo */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -0.5%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 24s ease-in-out infinite;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-panel {
+  background: rgba(18, 18, 20, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 3D Flip Card Styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #2c2c2e;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3c;
+}
