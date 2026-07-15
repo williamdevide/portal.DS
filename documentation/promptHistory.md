@@ -131,3 +131,22 @@ no final da pagina da aula, onde temos a chamada para nosso quizz as fontes aind
 /grill-me /goal ao final de cada arena de validação no final da aula deve ser exibido um modal pedindo nome do aluno e turma e um botão para download do resultado, no formato pdf. quero um visualizar no pdf os dados do aluno (pegue também o nome do computador em que ele executou a tarefa e data e hora da conclusão (essas 2 informações ficam no topo do arquivo). deve exibir todas as perguntas e para cada uma as respostas possiveis e marcado qual o aluno escolheu e qual a correta em cores. ah, no topo também aparece o resultado. de um layout profissional e moderno. o nome do arquivo deve ser no padrão: sigla da disciplina - semana - aluno - data da conclusão.
 ```
 
+### Prompt 3
+```text
+/grill-me /goal no pdf as respostas escolhidas (quando erradas) e as corretas quero que sejam exibidas como na tela, com uma borda e cor (vermelho ou verde), sem precisar escrever escolhida (incorreta) ou gabarito oficial. alem disso no cabeçalho turma e missão estão desalinhados em relação ao nome do aluno. missão está sobrepondo com resultado. nome da máquina pegou localhost, quero pegar o nome do computador em que a pessoa executou, e tente diminuir os espaçamentos, gostaria que como temos somente o cabeçalho e 10 perguntas, tudo coubesse em uma pagina
+```
+
+### Prompt 4
+```text
+/grill-me /goal antes você limitou a uma pagina, agora aumentou e deu 3 paginas, acredito que consiga chegar a um meio termo e fazer caber as 10 perguntas em 2 paginas. alem disso, algumas perguntas estão estourando a pagina e algumas respostas estourando a borda de correto ou incorreto
+```
+
+### Prompt 5
+```text
+/grill-me /goal perfeito, agora atualize nosso repositorio no github
+```
+
+### Prompt 6
+```text
+/grill-me /goal quando executei localmente no pdf apareceu o nome do computador, mas quando fiz o deploy na vercel no pdf apareceu o ip real da minha conexão. preciso que quando executar pela vercel apareça meu ip real / nome da máquina local, pois os alunos estão todos na mesma sala de aula (ou seja no mesmo ip)
+```

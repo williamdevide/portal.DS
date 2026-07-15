@@ -176,6 +176,22 @@ export default function Aula() {
   const [turma, setTurma] = useState('');
   const [respostasUsuario, setRespostasUsuario] = useState({});
 
+  // Estado para capturar o IP real de conexão pública do aluno
+  const [ipPublico, setIpPublico] = useState('LOCAL');
+
+  useEffect(() => {
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.ip) {
+          setIpPublico(data.ip);
+        }
+      })
+      .catch(() => {
+        setIpPublico('LOCAL');
+      });
+  }, []);
+
   // Estado para controlar o infográfico de carreiras expansível no Bloco A
   const [carreiraAtiva, setCarreiraAtiva] = useState(null);
 
@@ -279,8 +295,32 @@ export default function Aula() {
     const horaFormatada = dataConclusao.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     const dataParaNome = dataFormatada.replace(/\//g, '-');
     
-    // Obtenção do host real injetado pelo Vite
-    const nomeComputador = import.meta.env.VITE_COMPUTER_NAME || window.location.hostname || "localhost";
+    // Obtenção do identificador de máquina híbrido para Vercel / Localhost
+    const obterIdentificadorMaquina = () => {
+      const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+      const computerVite = import.meta.env.VITE_COMPUTER_NAME;
+      
+      if (isLocalhost && computerVite && computerVite !== "localhost") {
+        return computerVite.toUpperCase();
+      }
+      
+      let deviceName = localStorage.getItem("MSEP_DEVICE_NAME");
+      if (!deviceName) {
+        const userAgent = navigator.userAgent;
+        let osName = "DEV";
+        if (userAgent.includes("Windows")) osName = "WIN";
+        else if (userAgent.includes("Mac")) osName = "MAC";
+        else if (userAgent.includes("Linux")) osName = "LNX";
+        
+        const hash = Math.random().toString(36).substring(2, 6).toUpperCase();
+        deviceName = `LAB-${osName}-${hash}`;
+        localStorage.setItem("MSEP_DEVICE_NAME", deviceName);
+      }
+      return deviceName;
+    };
+    
+    const identificador = obterIdentificadorMaquina();
+    const infoMaquina = ipPublico && ipPublico !== "LOCAL" ? `${identificador} (IP: ${ipPublico})` : identificador;
     
     // Rank Pedagógico
     let rank = "Estagiário de BD";
@@ -350,7 +390,7 @@ export default function Aula() {
     doc.setFont("helvetica", "normal");
     doc.text("MÁQUINA:", 98, infoY + 5.5);
     doc.setFont("helvetica", "bold");
-    doc.text(nomeComputador.toUpperCase(), 133, infoY + 5.5);
+    doc.text(infoMaquina.toUpperCase(), 133, infoY + 5.5);
     
     doc.setFont("helvetica", "normal");
     doc.text("RESULTADO:", 98, infoY + 11);
