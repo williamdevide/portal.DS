@@ -3,6 +3,19 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight } from 'lucide-react';
 import CriterioCard from '../components/CriterioCard';
 
+const obterSaBadgeClass = (situacao) => {
+  if (!situacao) return '';
+  if (situacao.includes('SA2')) {
+    return 'bg-purple-500/10 text-purple-600 border border-purple-500/25 dark:bg-purple-400/10 dark:text-purple-400 dark:border-purple-400/25';
+  } else if (situacao.includes('SA3')) {
+    return 'bg-amber-500/10 text-amber-600 border border-amber-500/25 dark:bg-amber-400/10 dark:text-amber-400 dark:border-amber-400/25';
+  } else if (situacao.includes('Entrevista') || situacao.includes('Recuperação')) {
+    return 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/25 dark:bg-emerald-400/10 dark:text-emerald-400 dark:border-emerald-400/25';
+  }
+  // SA1 ou padrão (Vermelho/Accent)
+  return 'bg-custom-accent/10 text-custom-accent border border-custom-accent/25';
+};
+
 export default function Disciplina() {
   const { disciplinaSlug } = useParams();
 
@@ -34,10 +47,10 @@ export default function Disciplina() {
         setAnimateFocalCard(true);
       });
 
-      // Delay para girar (flip) o card após ele se expandir no centro da tela
+      // Delay para girar (flip) o card após ele se expandir no centro da tela (intervalo de 1 segundo)
       const flipTimer = setTimeout(() => {
         setIsFocusedFlipped(true);
-      }, 400);
+      }, 1000);
 
       return () => {
         cancelAnimationFrame(animFrame);
@@ -48,15 +61,30 @@ export default function Disciplina() {
 
   // Função para fechar o card de forma suave, realizando o caminho inverso (encolhendo de volta para a grade)
   const fecharFoco = () => {
-    setIsFocusedFlipped(false);
-    setAnimateFocalCard(false);
-    
-    // Aguarda o término da transição de encolhimento para limpar o estado físico da renderização
-    setTimeout(() => {
-      setFocusedAula(null);
-      setFocalStartRect(null);
-      document.body.style.overflow = '';
-    }, 500);
+    if (isFocusedFlipped) {
+      // Primeiro desvira o card (leva 1200ms de transição)
+      setIsFocusedFlipped(false);
+      
+      setTimeout(() => {
+        // Depois encolhe o card de volta para a grade (leva 1000ms de transição)
+        setAnimateFocalCard(false);
+        
+        setTimeout(() => {
+          setFocusedAula(null);
+          setFocalStartRect(null);
+          document.body.style.overflow = '';
+        }, 1000);
+      }, 1200);
+    } else {
+      // Se já estava de frente, apenas encolhe imediatamente (1000ms)
+      setAnimateFocalCard(false);
+      
+      setTimeout(() => {
+        setFocusedAula(null);
+        setFocalStartRect(null);
+        document.body.style.overflow = '';
+      }, 1000);
+    }
   };
 
   // Garante a restauração do scroll caso o componente seja desmontado abruptamente (como na troca de rota)
@@ -227,7 +255,7 @@ export default function Disciplina() {
         width: window.innerWidth < 640 ? '95%' : '660px',
         height: '420px',
         transform: `translate(-50%, -50%) ${isFocusedFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}`,
-        transition: 'all 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 650ms cubic-bezier(0.16, 1, 0.3, 1)',
+        transition: 'all 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1)',
         zIndex: 100
       };
     } else {
@@ -238,7 +266,7 @@ export default function Disciplina() {
         width: focalStartRect.width,
         height: focalStartRect.height,
         transform: 'translate(0, 0) rotateY(0deg)',
-        transition: 'all 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+        transition: 'all 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1)',
         zIndex: 100
       };
     }
@@ -417,14 +445,7 @@ export default function Disciplina() {
             {/* Grid de Aulas Standard */}
             <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {aulas_semanas.map((aula) => {
-                let saBadgeClass = 'bg-custom-accent/10 text-custom-accent border border-custom-accent/25';
-                if (aula.situacao_aprendizagem.includes('SA2')) {
-                  saBadgeClass = 'bg-purple-100 text-purple-700 border border-purple-200 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-900/50';
-                } else if (aula.situacao_aprendizagem.includes('SA3')) {
-                  saBadgeClass = 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-900/50';
-                } else if (aula.situacao_aprendizagem.includes('Entrevista') || aula.situacao_aprendizagem.includes('Recuperação')) {
-                  saBadgeClass = 'bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-900/50';
-                }
+                const saBadgeClass = obterSaBadgeClass(aula.situacao_aprendizagem);
 
                 // Cálculo da duração dinâmica
                 let duracaoStr = aula.duracao || "A Informar";
@@ -508,7 +529,7 @@ export default function Disciplina() {
                         <span className="text-6xl font-black tracking-tight text-custom-accent/20 font-sans">
                           Semana {focusedAula.semana_numero}
                         </span>
-                        <span className="inline-flex items-center rounded-md bg-custom-accent/10 border border-custom-accent/20 px-3.5 py-1.5 text-xs font-bold text-custom-accent font-sans">
+                        <span className={`inline-flex items-center rounded-md px-3.5 py-1.5 text-xs font-bold font-sans ${obterSaBadgeClass(focusedAula.situacao_aprendizagem)}`}>
                           {focusedAula.situacao_aprendizagem}
                         </span>
                       </div>

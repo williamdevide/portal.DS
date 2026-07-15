@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: O Teste de Confiança",
       "instrucoes": "Vamos testar o 'Save Game' na prática. No console, você criará uma tabela rápida de 'Contas'. Inicie uma `START TRANSACTION`. Agora, seja caótico: execute um DELETE para apagar todas as contas da tabela propositalmente! Faça um SELECT e comprove que o banco está vazio. Imediatamente após, respire fundo e execute o comando `ROLLBACK`. Dê um novo SELECT e comemore ao ver seus dados intactos novamente."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: Kickoff do Projeto 2 e Resgate de Dados",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Operação: Resgatar o Cliente Legado",
       "instrucoes": "Importem o arquivo de banco corrompido ('bcd_banco_legado.sql') nas máquinas de vocês. O cliente exige 3 atualizações salariais críticas (UPDATEs). Vocês deverão desativar o Auto-Commit do MySQL, abrir a transação de segurança, rodar os DMLs com precisão, validar se o resultado está correto e, só então, consolidar com o `COMMIT`. Por fim, utilizem a ferramenta de exportação para gerar o Dump (.sql) do novo banco higienizado como prova de sucesso!"
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana13.pdf",

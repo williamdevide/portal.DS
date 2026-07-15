@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: O Primeiro Procedimento",
       "instrucoes": "No seu ambiente de desenvolvimento (bloco de notas puro), você e sua dupla redigirão a sintaxe bruta de uma Procedure chamada `sp_dar_desconto`. Ela deve receber um ID de produto e diminuir o seu valor em 10%, aplicando corretamente a alteração do DELIMITER, a abertura com BEGIN e o fechamento com END //."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: Modularizando o Sistema (Projeto 2)",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Operação: Inteligência Procedural e o Comando CALL",
       "instrucoes": "Elegam as duas operações mais complexas do seu Projeto Final (Ex: Realizar_Matricula ou Fechar_Pedido). Codifiquem as Stored Procedures para essas lógicas. Compilem sem erros de Delimiter no MySQL. Em seguida, testem a execução no console utilizando a sintaxe `CALL sp_nome_da_rotina(parametros)`. Para o Nível AUT: Pesquisem e implementem a estrutura WHILE...DO para criar um 'Loop Fabril', gerando uma Procedure que insira 5 registros de testes sequenciais com um único CALL."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana16.pdf",

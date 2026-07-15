@@ -14,7 +14,7 @@ export default function Header({ isDark, toggleTheme }) {
           </div>
           <div>
             <span className="text-lg font-bold tracking-tight text-custom-text font-sans">
-              SENAI <span className="text-custom-accent">Ourinhos</span>
+              William <span className="text-custom-accent">D. Komel</span>
             </span>
             <span className="hidden sm:block text-xs text-custom-muted font-medium">
               Portal do Professor

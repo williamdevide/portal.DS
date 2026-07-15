@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "O Conselho de Arquitetura",
       "instrucoes": "Trabalhando em squads (equipes), vocês assumirão o papel de CTOs. Vocês receberão 3 cenários de sistemas famosos do mundo real (ex: um app financeiro, um feed infinito de rede social e um e-commerce gigantesco). A missão da equipe é debater, entrar em um consenso e justificar tecnicamente qual modelo (Relacional ou Não-Relacional) deve ser escolhido para sustentar cada sistema sem quebrar."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "O Laboratório do DBA: Subindo o Servidor Local",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Operação Setup: O Desbloqueio da Porta 3306",
       "instrucoes": "Você fará o download e a instalação do ambiente XAMPP de forma autônoma. O objetivo final é conseguir ativar o serviço do MySQL e ver a famosa porta de rede '3306' rodando em verde no seu painel. Se a porta estiver bloqueada por outro programa do seu computador, você deverá aplicar técnicas de 'troubleshooting': ler o log de erros, acessar os arquivos de configuração '.ini' e remapear as portas de comunicação para concluir sua missão."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana02.pdf",

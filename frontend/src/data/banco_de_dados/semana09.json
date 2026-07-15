@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: O Contador Rápido",
       "instrucoes": "Um desafio com uma tabela simples de funcionários contendo Nome, Departamento e Salário será projetado na lousa [5, 6]. Sem tocar no teclado, você deverá processar a query mentalmente: quantas linhas restarão e quais serão os valores exatos se aplicarmos instruções de contagem e média agrupadas pelo departamento? [5, 6] Anote o seu raciocínio no caderno e prepare-se para bater os seus resultados mentais com a teoria antes de ligar o motor do banco de dados [4]."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "O Laboratório do DBA: Relatórios Gerenciais e Dashboard SQL",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "O E-mail Urgente da Diretoria",
       "instrucoes": "Restaurem o arquivo de banco de dados 'bcd_banco_ecommerce.sql' nas suas máquinas [7]. Resolvam os 5 problemas apontados no e-mail da diretoria codificando consultas que combinem o GROUP BY com as funções SUM(), AVG() e COUNT() [7, 8]. Para as Missões Extras (Nível AUT), utilizem a cláusula HAVING para aplicar 'O Filtro Avançado', exibindo apenas os estados que tiveram mais de 100 vendas [8]. Em seguida, executem 'A União de Mundos', usando a instrução UNION para consolidar clientes novos e antigos em uma única lista de e-mails [9]."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana09.pdf",

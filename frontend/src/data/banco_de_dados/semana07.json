@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: Tradução em Tempo Real",
       "instrucoes": "Para testarmos sua lógica antes de abrir o console, o professor vai atuar como o 'Cliente' e ditar pedidos do mundo corporativo em português (ex: 'Quero o nome e o e-mail dos clientes de SP nascidos depois de 2000'). O seu desafio é traduzir esses pedidos imediatamente para a sintaxe SQL perfeita no caderno. Velocidade e precisão serão a chave!"
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório Físico: GINCANA SQL HUMANA",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Operação: O Servidor Humano",
       "instrucoes": "Em equipes (Squads), vocês receberão 'Cards de Query' com instruções SQL precisas elaboradas pelo professor. A missão é correr até a 'tabela' (sala) indicada na cláusula FROM, localizar fisicamente o item que atenda estritamente à condição do WHERE, e trazer a prova (foto ou objeto permitido) de volta à base no menor tempo possível. Cuidado com o operador OR e com as exclusões! As equipes mais rápidas ainda atuarão na 'Engenharia Reversa' de queries e atuarão como 'DBAs Auditores' validando os dados dos concorrentes."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana07.pdf",

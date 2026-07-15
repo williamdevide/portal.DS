@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio Prático: O Primeiro Script",
       "instrucoes": "Sem usar o servidor ainda! Em um bloco de notas puro, sua missão individual é escrever o seu primeiro script de criação. Codifique do zero a instrução SQL (`CREATE TABLE`) para uma tabela simples chamada `PRODUTOS`. Ela precisa ter 3 campos tipados corretamente: um id_produto (que deve ser PK e Auto Incremento), um nome do produto e o seu preço. Atenção máxima à identação, vírgulas e ao ponto e vírgula no final da instrução!"
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Console SQL e o Kickoff do Projeto 1",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Laboratório do DBA: Subindo o Banco do Projeto 1",
       "instrucoes": "1. Liguem o Apache e o MySQL no XAMPP (resolvam eventuais conflitos na porta 3306 sozinhos). 2. Acessem o console ou phpMyAdmin. 3. Com base no briefing do cliente, comecem a codificar os scripts DDL das tabelas principais do Projeto 1 e executem no servidor. 4. Surpresa do cliente no meio da obra: O escopo mudou! Vocês precisarão usar o comando `ALTER TABLE ADD COLUMN` para inserir uma nova coluna obrigatória que não estava prevista. 5. Garantam que todas as Chaves Estrangeiras (FOREIGN KEY) estejam declaradas no código SQL para fechar a integridade referencial."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana05.pdf",

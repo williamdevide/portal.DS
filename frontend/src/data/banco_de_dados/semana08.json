@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: Limpeza Expressa",
       "instrucoes": "Em um rápido aquecimento prático no console, você executará queries pontuais para resolver problemas básicos de formatação de um sistema: você terá que transformar nomes minúsculos em maiúsculos, arredondar salários que estão com centavos quebrados e capturar a data/hora exata do seu servidor de banco de dados."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "O Laboratório do DBA: O Relatório do RH",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "O Relatório Urgente do RH",
       "instrucoes": "Sua equipe receberá um banco de dados de funcionários (bcd_banco_rh.sql) e um e-mail com 5 exigências rigorosas do RH (por exemplo: eles exigem os nomes completos em letras maiúsculas, salários arredondados sempre para cima e a data de contratação no padrão brasileiro DD/MM/YYYY). O grande desafio será combinar lógicas de função em queries únicas para salvar a reunião da diretoria. Se vocês terminarem rápido, missões extras envolvendo o cálculo do tempo de casa (dias de empresa) e a geração autônoma de e-mails corporativos estarão disponíveis!"
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana08.pdf",

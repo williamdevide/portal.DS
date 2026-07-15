@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: O Cirurgião de Dados",
       "instrucoes": "Em duplas, vocês receberão uma tabela completamente desnormalizada (cheia de redundâncias e dados misturados na mesma célula). Esqueçam os softwares por um momento! Usando apenas o caderno ou bloco de notas, atuem como cirurgiões: identifiquem as anomalias e reescrevam as colunas dividindo essa massa de dados bruta em tabelas menores até alcançarem a 3ª Forma Normal (3FN)."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "O Laboratório de Refatoração no draw.db",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Engenharia Lógica: As Linhas de Relacionamento",
       "instrucoes": "Acessem o draw.db e abram o modelo da semana passada. Vocês devem desenhar as linhas de ligação conectando corretamente as chaves (indicando de onde sai a PK e onde entra a FK). Se esbarrarem em uma relação 'Muitos-para-Muitos' (N:M), acionem o Pensamento Analítico: deduzam a necessidade de criar uma terceira tabela associativa intermediária. Ah, e não esqueçam de atualizar o Dicionário de Dados no Excel com as novas chaves criadas!"
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana04.pdf",

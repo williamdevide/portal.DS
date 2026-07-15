@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: Passa a Bola",
       "instrucoes": "Para entendermos o fluxo de execução antes de codificar, faremos um desafio lógico na lousa. O Professor passará um problema de negócio. O Aluno A deverá desenhar a subquery interna no caderno e calcular o seu resultado fictício. Em seguida, ele 'passa a bola' (o resultado) para o Aluno B, que deve ir à lousa e escrever a query externa, consumindo a resposta do parceiro para formar a consulta aninhada perfeita."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: Investigação Profunda",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "A Auditoria Universitária e o Treino Supremo",
       "instrucoes": "Importem o banco 'bcd_universidade.sql'. A missão de vocês é responder aos enigmas do Inspetor codificando subqueries com IN, EXISTS e funções matemáticas. Se a sua equipe terminar rápido (Nível AUT), vocês devem encarar 'O Combate de Performance': escrevam a mesma solução com JOIN e depois com Subquery para debatermos qual é a mais rápida. Por fim, enfrentem 'O Treino Supremo', que exigirá criar uma única query colossal unificando INNER JOIN, GROUP BY e uma Subquery na mesma instrução! Treinem duro, pois a próxima semana será o Escape Room Digital!"
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana11.pdf",

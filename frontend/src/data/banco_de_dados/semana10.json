@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: Ligue os Pontos Lógico",
       "instrucoes": "Com duas pequenas tabelas desenhadas na lousa pelo Tech Lead (Professor), sua dupla deverá processar mentalmente e anotar no caderno qual seria o 'Result Set' (quais linhas exatas apareceriam) se aplicássemos um INNER JOIN, e como esse resultado mudaria se utilizássemos um LEFT JOIN. Preveja a matriz antes de abrir o computador!"
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: O Grande Cruzamento",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Operação: A Query Perfeita e Alias Mastery",
       "instrucoes": "Em suas máquinas, codifiquem a consulta encadeando as 4 tabelas vitais (Cliente, Pedido, Item_Pedido e Produto) referenciando corretamente as Chaves Estrangeiras na cláusula ON. Apliquem os 'Table Aliases' (ex: 'tb_cliente c') para deixar o código limpo. Para o Nível AUT (Autônomo): Usem o LEFT JOIN para virarem 'Caçadores de Órfãos' e descobrirem quais produtos da loja nunca tiveram saída (onde venda.id IS NULL). Em seguida, combinem JOIN com GROUP BY para entregar o gasto total (SUM) por cliente!"
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana10.pdf",

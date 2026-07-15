@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: O Auditor Lógico",
       "instrucoes": "Com o caderno aberto, resolveremos o problema do 'Campo Minado'. O professor passará o enigma oral: 'O cliente exige que, toda vez que o preço de um produto for atualizado, o preço antigo seja salvo em uma tabela de histórico'. As duplas devem debater e responder em lacunas: 1) O gatilho será BEFORE ou AFTER? 2) O evento será INSERT ou UPDATE? 3) Usaremos NEW.preco ou OLD.preco? Estruturem a lógica da armadilha mentalmente!"
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: A Malha de Auditoria (Projeto 2)",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Operação: O Log Passivo e Segurança",
       "instrucoes": "Nas suas máquinas, criem uma Tabela de Auditoria (ex: `tbl_log_seguranca`). Em seguida, programem e acoplem uma Trigger AFTER DELETE/UPDATE na tabela principal do Projeto 2 de vocês. Façam testes: excluam um registro normalmente e vejam a Trigger preenchendo o Log silenciosamente com os valores OLD. Para as equipes de Nível AUT, o desafio extra é violento: Criem uma Trigger BEFORE UPDATE usando `SIGNAL SQLSTATE '45000'` para barrar a transação caso alguém tente abaixar o preço de um produto abaixo de seu custo!"
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana17.pdf",

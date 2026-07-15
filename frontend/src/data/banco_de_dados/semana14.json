@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "O Simulador de Pânico",
       "instrucoes": "Vamos testar o raciocínio frio de vocês. O professor apresentará um cenário verbal caótico (ex: 'Alguém apagou a chave estrangeira da tabela de vendas na filial de São Paulo'). Em apenas 5 minutos, sem usar os computadores, a equipe deverá descrever mentalmente no papel o passo a passo e a ordem exata dos comandos SQL/TCL que usariam para conter o erro, limpar os dados falsos e reconectar as tabelas com segurança."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: Operação Ransomware na Nuvem",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "A Batalha Concorrente (Ransomware)",
       "instrucoes": "As falhas vão aparecer no telão (ex: 'Os nomes dos clientes de SP viraram códigos hexadecimais!'). A primeira equipe que diagnosticar o erro e rodar o UPDATE de correção fatura os pontos. Mas atenção: É EXPRESSAMENTE OBRIGATÓRIO envolver o seu código em um `START TRANSACTION`. Se você rodar a correção errada e destruir a base para todos os seus colegas de sala, você afundará junto. Conserte a falha e registre a sua solução na `tbl_logs_correcao`. Se der erro de Lock (travamento na tela), lembre-se: é porque alguma outra equipe travou a tabela e esqueceu de dar o COMMIT! O primeiro a resolver com segurança vence a guerra."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana14.pdf",

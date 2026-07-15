@@ -26,11 +26,11 @@ export default function AulaCard({ aula }) {
   if (aula.situacao_aprendizagem.includes('SA1')) {
     saBadgeClass = 'bg-custom-accent/10 text-custom-accent border border-custom-accent/25';
   } else if (aula.situacao_aprendizagem.includes('SA2')) {
-    saBadgeClass = 'bg-purple-100 text-purple-700 border border-purple-200 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-900/50';
+    saBadgeClass = 'bg-purple-500/10 text-purple-600 border border-purple-500/25 dark:bg-purple-400/10 dark:text-purple-400 dark:border-purple-400/25';
   } else if (aula.situacao_aprendizagem.includes('SA3')) {
-    saBadgeClass = 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-900/50';
+    saBadgeClass = 'bg-amber-500/10 text-amber-600 border border-amber-500/25 dark:bg-amber-400/10 dark:text-amber-400 dark:border-amber-400/25';
   } else {
-    saBadgeClass = 'bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-900/50';
+    saBadgeClass = 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/25 dark:bg-emerald-400/10 dark:text-emerald-400 dark:border-emerald-400/25';
   }
 
   const handleCardClick = (e) => {

@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: Análise de Pistas (Aquecimento)",
       "instrucoes": "O professor passará um mini-desafio lúdico na lousa. Sem abrir o MySQL ainda, você deverá escrever no caderno a estrutura exata da query SQL que descobriria: 'Quem comprou café na cantina exatamente às 10h?'. É o momento de calibrar o seu raciocínio lógico e estruturar mentalmente a consulta antes da operação real começar."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório Físico: O Investigador Forense SQL",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Escape Room Digital: As 4 Fases",
       "instrucoes": "Em equipes (Squads), vocês devem importar o banco 'bcd_logs_senai.sql'. O objetivo é resolver os 4 enigmas: Fase 1 (O Horário) onde buscarão quem saiu entre 18:45 e 18:50; Fase 2 (O Álibi) onde cruzarão com a cantina via INNER JOIN; Fase 3 (A Ferramenta) usando Subquery para ver quem NÃO estava na cantina; e Fase 4 (O Culpado) usando Funções de Agregação (HAVING COUNT) para achar quem teve mais acessos negados na semana. Se a sua equipe for rápida (Nível AUT), tentem 'A Auditoria do Crime', unindo 4 JOINs simultâneos, e depois atue como hacker 'Limpando os Rastros' com o comando DELETE!"
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana12.pdf",

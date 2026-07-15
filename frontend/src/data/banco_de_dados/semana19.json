@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: O Cofre Seguro",
       "instrucoes": "Com o banco protegido pela equipe, vocês atuarão como DBAs de segurança. Criem um usuário local chamado 'vendedor_jr'. Usando a instrução GRANT, deem acesso apenas de leitura (SELECT) a uma de suas tabelas. Façam o teste de fogo: loguem no banco como o vendedor_jr e tentem aplicar um DELETE agressivo. Recebam e comemorem o bloqueio 'Access Denied' na tela, comprovando a blindagem DCL de vocês!"
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "O Palco Final: DEMO DAY (Apresentação do Projeto 2)",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "A Defesa do Projeto e Auditoria dos Investidores",
       "instrucoes": "Cada equipe terá 15 minutos cronometrados. Vocês devem projetar o Modelo Relacional (DER) no telão e, imediatamente, rodar o projeto ao vivo no servidor: disparem uma Procedure no console, mostrem a Trigger interceptando e registrando em tabelas de auditoria invisivelmente. Para as turmas de nível AUT, abriremos a 'Auditoria de Investidores', onde os alunos da plateia testarão o sistema dos colegas lançando perguntas táticas de segurança e lógica em tempo real."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana19.pdf",

@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "Desafio: O Tradutor de Dados",
       "instrucoes": "Sua missão é pegar uma lista de 15 dados 'bagunçados' do dia a dia (como 'R$ 1.500,55', 'São Paulo - SP' ou '10/05/2026') e atuar como um tradutor de dados. Utilizando um template de Dicionário de Dados no Excel, você deverá criar um 'Nome do Campo' padronizado em snake_case e definir o 'Tipo de Dado e Tamanho' ideal no ecossistema MySQL para armazenar aquela informação sem desperdiçar memória do servidor."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório de Modelagem Visual no draw.db",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "O Primeiro MER Visual (Laboratório Prático)",
       "instrucoes": "Acesse a ferramenta de modelagem draw.db. O seu desafio prático é transferir todo o escopo do Dicionário de Dados construído anteriormente para um Diagrama Entidade-Relacionamento (MER/DER) totalmente visual. Desenhe as caixas das tabelas, adicione os atributos com os tipos otimizados e não se esqueça de definir a Chave Primária (PK) de cada entidade, que funcionará como o identificador único (o 'CPF') do registro."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana03.pdf",

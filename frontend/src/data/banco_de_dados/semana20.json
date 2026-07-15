@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "O Debug Reverso",
       "instrucoes": "Apresentem os scripts e comandos do console que originaram bloqueios ao longo da SA2 ou SA3. Analisem junto com o professor as mensagens em vermelho até dominarem a lógica da correção. Em seguida, foco total na execução do Teste Teórico Substitutivo final para resgatar os critérios essenciais das capacidades técnicas."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "A Reconstrução Prática e o Legado",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Protocolo Final e Mapas Mentais",
       "instrucoes": "Para quem está no resgate: Acessem seus terminais de XAMPP/MySQL para realizar a Prova Prática e recuperar os critérios definitivos validando as chaves. Para os alunos aprovados de Nível AUT que vieram celebrar: A missão de vocês é colaborativa (CS 3). Construam de forma visual materiais rápidos ou mapas mentais das cláusulas SQL para afixarmos no laboratório para a próxima turma. Ao final, teremos o grande e emocionante Feedback de Encerramento."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana20.pdf",

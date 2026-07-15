@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "O Pitch e a Prova",
       "instrucoes": "Prepare sua postura corporativa, contato visual e fala assertiva para o Pitch (explicando quem você é e qual desafio arquitetural você superou no semestre). Na Etapa 2, utilize toda a sua memória técnica adquirida na jornada para responder e passar pelo crivo da Avaliação de Conceitos de Múltipla Escolha."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Etapa 3 e 4: O Teste de Quadro Branco e a Sabatina",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "Sobrevivência no Quadro Branco",
       "instrucoes": "Acessem seus terminais sob máxima pressão de tempo. Desenvolvam a modelagem lógica e os scripts DDL exigidos no desafio surpresa. Quando acionados pelo recrutador, levantem-se, expliquem o racional do próprio código e não deixem que as perguntas de pressão desestabilizem as suas defesas técnicas e estruturais."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana18.pdf",

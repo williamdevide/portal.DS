@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "O Ilusionista de Dados",
       "instrucoes": "Hora de fazer mágica. Sem encostar na máquina ainda, abram os cadernos. Vocês receberão uma regra de negócio de faturamento confidencial. A missão da dupla é desenhar o código de criação de uma VIEW (`vw_produto_seguro`) que faça projeção de colunas exibindo o Nome do Produto e o Código de Barras, mas que oculte de forma brutal e indetectável a coluna 'Preço de Custo' aos olhos de qualquer usuário comum."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: Programando Visões e Rotinas no Projeto 2",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "A Automação do Projeto 2",
       "instrucoes": "Diretamente na arquitetura do Projeto Final (P2) da equipe: 1) Entreguem a codificação e criação de pelo menos duas VIEWs gerenciais focadas em inteligência de dados (contendo JOINs e agrupamentos). 2) Verifiquem o motor do relógio do servidor usando `SET GLOBAL event_scheduler = ON;`. 3) Programem pelo menos 1 EVENTO automático que atue como o 'Lixeiro da Madrugada', focado em varrer sua tabela a cada hora e dar DELETE em registros inúteis/expirados."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana15.pdf",

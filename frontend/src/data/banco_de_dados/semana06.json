@@ -11,7 +11,8 @@
     "atividade_pratica": {
       "nome": "O Refém do UPDATE",
       "instrucoes": "Antes de abrirmos o console real, você fará um teste de mesa. No papel ou no bloco de notas, você deverá redigir três comandos SQL vitais (um INSERT com seu nome, um UPDATE ajustando uma idade, e um DELETE). O segredo aqui é a revisão por pares: o colega ao lado atuará como o 'Servidor' que vai auditar e validar se o seu código não possui erros de aspas ou esquecimentos de filtros de segurança antes de autorizar a execução."
-    }
+    },
+    "tempo": "1h 30min / 2 aulas"
   },
   "bloco_B": {
     "titulo": "Laboratório do DBA: Entrega P1 e DML em Ação",
@@ -19,7 +20,8 @@
     "atividade_pratica": {
       "nome": "O Povoamento e a Quebra de Chave",
       "instrucoes": "Após entregarem oficialmente os arquivos do Projeto 1, o desafio da equipe será codificar diversos INSERTs autênticos para as tabelas criadas, realizar UPDATEs seguros e exclusões cirúrgicas. Se vocês buscarem o nível máximo de Autonomia (AUT), as missões extras envolvem aprender a realizar o 'Bulk Insert' (mandar vários registros em apenas uma viagem ao banco) e tentar propositalmente causar o Erro de Integridade 1452, provando que o banco de vocês bloqueia inserções ilegais de chaves estrangeiras."
-    }
+    },
+    "tempo": "2h 15min / 3 aulas"
   },
   "recursos_multimidia": {
     "apresentacao_pptx": "BCD-Material-Semana06.pdf",
