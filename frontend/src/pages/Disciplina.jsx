@@ -349,7 +349,7 @@ export default function Disciplina() {
                   {/* Metodologia */}
                   <div className="flex items-center justify-between border-b border-white/5 pb-2">
                     <span className="text-custom-muted font-semibold">Matriz Pedagógica:</span>
-                    <span className="font-bold text-emerald-400">SENAI MSEP v2</span>
+                    <span className="font-bold text-emerald-400">SENAI MSEP</span>
                   </div>
 
                   {/* Projetos/Atividades */}

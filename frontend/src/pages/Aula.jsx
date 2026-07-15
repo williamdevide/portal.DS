@@ -42,7 +42,8 @@ const getSlideBgImage = (blocoTipo, index) => {
     ];
     return images[index] || '';
   }
-};// Componente auxiliar para reproduzir áudio e exibir resumo sobre o podcast com toggle
+};
+// Componente auxiliar para reproduzir áudio e exibir resumo sobre o podcast com toggle
 function AudioPlayerWithTranscription({ audioFile, titulo }) {
   const [showTranscript, setShowTranscript] = useState(false);
 
@@ -1998,7 +1999,7 @@ export default function Aula() {
 
                   <div className="flex items-center justify-between">
                     <span className="text-custom-muted">Nível Pedagógico:</span>
-                    <span className="font-bold text-purple-500">SENAI MSEP v2</span>
+                    <span className="font-bold text-purple-500">SENAI MSEP</span>
                   </div>
                 </div>
               </div>

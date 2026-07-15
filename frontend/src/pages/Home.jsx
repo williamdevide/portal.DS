@@ -174,7 +174,7 @@ export default function Home() {
                 <Terminal className="h-6 w-6" />
               </div>
               <h3 className="text-lg font-bold text-custom-muted font-sans">
-                Técnicas de Programação
+                Programação Front-end II
               </h3>
               <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
                 Módulo reservado para o próximo semestre.
@@ -188,7 +188,7 @@ export default function Home() {
                 <Brain className="h-6 w-6" />
               </div>
               <h3 className="text-lg font-bold text-custom-muted font-sans">
-                Modelagem de Sistemas
+                Projeto de Software III
               </h3>
               <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
                 Módulo reservado para o próximo semestre.
@@ -196,6 +196,61 @@ export default function Home() {
             </div>
           </div>
 
+          <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-dashed border-custom-border text-custom-muted">
+                <Brain className="h-6 w-6" />
+              </div>
+              <h3 className="text-lg font-bold text-custom-muted font-sans">
+                Levantamento de Requisitos
+              </h3>
+              <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
+                Módulo reservado para o próximo semestre.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-dashed border-custom-border text-custom-muted">
+                <Brain className="h-6 w-6" />
+              </div>
+              <h3 className="text-lg font-bold text-custom-muted font-sans">
+                Programação Back-end I
+              </h3>
+              <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
+                Módulo reservado para o próximo semestre.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-dashed border-custom-border text-custom-muted">
+                <Brain className="h-6 w-6" />
+              </div>
+              <h3 className="text-lg font-bold text-custom-muted font-sans">
+                Programação Back-end II
+              </h3>
+              <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
+                Módulo reservado para o próximo semestre.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-dashed border-custom-border text-custom-muted">
+                <Brain className="h-6 w-6" />
+              </div>
+              <h3 className="text-lg font-bold text-custom-muted font-sans">
+                Testes de Software
+              </h3>
+              <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
+                Módulo reservado para o próximo semestre.
+              </p>
+            </div>
+          </div>          
         </div>
       </section>
     </div>

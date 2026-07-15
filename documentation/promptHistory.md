@@ -308,4 +308,9 @@ no final da pagina da aula, onde temos a chamada para nosso quizz as fontes aind
 /grill-me /goal agora atualize o repositorio no github
 ```
 
+### Prompt 10
+```text
+/goal atualize o repositorio no github
+```
+
 
