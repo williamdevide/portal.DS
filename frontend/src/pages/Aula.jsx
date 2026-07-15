@@ -225,8 +225,6 @@ export default function Aula() {
     return deviceName;
   };
 
-  const [nomeComputadorInput, setNomeComputadorInput] = useState(obterIdentificadorMaquina);
-
   // Estado para controlar o infográfico de carreiras expansível no Bloco A
   const [carreiraAtiva, setCarreiraAtiva] = useState(null);
 
@@ -330,11 +328,8 @@ export default function Aula() {
     const horaFormatada = dataConclusao.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     const dataParaNome = dataFormatada.replace(/\//g, '-');
     
-    // Persiste o identificador de máquina digitado/confirmado no localStorage para futuros comprovantes
-    if (nomeComputadorInput.trim()) {
-      localStorage.setItem("MSEP_DEVICE_NAME", nomeComputadorInput.trim().toUpperCase());
-    }
-    const identificador = nomeComputadorInput.trim().toUpperCase() || "LAB-DEV";
+    // Obtenção automática do identificador de máquina híbrido
+    const identificador = obterIdentificadorMaquina();
     const infoMaquina = ipPublico && ipPublico !== "LOCAL" ? `${identificador} (IP: ${ipPublico})` : identificador;
     
     // Rank Pedagógico
@@ -2382,16 +2377,6 @@ export default function Aula() {
                   className="w-full bg-custom-bg border border-custom-border rounded-xl px-4 py-3 text-sm text-custom-text focus:outline-none focus:border-custom-accent transition-colors"
                 />
               </div>
-              <div>
-                <label className="block text-xs font-bold text-custom-muted mb-1.5 uppercase tracking-wider font-mono">Identificação da Máquina / Computador</label>
-                <input 
-                  type="text" 
-                  placeholder="Ex: ECFP794D746C2G4"
-                  value={nomeComputadorInput}
-                  onChange={(e) => setNomeComputadorInput(e.target.value)}
-                  className="w-full bg-custom-bg border border-custom-border rounded-xl px-4 py-3 text-sm text-custom-text focus:outline-none focus:border-custom-accent transition-colors"
-                />
-              </div>
             </div>
             
             <button 
@@ -2399,7 +2384,7 @@ export default function Aula() {
                 handleGerarPDF();
                 setShowExportModal(false);
               }}
-              disabled={!nomeAluno.trim() || !turma.trim() || !nomeComputadorInput.trim()}
+              disabled={!nomeAluno.trim() || !turma.trim()}
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-custom-accent hover:bg-custom-accent/90 disabled:opacity-50 disabled:cursor-not-allowed px-6 py-4 text-sm font-bold text-white transition-all shadow-md cursor-pointer active:scale-[0.99]"
             >
               <Download className="h-5 w-5" />
