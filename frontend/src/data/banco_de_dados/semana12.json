@@ -3,6 +3,8 @@
   "titulo": "Missão 12: A Cena do Crime e o Escape Room Digital!",
   "situacao_aprendizagem": "SA2",
   "contexto_aluno": "Fala, Dev! Chegamos ao encerramento épico da nossa segunda Situação de Aprendizagem (SA2). Você já aprendeu a buscar, cruzar, agrupar e embutir pesquisas de dados complexas. Mas saber a teoria não é suficiente. Na última terça-feira, um componente de altíssimo valor sumiu do laboratório de automação do SENAI. O sistema de câmeras falhou, mas os logs do banco de dados (catracas, cantina, empréstimos de ferramentas) registraram absolutamente tudo. O laboratório vai ser trancado e você assumirá o papel de Investigador Forense Digital em um Escape Room de SQL. A inteligência de dados é a sua única testemunha para resolver este mistério. Prepare-se para a pressão!",
+  "foco": "Otimização, leitura analítica de logs e consolidação final de todo o arcabouço de inteligência de extração de dados da SA2.",
+  "pratica": "Investigação forense gamificada (Escape Room Digital), onde as equipes correm contra o relógio para desvendar um crime cruzando dados.",
   "bloco_A": {
     "titulo": "A Preparação do Detetive: Revisão e Otimização",
     "conteudo": "Antes de entrarmos na cena do crime, precisamos revisar o nosso arsenal. Um bom detetive não atira para todo o lado; ele otimiza as suas buscas. Faremos uma revisão estratégica de como unir as tabelas da escola (JOINs), contar suspeitos (Funções de Agregação) e cruzar álibis complexos (Subconsultas). Vamos debater como a performance é vital numa investigação: uma query mal escrita (gerando um Produto Cartesiano, por exemplo) pode demorar horas para processar milhões de registros, travando a máquina e permitindo que o culpado escape. O foco mental e a resiliência serão suas maiores armas.",

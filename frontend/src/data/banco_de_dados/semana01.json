@@ -3,6 +3,8 @@
   "titulo": "Missão 01: O Despertar dos Dados - Muito Além das Planilhas!",
   "situacao_aprendizagem": "SA1",
   "contexto_aluno": "Fala, Dev! Bem-vindo ao motor de tudo o que existe na internet. Se você acha que Banco de Dados é só uma 'planilha glorificada' para guardar nomes e telefones, prepare-se para mudar essa visão. A partir de hoje, você assume a cadeira de um Arquiteto de Dados e DBA (Database Administrator). No mercado de tecnologia, dados são o novo petróleo e o banco de dados é o coração pulsante do backend. Cada transação no PIX, cada match no Tinder e cada série na Netflix dependem de uma infraestrutura robusta, segura e absurdamente rápida. Sua jornada no desenvolvimento backend começa agora!",
+  "foco": "Introdução aos SGBDs, a diferença vital entre banco de dados e planilhas, e a visão do mercado de tecnologia para DBAs.",
+  "pratica": "Pesquisa de vagas no mercado de trabalho e o desafio da modelagem intuitiva simulando a estrutura do SENAI em post-its.",
   "bloco_A": {
     "titulo": "SGBD: O Coração do Backend e o Mercado de Dados",
     "conteudo": "Você vai descobrir o que é um Sistema Gerenciador de Banco de Dados (SGBD) e por que aplicativos perfeitos visualmente podem falhar miseravelmente se não tiverem uma boa fundação de dados. Vamos entender as características que diferenciam um SGBD robusto de planilhas comuns, explorando conceitos como segurança, concorrência e alto volume de dados. Além disso, vamos explorar o mercado de trabalho real, os salários e quais tecnologias as grandes empresas estão exigindo hoje para quem domina essa área.",

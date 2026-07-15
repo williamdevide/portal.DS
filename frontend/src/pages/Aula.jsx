@@ -169,6 +169,7 @@ export default function Aula() {
   const [respondido, setRespondido] = useState(false);
   const [quizScore, setQuizScore] = useState(0);
   const [quizConcluido, setQuizConcluido] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
 
   // Estados de Nome/Turma e Respostas do Aluno para o PDF
   const [nomeAluno, setNomeAluno] = useState('');
@@ -247,6 +248,7 @@ export default function Aula() {
       setPerguntaAtualIndex(prev => prev + 1);
     } else {
       setQuizConcluido(true);
+      setShowExportModal(true);
     }
   };
 
@@ -258,174 +260,253 @@ export default function Aula() {
     setQuizConcluido(false);
     setQuizIniciado(true);
     setRespostasUsuario({});
+    setShowExportModal(false);
   };
 
-  // Geração do PDF no padrão SENAI
+  // Geração do PDF no padrão SENAI com layout moderno e auditoria
   const handleGerarPDF = () => {
     if (!nomeAluno.trim() || !turma.trim()) return;
     
     const doc = new jsPDF();
     const perguntas = aula.quiz_final.perguntas;
     
-    // Fundo cinza bem claro para o relatório
-    doc.setFillColor(248, 250, 252);
-    doc.rect(0, 0, 210, 297, "F");
+    // 1. Extração de Metadados e Sigla
+    const sigla = (disciplina?.nome?.match(/\(([^)]+)\)/)?.[1] || "BCD").toUpperCase();
+    const semanaStr = `Semana ${aula.semana_numero}`;
     
-    // Faixa Superior Vermelha - Identidade Oficial SENAI
-    doc.setFillColor(227, 6, 19); 
-    doc.rect(0, 0, 210, 16, "F");
+    const dataConclusao = new Date();
+    const dataFormatada = dataConclusao.toLocaleDateString('pt-BR');
+    const horaFormatada = dataConclusao.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dataParaNome = dataFormatada.replace(/\//g, '-');
     
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(10);
-    doc.setTextColor(255, 255, 255);
-    doc.text("SENAI - SERVIÇO NACIONAL DE APRENDIZAGEM INDUSTRIAL", 15, 10);
+    // Obtenção do host real injetado pelo Vite
+    const nomeComputador = import.meta.env.VITE_COMPUTER_NAME || window.location.hostname || "localhost";
     
-    // Cabeçalho Principal do Relatório
-    doc.setTextColor(30, 41, 59);
-    doc.setFontSize(16);
-    doc.text("Relatório de Avaliação - Unidade Curricular BCD", 15, 30);
-    
-    // Sublinhado vermelho decorativo
-    doc.setDrawColor(227, 6, 19);
-    doc.setLineWidth(0.8);
-    doc.line(15, 34, 195, 34);
-    
-    // Dados do Aluno e Turma (Esquerda)
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(9.5);
-    doc.setTextColor(100, 116, 139);
-    doc.text("Aluno(a):", 15, 44);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(15, 23, 42);
-    doc.text(nomeAluno, 32, 44);
-    
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(100, 116, 139);
-    doc.text("Turma:", 15, 50);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(15, 23, 42);
-    doc.text(turma, 30, 50);
-    
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(100, 116, 139);
-    doc.text("Data/Hora:", 15, 56);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(15, 23, 42);
-    doc.text(new Date().toLocaleString('pt-BR'), 35, 56);
-    
-    // Métricas de Pontuação e Rank (Direita)
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(100, 116, 139);
-    doc.text("Pontuação:", 120, 44);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(227, 6, 19);
-    doc.text(`${quizScore} acertos de ${perguntas.length} (${((quizScore / perguntas.length) * 100).toFixed(1)}%)`, 141, 44);
-    
-    // Determinação do Rank
+    // Rank Pedagógico
     let rank = "Estagiário de BD";
     if (quizScore >= 12) rank = "Arquiteto de Dados Supremo";
     else if (quizScore >= 9) rank = "DBA Sênior";
     else if (quizScore >= 6) rank = "Backend Júnior";
     
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(100, 116, 139);
-    doc.text("Nível MSEP:", 120, 50);
+    // Função auxiliar para desenhar o cabeçalho padrão de cada página
+    const desenharCabecalhoPagina = (documento, numeroPagina) => {
+      // Faixa Superior Vermelha - Identidade Oficial SENAI
+      documento.setFillColor(227, 6, 19); 
+      documento.rect(0, 0, 210, 10, "F");
+      
+      documento.setFont("helvetica", "bold");
+      documento.setFontSize(7.5);
+      documento.setTextColor(255, 255, 255);
+      documento.text("SENAI - SERVIÇO NACIONAL DE APRENDIZAGEM INDUSTRIAL", 15, 6.5);
+      
+      if (numeroPagina > 1) {
+        documento.setFontSize(7);
+        documento.text(`Página ${numeroPagina}`, 188, 6.5);
+      }
+    };
+
+    // Inicialização da Página 1
+    doc.setFillColor(248, 250, 252); // Fundo cinza claro
+    doc.rect(0, 0, 210, 297, "F");
+    desenharCabecalhoPagina(doc, 1);
+    
+    // Cabeçalho e Título
+    doc.setTextColor(30, 41, 59);
     doc.setFont("helvetica", "bold");
-    doc.setTextColor(15, 23, 42);
-    doc.text(rank, 142, 50);
+    doc.setFontSize(13);
+    doc.text("COMPROVANTE OFICIAL DE DESEMPENHO", 15, 20);
     
     doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.5);
     doc.setTextColor(100, 116, 139);
-    doc.text("Missão:", 120, 56);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(15, 23, 42);
-    doc.text(`Semana ${aula.semana_numero}`, 134, 56);
-    
-    // Divisor
+    doc.text(`Disciplina: ${disciplina?.nome || "Banco de Dados (BCD)"}`, 15, 25);
+
+    // Linha divisória fina superior
     doc.setDrawColor(226, 232, 240);
     doc.setLineWidth(0.3);
-    doc.line(15, 63, 195, 63);
+    doc.line(15, 28, 195, 28);
+
+    // Grid de Informações e Auditoria (Duas colunas amplas no topo para evitar estouros)
+    let infoY = 34;
+    doc.setFontSize(8.5);
     
-    // Título do Gabarito
-    let yPos = 72;
+    // Coluna Esquerda: Aluno e Turma (Valores alinhados em X=38)
+    doc.setFont("helvetica", "normal");
+    doc.text("ALUNO(A):", 15, infoY);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.setTextColor(15, 23, 42);
-    doc.text("Gabarito de Questões Respondidas:", 15, yPos);
-    yPos += 8;
+    doc.text(nomeAluno.toUpperCase(), 38, infoY);
     
-    // Lista de Questões
+    doc.setFont("helvetica", "normal");
+    doc.text("TURMA:", 15, infoY + 5.5);
+    doc.setFont("helvetica", "bold");
+    doc.text(turma.toUpperCase(), 38, infoY + 5.5);
+    
+    // Coluna Direita: Conclusão, Máquina, Resultado e Rank (Valores alinhados em X=133)
+    doc.setFont("helvetica", "normal");
+    doc.text("CONCLUSÃO:", 98, infoY);
+    doc.setFont("helvetica", "bold");
+    doc.text(`${dataFormatada} às ${horaFormatada}`, 133, infoY);
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("MÁQUINA:", 98, infoY + 5.5);
+    doc.setFont("helvetica", "bold");
+    doc.text(nomeComputador.toUpperCase(), 133, infoY + 5.5);
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("RESULTADO:", 98, infoY + 11);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(227, 6, 19); // Vermelho destaque
+    doc.text(`${quizScore} / ${perguntas.length} ACERTOS (${((quizScore / perguntas.length) * 100).toFixed(0)}%)`, 133, infoY + 11);
+    
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(100, 116, 139);
+    doc.text("RANK:", 98, infoY + 16.5);
+    doc.setFont("helvetica", "bold");
+    doc.text(rank.toUpperCase(), 133, infoY + 16.5);
+
+    // Linha da Missão (abaixo das colunas, alinhada em X=38 de largura total)
+    doc.setFontSize(8.5);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(100, 116, 139);
+    doc.text("MISSÃO:", 15, infoY + 22);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(30, 41, 59);
+    doc.text(`${semanaStr.toUpperCase()} - ${aula.titulo.toUpperCase()}`, 38, infoY + 22);
+
+    // Linha divisória fina inferior
+    doc.setDrawColor(203, 213, 225);
+    doc.setLineWidth(0.4);
+    doc.line(15, 60, 195, 60);
+
+    let yPos = 66;
+    let pagCount = 1;
+
+    // Lista de Questões com suporte a quebra de página e cards coloridos
     perguntas.forEach((p, idx) => {
       const respAluno = respostasUsuario[idx] || "Não respondida";
-      const status = respAluno === p.resposta_correta ? "CORRETO" : "INCORRETO";
       
-      // Nova página automática para não estourar a folha
-      if (yPos > 255) {
+      // Estima a altura exata da pergunta e suas alternativas definindo a fonte correta antes
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7.6);
+      const questaoLinhas = doc.splitTextToSize(`${idx + 1}. ${p.pergunta}`, 180);
+      const questaoHeight = (questaoLinhas.length * 3.5) + 1.5;
+      
+      let alternativasHeight = 0;
+      p.opcoes.forEach(opcao => {
+        const isSelected = opcao === respAluno;
+        const isCorrect = opcao === p.resposta_correta;
+        
+        doc.setFontSize(6.8);
+        if (isSelected || isCorrect) {
+          doc.setFont("helvetica", "bold");
+        } else {
+          doc.setFont("helvetica", "normal");
+        }
+        
+        const textoOpcao = doc.splitTextToSize(opcao, 172);
+        const alturaCaixa = (textoOpcao.length * 2.8) + 1.8;
+        alternativasHeight += alturaCaixa + 0.6;
+      });
+      
+      const totalQuestaoHeight = questaoHeight + alternativasHeight + 2; // Margem extra
+
+      // Quebra de página segura e dinâmica
+      if (yPos + totalQuestaoHeight > 275) {
         doc.addPage();
-        // Fundo da nova página
+        pagCount += 1;
         doc.setFillColor(248, 250, 252);
         doc.rect(0, 0, 210, 297, "F");
-        // Faixa de cabeçalho da nova página
-        doc.setFillColor(227, 6, 19);
-        doc.rect(0, 0, 210, 10, "F");
-        yPos = 24;
+        desenharCabecalhoPagina(doc, pagCount);
+        yPos = 26;
       }
-      
+
+      // Imprime o Título da Pergunta (linha por linha com line height exato de 3.5mm)
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(9);
-      doc.setTextColor(15, 23, 42);
+      doc.setFontSize(7.6);
+      doc.setTextColor(30, 41, 59);
       
-      // Formata a pergunta com wrap se for muito longa
-      const questaoLinhas = doc.splitTextToSize(`${idx + 1}. ${p.pergunta}`, 180);
-      doc.text(questaoLinhas, 15, yPos);
-      yPos += (questaoLinhas.length * 4) + 1;
-      
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(8.5);
-      doc.setTextColor(71, 85, 105);
-      doc.text(`Sua resposta: ${respAluno}`, 20, yPos);
-      yPos += 4;
-      
-      doc.text(`Gabarito oficial: ${p.resposta_correta}`, 20, yPos);
-      yPos += 4.5;
-      
-      if (status === "CORRETO") {
-        doc.setTextColor(22, 101, 52); // Verde escuro
-      } else {
-        doc.setTextColor(153, 27, 27); // Vermelho escuro
-      }
-      doc.setFont("helvetica", "bold");
-      doc.text(`Status: ${status}`, 20, yPos);
-      doc.setTextColor(15, 23, 42); // Reset
-      
-      yPos += 8;
+      questaoLinhas.forEach(linha => {
+        doc.text(linha, 15, yPos);
+        yPos += 3.5;
+      });
+      yPos += 1.5;
+
+      // Imprime as Alternativas formatadas como cards
+      p.opcoes.forEach(opcao => {
+        const isSelected = opcao === respAluno;
+        const isCorrect = opcao === p.resposta_correta;
+        
+        doc.setFontSize(6.8);
+        if (isSelected || isCorrect) {
+          doc.setFont("helvetica", "bold");
+        } else {
+          doc.setFont("helvetica", "normal");
+        }
+        
+        const textoOpcao = doc.splitTextToSize(opcao, 172);
+        const alturaCaixa = (textoOpcao.length * 2.8) + 1.8;
+        
+        if (isSelected && isCorrect) {
+          doc.setFillColor(240, 253, 250); // Verde claro bg
+          doc.setDrawColor(167, 243, 208); // Verde border
+          doc.setTextColor(22, 101, 52); // Verde texto
+          doc.rect(15, yPos - 2.0, 180, alturaCaixa, "FD");
+        } else if (isSelected && !isCorrect) {
+          doc.setFillColor(254, 242, 242); // Vermelho claro bg
+          doc.setDrawColor(254, 202, 202); // Vermelho border
+          doc.setTextColor(153, 27, 27); // Vermelho texto
+          doc.rect(15, yPos - 2.0, 180, alturaCaixa, "FD");
+        } else if (isCorrect) {
+          doc.setFillColor(240, 253, 250); // Verde claro bg (gabarito)
+          doc.setDrawColor(167, 243, 208); // Verde border
+          doc.setTextColor(22, 101, 52); // Verde texto
+          doc.rect(15, yPos - 2.0, 180, alturaCaixa, "FD");
+        } else {
+          doc.setFillColor(250, 250, 250); // Cinza muito claro bg
+          doc.setDrawColor(241, 245, 249); // Cinza claro border
+          doc.setTextColor(100, 116, 139); // Cinza texto
+          doc.rect(15, yPos - 2.0, 180, alturaCaixa, "FD");
+        }
+        
+        // Desenha o texto da alternativa linha por linha (line height exato de 2.8mm)
+        let lineY = yPos + 0.6;
+        textoOpcao.forEach(linha => {
+          doc.text(linha, 18, lineY);
+          lineY += 2.8;
+        });
+        
+        yPos += alturaCaixa + 0.6;
+      });
+
+      yPos += 2.5; // Espaçamento entre perguntas
     });
-    
-    // Assinaturas no rodapé
-    if (yPos > 245) {
+
+    // Bloco de Assinaturas dinamicamente verificado
+    if (yPos + 22 > 275) {
       doc.addPage();
+      pagCount += 1;
       doc.setFillColor(248, 250, 252);
       doc.rect(0, 0, 210, 297, "F");
-      doc.setFillColor(227, 6, 19);
-      doc.rect(0, 0, 210, 10, "F");
+      desenharCabecalhoPagina(doc, pagCount);
       yPos = 30;
     }
-    
+
     yPos += 12;
     doc.setDrawColor(148, 163, 184);
-    doc.setLineWidth(0.4);
+    doc.setLineWidth(0.3);
     doc.line(35, yPos, 90, yPos);
     doc.line(120, yPos, 175, yPos);
     
     yPos += 4;
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
+    doc.setFontSize(7.5);
     doc.setTextColor(100, 116, 139);
     doc.text("Assinatura do Aluno", 48, yPos);
     doc.text("Assinatura do Instrutor / Professor", 127, yPos);
-    
-    // Salvar o arquivo
-    doc.save(`relatorio_BCD_semana${aula.semana_numero}_${nomeAluno.replace(/\s+/g, '_')}.pdf`);
+
+    // Salvar o arquivo no padrão: sigla - semana - aluno - data
+    const nomeArquivo = `${sigla} - ${semanaStr} - ${nomeAluno.trim()} - ${dataParaNome}.pdf`;
+    doc.save(nomeArquivo);
   };
 
   useEffect(() => {
@@ -1816,6 +1897,37 @@ export default function Aula() {
               <p className="mt-8 text-[1em] sm:text-[1.125em] text-custom-muted leading-relaxed font-sans max-w-4xl text-justify">
                 {renderMarkdown(aula.contexto_aluno?.texto || aula.contexto)}
               </p>
+              
+              {(aula.foco || aula.pratica) && (
+                <div className="grid gap-6 sm:grid-cols-2 mt-8 max-w-4xl">
+                  {aula.foco && (
+                    <div className="rounded-3xl border border-custom-border bg-custom-card/40 p-6 flex flex-col justify-between shadow-sm relative overflow-hidden transition-all duration-300 hover:border-custom-accent/30">
+                      <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-custom-accent/5 blur-2xl pointer-events-none" />
+                      <div className="space-y-3">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-custom-accent/10 text-custom-accent border border-custom-accent/20">
+                          🎯 Foco da Missão
+                        </span>
+                        <p className="text-xs sm:text-sm text-custom-muted leading-relaxed font-sans">
+                          {aula.foco}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {aula.pratica && (
+                    <div className="rounded-3xl border border-custom-border bg-custom-card/40 p-6 flex flex-col justify-between shadow-sm relative overflow-hidden transition-all duration-300 hover:border-emerald-500/30">
+                      <div className="absolute top-0 right-0 h-24 w-24 rounded-full bg-emerald-500/5 blur-2xl pointer-events-none" />
+                      <div className="space-y-3">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                          🛠️ Prática de Laboratório
+                        </span>
+                        <p className="text-xs sm:text-sm text-custom-muted leading-relaxed font-sans">
+                          {aula.pratica}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Painel do Módulo de Vidro (Glassmorphism no Primeiro Plano) */}
@@ -2113,52 +2225,19 @@ export default function Aula() {
                     </div>
                   </div>
 
-                  {/* Formulário para Exportação do PDF Oficial SENAI */}
-                  {aula.quiz_final.configuracao_exportacao?.gerar_pdf && (
-                    <div className="max-w-lg mx-auto border border-custom-border bg-custom-card p-6 sm:p-8 rounded-3xl space-y-6 shadow-md text-left">
-                      <span className="text-xs font-bold text-custom-muted uppercase tracking-widest block font-mono text-center">EXPORTAR COMPROVANTE OFICIAL</span>
-                      <p className="text-xs sm:text-sm text-custom-muted leading-relaxed font-sans bg-custom-bg/50 border border-custom-border/50 rounded-xl p-4 text-justify">
-                        Gere o relatório oficial em PDF com suas respostas e gabarito. Você poderá anexar este comprovante diretamente na atividade do **Google Classroom** da turma para computar sua entrega!
-                      </p>
-                      
-                      <div className="space-y-4 font-sans">
-                        <div>
-                          <label className="block text-xs font-bold text-custom-muted mb-1.5 uppercase tracking-wider font-mono">Nome Completo do Aluno</label>
-                          <input 
-                            type="text" 
-                            placeholder="Digite seu nome completo"
-                            value={nomeAluno}
-                            onChange={(e) => setNomeAluno(e.target.value)}
-                            className="w-full bg-custom-bg border border-custom-border rounded-xl px-4 py-3 text-sm text-custom-text focus:outline-none focus:border-custom-accent transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-bold text-custom-muted mb-1.5 uppercase tracking-wider font-mono">Turma</label>
-                          <input 
-                            type="text" 
-                            placeholder="Ex: I1DEV-A"
-                            value={turma}
-                            onChange={(e) => setTurma(e.target.value)}
-                            className="w-full bg-custom-bg border border-custom-border rounded-xl px-4 py-3 text-sm text-custom-text focus:outline-none focus:border-custom-accent transition-colors"
-                          />
-                        </div>
-                      </div>
-                      
-                      <button 
-                        onClick={handleGerarPDF}
-                        disabled={!nomeAluno.trim() || !turma.trim()}
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-custom-accent hover:bg-custom-accent/90 disabled:opacity-50 disabled:cursor-not-allowed px-6 py-4 text-sm font-bold text-white transition-all shadow-md cursor-pointer active:scale-[0.99]"
-                      >
-                        <Download className="h-5 w-5" />
-                        Gerar Relatório de Desempenho (PDF)
-                      </button>
-                    </div>
-                  )}
+                  {/* Ações de Encerramento: Exportar e Reiniciar */}
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4 max-w-md mx-auto">
+                    <button 
+                      onClick={() => setShowExportModal(true)}
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-custom-accent hover:bg-custom-accent/90 px-6 py-4 text-sm font-bold text-white transition-all shadow-md cursor-pointer active:scale-[0.99]"
+                    >
+                      <Download className="h-4 w-4" />
+                      Exportar Comprovante PDF
+                    </button>
 
-                  <div className="pt-2">
                     <button 
                       onClick={reiniciarQuiz}
-                      className="inline-flex items-center gap-2 rounded-xl bg-custom-bg border border-custom-border hover:bg-custom-card px-8 py-4 text-sm font-bold text-custom-text transition-all focus:outline-none cursor-pointer"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-custom-bg border border-custom-border hover:bg-custom-card px-6 py-4 text-sm font-bold text-custom-text transition-all focus:outline-none cursor-pointer"
                     >
                       <RotateCcw className="h-4 w-4" />
                       Tentar Novamente
@@ -2198,6 +2277,72 @@ export default function Aula() {
         </div>
 
       </main>
+
+      {/* Modal de Exportação do Comprovante PDF */}
+      {showExportModal && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 animate-fade-in"
+          onClick={() => setShowExportModal(false)}
+        >
+          <div 
+            className="w-full max-w-lg rounded-3xl border border-custom-border bg-custom-card p-6 sm:p-8 space-y-6 shadow-2xl relative transition-all duration-300 animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Botão Fechar */}
+            <button 
+              onClick={() => setShowExportModal(false)}
+              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-custom-bg border border-custom-border text-custom-muted hover:text-custom-text cursor-pointer transition-colors duration-300"
+            >
+              ✕
+            </button>
+
+            <div className="text-center space-y-2">
+              <span className="text-xs font-bold text-custom-muted uppercase tracking-widest block font-mono">Arena Concluída</span>
+              <h3 className="text-2xl font-black text-custom-text font-sans">
+                Exportar Comprovante PDF
+              </h3>
+              <p className="text-xs sm:text-sm text-custom-muted leading-relaxed font-sans max-w-sm mx-auto">
+                Gere o comprovante oficial com seu gabarito e pontuação para entrega das atividades pedagógicas.
+              </p>
+            </div>
+
+            <div className="space-y-4 font-sans text-left">
+              <div>
+                <label className="block text-xs font-bold text-custom-muted mb-1.5 uppercase tracking-wider font-mono">Nome Completo do Aluno</label>
+                <input 
+                  type="text" 
+                  placeholder="Digite seu nome completo"
+                  value={nomeAluno}
+                  onChange={(e) => setNomeAluno(e.target.value)}
+                  className="w-full bg-custom-bg border border-custom-border rounded-xl px-4 py-3 text-sm text-custom-text focus:outline-none focus:border-custom-accent transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-custom-muted mb-1.5 uppercase tracking-wider font-mono">Turma</label>
+                <input 
+                  type="text" 
+                  placeholder="Ex: I1DEV-A"
+                  value={turma}
+                  onChange={(e) => setTurma(e.target.value)}
+                  className="w-full bg-custom-bg border border-custom-border rounded-xl px-4 py-3 text-sm text-custom-text focus:outline-none focus:border-custom-accent transition-colors"
+                />
+              </div>
+            </div>
+            
+            <button 
+              onClick={() => {
+                handleGerarPDF();
+                setShowExportModal(false);
+              }}
+              disabled={!nomeAluno.trim() || !turma.trim()}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-custom-accent hover:bg-custom-accent/90 disabled:opacity-50 disabled:cursor-not-allowed px-6 py-4 text-sm font-bold text-white transition-all shadow-md cursor-pointer active:scale-[0.99]"
+            >
+              <Download className="h-5 w-5" />
+              Gerar e Baixar Relatório (PDF)
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Modal Lightbox / Zoom da Imagem de Apoio */}
       {activeLightboxImage && (

@@ -47,7 +47,7 @@ por fim utilize as imagens criadas como fundos semi transparentes de cada um dos
 /grill-me /goal 
 no passo 1/6 do bloco a utilize adicionalmente a imagem classica de diferenciação de dado e informação
 no passo 4/6 no objeto com os principais bancos relacionais coloque o logo de cada um junto com os nomes
-após o passo 6/6 deve vir a chamada para a atividade de procurarem vagas de emprego para esses cargos.
+no após o passo 6/6 deve vir a chamada para a atividade de procurarem vagas de emprego para esses cargos.
 no passo 5/5 do bloco B depois do texto deve vir a chamada da segunda atividade onde os alunos tem o tempo para entender nosso conteudo e buscar novas informações.
 
 no final da pagina da aula, onde temos a chamada para nosso quizz as fontes ainda estão pequenas, utilize a estetica que utilizamos nos cards. faça o mesmo com as perguntas do quizzes.
@@ -60,13 +60,14 @@ no final da pagina da aula, onde temos a chamada para nosso quizz as fontes aind
 
 ### Prompt 10
 ```text
-remova o infografico que criamos no slide 1/6
+/grill-me /goal remova o infografico que criamos no slide 1/6
 ```
 
 ### Prompt 11 (Atual)
 ```text
 /grill-me /goal perfeito, a aula 01 esta pronta, agora preciso que cada aula esteja em uma pagina diferente, e dentro de uma arvore que se relacione a disciplina. alem disso, preciso que nosso sistema funcione de uma forma que se eu colocar um novo conteudo agora na semana 02 ele já deve criar automaticamente a pagina da aula 02 e o conteudo deve seguir a estetica que utilizamos na aula 01.
 ```
+
 ## Sessão: 2026-07-06
 
 ### Prompt 1
@@ -117,3 +118,16 @@ remova o infografico que criamos no slide 1/6
 ```text
 /grill-me /goal agora precisamos subir esse projeto para o github e alem disso, preciso publicar ele para ficar funcional aos meus alunos, em um local gratuito
 ```
+
+## Sessão: 2026-07-15
+
+### Prompt 1
+```text
+/grill-me /goal para os cards das aulas e para a pagina de cada aula, acrescentei no json, após a tag contexto_aluno duas tags, foco e pratica, que são um direcionamento objetivo do quee será a aula. exiba a informação dessas duas tags tanto no card da aula após o contexto, como também na página da aula após o contexto.
+```
+
+### Prompt 2
+```text
+/grill-me /goal ao final de cada arena de validação no final da aula deve ser exibido um modal pedindo nome do aluno e turma e um botão para download do resultado, no formato pdf. quero um visualizar no pdf os dados do aluno (pegue também o nome do computador em que ele executou a tarefa e data e hora da conclusão (essas 2 informações ficam no topo do arquivo). deve exibir todas as perguntas e para cada uma as respostas possiveis e marcado qual o aluno escolheu e qual a correta em cores. ah, no topo também aparece o resultado. de um layout profissional e moderno. o nome do arquivo deve ser no padrão: sigla da disciplina - semana - aluno - data da conclusão.
+```
+

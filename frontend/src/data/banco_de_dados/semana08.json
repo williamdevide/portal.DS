@@ -3,6 +3,8 @@
   "titulo": "Missão 08: O Dado Cru vs. O Prato Feito - Funções Nativas!",
   "situacao_aprendizagem": "SA2",
   "contexto_aluno": "Fala, Dev! Você já aprendeu a buscar os dados usando o comando SELECT, mas buscar a informação é como ir ao açougue e trazer a carne crua. O seu cliente (ou o Front-end do seu aplicativo) na maioria das vezes não quer a carne crua; ele quer o prato feito e bem temperado! Em vez de jogar todo o peso do processamento para o seu aplicativo ter que formatar textos e fazer cálculos pesados, o próprio motor do Banco de Dados pode fazer isso de forma absurdamente rápida. Hoje, você vai aprender a usar as poderosas Funções Nativas (Matemáticas, de String e de Data/Hora) para entregar relatórios perfeitos e formatados direto do servidor!",
+  "foco": "Otimização do tratamento e formatação de dados utilizando Funções Nativas matemáticas, de texto (String) e de data/hora direto no servidor.",
+  "pratica": "Resolução de urgências gerenciais através do laboratório \"O Relatório do RH\", combinando lógicas de formatação em queries únicas.",
   "bloco_A": {
     "titulo": "Preparando o Alimento: Funções Nativas e Formatação",
     "conteudo": "Neste bloco, vamos entender como 'envolver' as colunas do nosso banco com as funções nativas do MySQL. Você vai descobrir como transformar nomes para maiúsculo (UPPER) ou minúsculo (LOWER), como juntar palavras separadas (CONCAT) e extrair partes de um texto (SUBSTRING). Na matemática, veremos como arredondar valores quebrados (ROUND, CEIL, FLOOR). Além disso, vamos aprender a manipular a linha do tempo: descobrindo a data e hora atual do sistema (NOW) e calculando a diferença exata de dias entre duas datas (DATEDIFF). Tudo isso renomeando os resultados temporários com o comando 'AS' (Aliases).",

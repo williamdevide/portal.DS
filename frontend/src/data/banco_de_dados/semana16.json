@@ -3,6 +3,8 @@
   "titulo": "Missão 16: A Caixa Preta de Desempenho - Stored Procedures!",
   "situacao_aprendizagem": "SA3",
   "contexto_aluno": "Fala, Dev! Você já programou rotinas que rodam por tempo (EVENTs) e criou janelas fumê (VIEWs). Mas até agora, o banco só sabe executar uma instrução SQL por vez. E se ele pudesse tomar decisões lógicas? E se ele pudesse usar variáveis, criar loops e rodar blocos IF/ELSE diretamente nas veias do SGBD com velocidade insana? É hora de abandonar as dezenas de viagens pela rede entre o Backend (C#/Node) e o Servidor de Banco. Hoje, vamos modularizar as regras de negócio mais pesadas usando as Stored Procedures. Prepare-se para dominar o motor interno!",
+  "foco": "Modularização de regras de negócio pesadas dentro do próprio motor SGBD (Procedures), utilizando variáveis e fluxo de controle lógico (IF/ELSE).",
+  "pratica": "Encapsulamento das rotinas mais vulneráveis do Projeto 2 para blindagem contra SQL Injection, invocando as ações através do comando CALL.",
   "bloco_A": {
     "titulo": "O Motor Interno: Procedures, Variáveis e IFs",
     "conteudo": "Fazer uma venda complexa envolve: verificar o estoque, diminuir o produto, gerar a fatura e criar o log de auditoria. Fazer tudo isso pelo Backend exige 4 requisições na rede. Com uma Stored Procedure, você empacota esses 4 passos num bloco de código interno. O desenvolvedor apenas envia o comando 'CALL' e a 'Caixa Preta' do banco executa tudo internamente de uma vez só! Mas para ensinar o banco a ler blocos de código complexos sem se perder nos pontos-e-vírgulas, precisamos dominar o comando DELIMITER, além de declarar parâmetros de entrada (IN) e saída (OUT) e estruturar lógicas condicionais (IF/THEN/ELSE).",

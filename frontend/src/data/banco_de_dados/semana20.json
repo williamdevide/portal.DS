@@ -3,6 +3,8 @@
   "titulo": "Missão 20: O Último Commit - Recuperação e Encerramento!",
   "situacao_aprendizagem": "Encerramento",
   "contexto_aluno": "Fala, Dev! Chegamos à linha de chegada dessa jornada massiva de 20 semanas. Transformamos planilhas glorificadas em cofres digitais complexos de inteligência e automação. O SENAI tem a política irrevogável de que 'nenhum desenvolvedor fica para trás'. Hoje, a nossa missão não é punitiva, é de resgate técnico e estrutural profundo. Realizaremos o Protocolo de Recuperação para quem tropeçou em algum critério crítico no meio da guerra dos dados, revisando lógicas pelo Troubleshooting Reverso, aplicando testes justos e celebrando o crescimento formidável de quem já construiu sua autonomia sênior. O último commit do semestre começou!",
+  "foco": "Estabilização de conceitos vitais, troubleshooting reverso, resgate colaborativo e a celebração do amadurecimento dos novos Desenvolvedores.",
+  "pratica": "Pair programming (Clínica de Código) para correção de falhas, reconstrução do sistema em prova prática para recuperação e criação de mapas mentais pelos veteranos.",
   "bloco_A": {
     "titulo": "A Clínica de Código: Pair Programming e Teoria",
     "conteudo": "A programação é feita de resiliência. O professor deixa a lousa e assume a cadeira ao seu lado na 'Clínica de Código' fazendo o Pair Programming. O foco é a Investigação e o Troubleshooting Reverso: nós vamos pegar o código exato que falhou no seu projeto e debugar juntos, desconstruindo o porquê do erro SQL até o conceito fazer sentido na sua cabeça. Após afiarmos o cérebro, você fará a Prova Teórica Substitutiva focada estritamente nos conceitos críticos de fundação (Normalização, DDL, DML e JOINs).",

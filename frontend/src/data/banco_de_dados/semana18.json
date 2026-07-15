@@ -3,6 +3,8 @@
   "titulo": "Missão 18: A Entrevista de Emprego - Sabatina e Quadro Branco!",
   "situacao_aprendizagem": "Mercado e Carreira",
   "contexto_aluno": "Fala, Dev! A máquina está pronta. O seu banco tem tabelas, regras inquebráveis, dados complexos cruzados em tempo real, rotinas autônomas e gatilhos de segurança. Mas e você? No mundo real, escrever código não basta. Hoje o laboratório do SENAI deixou de existir e se tornou uma multinacional de tecnologia. O professor agora é um Tech Recruiter impiedoso. Vocês vão provar que sabem justificar as arquiteturas que construíram e demonstrar resiliência sob a pressão de um processo seletivo corporativo real. O jogo acadêmico acabou. O jogo do mercado começou!",
+  "foco": "Simulação do mercado corporativo para avaliação da maturidade técnica, postura, poder de argumentação e inteligência emocional do aluno.",
+  "pratica": "Pitch de recrutamento, teste teórico e a programação sob pressão extrema no Teste de Quadro Branco, seguido da defesa oral do código (Sabatina).",
   "bloco_A": {
     "titulo": "Etapa 1 e 2: Filtragem e Nivelamento Técnico",
     "conteudo": "Sua Inteligência Emocional (CS 3) será a primeira a ser testada na dinâmica de abertura. Em círculo, cada candidato terá apenas 1 minuto para realizar o seu Pitch Profissional de vendas, lidando com perguntas intimidadoras do Tech Recruiter para checar postura. Passado o filtro comportamental, caímos no filtro técnico de RH: silêncio absoluto para o Teste de Nivelamento, uma avaliação com 20 questões de múltipla escolha abarcando desde a diferença entre modelos de banco de dados até a reação correta diante de um Deadlock nos servidores.",

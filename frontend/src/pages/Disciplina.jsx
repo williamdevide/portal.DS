@@ -553,6 +553,16 @@ export default function Disciplina() {
                         <p className="text-xs text-custom-muted leading-relaxed font-sans text-justify mb-3">
                           {focusedAula.contexto}
                         </p>
+                        {focusedAula.foco && (
+                          <p className="text-xs text-custom-muted leading-relaxed font-sans text-justify mb-2">
+                            <strong className="text-custom-accent">🎯 Foco: </strong>{focusedAula.foco}
+                          </p>
+                        )}
+                        {focusedAula.pratica && (
+                          <p className="text-xs text-custom-muted leading-relaxed font-sans text-justify mb-3">
+                            <strong className="text-emerald-500 dark:text-emerald-400">🛠️ Prática: </strong>{focusedAula.pratica}
+                          </p>
+                        )}
                         {focusedAula.bloco_A?.titulo && (
                           <div className="bg-custom-bg border border-custom-border rounded-xl p-3.5">
                             <span className="block text-[10px] font-bold text-custom-accent mb-1.5">ESTRUTURA DA AULA:</span>

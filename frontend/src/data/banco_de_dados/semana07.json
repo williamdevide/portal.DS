@@ -3,6 +3,8 @@
   "titulo": "Missão 07: A Arte do SELECT e a Gincana SQL Humana",
   "situacao_aprendizagem": "SA2",
   "contexto_aluno": "Fala, Dev! Você já construiu a casa na SA1 e até colocou os primeiros móveis. Mas imagine um banco de dados real com 50 milhões de registros. Como você encontra a informação exata que o seu cliente pediu sem derrubar o servidor inteiro? Bem-vindo à SA2: Consultas e Inteligência de Dados! A partir de agora, o foco não é mais construir tabelas, e sim extrair dados de forma inteligente. Hoje você vai aprender a 'Arte de Perguntar ao Banco' usando os comandos SELECT e WHERE. E para fixar essa lógica, você não vai ficar só sentado: prepare o seu tênis de corrida! O prédio inteiro do SENAI vai se transformar no nosso servidor em uma Gincana SQL Humana frenética. Bora buscar esses dados?",
+  "foco": "Extração cirúrgica de informações do banco de dados utilizando o comando SELECT, a cláusula WHERE e os operadores lógicos e relacionais.",
+  "pratica": "Tradução rápida de requisições de negócio para SQL e a execução física da \"Gincana SQL Humana\" correndo para buscar dados pelo pátio.",
   "bloco_A": {
     "titulo": "A Arte de Perguntar ao Banco",
     "conteudo": "Um bom desenvolvedor backend não pede simplesmente 'me dê os dados', ele faz a 'pergunta perfeita'. Usando a metáfora do 'Bibliotecário Cego', vamos entender por que pedir informações genéricas pode ser catastrófico para a performance do sistema. Você vai aprender a anatomia do comando SELECT (para projetar exatamente as colunas desejadas) e o poder vital da cláusula WHERE (para filtrar os registros). Além disso, vamos dominar os operadores lógicos (AND, OR) e relacionais (>, <, !=) para afiar ainda mais a precisão da nossa busca e trazer apenas a agulha no palheiro.",

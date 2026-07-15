@@ -93,10 +93,20 @@ export default function AulaCard({ aula }) {
           </div>
 
           {/* Centro do Verso: Descrição de Contexto */}
-          <div className="my-auto overflow-y-auto max-h-[120px] pr-1">
+          <div className="my-auto overflow-y-auto max-h-[120px] pr-1 space-y-2">
             <p className="text-xs text-custom-muted leading-relaxed font-sans text-justify">
               {aula.contexto}
             </p>
+            {aula.foco && (
+              <p className="text-[11px] text-custom-muted leading-relaxed font-sans">
+                <strong className="text-custom-accent">🎯 Foco: </strong>{aula.foco}
+              </p>
+            )}
+            {aula.pratica && (
+              <p className="text-[11px] text-custom-muted leading-relaxed font-sans">
+                <strong className="text-emerald-500 dark:text-emerald-400">🛠️ Prática: </strong>{aula.pratica}
+              </p>
+            )}
           </div>
 
           {/* Rodapé do Verso: Botão de Navegação Física */}

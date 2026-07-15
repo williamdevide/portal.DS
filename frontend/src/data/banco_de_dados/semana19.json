@@ -3,6 +3,8 @@
   "titulo": "Missão 19: As Chaves do Castelo e o Demo Day - DCL!",
   "situacao_aprendizagem": "SA3",
   "contexto_aluno": "Fala, Dev! Você sobreviveu à entrevista de emprego e montou uma arquitetura espetacular. Mas de nada adianta um cofre-forte com a porta escancarada! Se o estagiário fizer login com a senha 'Root' (administrador máximo) e apagar o banco por engano, a culpa é sua por ter dado a permissão. Hoje, no nosso último aprendizado técnico, vocês vão dominar a Linguagem de Controle de Dados (DCL) e o Princípio do Menor Privilégio: criar usuários, conceder poderes cirúrgicos (GRANT) e revogar acessos (REVOKE). Logo em seguida, liguem os telões: O Demo Day do Projeto Final vai começar e as equipes apresentarão seus ecossistemas ao vivo!",
+  "foco": "A blindagem do servidor através do Princípio do Menor Privilégio, definindo identidades e autorizações com a linguagem DCL (GRANT, REVOKE).",
+  "pratica": "Criação de usuários restritos no banco e o grande \"Demo Day\" das equipes, apresentando a automação e arquitetura do Projeto 2 ao vivo.",
   "bloco_A": {
     "titulo": "Os Guardiões do Banco (A Segurança da DCL)",
     "conteudo": "A DCL blinda a infraestrutura contra ameaças internas e externas. Usamos o comando `CREATE USER` para dar identidade ao acesso. A regra de ouro corporativa é o Princípio do Menor Privilégio: uma aplicação de relatórios deve receber apenas um `GRANT SELECT` nas views, sendo terminantemente bloqueada de dar um UPDATE. Da mesma forma, quando um funcionário é desligado, a remoção letal de seus privilégios através do `REVOKE` (ou do DROP USER) deve ser executada com urgência.",
