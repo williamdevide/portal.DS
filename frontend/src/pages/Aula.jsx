@@ -297,10 +297,19 @@ export default function Aula() {
     
     // Obtenção do identificador de máquina híbrido para Vercel / Localhost
     const obterIdentificadorMaquina = () => {
-      const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+      const hostname = window.location.hostname;
+      const isLocalAccess = 
+        hostname === "localhost" || 
+        hostname === "127.0.0.1" || 
+        hostname.startsWith("192.168.") || 
+        hostname.startsWith("10.") || 
+        hostname.startsWith("172.") || 
+        hostname.endsWith(".local") || 
+        hostname === "[::1]";
+
       const computerVite = import.meta.env.VITE_COMPUTER_NAME;
       
-      if (isLocalhost && computerVite && computerVite !== "localhost") {
+      if (isLocalAccess && computerVite && computerVite !== "localhost") {
         return computerVite.toUpperCase();
       }
       
