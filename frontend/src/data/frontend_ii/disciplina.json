@@ -1,0 +1,160 @@
+{
+  "nome": "Programação Front-end 2 (PFE2)",
+  "semestre": "4º Semestre",
+  "carga_horaria": "75 horas",
+  "abertura": "Bem-vindos à Programação Front-end 2! Nossa jornada será a 'Jornada do Desenvolvedor Front-end Moderno'. O objetivo desta disciplina é tirá-los da codificação artesanal estática em Vanilla JS, levá-los à componentização de alto nível com o paradigma declarativo do React e, por fim, transformá-los em verdadeiros Arquitetos de Soluções integrando o desenvolvimento ao Google Antigravity (IA Generativa). O produto final será o 'SENAI Hub', nosso super agregador.",
+  "conclusao": "A interface gráfica evoluiu, mas o que faz dela um produto real é a inteligência por trás do código. Vocês evoluíram de digitadores de linhas soltas para engenheiros de software que orquestram Inteligência Artificial. Construímos o SENAI Hub utilizando React e o poder do Vibe Coding. Vocês estão prontos para os maiores desafios do mercado de Front-end!",
+  "projetos": [
+    "Projeto 1: Fundamentos do JavaScript Interativo e APIs Nativas",
+    "Projeto 2: Bootcamp React (CineSenai, ChefVirtual ou TechStore)",
+    "Projeto 3: SENAI Hub Orquestrado por IA (Antigravity) e Batalha de Landing Pages"
+  ],
+  "atividades_praticas": [
+    "Scaffolding Progressivo de DOM (Individual e Duplas)",
+    "Bootcamp Prático sob pressão",
+    "Mecânica Tech v2 e Desenvolvimento Vibe Coding",
+    "Batalha de Landing Pages: Desafio Cliente Real com Júri Externo"
+  ],
+  "cronograma": [
+    {
+      "semana_numero": "01",
+      "titulo": "Aquecimento e o DOM (Document Object Model)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Início oficial da SA1: Fundamentos do JavaScript Interativo. Os alunos saem da abstração estática do HTML/CSS e iniciam a construção do 'sistema nervoso' das aplicações front-end. O projeto integrador 'SENAI Hub' é apresentado.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "02",
+      "titulo": "JavaScript Moderno (ES6+) e Listas Dinâmicas",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Avançando na SA1. O foco é a refatoração do código antigo e a manipulação dinâmica do DOM através de Arrays de Objetos e métodos como map e filter.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "03",
+      "titulo": "Formulários Inteligentes e Cálculos",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Evolução da interatividade. Criação de lógicas de validação de dados em tempo real no lado do cliente, prevenindo ações padrão de formulário.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "04",
+      "titulo": "Memória do Navegador (Local/Session Storage)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "O foco da semana é dar capacidade de 'lembrança' à aplicação, manipulando dados temporários e permanentes via APIs de Web Storage.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "05",
+      "titulo": "Design Responsivo e Semântica",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Pausa na lógica pura para o refinamento visual. Compreensão da estruturação HTML semântica exigida pelo mercado e adaptação de interfaces via Media Queries.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "06",
+      "titulo": "Comunicação com o Mundo Exterior (Fetch API)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "A quebra da 'bolha' da aplicação local. Aprendizado de requisições HTTP assíncronas e consumo de dados no formato JSON usando APIs externas reais.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "07",
+      "titulo": "Interfaces Avançadas (Drag and Drop, Câmera e Canvas)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Fechamento da SA1 explorando o potencial de hardware e APIs nativas do navegador para experiências imersivas.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "08",
+      "titulo": "Introdução ao React (O Novo Paradigma)",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Início da SA2: O Novo Paradigma. A grande virada de chave do desenvolvimento imperativo (Vanilla) para o declarativo baseado em Componentes e Props.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "09",
+      "titulo": "React - Estado e Eventos",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Profundidade no re-render de telas e interatividade nativa do React manipulando dados através do Hook useState.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "10",
+      "titulo": "React - Listas, Efeitos e APIs",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Reta final de conceitos de React. Orquestração do ciclo de vida dos componentes com useEffect e o consumo de APIs externas de forma declarativa.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "11",
+      "titulo": "Bootcamp React / Avaliação Prática 2",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Encerramento imersivo da SA2. Simulação de um Bootcamp onde as duplas escolherão construir do zero aplicações robustas (CineSenai, ChefVirtual ou TechStore) sob pressão.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "12",
+      "titulo": "O Salto para IA Generativa e Economia de Tokens",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Início da SA3: O Desenvolvedor do Futuro. Introdução ao Google Antigravity, criação de contas, gestão de Tokens e o entendimento sobre os limites e potenciais da IA na codificação.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "13",
+      "titulo": "Gemini para Devs e a Orquestração Pro",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Integração técnica e refatoração assistida. O aluno atua como orquestrador revisando e aprovando lógicas complexas de código geradas pela IA.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "14",
+      "titulo": "IA no Mundo Real (Prospecção e Multimodalidade)",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Lançamento da Batalha de Landing Pages (Desafio Cliente Real). Exploração multimodal para turbinar projetos. Uso integrado do Gemini e modelos visuais para gerar a identidade visual, copys e protótipos iniciais para a demanda prospectada no mercado.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "15",
+      "titulo": "Vibe Coding na Prática (Construção em Alta Velocidade)",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Mudança para o pensamento 'O Quê' em vez do 'Como'. Utilizando linguagem natural em alta velocidade e o Google Antigravity, as equipes codificam toda a Landing Page do cliente real em tempo recorde, focando no refinamento de UI/UX e acessibilidade.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "16",
+      "titulo": "Smart Apps e Conectividade (MCP)",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Integração avançada utilizando o Model Context Protocol (MCP) para conectar o ecossistema local do dev à inteligência da IA.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "17",
+      "titulo": "Deploy e Demo Day (O Palco da Batalha)",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Encerramento oficial da SA3. Publicação profissional das Landing Pages via GitHub Pages. O tradicional Demo Day se transforma no Palco da Batalha, onde as turmas apresentam suas soluções em formato de Pitch para um Júri Externo avaliar às cegas usabilidade, estética e profissionalismo.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "18",
+      "titulo": "Avaliação: A Entrevista de Emprego (Simulação Dev)",
+      "situacao_aprendizagem": "Entrevista",
+      "contexto": "Avaliação somativa central da MSEP baseada no Mundo do Trabalho. O aluno é submetido a uma simulação real de recrutamento para desenvolvedor júnior, incluindo o famoso 'Teste de Quadro Branco'.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "19",
+      "titulo": "Tema Extra: PWAs e Acessibilidade (ARIA)",
+      "situacao_aprendizagem": "Extra",
+      "contexto": "Semana dedicada à exploração de conhecimentos de ponta sobre Progressive Web Apps (Service workers, cache API) e acessibilidade avançada, sem impacto na nota formal.",
+      "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "20",
+      "titulo": "Recuperação e Encerramento",
+      "situacao_aprendizagem": "Recuperação",
+      "contexto": "Fechamento do semestre letivo. Clínica de Código e Protocolo de Recuperação focados em refatoração e troubleshooting para alunos que não atingiram a proficiência técnica.",
+      "duracao": "3h 45min (5 aulas)"
+    }
+  ]
+}

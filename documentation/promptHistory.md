@@ -313,4 +313,14 @@ no final da pagina da aula, onde temos a chamada para nosso quizz as fontes aind
 /goal atualize o repositorio no github
 ```
 
+## Sessão: 2026-07-16
 
+### Prompt 1
+```text
+/grill-me /goal inseri o conteudo inicial para uma nova disciplina "Programação Front-end II". leia o conteudo e crie as paginas necessárias seguindo o padrão que adotamos na primeira disciplina
+```
+
+### Prompt 2
+```text
+/grill-me /goal como só enviei conteudo para a semana 1 de frontend II, quero que esvazie o conteudo das semanas 2 a 20, pode deixar o card, pois você já tem o contexto das aulas.
+```

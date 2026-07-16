@@ -2,5 +2,9 @@
   {
     "nome": "Banco de Dados (BCD)",
     "pasta": "banco_de_dados"
+  },
+  {
+    "nome": "Programação Front-end II (PFE2)",
+    "pasta": "frontend_ii"
   }
 ]

@@ -1,0 +1,6 @@
+{
+  "semana_numero": "09",
+  "titulo": "Semana 09: React - Estado e Eventos",
+  "situacao_aprendizagem": "SA2",
+  "contexto_aluno": "Profundidade no re-render de telas e interatividade nativa do React manipulando dados através do Hook useState."
+}

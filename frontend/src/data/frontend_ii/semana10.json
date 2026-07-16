@@ -1,0 +1,6 @@
+{
+  "semana_numero": "10",
+  "titulo": "Semana 10: React - Listas, Efeitos e APIs",
+  "situacao_aprendizagem": "SA2",
+  "contexto_aluno": "Reta final de conceitos de React. Orquestração do ciclo de vida dos componentes com useEffect e o consumo de APIs externas de forma declarativa."
+}

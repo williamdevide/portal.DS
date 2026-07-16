@@ -1,0 +1,24 @@
+{
+  "escala_autonomia": [
+    {
+      "nivel": "AUT",
+      "nome": "Autônoma",
+      "descricao": "Executa plenamente o critério sem ajuda."
+    },
+    {
+      "nivel": "PA",
+      "nome": "Parcialmente Assistida",
+      "descricao": "Executa com dicas ou direcionamentos pontuais do instrutor."
+    },
+    {
+      "nivel": "AP",
+      "nome": "Assistido Permanentemente",
+      "descricao": "Só consegue executar se o instrutor guiar passo a passo."
+    },
+    {
+      "nivel": "NE",
+      "nome": "Não Executa",
+      "descricao": "Não entrega ou não compreende mesmo com ajuda."
+    }
+  ]
+}

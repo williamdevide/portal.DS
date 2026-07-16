@@ -1,0 +1,6 @@
+{
+  "semana_numero": "04",
+  "titulo": "Semana 04: Memória do Navegador (Local/Session Storage)",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "O foco da semana é dar capacidade de 'lembrança' à aplicação, manipulando dados temporários e permanentes via APIs de Web Storage."
+}

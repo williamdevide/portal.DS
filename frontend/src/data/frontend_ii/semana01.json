@@ -1,0 +1,85 @@
+{
+  "semana_numero": "01",
+  "titulo": "Semana 01: Aquecimento e o DOM (Document Object Model)",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Início oficial da SA1: Fundamentos do JavaScript Interativo. Os alunos saem da abstração estática do HTML/CSS e iniciam a construção do 'sistema nervoso' das aplicações front-end. É apresentado o projeto integrador 'SENAI Hub' — um agregador de aplicações que eles alimentarão ao longo das aulas e que, na SA3, ganhará vida e será orquestrado e finalizado utilizando o Google Antigravity. Nesta aula inicial, focamos apenas na base estrutural que tornará esse agregador possível no futuro.",
+  "foco": "Apresentação da disciplina, introdução da tríade HTML/CSS/JS e manipulação básica do DOM (seleção de elementos, escuta de eventos e alteração de conteúdo/classes).",
+  "pratica": "Decomposição visual de interfaces na lousa e codificação progressiva no laboratório (guiada, individual e em duplas) focada na captura de inputs, alteração de textos na tela e troca de temas visuais (Modo Noturno).",
+  "bloco_A": {
+    "titulo": "A Grande Imagem e o Nosso Desafio",
+    "conteudo": "Apresentação da disciplina, Metodologia (MSEP) e Critérios. Revisão da Tríade Front-end: HTML (Esqueleto), CSS (Pele) e JS (Sistema Nervoso). Visão de Futuro: A Situação de Aprendizagem 'SENAI Hub' e o uso do Google Antigravity ao final do curso. A interface gráfica é inútil sem a ação do usuário, o JavaScript é quem irá coordenar essas interações.",
+    "atividade_pratica": {
+      "nome": "Desafio: Decompondo a Interface",
+      "instrucoes": "Imaginar a futura seção de Tarefas do SENAI Hub. O instrutor esboça um wireframe na lousa (input, botão adicionar, lista de tarefas) e pede à turma para identificar verbalmente quais tags HTML seriam usadas ali e em quais momentos o JavaScript precisaria 'ouvir' a ação do usuário (ex: o clique no botão)."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa com o DOM",
+    "conteudo": "Codificação progressiva (Scaffolding) utilizando conceitos-chave do Document Object Model. Uso de querySelector, addEventListener, textContent, value, classList.toggle e style.display. A metodologia de laboratório ocorre em 4 passos lógicos: Prática Guiada, Prática Individual, Inserção de Novos Comandos e Mão na Massa em Duplas.",
+    "atividade_pratica": {
+      "nome": "Laboratório de DOM",
+      "instrucoes": "Passo 1 (Guiado): Criação do 'Boas-Vindas Dinâmico'. O professor fornece o CSS e coda ao vivo com a turma a lógica de input > botão > trocar título. \nPasso 2 (Individual): 'Atualizador de Status'. Com um novo CSS base, os alunos recriam a mesma lógica sozinhos, escrevendo o status do dia no painel. \nPasso 3 (Pílula): O instrutor pausa e insere teoricamente o classList.toggle e o style.display. \nPasso 4 (Duplas): 'Painel de Controle e Modo Noturno'. As duplas iniciam tudo do zero absoluto e criam um mini painel de perfil que une a atualização de status com um botão que alterna o tema claro/escuro e oculta os inputs na tela."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-Semana01.pdf",
+    "resumo_audio": "PFE2-Podcast-Semana01 - JavaScript_e_a_manipulação_do_DOM.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": ["PFE2-Imagem03-Jornada_do_Desenvolvedor_Front-end.png", "PFE2-Imagem01-SenaiHUB-Desktop.png", "PFE2-Imagem02-SenaiHUB-Mobile.png"]
+  },
+  "quiz_final": {
+    "descricao": "Teste rápido de fixação sobre os comandos do DOM vistos nesta primeira aula prática de PFE2.",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a função central do JavaScript na Tríade Front-end abordada na aula de hoje?",
+        "opcoes": [
+          "a) Atuar como a 'pele' da aplicação, estilizando as tags visuais.",
+          "b) Atuar como o 'esqueleto' da aplicação, dividindo as seções na página.",
+          "c) Atuar como o 'sistema nervoso', coordenando a interatividade e a manipulação do DOM em resposta ao usuário.",
+          "d) Salvar os arquivos no banco de dados nas nuvens."
+        ],
+        "resposta_correta": "c) Atuar como o 'sistema nervoso', coordenando a interatividade e a manipulação do DOM em resposta ao usuário."
+      },
+      {
+        "pergunta": "Qual o principal método utilizado para encontrar e selecionar um elemento específico do HTML dentro do JavaScript?",
+        "opcoes": [
+          "a) document.searchElement()",
+          "b) document.querySelector()",
+          "c) window.findTag()",
+          "d) element.selectClass()"
+        ],
+        "resposta_correta": "b) document.querySelector()"
+      },
+      {
+        "pergunta": "Quando o usuário digita seu nome na tela, qual comando nós utilizamos na prática individual para conseguir extrair a palavra digitada na tag <input>?",
+        "opcoes": [
+          "a) element.textContent",
+          "b) element.innerHTML",
+          "c) element.innerText",
+          "d) element.value"
+        ],
+        "resposta_correta": "d) element.value"
+      },
+      {
+        "pergunta": "No desafio em duplas do Modo Noturno, qual comando foi introduzido para ligar e desligar a classe escura com extrema facilidade a cada clique?",
+        "opcoes": [
+          "a) classList.toggle()",
+          "b) classList.add()",
+          "c) style.darkMode()",
+          "d) classList.remove()"
+        ],
+        "resposta_correta": "a) classList.toggle()"
+      },
+      {
+        "pergunta": "O que é o projeto 'SENAI Hub' apresentado na aula de hoje?",
+        "opcoes": [
+          "a) O nome da API externa que fornecerá as previsões do tempo.",
+          "b) Uma suíte de produtividade (agregador) que centralizará todos os nossos projetos ao longo do semestre e será orquestrado por IA no final.",
+          "c) O novo sistema de notas que usaremos para lançar as aprovações da MSEP.",
+          "d) Um framework substituto do React que usaremos no Módulo 2."
+        ],
+        "resposta_correta": "b) Uma suíte de produtividade (agregador) que centralizará todos os nossos projetos ao longo do semestre e será orquestrado por IA no final."
+      }
+    ]
+  }
+}

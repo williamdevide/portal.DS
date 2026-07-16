@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Database, ArrowRight, Code, Terminal, Brain } from 'lucide-react';
 import informacoes_gerais from '../data/informacoes_gerais.json';
-import bcdDisciplina from '../data/banco_de_dados/disciplina.json';
+import listaDisciplinas from '../data/disciplinas.json';
 
 export default function Home() {
-  const disciplina = bcdDisciplina;
+  const [disciplinas, setDisciplinas] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadDisciplinas = async () => {
+      const carregadas = [];
+      for (const disc of listaDisciplinas) {
+        try {
+          const data = await import(`../data/${disc.pasta}/disciplina.json`);
+          carregadas.push({
+            ...disc,
+            ...(data.default || data)
+          });
+        } catch (e) {
+          console.error(`Erro ao carregar disciplina ${disc.pasta}:`, e);
+        }
+      }
+      setDisciplinas(carregadas);
+      setLoading(false);
+    };
+    loadDisciplinas();
+  }, []);
 
   // Imagem de datacenter premium em alta resolução para plano de fundo cinemático
   const heroImageUrl = "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop";
@@ -125,63 +146,62 @@ export default function Home() {
             </p>
           </div>
           <span className="text-sm font-bold text-custom-accent bg-custom-accent/10 px-4 py-2 rounded-full border border-custom-accent/10">
-            1 Disciplina em Destaque
+            {loading ? "..." : `${disciplinas.length} ${disciplinas.length === 1 ? 'Disciplina' : 'Disciplinas'} em Destaque`}
           </span>
         </div>
 
         {/* Grid de Disciplinas */}
         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          
-          {/* Card Destaque: Banco de Dados */}
-          <div className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-custom-border bg-custom-card p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:translate-y-[-4px]">
-            {/* Linha Accent Decorativa */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-custom-accent group-hover:h-2 transition-all duration-300" />
-            
-            <div className="relative">
-              {/* Icon Container */}
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-custom-accent/10 text-custom-accent shadow-inner group-hover:scale-105 transition-transform duration-300">
-                <Database className="h-6 w-6" />
-              </div>
-              
-              <span className="block text-xs font-bold uppercase tracking-wider text-custom-muted mb-1 font-sans">
-                {disciplina.semestre} • {disciplina.carga_horaria}
-              </span>
-              
-              <h3 className="text-2xl font-extrabold text-custom-text font-sans group-hover:text-custom-accent transition-colors duration-300 leading-tight">
-                {disciplina.nome}
-              </h3>
-              
-              <p className="mt-4 text-sm text-custom-muted leading-relaxed font-sans line-clamp-5">
-                {disciplina.abertura}
-              </p>
+          {loading ? (
+            <div className="col-span-full text-center py-12 text-custom-muted font-sans animate-pulse">
+              Carregando disciplinas...
             </div>
-            
-            <div className="mt-8 pt-4 border-t border-custom-border">
-              <Link 
-                to="/disciplina/banco_de_dados"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-100 hover:bg-custom-accent text-slate-500 hover:text-white dark:bg-slate-800 dark:hover:bg-custom-accent dark:text-slate-300 dark:hover:text-white px-4 py-3.5 text-sm font-bold shadow-sm transition-all cursor-pointer"
+          ) : (
+            disciplinas.map((disc) => (
+              <div 
+                key={disc.pasta}
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-custom-border bg-custom-card p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:translate-y-[-4px]"
               >
-                Acessar Disciplina
-                <ArrowRight className="h-4.5 w-4.5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
+                {/* Linha Accent Decorativa */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-custom-accent group-hover:h-2 transition-all duration-300" />
+                
+                <div className="relative">
+                  {/* Icon Container */}
+                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-custom-accent/10 text-custom-accent shadow-inner group-hover:scale-105 transition-transform duration-300">
+                    {disc.pasta === 'banco_de_dados' ? (
+                      <Database className="h-6 w-6" />
+                    ) : (
+                      <Terminal className="h-6 w-6" />
+                    )}
+                  </div>
+                  
+                  <span className="block text-xs font-bold uppercase tracking-wider text-custom-muted mb-1 font-sans">
+                    {disc.semestre} • {disc.carga_horaria}
+                  </span>
+                  
+                  <h3 className="text-2xl font-extrabold text-custom-text font-sans group-hover:text-custom-accent transition-colors duration-300 leading-tight">
+                    {disc.nome}
+                  </h3>
+                  
+                  <p className="mt-4 text-sm text-custom-muted leading-relaxed font-sans line-clamp-5">
+                    {disc.abertura}
+                  </p>
+                </div>
+                
+                <div className="mt-8 pt-4 border-t border-custom-border">
+                  <Link 
+                    to={`/disciplina/${disc.pasta}`}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-100 hover:bg-custom-accent text-slate-500 hover:text-white dark:bg-slate-800 dark:hover:bg-custom-accent dark:text-slate-300 dark:hover:text-white px-4 py-3.5 text-sm font-bold shadow-sm transition-all cursor-pointer"
+                  >
+                    Acessar Disciplina
+                    <ArrowRight className="h-4.5 w-4.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            ))
+          )}
 
           {/* Placeholders para futuras disciplinas */}
-          <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-dashed border-custom-border text-custom-muted">
-                <Terminal className="h-6 w-6" />
-              </div>
-              <h3 className="text-lg font-bold text-custom-muted font-sans">
-                Programação Front-end II
-              </h3>
-              <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
-                Módulo reservado para o próximo semestre.
-              </p>
-            </div>
-          </div>
-
           <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-dashed border-custom-border text-custom-muted">

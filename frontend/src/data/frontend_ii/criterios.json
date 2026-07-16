@@ -1,0 +1,311 @@
+{
+  "descricao": "A avaliação é baseada no desenvolvimento de competências MSEP para PFE2 (4º Semestre). Focamos no 'saber', 'saber fazer' e 'saber ser', avaliando a aplicação prática através de codificação, orquestração de IA e entrevistas.",
+  "matriz_criterios": [
+    {
+      "id": "CT 1",
+      "capacidade": "1. Utilizar semântica de linguagem de marcação conforme normas.",
+      "conhecimento": "2. Design Responsivo (2.1 - Definição, 2.2 - Aplicação, 2.3 - Media Queries).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Estruturação Semântica",
+      "descricao_criterio": "Substitui tags genéricas por tags semânticas (header, main, section) na construção do layout.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 8)",
+        "SA3 (Sem. 12, 13)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 1",
+      "capacidade": "1. Utilizar semântica de linguagem de marcação conforme normas.",
+      "conhecimento": "2. Design Responsivo (2.1 - Definição, 2.2 - Aplicação, 2.3 - Media Queries).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Acessibilidade Básica",
+      "descricao_criterio": "Aplica atributos essenciais e estrutura hierárquica acessível (ARIA, alts).",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 8)",
+        "SA3 (Sem. 12, 13)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 3",
+      "capacidade": "3. Utilizar ferramentas gráficas para interface web e mobile.",
+      "conhecimento": "1. JavaScript (1.6 - Canvas).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Geração Visual",
+      "descricao_criterio": "Renderiza elementos visuais na interface utilizando Canvas ou ferramentas gráficas gerativas.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 7)",
+        "SA3 (Sem. 14)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 3",
+      "capacidade": "3. Utilizar ferramentas gráficas para interface web e mobile.",
+      "conhecimento": "1. JavaScript (1.6 - Canvas).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "UX/UI Aplicado",
+      "descricao_criterio": "Refina a interface visando a experiência do usuário e um design interativo moderno.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 7)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 14)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 4",
+      "capacidade": "4. Adequar a interface web para diferentes dispositivos de acesso.",
+      "conhecimento": "2. Design Responsivo (2.1 - Definição, 2.2 - Aplicação, 2.3 - Media Queries).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Layout Adaptável",
+      "descricao_criterio": "Aplica Media Queries e Flexbox para responsividade em diferentes dimensões de tela.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 4",
+      "capacidade": "4. Adequar a interface web para diferentes dispositivos de acesso.",
+      "conhecimento": "2. Design Responsivo (2.1 - Definição, 2.2 - Aplicação, 2.3 - Media Queries).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Mobile First",
+      "descricao_criterio": "Utiliza a estratégia Mobile First no planejamento e codificação do CSS.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 11)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 4",
+      "capacidade": "4. Adequar a interface web para diferentes dispositivos de acesso.",
+      "conhecimento": "5. Web Apps (5.1 - Service worker, 5.2 - Cache API, 5.3 - Push notifications, 5.4 - Background sync, 5.5 - Carregamento da página).",
+      "tipo": "Desejável (Extra)",
+      "criterio_avaliacao": "Performance e PWAs",
+      "descricao_criterio": "Compreende e implementa conceitos de Progressive Web Apps e otimização de carregamento.",
+      "aplicacao_aulas": [
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 5",
+      "capacidade": "5. Desenvolver interfaces web interativas com linguagem de programação.",
+      "conhecimento": "1. JavaScript (1.2 - Funções, 1.3 - DOM, 1.4 - OO, 1.8 - Web storage).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Interatividade e Lógica",
+      "descricao_criterio": "Desenvolve lógica com JavaScript para manipulação do DOM, cálculos e eventos de usuário.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 1, 2, 3)",
+        "SA2 (Sem. 9, 10)",
+        "SA3 (Sem. 15)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 5",
+      "capacidade": "5. Desenvolver interfaces web interativas com linguagem de programação.",
+      "conhecimento": "1. JavaScript (1.2 - Funções, 1.3 - DOM, 1.4 - OO, 1.8 - Web storage).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Código Moderno",
+      "descricao_criterio": "Emprega recursos otimizados do ES6+ (Arrow functions, Map, Filter, Template Literals).",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 2)",
+        "SA2 (Sem. 10)",
+        "SA3 (Sem. 15)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 7",
+      "capacidade": "7. Desenvolver interfaces web utilizando frameworks.",
+      "conhecimento": "1. JavaScript (1.9 - Webpack), 3. Frameworks (3.1 a 3.7).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Componentização e Estado",
+      "descricao_criterio": "Cria componentes funcionais reutilizáveis e manipula reatividade (useState).",
+      "aplicacao_aulas": [
+        "SA2 (Sem. 8, 9)",
+        "SA3 (Sem. 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 7",
+      "capacidade": "7. Desenvolver interfaces web utilizando frameworks.",
+      "conhecimento": "1. JavaScript (1.9 - Webpack), 3. Frameworks (3.1 a 3.7).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Elevação de Estado",
+      "descricao_criterio": "Aplica elevação de estado (Lifting State Up) para compartilhar dados entre componentes lógicos.",
+      "aplicacao_aulas": [
+        "SA2 (Sem. 10)",
+        "SA3 (Sem. 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 8",
+      "capacidade": "8. Desenvolver interfaces web consumindo API.",
+      "conhecimento": "1. JavaScript (1.5 - API [Drag and drop, Câmera], 1.7 - Requisições assíncronas).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Consumo de Dados Externos",
+      "descricao_criterio": "Realiza requisições HTTP (fetch/useEffect) manipulando e renderizando o JSON retornado.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA2 (Sem. 10)",
+        "SA3 (Sem. 16)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CT 8",
+      "capacidade": "8. Desenvolver interfaces web consumindo API.",
+      "conhecimento": "1. JavaScript (1.5 - API [Drag and drop, Câmera], 1.7 - Requisições assíncronas).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Integração com IA",
+      "descricao_criterio": "Orquestra e integra ferramentas de IA (Antigravity/MCP) via conexões na aplicação.",
+      "aplicacao_aulas": [
+        "SA3 (Sem. 15, 16)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 1",
+      "capacidade": "1. Demonstrar autogestão.",
+      "conhecimento": "Transversal",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Cumprimento de Prazos",
+      "descricao_criterio": "Entrega os desafios práticos e projetos funcionais nos prazos estabelecidos.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 12, 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 1",
+      "capacidade": "1. Demonstrar autogestão.",
+      "conhecimento": "Transversal",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Organização do Código",
+      "descricao_criterio": "Mantém a sintaxe organizada, modularizada e perfeitamente endentada.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 3)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 12, 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 2",
+      "capacidade": "2. Demonstrar pensamento analítico.",
+      "conhecimento": "Transversal",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Decomposição de Interface",
+      "descricao_criterio": "Quebra layouts e problemas complexos em componentes menores, lógicos e independentes.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 5)",
+        "SA2 (Sem. 8)",
+        "SA3 (Sem. 12, 15)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 2",
+      "capacidade": "2. Demonstrar pensamento analítico.",
+      "conhecimento": "Transversal",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Debugging e Solução",
+      "descricao_criterio": "Lê erros no console/DevTools e investiga a causa-raiz de bugs de forma analítica.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 2)",
+        "SA2 (Sem. 10)",
+        "SA3 (Sem. 12, 16)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 3",
+      "capacidade": "3. Demonstrar inteligência emocional.",
+      "conhecimento": "Transversal",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Trabalho em Equipe",
+      "descricao_criterio": "Comunica-se de forma respeitosa e colaborativa nas atividades pareadas e em duplas.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 12, 15)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 3",
+      "capacidade": "3. Demonstrar inteligência emocional.",
+      "conhecimento": "Transversal",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Resiliência Prática",
+      "descricao_criterio": "Mantém o foco técnico e controle emocional durante bootcamps, bugs ou prazos curtos.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 7)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 12, 17)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 4",
+      "capacidade": "4. Demonstrar autonomia.",
+      "conhecimento": "Transversal",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Execução Prática",
+      "descricao_criterio": "Inicia e estrutura a lógica e codificação de projetos sem depender de roteiros guiados.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 3)",
+        "SA2 (Sem. 10)",
+        "SA3 (Sem. 12, 15)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 4",
+      "capacidade": "4. Demonstrar autonomia.",
+      "conhecimento": "Transversal",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Busca Independente",
+      "descricao_criterio": "Pesquisa e aplica soluções avançadas em documentações oficiais ou via IA por conta própria.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 6)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 12, 16)",
+        "Entrevista Simulada (Sem. 18)",
+        "Recuperação (Sem. 20)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "semana_numero": "06",
+  "titulo": "Semana 06: Comunicação com o Mundo Exterior (Fetch API)",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "A quebra da 'bolha' da aplicação local. Aprendizado de requisições HTTP assíncronas e consumo de dados no formato JSON usando APIs externas reais."
+}

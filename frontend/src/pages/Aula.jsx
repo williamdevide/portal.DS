@@ -743,7 +743,7 @@ export default function Aula() {
 
   // Roteador de recursos visuais interativos que substitui os placeholders textuais do JSON
   const renderRecursoVisual = (recursoVisual, blocoTipo, activeSlide) => {
-    if (numeroSemana !== 1) {
+    if (disciplinaSlug !== 'banco_de_dados' || numeroSemana !== 1) {
       return renderRecursoVisualDataDriven(recursoVisual);
     }
     if (blocoTipo === 'A') {

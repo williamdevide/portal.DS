@@ -1,0 +1,85 @@
+{
+  "semana_numero": "02",
+  "titulo": "Semana 02: JavaScript Moderno (ES6+) e Listas Dinâmicas",
+  "situacao_aprendizagem": "SA1",
+  "contexto_aluno": "Avançando na SA1. Após construírem as interações unitárias do 'sistema nervoso' da aplicação, é hora de dar escala ao código. Vocês vão abandonar o 'velho' JavaScript e adotar as ferramentas do ES6+ para refatorar códigos e manipular dinamicamente o DOM através de Arrays de Objetos e métodos modernos de repetição e filtragem. O objetivo é parar de escrever HTML estático manualmente e fazer o JavaScript fabricar as listas por você em frações de segundo!",
+  "foco": "Evolução da sintaxe (let/const, Arrow Functions, Template Literals) e injeção dinâmica de componentes HTML na tela usando innerHTML, .map() e .filter().",
+  "pratica": "Refatoração de código legado ao vivo e laboratório de estruturação do módulo de Tarefas do 'SENAI Hub' (o app 'Taskflow'), onde eles deixam de escrever HTML estático para fazer o JavaScript renderizar listas com centenas de dados de forma automatizada.",
+  "bloco_A": {
+    "titulo": "As Novas Ferramentas do Desenvolvedor",
+    "conteudo": "A evolução do JavaScript e a diferença de escopos (var vs let vs const). Uso de funções enxutas com Arrow Functions. Concatenação moderna de strings através de Template Literals (uso de crases e ${}). A introdução à mentalidade de escalabilidade: não devemos escrever centenas de linhas repetidas manualmente.",
+    "atividade_pratica": {
+      "nome": "Desafio: Refatorando ao Vivo",
+      "instrucoes": "O professor projeta no telão o exato código script.js construído na Semana 01. A turma, de forma guiada, começa a 'limpar' o arquivo: trocam variáveis por 'const' nas seleções, substituem 'function()' por Arrow Functions '() =>' e atualizam a concatenação com '+' por Template Literals limpos."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa com Listas Dinâmicas",
+    "conteudo": "Codificação progressiva trabalhando com Arrays de Objetos. A injeção instantânea de grandes blocos de código utilizando a propriedade .innerHTML. O uso do método .map() para transformar arrays em templates visuais e o uso do .filter() para aplicar lógicas de busca e visualização segmentada.",
+    "atividade_pratica": {
+      "nome": "Laboratório de Listas Dinâmicas",
+      "instrucoes": "Passo 1 (Guiado): Renderizar a primeira lista do Taskflow iterando um array com .map() e injetando na <ul> vazia com innerHTML. \nPasso 2 (Individual): 'Lista de Contatos Dinâmica'. O professor dá os dados e o aluno aplica a mesma lógica de .map() sozinho para renderizar os cards de contatos. \nPasso 3 (Pílula): O professor ensina a lógica de 'peneira' do método .filter(). \nPasso 4 (Duplas): 'Taskflow - Filtros de Status'. As duplas integram eventos de clique nos botões (Todas, Pendentes, Concluídas) que disparam o .filter() na base de dados para redesenhar a tela inteligentemente."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-Semana02.pdf",
+    "resumo_audio": "PFE2-Podcast-Semana02 - Do_código_manual_ao_JavaScript_moderno_ES6.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": ["PFE2-Imagem04-Guia_Visual_JavaScript_Moderno_ES6+.png"]
+  },
+  "quiz_final": {
+    "descricao": "Teste rápido de fixação sobre os superpoderes do JavaScript Moderno (ES6+) que aprendemos nesta aula.",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a principal vantagem de usar 'const' em vez de 'var' ou 'let' para declarar seleções de elementos do DOM (ex: const botao = ...)?",
+        "opcoes": [
+          "a) Porque 'const' faz o código rodar mais rápido no navegador.",
+          "b) Impede que a variável seja acidentalmente sobrescrita com outro valor, trazendo muito mais segurança ao código.",
+          "c) Porque 'const' é o único comando que funciona com a nova versão do HTML5.",
+          "d) Permite que a variável mude de tipo de texto para número automaticamente."
+        ],
+        "resposta_correta": "b) Impede que a variável seja acidentalmente sobrescrita com outro valor, trazendo muito mais segurança ao código."
+      },
+      {
+        "pergunta": "Como é a sintaxe moderna (Arrow Function) para criar uma função vazia, substituindo o antigo 'function() {}'?",
+        "opcoes": [
+          "a) () => {}",
+          "b) -> () {}",
+          "c) func() => {}",
+          "d) () = {}"
+        ],
+        "resposta_correta": "a) () => {}"
+      },
+      {
+        "pergunta": "Qual símbolo nós passamos a usar para criar 'Template Literals' e conseguir quebrar as linhas do HTML dentro do JavaScript, além de injetar variáveis de forma simples com ${}?",
+        "opcoes": [
+          "a) Aspas duplas (\")",
+          "b) Aspas simples (')",
+          "c) Crases (`)",
+          "d) Parênteses ()"
+        ],
+        "resposta_correta": "c) Crases (`)"
+      },
+      {
+        "pergunta": "No nosso desafio da Lista de Contatos, qual foi a função exata do método .map()?",
+        "opcoes": [
+          "a) Peneirar o array para deletar os contatos que estavam sem foto.",
+          "b) Percorrer o array original e 'transformar' cada objeto de contato em um bloco de código HTML injetável.",
+          "c) Alterar os valores do array original definitivamente dentro do banco de dados.",
+          "d) Mostrar um mapa geográfico com a localização de cada contato."
+        ],
+        "resposta_correta": "b) Percorrer o array original e 'transformar' cada objeto de contato em um bloco de código HTML injetável."
+      },
+      {
+        "pergunta": "Na atividade final do 'Taskflow' (em duplas), que método foi usado para criar uma nova lista contendo APENAS as tarefas cujo status de concluída era 'false'?",
+        "opcoes": [
+          "a) array.find()",
+          "b) array.reduce()",
+          "c) array.filter()",
+          "d) array.slice()"
+        ],
+        "resposta_correta": "c) array.filter()"
+      }
+    ]
+  }
+}
