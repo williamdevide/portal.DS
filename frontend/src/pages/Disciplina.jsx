@@ -11,6 +11,8 @@ const obterSaBadgeClass = (situacao) => {
     return 'bg-amber-500/10 text-amber-600 border border-amber-500/25 dark:bg-amber-400/10 dark:text-amber-400 dark:border-amber-400/25';
   } else if (situacao.includes('Entrevista') || situacao.includes('Recuperação')) {
     return 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/25 dark:bg-emerald-400/10 dark:text-emerald-400 dark:border-emerald-400/25';
+  } else if (situacao.includes('Extra') || situacao.includes('extra')) {
+    return 'bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30';
   }
   // SA1 ou padrão (Vermelho/Accent)
   return 'bg-custom-accent/10 text-custom-accent border border-custom-accent/25';
@@ -131,7 +133,9 @@ export default function Disciplina() {
   const abrirFoco = async (aula, rect) => {
     if (loadingAula) return;
     setLoadingAula(true);
-    const numSemanaStr = aula.semana_numero.toString().padStart(2, '0');
+    const numSemanaStr = typeof aula.semana_numero === 'number' || !isNaN(aula.semana_numero)
+      ? aula.semana_numero.toString().padStart(2, '0')
+      : aula.semana_numero.toString().toLowerCase();
     try {
       const aulaDetalhes = await import(`../data/${disciplinaSlug}/semana${numSemanaStr}.json`);
       setFocalStartRect(rect);
@@ -603,7 +607,7 @@ export default function Disciplina() {
                         </button>
                         
                         <Link 
-                          to={`/disciplina/${disciplinaSlug}/semana/${parseInt(focusedAula.semana_numero, 10)}`}
+                          to={`/disciplina/${disciplinaSlug}/semana/${typeof focusedAula.semana_numero === 'number' || !isNaN(focusedAula.semana_numero) ? parseInt(focusedAula.semana_numero, 10) : focusedAula.semana_numero.toString().toLowerCase()}`}
                           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 text-white hover:bg-custom-accent px-5 py-3 text-xs font-bold shadow-md transition-all hover:translate-x-0.5"
                         >
                           Acessar Aula Completa
@@ -813,7 +817,7 @@ export default function Disciplina() {
                           <span className={`inline-flex items-center rounded-md px-1.5 py-0.5 text-[9px] font-bold ${
                             criterio.tipo === 'Crítico'
                               ? 'bg-red-100 text-red-700 border border-red-200 dark:bg-red-950/40 dark:text-red-400 dark:border-red-900/50'
-                              : 'bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-900/50'
+                              : 'bg-blue-100 text-blue-800 border border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-800/60'
                           }`}>
                             {criterio.tipo}
                           </span>

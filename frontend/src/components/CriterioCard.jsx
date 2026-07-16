@@ -8,7 +8,7 @@ export default function CriterioCard({ criterio }) {
   // Cores conforme o tipo de critério
   const typeBadgeClass = isCritico
     ? 'bg-custom-accent/10 text-custom-accent border border-custom-accent/20'
-    : 'bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-900/50';
+    : 'bg-blue-100 text-blue-800 border border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-800/60';
 
   const categoryColorClass = criterio.id.startsWith('CT')
     ? 'text-custom-accent/15'

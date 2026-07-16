@@ -1,0 +1,138 @@
+{
+  "semana_numero": "Extra",
+  "titulo": "Conteúdo Extra: O Arsenal do Arquiteto e as Missões Práticas!",
+  "situacao_aprendizagem": "Conteúdo Extra",
+  "contexto_aluno": "Fala, Dev! Você terminou as suas tarefas da aula antes do tempo e acha que acabou? Esquece! No mundo da tecnologia, desenvolvedor sênior não fica de braços cruzados. Para engolir as melhores vagas do mercado, a teoria não basta: é preciso 'escovar bytes'. Pensando nisso, montamos um 'Arsenal do DBA' com as melhores ferramentas e plataformas do mercado. O objetivo é simples: sempre que você tiver um tempo livre no laboratório, acesse essas plataformas para praticar, errar, testar comandos e elevar a sua lógica. E para provar que você está dominando essas ferramentas, deixamos 4 Missões Oficiais para você cumprir no seu ritmo. Bora subir o nível?",
+  "foco": "Foco: Prática contínua, exploração de plataformas de mercado e consolidação do raciocínio analítico sempre que houver tempo ocioso em aula.",
+  "pratica": "Prática: Uso livre de simuladores, plataformas gamificadas e HackerRanks, seguido pela execução e entrega das 4 Missões oficiais.",
+  "bloco_A": {
+    "titulo": "O Arsenal de Ferramentas: Plataformas para Prática Livre",
+    "conteudo": "Sempre que estiver ocioso, acesse as seguintes plataformas para praticar: \n\n1. PLATAFORMAS GAMIFICADAS (Para engajamento e lógica SQL): \n- SQL Murder Mystery (https://mystery.knightlab.com/): Um jogo onde você é um detetive e usa comandos SQL para cruzar depoimentos e encontrar um assassino. \n- SQL Island (https://sql-island.informatik.uni-klais.de/): Um RPG em texto onde você escapa de uma ilha negociando com habitantes via queries DML. \n\n2. COMPETIÇÕES - HACKER RANKS (Para testar algoritmos e entrevistas): \n- Beecrowd (https://www.beecrowd.com.br/): Plataforma com centenas de problemas de SQL. O seu código é testado por um juiz automático implacável, te preparando para testes técnicos reais. \n- SQLize / DataLemur (https://sqlize.com/ | https://datalemur.com/): Desafios baseados em perguntas de entrevistas de gigantes como Google e Amazon. \n\n3. SIMULADORES NA NUVEM (Para prototipar sem instalar nada): \n- DB Fiddle (https://www.db-fiddle.com/): Sandbox online. Você cria tabelas e insere dados direto no navegador, gerando um link rápido para compartilhar o seu código funcionando com os colegas. \n\n4. MODELAGEM VISUAL (Code-to-Diagram): \n- dbdiagram.io (https://dbdiagram.io/): Esqueça o 'arrastar caixinhas'. Aqui você escreve as regras do banco em código e a plataforma desenha o diagrama e puxa as linhas de relacionamento automaticamente.",
+    "atividade_pratica": {
+      "nome": "Prática Contínua",
+      "instrucoes": "Explore livremente os links acima. Eles são o seu ambiente de estudos principal para preencher qualquer espaço livre durante as aulas do semestre. Treine seus JOINs, teste scripts no DB Fiddle e divirta-se investigando na SQL City!"
+    }
+  },
+  "bloco_B": {
+    "titulo": "As 4 Missões Oficiais de Treinamento",
+    "conteudo": "Além de explorar as ferramentas livremente, você precisa provar que sabe utilizá-las. Preparamos 4 Missões oficiais baseadas no arsenal acima. Você tem total autonomia para realizá-las no seu ritmo, submetendo os resultados assim que terminar cada uma delas.",
+    "atividade_pratica": {
+      "nome": "Execução das Missões 1 a 4 e Entrega Ágil",
+      "instrucoes": "Missão 1 (O Detetive): Jogue o SQL Murder Mystery e descubra o assassino. Entregue um texto com as queries que você usou.\nMissão 2 (A Arena): No Beecrowd, resolva 3 problemas de SQL. Tire um Print Screen mostrando os 3 status verdes 'Accepted' com seu nome de usuário.\nMissão 3 (Laboratório Nuvem): No DB Fiddle, crie uma tabela de produtos, insira 5 itens e faça um SELECT para produtos acima de R$ 100. Copie o Link Único gerado.\nMissão 4 (Code-to-Diagram): No dbdiagram.io, conecte 3 tabelas usando o parâmetro (Ref) para as chaves estrangeiras. Exporte o diagrama em PNG/PDF.\nENTREGA: A entrega não é feita de uma só vez! Vá ao Google Sala de Aula e anexe a prova de cada missão na sua respectiva tarefa conforme for fazendo. Temos também uma aba 'Extra' para você enviar prints de outras práticas que fizer por conta própria!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "BCD-Material-ConteudoExtra.pdf",
+    "resumo_audio": "BCD-Podcast-Conteúdo Extra - Resolva_crimes_e_desafios_com_SQL.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "BCD-Imagem05-Arsenal_do_Arquiteto_de_Dados.png",
+      "BCD-Imagem06-Guia_para_Dominar_Dados.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Bora testar se você conhece o seu próprio arsenal de desenvolvimento? Responda o quiz abaixo!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a principal finalidade da plataforma gamificada 'SQL Murder Mystery' (mystery.knightlab.com)?",
+        "opcoes": [
+          "a) Criar servidores em nuvem para hospedar jogos de detetive 3D.",
+          "b) Colocar o aluno no papel de um investigador em 'SQL City', cruzando dados de testemunhas e placas de carro através de queries complexas (como JOINs) para encontrar um assassino.",
+          "c) Ler histórias de ficção policial sem necessidade de programar.",
+          "d) Ensinar a desenhar diagramas em formato de teia de aranha."
+        ],
+        "resposta_correta": "b) Colocar o aluno no papel de um investigador em 'SQL City', cruzando dados de testemunhas e placas de carro através de queries complexas (como JOINs) para encontrar um assassino."
+      },
+      {
+        "pergunta": "Qual o papel de competições e Hacker Ranks (como o Beecrowd) na formação do desenvolvedor?",
+        "opcoes": [
+          "a) Submeter o aluno a problemas de SQL que são validados por um corretor automático (judge), desenvolvendo o raciocínio analítico e preparando-o para testes técnicos reais de emprego.",
+          "b) Ensinar a fazer design de interfaces gráficas para aplicativos mobile.",
+          "c) Focar exclusivamente em banco de dados Não Relacionais (NoSQL) de forma passiva.",
+          "d) Apenas desenhar tabelas em planilhas coloridas."
+        ],
+        "resposta_correta": "a) Submeter o aluno a problemas de SQL que são validados por um corretor automático (judge), desenvolvendo o raciocínio analítico e preparando-o para testes técnicos reais de emprego."
+      },
+      {
+        "pergunta": "Se você estiver num computador sem o XAMPP instalado e precisar testar uma query DDL e DML urgentemente, qual ferramenta do seu arsenal você deve acessar?",
+        "opcoes": [
+          "a) O Microsoft Word.",
+          "b) O jogo SQL Island.",
+          "c) Um laboratório/sandbox na nuvem como o DB Fiddle ou SQL Fiddle (db-fiddle.com).",
+          "d) A plataforma Beecrowd."
+        ],
+        "resposta_correta": "c) Um laboratório/sandbox na nuvem como o DB Fiddle ou SQL Fiddle (db-fiddle.com)."
+      },
+      {
+        "pergunta": "O que significa o conceito de 'Engenharia Code-to-Diagram' introduzido pela plataforma dbdiagram.io?",
+        "opcoes": [
+          "a) Arrastar caixinhas com o mouse para desenhar tabelas, de forma idêntica ao Paint.",
+          "b) Criar a modelagem (MER/DER) escrevendo a infraestrutura em um código declarativo simples, deixando a ferramenta desenhar as tabelas e linhas de relacionamento de forma automática.",
+          "c) Criar o banco de dados escrevendo as regras no Excel.",
+          "d) Que o diagrama gerará o aplicativo Front-end inteiro sozinho sem ajuda do programador."
+        ],
+        "resposta_correta": "b) Criar a modelagem (MER/DER) escrevendo a infraestrutura em um código declarativo simples, deixando a ferramenta desenhar as tabelas e linhas de relacionamento de forma automática."
+      },
+      {
+        "pergunta": "Na Missão 3 (Prototipação na Nuvem), como você deve compartilhar o resultado do seu banco de dados dinâmico criado no DB Fiddle com o professor?",
+        "opcoes": [
+          "a) Enviando o disco rígido do computador por correspondência.",
+          "b) O Fiddle não permite compartilhamento de resultados de forma alguma.",
+          "c) Clicando no botão 'Save' ou 'Share' na plataforma, o que gera um Link Único contendo o seu código. Este link é a prova que deve ser entregue na plataforma de estudos.",
+          "d) Tirando uma foto da tela com uma câmera analógica."
+        ],
+        "resposta_correta": "c) Clicando no botão 'Save' ou 'Share' na plataforma, o que gera um Link Único contendo o seu código. Este link é a prova que deve ser entregue na plataforma de estudos."
+      },
+      {
+        "pergunta": "Como você consegue comprovar formalmente que obteve sucesso na Missão 2 (Arena de Algoritmos no Beecrowd)?",
+        "opcoes": [
+          "a) Enviando um áudio longo no WhatsApp do professor explicando como resolveu a questão.",
+          "b) Escrevendo a resposta final num papel sulfite.",
+          "c) Tirando um Print Screen da tela de histórico que mostre os 3 problemas de SQL solucionados com a bandeira verde de 'Accepted' e o seu nome de usuário visível.",
+          "d) Desenhando o logotipo do Beecrowd no caderno."
+        ],
+        "resposta_correta": "c) Tirando um Print Screen da tela de histórico que mostre os 3 problemas de SQL solucionados com a bandeira verde de 'Accepted' e o seu nome de usuário visível."
+      },
+      {
+        "pergunta": "O roteiro instrui que o aluno deve acessar essas plataformas do arsenal 'sempre que tiver um tempo livre em aula'. Qual é o objetivo técnico dessa prática contínua?",
+        "opcoes": [
+          "a) Fazer o tempo passar mais rápido até o sinal bater.",
+          "b) 'Escovar bytes', desenvolvendo autonomia e pensamento analítico pela repetição e resolução de problemas fora da caixa, fundamentais para a senioridade na área.",
+          "c) Competir apenas para ver quem digita mais palavras por minuto.",
+          "d) Jogar online para evitar estudar o banco de dados."
+        ],
+        "resposta_correta": "b) 'Escovar bytes', desenvolvendo autonomia e pensamento analítico pela repetição e resolução de problemas fora da caixa, fundamentais para a senioridade na área."
+      },
+      {
+        "pergunta": "Na instrução da Missão 4 (dbdiagram.io), qual sintaxe/parâmetro a ferramenta utiliza para entender que existe uma Chave Estrangeira e assim desenhar a linha de conexão automática?",
+        "opcoes": [
+          "a) A função SUM().",
+          "b) A criação de senhas de administrador.",
+          "c) O parâmetro de referência (Ref), que avisa à plataforma quais atributos estão interconectados entre as entidades.",
+          "d) O uso da palavra DATABASE no topo do arquivo."
+        ],
+        "resposta_correta": "c) O parâmetro de referência (Ref), que avisa à plataforma quais atributos estão interconectados entre as entidades."
+      },
+      {
+        "pergunta": "Além do SQL Murder Mystery, qual outra plataforma gamificada atua como um RPG em que você sobrevive a um naufrágio interagindo com habitantes da ilha usando SQL?",
+        "opcoes": [
+          "a) SQL Island.",
+          "b) Database Tycoon.",
+          "c) Query Simulator 3D.",
+          "d) Backend Quest."
+        ],
+        "resposta_correta": "a) SQL Island."
+      },
+      {
+        "pergunta": "Qual é a regra ágil para a entrega destas 4 Missões Extras e demais práticas que você fizer?",
+        "opcoes": [
+          "a) Você deve esperar terminar todas e enviar juntas num único arquivo ZIP no final do semestre.",
+          "b) Enviar por e-mail para a diretoria do SENAI.",
+          "c) Entregar tudo impresso no dia da prova teórica.",
+          "d) A entrega é progressiva. Existe uma tarefa específica aberta para cada Missão no Google Sala de Aula, além de uma aba extra, permitindo que você anexe e submeta as provas conforme for terminando no seu tempo livre."
+        ],
+        "resposta_correta": "d) A entrega é progressiva. Existe uma tarefa específica aberta para cada Missão no Google Sala de Aula, além de uma aba extra, permitindo que você anexe e submeta as provas conforme for terminando no seu tempo livre."
+      }
+    ]
+  }
+}

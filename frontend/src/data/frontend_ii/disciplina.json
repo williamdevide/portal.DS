@@ -145,7 +145,7 @@
     {
       "semana_numero": "19",
       "titulo": "Tema Extra: PWAs e Acessibilidade (ARIA)",
-      "situacao_aprendizagem": "Extra",
+      "situacao_aprendizagem": "SA3",
       "contexto": "Semana dedicada à exploração de conhecimentos de ponta sobre Progressive Web Apps (Service workers, cache API) e acessibilidade avançada, sem impacto na nota formal.",
       "duracao": "3h 45min (5 aulas)"
     },

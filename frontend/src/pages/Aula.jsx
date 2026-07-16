@@ -8,15 +8,54 @@ import {
 import { jsPDF } from 'jspdf';
 import PDFViewer from '../components/PDFViewer';
 
-// Helper simples para renderizar negrito de Markdown básico (**texto**) em elementos JSX
+// Helper para identificar domínios e URLs de texto e convertê-los em links clicáveis <a>
+const makeLinksClickable = (text) => {
+  if (!text) return '';
+  
+  // Regex para identificar domínios populares do material de dados e URLs completas
+  const regex = /((?:https?:\/\/)?(?:[a-zA-Z0-9-]+\.)+(?:com|io|com\.br|net|org)(?:\/[^\s)]*)?)/g;
+  const parts = text.split(regex);
+  
+  return parts.map((part, index) => {
+    // A cada índice ímpar, temos a URL identificada no split
+    if (index % 2 !== 0) {
+      let cleanUrl = part;
+      let ending = '';
+      
+      // Remove pontuações finais capturadas se a URL estiver no final da frase
+      if (part.endsWith('.') || part.endsWith(',') || part.endsWith('!') || part.endsWith('?')) {
+        cleanUrl = part.slice(0, -1);
+        ending = part.slice(-1);
+      }
+      
+      const href = cleanUrl.startsWith('http') ? cleanUrl : `https://${cleanUrl}`;
+      return (
+        <React.Fragment key={index}>
+          <a 
+            href={href} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-custom-accent hover:underline font-bold transition-all"
+          >
+            {cleanUrl}
+          </a>
+          {ending}
+        </React.Fragment>
+      );
+    }
+    return part;
+  });
+};
+
+// Helper simples para renderizar negrito de Markdown básico (**texto**) e URLs em elementos JSX
 const renderMarkdown = (text) => {
   if (!text) return '';
   const parts = text.split('**');
   return parts.map((part, index) => {
     if (index % 2 !== 0) {
-      return <strong key={index} className="font-bold text-custom-text">{part}</strong>;
+      return <strong key={index} className="font-bold text-custom-text">{makeLinksClickable(part)}</strong>;
     }
-    return part;
+    return makeLinksClickable(part);
   });
 };
 
@@ -89,6 +128,15 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
       **[William Devidé]:** Fala, Dev! Podcast da semana 5. É o grande momento de traduzir nossas caixinhas visuais do draw.db em comandos SQL DDL físicos no servidor. 
       Exploramos a Linguagem de Definição de Dados (DDL) com seus pilares de criação e destruição estrutural: CREATE para erguer bancos e tabelas, ALTER para modificar colunas e DROP para demolir estruturas irreversivelmente.
       Também discutimos as constraints essenciais como PRIMARY KEY, NOT NULL e AUTO_INCREMENT para blindar a integridade física do nosso banco de dados. Parabéns pelo kickoff do Projeto 1! Vamos ver os scripts rodando em milissegundos no console SQL!`;
+    }
+
+    if (lowerName.includes("semanaextra") || lowerName.includes("extra")) {
+      return `🎙️ **Resumo sobre o Podcast - Conteúdo Extra: Desafios Extras e Gamificação**
+      
+      **[William Devidé]:** Fala, Dev! Chegamos ao nosso conteúdo extra do curso. Se você está aqui, é porque você tem sangue no olho e não se contenta com a média!
+      Neste podcast especial, nós vamos discutir o poder das plataformas gamificadas de programação e os sandboxes em nuvem. Falei sobre como o SQL Murder Mystery desafia sua capacidade analítica de detetive, forçando você a cruzar pistas usando múltiplos JOINs sob pressão.
+      Também comentamos sobre o Beecrowd, que é uma das plataformas mais utilizadas pelas empresas para avaliar desenvolvedores em testes técnicos, e por que a aprovação automática no judge é a sua medalha de honra. E no bloco de engenharia visual, abordamos como o dbdiagram.io gera esquemas relacionais direto do código declarativo, e como o DB Fiddle salva sua vida rodando queries na nuvem sem precisar de setup local.
+      Não pare agora, continue resolvendo os problemas, tirando os prints e submetendo suas missões extras no Google Sala de Aula. Mostre sua autonomia e nos vemos no topo do ranking! Bora pra cima!`;
     }
 
     // Fallback genérico para as próximas semanas
@@ -567,14 +615,18 @@ export default function Aula() {
 
     const loadData = async () => {
       try {
-        const numSemanaStr = numeroSemana.toString().padStart(2, '0');
+        const isExtra = semanaId.toLowerCase() === 'extra';
+        const numSemanaStr = isExtra
+          ? 'extra'
+          : numeroSemana.toString().padStart(2, '0');
         const discData = await import(`../data/${disciplinaSlug}/disciplina.json`);
         const aulaData = await import(`../data/${disciplinaSlug}/semana${numSemanaStr}.json`);
 
         if (active) {
           setDisciplina(discData.default || discData);
           setCronograma(discData.default?.cronograma || discData.cronograma || []);
-          setTotalSemanas(discData.default?.cronograma?.length || discData.cronograma?.length || 20);
+          const cronogramaFiltrado = (discData.default?.cronograma || discData.cronograma || []).filter(s => s.semana_numero.toString().toLowerCase() !== 'extra');
+          setTotalSemanas(cronogramaFiltrado.length || 20);
           setAula(aulaData.default || aulaData);
           setLoading(false);
         }
@@ -614,8 +666,9 @@ export default function Aula() {
     );
   }
 
-  const temAnterior = numeroSemana > 1;
-  const temProxima = numeroSemana < totalSemanas;
+  const isExtra = semanaId.toLowerCase() === 'extra';
+  const temAnterior = isExtra ? true : numeroSemana > 1;
+  const temProxima = isExtra ? false : (numeroSemana < 20 || (numeroSemana === 20 && cronograma.some(s => s.semana_numero.toString().toLowerCase() === 'extra')));
   const temDadosCompletos = aula && !!aula.bloco_A;
 
   const renderRecursoVisualDataDriven = (recursoVisual) => {
@@ -1314,7 +1367,7 @@ export default function Aula() {
                 <span className="flex-shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-custom-accent/10 border border-custom-accent/25 text-custom-accent text-xs font-bold font-mono">
                   {i + 1}
                 </span>
-                <span className="flex-1 text-justify sm:text-left">{line.replace(/^\d+\.?\s*/, '')}</span>
+                <span className="flex-1 text-justify sm:text-left">{renderMarkdown(line.replace(/^\d+\.?\s*/, ''))}</span>
               </p>
             ))}
           </div>
@@ -1740,6 +1793,7 @@ export default function Aula() {
             if (sa.includes('SA2')) saColor = 'text-purple-500 bg-purple-500/15 border-purple-500/25';
             else if (sa.includes('SA3')) saColor = 'text-amber-500 bg-amber-500/15 border-amber-500/25';
             else if (sa.includes('Entrevista') || sa.includes('Recuperação')) saColor = 'text-emerald-500 bg-emerald-500/15 border-emerald-500/25';
+            else if (sa.includes('Extra') || sa.includes('extra')) saColor = 'text-blue-700 bg-blue-100 border-blue-200 dark:text-blue-300 dark:bg-blue-500/15 dark:border-blue-500/30';
 
             return (
               <div key={sa} className="space-y-2">
@@ -1748,14 +1802,15 @@ export default function Aula() {
                 </span>
                 <div className="space-y-1">
                   {semanas.map((sem) => {
-                    const isAtivo = parseInt(sem.semana_numero, 10) === numeroSemana;
-                    const temConteudo = parseInt(sem.semana_numero, 10) === 1 || !!sem.bloco_A;
+                    const isAtivo = sem.semana_numero.toString().toLowerCase() === semanaId.toLowerCase();
+                    const temConteudo = parseInt(sem.semana_numero, 10) === 1 || sem.semana_numero.toString().toLowerCase() === 'extra' || !!sem.bloco_A;
 
                     return (
                       <button
                         key={sem.semana_numero}
                         onClick={() => {
-                          navigate(`/disciplina/${disciplinaSlug}/semana/${parseInt(sem.semana_numero, 10)}`);
+                          const destSemana = isNaN(parseInt(sem.semana_numero, 10)) ? sem.semana_numero.toString().toLowerCase() : parseInt(sem.semana_numero, 10);
+                          navigate(`/disciplina/${disciplinaSlug}/semana/${destSemana}`);
                           if (window.innerWidth < 1024) {
                             setSidebarOpen(false);
                           }
@@ -1936,10 +1991,17 @@ export default function Aula() {
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             {/* Texto Principal */}
             <div className="lg:col-span-8 animate-fade-in space-y-6">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-custom-accent/15 px-3.5 py-1 text-xs font-bold text-custom-accent border border-custom-accent/25 font-mono">
-                <Terminal className="h-3.5 w-3.5" />
-                Semana {aula.semana_numero} de {totalSemanas}
-              </span>
+              {isExtra ? (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30 px-3.5 py-1 text-xs font-bold font-mono">
+                  <Terminal className="h-3.5 w-3.5" />
+                  Conteúdo Extra
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-custom-accent/15 px-3.5 py-1 text-xs font-bold text-custom-accent border border-custom-accent/25 font-mono">
+                  <Terminal className="h-3.5 w-3.5" />
+                  Semana {aula.semana_numero} de {totalSemanas}
+                </span>
+              )}
               
               <h1 className="text-[2.25em] sm:text-[3em] lg:text-[3.75em] font-black tracking-tight font-sans text-custom-text leading-none bg-clip-text text-transparent bg-gradient-to-r from-custom-text via-custom-text to-custom-accent/80">
                 {aula.titulo}
@@ -2304,7 +2366,13 @@ export default function Aula() {
         <div className="flex items-center justify-between border-t border-custom-border pt-8">
           {temAnterior ? (
             <button
-              onClick={() => navigate(`/disciplina/${disciplinaSlug}/semana/${numeroSemana - 1}`)}
+              onClick={() => {
+                if (isExtra) {
+                  navigate(`/disciplina/${disciplinaSlug}/semana/20`);
+                } else {
+                  navigate(`/disciplina/${disciplinaSlug}/semana/${numeroSemana - 1}`);
+                }
+              }}
               className="inline-flex items-center gap-2 rounded-xl border border-custom-border bg-custom-card hover:bg-custom-bg px-4 py-2.5 text-sm font-bold text-custom-muted hover:text-custom-text transition-all duration-300 shadow-sm focus:outline-none cursor-pointer"
             >
               <ChevronLeft className="h-4.5 w-4.5" />
@@ -2316,7 +2384,13 @@ export default function Aula() {
 
           {temProxima ? (
             <button
-              onClick={() => navigate(`/disciplina/${disciplinaSlug}/semana/${numeroSemana + 1}`)}
+              onClick={() => {
+                if (numeroSemana === 20) {
+                  navigate(`/disciplina/${disciplinaSlug}/semana/extra`);
+                } else {
+                  navigate(`/disciplina/${disciplinaSlug}/semana/${numeroSemana + 1}`);
+                }
+              }}
               className="inline-flex items-center gap-2 rounded-xl bg-custom-accent bg-custom-accent-hover px-5 py-2.5 text-sm font-bold text-white transition-all duration-300 shadow-sm focus:outline-none cursor-pointer"
             >
               Próxima Semana

@@ -324,3 +324,29 @@ no final da pagina da aula, onde temos a chamada para nosso quizz as fontes aind
 ```text
 /grill-me /goal como só enviei conteudo para a semana 1 de frontend II, quero que esvazie o conteudo das semanas 2 a 20, pode deixar o card, pois você já tem o contexto das aulas.
 ```
+
+### Prompt 3
+```text
+/grill-me /goal atualize nosso repositorio no github
+```
+
+### Prompt 4
+```text
+/grill-me /goal nos cards de criterio os shapes de desejavel estão com cinza de fundo, altere para um azul mais claro que a fone para facilitar a leitura. alem disso, em banco de dados foi criado o json de um conteudo extra, vem depois da aula 20. leia o json e prepare o card e a pagina da aula.
+```
+
+### Prompt 5
+```text
+/grill-me /goal o shape de conteudo extra esta com letras em azul e fundo cinza, mude o fundo para um azul mais claro, para facilitar a leitura. fora isso, na pagina do conteudo extra quero que os links apareçam como link clicaveis
+```
+
+### Prompt 6
+```text
+/grill-me /goal nas paginas das aulas agora esta contabilizando 21 semanas. quero que continue contabilizando como 20 (01 de 20, 02 de 20) o conteudo extra é extra, não entra na contagem. alem disso o fundo do shape de conteudo extra continua cinza escuro e confunde com o azul da letra, deixe um azul mais claro que a letra
+```
+
+### Prompt 7
+```text
+/grill-me /goal atualize nosso repositorio no github
+```
+
