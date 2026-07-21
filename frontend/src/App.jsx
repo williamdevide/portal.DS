@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Disciplina from './pages/Disciplina';
 import Aula from './pages/Aula';
+import InformacoesUteis from './pages/InformacoesUteis';
 
 export default function App() {
   // Inicialização do tema híbrido lendo o localStorage ou preferência do sistema
@@ -47,6 +48,9 @@ export default function App() {
             <Route path="/disciplina/:disciplinaSlug" element={<Disciplina />} />
             {/* Template dinâmico para a aula da semana */}
             <Route path="/disciplina/:disciplinaSlug/semana/:semanaId" element={<Aula />} />
+            
+            {/* Rota para informações úteis do semestre */}
+            <Route path="/informacoes-uteis" element={<InformacoesUteis />} />
             
             {/* Fallback de rotas - Redireciona para Home */}
             <Route path="*" element={<Navigate to="/" replace />} />

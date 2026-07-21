@@ -1,6 +1,89 @@
 {
   "semana_numero": "05",
-  "titulo": "Semana 05: Design Responsivo e Semântica",
+  "titulo": "Missão 05: Design Responsivo e Estrutura Semântica - A Planta Baixa",
   "situacao_aprendizagem": "SA1",
-  "contexto_aluno": "Pausa na lógica pura para o refinamento visual. Compreensão da estruturação HTML semântica exigida pelo mercado e adaptação de interfaces via Media Queries."
+  "contexto_aluno": "Fala, Dev! As aplicações que você construiu até aqui já são interativas e até possuem memória. Estão incríveis! Mas... elas foram pensadas apenas para a tela do seu computador. E no mundo real, onde os usuários acessam sistemas via celulares, tablets e monitores gigantes? Nesta semana, você aprenderá a arte da adaptação. Vamos consertar a nossa 'planta baixa' trocando as divs genéricas pelo poder do HTML Semântico e usar regras condicionais de CSS para construir layouts que se adaptam a qualquer dispositivo. Bem-vindo ao mundo do Design Responsivo e Mobile First!",
+  "foco": "Domínio do HTML Semântico (<header>, <main>, <footer>), a tag <meta name=\"viewport\">, as Media Queries (@media), transição de Flexbox e a leitura de tela com o objeto window (innerWidth, scrollY e scrollTo).",
+  "pratica": "Prática guiada criando uma quebra de layout dinâmica na tela. Em laboratório: Refatoração Semântica (Atv 1), Menu Hambúrguer Avançado com toggle (Atv 2) e o Mini-Projeto em Duplas construindo uma Galeria de Imagens Interativa (Atv 3), totalizando a entrega dos 9 arquivos obrigatórios.",
+  "bloco_A": {
+    "titulo": "A Fundação Semântica e a Chave de Ignição do Mobile",
+    "conteudo": "Neste bloco, vamos entender que um bom design nasce de uma base de código bem estruturada. Você descobrirá a diferença vital entre usar <div> para tudo e o HTML Semântico, impactando diretamente no SEO e na acessibilidade. Além disso, apresentaremos a 'chave de ignição' do mobile: a tag viewport. Na sequência, vamos aplicar a estratégia Mobile First com Flexbox e Media Queries, além de usar o JavaScript para medir o tamanho da tela em tempo real.",
+    "atividade_pratica": {
+      "nome": "Prática Guiada: Layout e Viewport Dinâmico",
+      "instrucoes": "Em conjunto com o instrutor, você vai codar uma estrutura usando Flexbox em coluna (Mobile First). Aplicaremos a regra condicional '@media (min-width: 768px)' para mudar os blocos para linha em telas maiores. No script.js, criaremos um escutador de evento 'window.addEventListener(\"resize\")' que irá capturar o comando 'window.innerWidth' e exibir a largura exata da tela em pixels enquanto redimensionamos o navegador."
+    }
+  },
+  "bloco_B": {
+    "titulo": "O Laboratório Responsivo (Desafio dos 9 Arquivos)",
+    "conteudo": "Hora de aplicar a teoria em cenários de uso do mercado. O laboratório de hoje é composto por 3 atividades sequenciais onde você deve extrair o máximo do HTML, CSS e JS, resultando na entrega metodológica e rigorosa de 9 arquivos finais. Incluiremos também uma Pílula de Conhecimento rápida sobre o controle de rolagem (scroll) do navegador.",
+    "atividade_pratica": {
+      "nome": "Tríade Prática: Planta, Menu e Galeria",
+      "instrucoes": "Atividade 1 (A Planta Semântica): Refatorar um código 'sujo' substituindo divs genéricas pelas tags semânticas corretas (<header>, <main>, etc). Atividade 2 (Menu Hambúrguer): Criar a navegação mobile usando toggle do JS associado ao CSS. Atividade 3 (Galeria em Duplas): Aplicar <figure> e <figcaption> para estruturar imagens que se empilham no celular e viram grade no PC, além de implementar um botão 'Voltar ao Topo' usando as propriedades 'window.scrollY' e 'window.scrollTo'."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-Semana05.pdf",
+    "resumo_audio": "PFE2-Podcast-Semana05 - HTML_semântico_e_design_responsivo_mobile_first.m4a",
+    "videos_correlacionados": [
+      "PFE2-Video02-Design_Responsivo.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "PFE2-Imagem07-Guia_de_Design_Responsivo_Semântico.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Pronto para testar se a sua fundação está sólida o suficiente para o mundo mobile? Resolva este quiz rápido e garanta os conceitos-chave de responsividade e eventos de janela!",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a tag, chamada carinhosamente de 'chave de ignição', que deve estar no <head> do HTML para que o navegador respeite a responsividade em dispositivos móveis?",
+        "opcoes": [
+          "a) <link rel=\"stylesheet\" href=\"mobile.css\">",
+          "b) <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+          "c) <script src=\"mobile.js\"></script>",
+          "d) <meta name=\"responsive\" content=\"true\">"
+        ],
+        "resposta_correta": "b) <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
+      },
+      {
+        "pergunta": "Por que o mercado exige a substituição de <div> genéricas pelo HTML Semântico (como <header>, <main> e <section>)?",
+        "opcoes": [
+          "a) Porque o CSS e o JavaScript param de funcionar se o site tiver muitas divs.",
+          "b) Porque melhora drasticamente a acessibilidade (leitores de tela) e o SEO (busca do Google).",
+          "c) Porque diminui o tamanho das imagens do site e economiza banco de dados.",
+          "d) Porque o HTML Semântico já vem com as cores e margens configuradas por padrão."
+        ],
+        "resposta_correta": "b) Porque melhora drasticamente a acessibilidade (leitores de tela) e o SEO (busca do Google)."
+      },
+      {
+        "pergunta": "No CSS, qual regra usamos para estabelecer estilos condicionais que só se ativam a partir de um tamanho de tela específico (como a transição da abordagem Mobile First para Desktop)?",
+        "opcoes": [
+          "a) @media (min-width: 768px)",
+          "b) display: flex;",
+          "c) @import 'desktop.css';",
+          "d) document.querySelector('@tela')"
+        ],
+        "resposta_correta": "a) @media (min-width: 768px)"
+      },
+      {
+        "pergunta": "Como capturamos em JavaScript a informação de quantos pixels a tela foi rolada para baixo (essencial para mostrar o botão 'Voltar ao Topo')?",
+        "opcoes": [
+          "a) window.innerWidth",
+          "b) document.body.height",
+          "c) window.scrollY",
+          "d) window.scrollTo()"
+        ],
+        "resposta_correta": "c) window.scrollY"
+      },
+      {
+        "pergunta": "Qual é a exigência exata de entregáveis para as atividades práticas do Bloco B nesta semana, seguindo a nova metodologia da disciplina?",
+        "opcoes": [
+          "a) Apenas 1 arquivo gigante contendo HTML, CSS e JS juntos.",
+          "b) Exatamente 9 arquivos (sendo 1 HTML, 1 CSS e 1 JS para cada uma das 3 atividades práticas).",
+          "c) Um link para o GitHub apenas do Mini-Projeto Final.",
+          "d) 3 arquivos de imagens capturadas do projeto rodando."
+        ],
+        "resposta_correta": "b) Exatamente 9 arquivos (sendo 1 HTML, 1 CSS e 1 JS para cada uma das 3 atividades práticas)."
+      }
+    ]
+  }
 }

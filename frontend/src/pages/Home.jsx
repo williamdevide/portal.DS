@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Database, ArrowRight, Code, Terminal, Brain } from 'lucide-react';
+import { Database, ArrowRight, Code, Terminal, Brain, Calendar } from 'lucide-react';
 import informacoes_gerais from '../data/informacoes_gerais.json';
 import listaDisciplinas from '../data/disciplinas.json';
 
@@ -202,19 +202,6 @@ export default function Home() {
           )}
 
           {/* Placeholders para futuras disciplinas */}
-          <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-dashed border-custom-border text-custom-muted">
-                <Brain className="h-6 w-6" />
-              </div>
-              <h3 className="text-lg font-bold text-custom-muted font-sans">
-                Projeto de Software III
-              </h3>
-              <p className="mt-2 text-xs text-custom-muted max-w-[220px] font-sans">
-                Módulo reservado para o próximo semestre.
-              </p>
-            </div>
-          </div>
 
           <div className="flex flex-col justify-between rounded-2xl border border-dashed border-custom-border bg-custom-card/40 p-6 opacity-60">
             <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -271,6 +258,40 @@ export default function Home() {
               </p>
             </div>
           </div>          
+        </div>
+      </section>
+
+      {/* Seção de Informações Úteis */}
+      <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-custom-border bg-custom-card/50 p-8 sm:p-10 relative overflow-hidden backdrop-blur-md transition-all duration-300 hover:shadow-xl hover:border-custom-accent/30 group">
+          <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-custom-accent/5 blur-3xl pointer-events-none group-hover:bg-custom-accent/10 transition-colors" />
+          
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div className="space-y-4 max-w-3xl">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30 px-3.5 py-1 text-xs font-bold font-mono">
+                <Calendar className="h-3.5 w-3.5 text-blue-500" />
+                Secretaria & Calendário
+              </span>
+              
+              <h2 className="text-3xl font-extrabold tracking-tight font-sans text-custom-text">
+                Central de Informações Úteis
+              </h2>
+              
+              <p className="text-base text-custom-muted font-sans leading-relaxed">
+                Acesse a agenda semanal de aulas, o calendário letivo oficial do semestre do SENAI Ourinhos, links úteis de ferramentas de desenvolvimento e comunicados pedagógicos unificados.
+              </p>
+            </div>
+            
+            <div className="w-full md:w-auto flex-shrink-0">
+              <Link 
+                to="/informacoes-uteis"
+                className="inline-flex w-full md:w-auto items-center justify-center gap-2 rounded-xl bg-custom-accent hover:bg-custom-accent/90 text-white px-7 py-4 text-sm font-bold shadow-lg shadow-custom-accent/20 transition-all hover:translate-x-0.5 active:scale-[0.99] cursor-pointer"
+              >
+                <span>Acessar Informações</span>
+                <ArrowRight className="h-4.5 w-4.5" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>

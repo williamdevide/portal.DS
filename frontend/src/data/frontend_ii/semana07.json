@@ -1,6 +1,67 @@
 {
   "semana_numero": "07",
-  "titulo": "Semana 07: Interfaces Avançadas (Drag and Drop, Câmera e Canvas)",
+  "titulo": "Semana 07: Interfaces Avançadas (Drag & Drop, Câmera e Canvas)",
   "situacao_aprendizagem": "SA1",
-  "contexto_aluno": "Fechamento da SA1 explorando o potencial de hardware e APIs nativas do navegador para experiências imersivas."
+  "contexto_aluno": "Esta semana coroa o fim do nosso primeiro módulo de Fundamentos do JavaScript Interativo. As aplicações de vocês já têm memória, são responsivas e buscam dados do mundo exterior, mas a interação ainda se limita a cliques de botões e digitação. O passo final no front-end é quebrar a barreira do navegador: acessar o hardware do usuário (como a webcam) e implementar interações táteis e fluidas, como arrastar e soltar elementos pela tela!",
+  "foco": "O domínio de três grandes APIs Nativas do navegador: A API de Drag and Drop (eventos dragstart, dragover, drop), a MediaDevices API (getUserMedia) e a manipulação da tag <canvas> para desenho e captura de imagens em tempo real.",
+  "pratica": "Prática guiada construindo um Classificador Minimalista, seguida pelos 3 laboratórios finais do Desafio dos 9 Arquivos: Atividade Guiada (Reciclagem Visual com Validação), Atividade Individual (Espelho Mágico) e o Mini-Projeto em Duplas (Quadro Kanban com Avatar Dinâmico).",
+  "bloco_A": {
+    "titulo": "Além do Clique: Arrastando o DOM",
+    "conteudo": "Introdução à API de Drag and Drop nativa do HTML5 com JavaScript. Vamos explorar a mecânica do movimento arrastável manipulando os eventos de origem (dragstart) e os eventos de destino (dragover e drop). Entenderemos como cancelar o comportamento padrão de bloqueio do navegador e como usar a propriedade event.dataTransfer para transferir identificadores de forma invisível durante o arrasto.",
+    "atividade_pratica": {
+      "nome": "Prática Guiada: Classificador Reciclável e Atividade 1: Reciclagem Visual",
+      "instrucoes": "Na prática guiada, construiremos juntos a lógica base usando blocos de cores sólidas e uma lixeira geral. Em seguida, na Atividade 1 (laboratório), vocês vão evoluir esse código para lidar com imagens reais de recicláveis e adicionarão uma validação (if/else) no momento do 'drop' para garantir que o plástico só possa ser solto na lixeira vermelha."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa: Interação com Hardware e Canvas",
+    "conteudo": "Transição para o mundo físico. Aprenderemos a solicitar acesso assíncrono à webcam do usuário através do comando navigator.mediaDevices.getUserMedia e a transmitir o fluxo de vídeo direto para uma tag HTML. Em seguida, introduziremos a tag <canvas> e seu contexto 2D, utilizando o comando drawImage() para tirar 'fotografias' instantâneas capturando o frame exato do vídeo em reprodução.",
+    "atividade_pratica": {
+      "nome": "Mini-Projeto Final: Quadro Kanban com Avatar",
+      "instrucoes": "O ápice do módulo! Em duplas, vocês criarão um Quadro Kanban. A aplicação deverá ligar a câmera do usuário e, ao clicar em 'Criar Task', utilizará o Canvas para tirar uma foto do vídeo. O JavaScript criará um novo 'Card' contendo essa foto e ativará os eventos de Drag & Drop para que a tarefa possa ser arrastada entre as colunas 'To Do', 'Doing' e 'Done'. Finalize enviando os exatos 9 arquivos da semana!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-Semana07.pdf",
+    "resumo_audio": "PFE2-Podcast-Semana07 - Drag_and_Drop_e_Câmera_no_JavaScript.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "PFE2-Imagem09-Guia_de_Interfaces_Web_Avançadas.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Último teste da SA1! Vamos verificar se você domina a manipulação avançada de elementos na tela e o acesso a dispositivos de hardware.",
+    "perguntas": [
+      {
+        "pergunta": "Na API de Drag and Drop, qual comando é estritamente necessário dentro do evento 'dragover' para permitir que o navegador aceite que um item seja solto naquela área?",
+        "opcoes": [
+          "a) element.appendChild()",
+          "b) event.preventDefault()",
+          "c) event.dataTransfer.setData()",
+          "d) element.classList.add()"
+        ],
+        "resposta_correta": "b) event.preventDefault()"
+      },
+      {
+        "pergunta": "Qual é a instrução assíncrona moderna usada no JavaScript para solicitar acesso e capturar o fluxo de vídeo da webcam do usuário?",
+        "opcoes": [
+          "a) document.querySelector('video').play()",
+          "b) window.openCamera({video: true})",
+          "c) navigator.mediaDevices.getUserMedia({video: true})",
+          "d) fetch('https://camera.local')"
+        ],
+        "resposta_correta": "c) navigator.mediaDevices.getUserMedia({video: true})"
+      },
+      {
+        "pergunta": "A tag <canvas> é uma tela em branco. Qual ferramenta e método utilizamos no JavaScript para 'pintar' ou capturar uma foto exata vinda de um elemento de vídeo para dentro do canvas?",
+        "opcoes": [
+          "a) canvas.getContext('2d') em conjunto com o contexto.drawImage()",
+          "b) canvas.innerHTML = '<img src=video>'",
+          "c) canvas.style.backgroundImage = 'url(video)'",
+          "d) document.createElement('canvas-image')"
+        ],
+        "resposta_correta": "a) canvas.getContext('2d') em conjunto com o contexto.drawImage()"
+      }
+    ]
+  }
 }

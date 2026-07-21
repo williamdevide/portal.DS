@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight } from 'lucide-react';
+import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight, Lock } from 'lucide-react';
 import CriterioCard from '../components/CriterioCard';
 
 const obterSaBadgeClass = (situacao) => {
@@ -108,8 +108,44 @@ export default function Disciplina() {
         const critData = await import(`../data/${disciplinaSlug}/criterios.json`);
         const escData = await import(`../data/${disciplinaSlug}/escala.json`);
 
+        const cronograma = discData.default?.cronograma || discData.cronograma || [];
+        
+        // Checa dinamicamente quais semanas do cronograma possuem conteudo
+        const cronogramaComStatus = await Promise.all(
+          cronograma.map(async (sem) => {
+            const numSemStr = sem.semana_numero.toString().toLowerCase() === 'extra'
+              ? 'extra'
+              : parseInt(sem.semana_numero, 10).toString().padStart(2, '0');
+            try {
+              const semData = await import(`../data/${disciplinaSlug}/semana${numSemStr}.json`);
+              const dados = semData.default || semData;
+              const temConteudo = dados && 
+                                  !!dados.bloco_A && 
+                                  !!dados.bloco_A.titulo && 
+                                  dados.bloco_A.conteudo !== "Em breve." && 
+                                  dados.bloco_A.conteudo !== "Em breve" && 
+                                  dados.bloco_A.conteudo !== "A definir" &&
+                                  !dados.contexto_aluno?.includes("Conteúdo em desenvolvimento");
+              return {
+                ...sem,
+                temConteudo
+              };
+            } catch {
+              return {
+                ...sem,
+                temConteudo: false
+              };
+            }
+          })
+        );
+
+        const discAtualizado = {
+          ...(discData.default || discData),
+          cronograma: cronogramaComStatus
+        };
+
         if (active) {
-          setDisciplina(discData.default || discData);
+          setDisciplina(discAtualizado);
           setCriteriosMsep(critData.default || critData);
           setEscalaAutonomia(escData.default?.escala_autonomia || escData.escala_autonomia || []);
           setLoading(false);
@@ -141,7 +177,8 @@ export default function Disciplina() {
       setFocalStartRect(rect);
       setFocusedAula({
         ...aula,
-        ...(aulaDetalhes.default || aulaDetalhes)
+        ...(aulaDetalhes.default || aulaDetalhes),
+        temConteudo: aula.temConteudo
       });
     } catch (err) {
       console.error("Erro ao carregar detalhes da aula", err);
@@ -478,7 +515,8 @@ export default function Disciplina() {
                     </div>
 
                     <div className="my-auto">
-                      <h3 className="text-lg font-extrabold text-custom-text font-sans line-clamp-2">
+                      <h3 className="text-lg font-extrabold text-custom-text font-sans line-clamp-2 flex items-center gap-1.5">
+                        {!aula.temConteudo && <Lock className="h-4.5 w-4.5 text-custom-muted/50 flex-shrink-0" />}
                         {aula.titulo}
                       </h3>
                     </div>
@@ -606,13 +644,23 @@ export default function Disciplina() {
                           Voltar Frente
                         </button>
                         
-                        <Link 
-                          to={`/disciplina/${disciplinaSlug}/semana/${typeof focusedAula.semana_numero === 'number' || !isNaN(focusedAula.semana_numero) ? parseInt(focusedAula.semana_numero, 10) : focusedAula.semana_numero.toString().toLowerCase()}`}
-                          className="inline-flex items-center gap-2 rounded-xl bg-slate-900 text-white hover:bg-custom-accent px-5 py-3 text-xs font-bold shadow-md transition-all hover:translate-x-0.5"
-                        >
-                          Acessar Aula Completa
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
+                        {focusedAula.temConteudo ? (
+                          <Link 
+                            to={`/disciplina/${disciplinaSlug}/semana/${typeof focusedAula.semana_numero === 'number' || !isNaN(focusedAula.semana_numero) ? parseInt(focusedAula.semana_numero, 10) : focusedAula.semana_numero.toString().toLowerCase()}`}
+                            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 text-white hover:bg-custom-accent px-5 py-3 text-xs font-bold shadow-md transition-all hover:translate-x-0.5"
+                          >
+                            Acessar Aula Completa
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        ) : (
+                          <button 
+                            disabled
+                            className="inline-flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 px-5 py-3 text-xs font-bold shadow-inner cursor-not-allowed border border-custom-border"
+                          >
+                            <Lock className="h-3.5 w-3.5" />
+                            Aula Bloqueada
+                          </button>
+                        )}
                       </div>
 
                     </div>

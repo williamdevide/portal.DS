@@ -1,0 +1,67 @@
+{
+  "semana_numero": "Extra",
+  "titulo": "Módulo Contínuo: O Arsenal do Desenvolvedor e Prática Autônoma",
+  "situacao_aprendizagem": "Transversal (Todo o Semestre)",
+  "contexto_aluno": "O mercado de tecnologia não espera. A diferença entre um desenvolvedor júnior comum e um profissional de alto nível está no que ele faz com o seu tempo livre. Este módulo contínuo é o seu 'Arsenal do Desenvolvedor', criado para acabar com a ociosidade em sala. Sempre que terminar uma tarefa antes do tempo, você assumirá o protagonismo e mergulhará nestas missões de autoestudo para treinar lógica, isolar bugs, aplicar engenharia reversa e ganhar velocidade de codificação.",
+  "foco": "O domínio do autoestudo através de plataformas gamificadas de CSS (CSS Diner, Flexbox Froggy, Grid Garden), desafios de lógica JavaScript (Codewars), construção de interfaces do mundo real (Frontend Mentor), ambientes em nuvem para prototipação (CodePen, StackBlitz) e engenharia reversa de UI (uiverse.io).",
+  "pratica": "Kickoff com apresentação e setup inicial nas plataformas, seguido pela execução contínua de 4 Grandes Missões Autônomas: 'O Mestre dos Seletores', 'O Ninja da Lógica', 'O Construtor de Interfaces' e 'O Arquiteto de Componentes'.",
+  "bloco_A": {
+    "titulo": "O Arsenal do Desenvolvedor (Apresentação)",
+    "conteudo": "Apresentação detalhada de cada ferramenta e seu papel prático. Entenderemos como o CSS Diner e o Flexbox Froggy eliminam a dependência da 'tentativa e erro' no layout. Veremos como o Codewars treina a leitura de Clean Code e como o CodePen e o StackBlitz aceleram a depuração isolando bugs sem precisar de configurações pesadas na máquina local.",
+    "atividade_pratica": {
+      "nome": "Atividade Guiada: O Setup do Desenvolvedor",
+      "instrucoes": "Em seus navegadores, vocês salvarão a lista de links oficiais na barra de favoritos e criarão suas contas gratuitas nas plataformas (Codewars, Frontend Mentor, CodePen), vinculando-as preferencialmente ao GitHub para já começarem a registrar o histórico de evolução profissional de vocês."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa: As 4 Missões Autônomas",
+    "conteudo": "Simulação do tempo livre em sala. A regra é clara: terminou a tarefa do dia? Abra o Módulo Contínuo. O professor não entregará mais respostas prontas para travamentos, atuando apenas como mentor de troubleshooting para estimular o pensamento analítico (CS 2) e a autonomia plena (CS 4).",
+    "atividade_pratica": {
+      "nome": "Laboratório Autônomo e Reporte no AVA",
+      "instrucoes": "Escolha uma das 4 missões para executar: 1) Mestre dos Seletores (zerar os níveis de CSS). 2) Ninja da Lógica (resolver Katas no Codewars). 3) Construtor de Interfaces (isolar e criar um Card no CodePen). 4) Arquiteto de Componentes (copiar e customizar um componente do uiverse.io). Ao final da aula, reporte seu progresso no AVA utilizando Print Screens das telas finais, Links públicos (CodePen) ou enviando arquivos .zip com as customizações."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-ConteudoExtra.pdf",
+    "resumo_audio": "PFE2-Podcast-Conteúdo Extra - Como_sair_do_júnior_nos_intervalos.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "PFE2-Imagem10-Guia_Prático_para_Desenvolvedores_Front-End.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Verificação de Engajamento: Vamos testar se você absorveu a finalidade estratégica de cada ferramenta do nosso arsenal para direcionar corretamente o seu tempo de autoestudo!",
+    "perguntas": [
+      {
+        "pergunta": "Você está com dificuldades para centralizar itens e organizar o layout de uma tela, dependendo muito de 'tentativa e erro'. Qual plataforma gamificada é a ideal para treinar esse raciocínio espacial?",
+        "opcoes": [
+          "a) Codewars",
+          "b) Flexbox Froggy e Grid Garden",
+          "c) uiverse.io",
+          "d) StackBlitz"
+        ],
+        "resposta_correta": "b) Flexbox Froggy e Grid Garden"
+      },
+      {
+        "pergunta": "Qual é a principal vantagem de resolver os 'Katas' (desafios de código) na plataforma Codewars, além de testar a sua própria lógica em JavaScript?",
+        "opcoes": [
+          "a) Ganhar créditos em nuvem a cada código correto.",
+          "b) A plataforma desenha o HTML e CSS automaticamente para você.",
+          "c) Ter acesso às respostas de outros desenvolvedores para analisar diferentes abordagens e treinar o 'Clean Code'.",
+          "d) Exportar o código escrito diretamente para um aplicativo mobile."
+        ],
+        "resposta_correta": "c) Ter acesso às respostas de outros desenvolvedores para analisar diferentes abordagens e treinar o 'Clean Code'."
+      },
+      {
+        "pergunta": "Se um componente (como um botão) parou de funcionar e você quer isolar o seu código (HTML, CSS e JS) para depurar rapidamente sem usar a estrutura pesada do seu computador, qual ambiente de nuvem você deve abrir?",
+        "opcoes": [
+          "a) CSS Diner",
+          "b) Frontend Mentor",
+          "c) VS Code Offline",
+          "d) CodePen"
+        ],
+        "resposta_correta": "d) CodePen"
+      }
+    ]
+  }
+}

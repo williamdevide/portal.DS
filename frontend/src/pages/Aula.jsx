@@ -83,7 +83,7 @@ const getSlideBgImage = (blocoTipo, index) => {
   }
 };
 // Componente auxiliar para reproduzir áudio e exibir resumo sobre o podcast com toggle
-function AudioPlayerWithTranscription({ audioFile, titulo }) {
+function AudioPlayerWithTranscription({ audioFile, titulo, disciplinaSlug }) {
   const [showTranscript, setShowTranscript] = useState(false);
 
   // Texto de resumo simulado explicativo baseado no nome do arquivo
@@ -91,6 +91,13 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
     const lowerName = fileName.toLowerCase();
     
     if (lowerName.includes("semana01")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Semana 01: JavaScript e a Manipulação do DOM**
+        
+        **[William Devidé]:** Fala, Dev! Seja muito bem-vindo ao podcast oficial da nossa primeira semana em Programação Front-end II. Hoje iniciamos a nossa jornada saindo do HTML e CSS estáticos e entrando no mundo interativo do JavaScript!
+        Nesta aula, desmistificamos o DOM (Document Object Model) e vimos como o JavaScript atua como o 'sistema nervoso' das nossas páginas web.
+        Trabalhamos na prática com a captura de inputs, alteração dinâmica de conteúdos e o clássico classList.toggle para alternar temas visuais como o Modo Noturno. Esse é o ponto de partida do nosso projeto integrador, o SENAI Hub. Bons estudos e nos vemos no console do navegador!`;
+      }
       return `🎙️ **Resumo sobre o Podcast - Semana 01: Primeiros Passos com MySQL e SGBDs**
       
       **[William Devidé]:** Fala, Dev! Seja muito bem-vindo ao podcast oficial da nossa primeira semana na Unidade Curricular de Banco de Dados. Hoje nós iniciamos a nossa jornada discutindo por que bancos de dados são o verdadeiro coração de qualquer aplicação moderna. 
@@ -99,6 +106,13 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
     }
     
     if (lowerName.includes("semana02")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Semana 02: Do Código Manual ao JavaScript Moderno (ES6+)**
+        
+        **[William Devidé]:** Fala, Dev! No podcast da semana 2, discutimos a transição do JavaScript antigo para o ES6+. Abordamos a segurança no escopo de variáveis com let e const, e o poder de síntese das Arrow Functions e Template Literals.
+        No nosso laboratório de listas dinâmicas, aprendemos a fazer o JavaScript gerar estruturas HTML automaticamente a partir de arrays de objetos.
+        Usamos o método .map() para transformar arrays em cards e .filter() para filtrar tarefas por status. Isso nos deu a escalabilidade necessária para construir o aplicativo Taskflow do SENAI Hub. Mãos à obra!`;
+      }
       return `🎙️ **Resumo sobre o Podcast - Semana 02: Bancos Relacionais e a Porta 3306**
       
       **[William Devidé]:** Fala, Dev! No podcast de hoje, discutimos a 'Guerra Fria' dos modelos de banco de dados: Relacional (SQL) versus Não-Relacional (NoSQL). De um lado, o rigor inquebrável das tabelas e a segurança transacional ACID; de outro, a velocidade insana e a flexibilidade documental dos bancos NoSQL para Big Data.
@@ -107,6 +121,12 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
     }
     
     if (lowerName.includes("semana03")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Semana 03: Formulários Inteligentes e Cálculos de Interatividade**
+        
+        **[William Devidé]:** Fala, Dev! Podcast da semana 3 no ar, e hoje focamos na validação inteligente de formulários. A experiência do usuário começa na prevenção de erros, e o JavaScript é fundamental para validar dados no lado do cliente antes de enviar para o servidor.
+        Exploramos como escutar eventos de input e submit, prevenindo o comportamento padrão do navegador com event.preventDefault() para realizar cálculos dinâmicos e feedbacks instantâneos na tela. Bora deixar esses formulários blindados!`;
+      }
       return `🎙️ **Resumo sobre o Podcast - Semana 03: A Planta-Baixa do Banco de Dados**
       
       **[William Devidé]:** Fala, Dev! Bem-vindo ao podcast da semana 3. Hoje o assunto é projeto e modelagem. Ninguém sobe um prédio sem planta, e no banco de dados não é diferente. 
@@ -115,6 +135,12 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
     }
 
     if (lowerName.includes("semana04")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Semana 04: Memória do Navegador (Web Storage)**
+        
+        **[William Devidé]:** Fala, Dev! No podcast da semana 4, conversamos sobre como dar memória persistente às nossas aplicações utilizando as APIs nativas de Web Storage: LocalStorage e SessionStorage.
+        Vimos que o front-end não precisa esquecer tudo ao atualizar a aba. Aprendemos a persistir strings e objetos estruturados através de conversões com JSON.stringify() e JSON.parse(), permitindo salvar listas de tarefas de forma definitiva no navegador do usuário. Um salto gigante para a autonomia do app!`;
+      }
       return `🎙️ **Resumo sobre o Podcast - Semana 04: Normalização de Dados contra o Efeito Dominó**
       
       **[William Devidé]:** Fala, Dev! Podcast da semana 4 no ar, e hoje o assunto é cirúrgico: a Normalização de Banco de Dados. Discutimos como evitar redundâncias e anomalias de atualização que causam o 'Efeito Dominó do Caos' em grandes sistemas.
@@ -123,6 +149,12 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
     }
 
     if (lowerName.includes("semana05")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Semana 05: Design Responsivo, Semântica e Acessibilidade**
+        
+        **[William Devidé]:** Fala, Dev! Podcast da semana 5. Fizemos uma pausa nas lógicas puras de script para focar na engenharia e refinamento visual de interfaces.
+        Discutimos a estruturação semântica do HTML5 exigida pelo mercado e a importância de criar designs totalmente responsivos usando as Media Queries do CSS de forma organizada. Uma bela interface não é nada sem adaptabilidade e acessibilidade para todos os dispositivos. Vamos caprichar nos layouts!`;
+      }
       return `🎙️ **Resumo sobre o Podcast - Semana 05: Do Diagrama ao Código Real com DDL**
       
       **[William Devidé]:** Fala, Dev! Podcast da semana 5. É o grande momento de traduzir nossas caixinhas visuais do draw.db em comandos SQL DDL físicos no servidor. 
@@ -130,7 +162,34 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
       Também discutimos as constraints essenciais como PRIMARY KEY, NOT NULL e AUTO_INCREMENT para blindar a integridade física do nosso banco de dados. Parabéns pelo kickoff do Projeto 1! Vamos ver os scripts rodando em milissegundos no console SQL!`;
     }
 
+    if (lowerName.includes("semana06")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Semana 06: De Interfaces Estáticas a Sistemas Dinâmicos (Fetch API)**
+        
+        **[William Devidé]:** Fala, Dev! Chegamos à semana 6 com um marco decisivo: a quebra da bolha local! Aprendemos a comunicar nossa aplicação com servidores externos na internet usando a Fetch API.
+        Discutimos a diferença crucial entre processos síncronos e assíncronos, o tratamento de promessas com Promises (.then e .catch) e a legibilidade trazida por async/await. Na prática, construímos consultas de CEP e enviamos dados via POST para salvar contatos na nuvem. Agora suas aplicações estão conectadas ao mundo real!`;
+      }
+    }
+
+    if (lowerName.includes("semana07")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Semana 07: Drag & Drop, Câmera e Canvas no JavaScript**
+        
+        **[William Devidé]:** Fala, Dev! No podcast da semana 7, celebramos o fechamento do nosso primeiro módulo de JavaScript Interativo explorando recursos de hardware e interações ricas.
+        Entendemos a mecânica de arrastar e soltar elementos com a Drag & Drop API e como solicitar acesso à webcam do usuário com getUserMedia.
+        Unimos esses fluxos à manipulação da tag Canvas para capturar imagens em tempo real e montamos um Quadro Kanban dinâmico integrado com fotos reais do usuário. Parabéns pela conclusão desta etapa pedagógica, vocês mandaram muito bem!`;
+      }
+    }
+
     if (lowerName.includes("semanaextra") || lowerName.includes("extra")) {
+      if (disciplinaSlug === 'frontend_ii') {
+        return `🎙️ **Resumo sobre o Podcast - Conteúdo Extra: Desafios de Front-end e Gamificação**
+        
+        **[William Devidé]:** Fala, Dev! Chegamos ao nosso conteúdo extra do curso. Se você está aqui, é porque você tem sangue no olho e não se contenta com a média!
+        Neste podcast especial, nós vamos discutir o poder de praticar front-end de forma dinâmica. Falei sobre como os desafios gamificados como Flexbox Froggy e CSS Battle impulsionam o seu raciocínio lógico e velocidade de desenvolvimento.
+        Também abordamos plataformas de sandbox online, como o CodePen e o StackBlitz, que te permitem criar protótipos em frações de segundos e compartilhar suas ideias com o mundo sem complicação de setups locais. Por fim, falamos sobre como os desafios estruturados do Frontend Mentor ajudam a lapidar a fidelidade visual dos seus componentes diante de layouts de mercado.
+        Não pare agora, continue resolvendo os problemas, tirando os prints e submetendo suas missões extras no Google Sala de Aula. Mostre sua autonomia e nos vemos no topo do ranking! Bora pra cima!`;
+      }
       return `🎙️ **Resumo sobre o Podcast - Conteúdo Extra: Desafios Extras e Gamificação**
       
       **[William Devidé]:** Fala, Dev! Chegamos ao nosso conteúdo extra do curso. Se você está aqui, é porque você tem sangue no olho e não se contenta com a média!
@@ -140,12 +199,13 @@ function AudioPlayerWithTranscription({ audioFile, titulo }) {
     }
 
     // Fallback genérico para as próximas semanas
+    const textoAmbiente = disciplinaSlug === 'frontend_ii' ? 'ambiente de desenvolvimento' : 'servidor local';
     return `🎙️ **Resumo sobre o Podcast - Resumo de Aula**
     
     **[William Devidé]:** Olá, Dev! Este é o podcast de resumo da aula ativa. 
     Neste áudio, revisamos os principais conceitos abordados nos slides teóricos e as tarefas do nosso laboratório prático.
     Para apoiar seus estudos e garantir o desenvolvimento da sua autonomia, este podcast discute as principais dificuldades da semana e como superá-las. 
-    Caso tenha dúvidas, revise a documentação técnica, execute os testes no seu servidor local e aproveite o resumo do podcast para fixar os termos técnicos discutidos. Bons estudos e nos vemos na próxima missão de desenvolvimento de sistemas!`;
+    Caso tenha dúvidas, revise a documentação técnica, execute os testes no seu ${textoAmbiente} e aproveite o resumo do podcast para fixar os termos técnicos discutidos. Bons estudos e nos vemos na próxima missão de desenvolvimento de sistemas!`;
   };
 
   const textoTranscricao = getTranscriptionText(titulo);
@@ -622,10 +682,41 @@ export default function Aula() {
         const discData = await import(`../data/${disciplinaSlug}/disciplina.json`);
         const aulaData = await import(`../data/${disciplinaSlug}/semana${numSemanaStr}.json`);
 
+        const cronograma = discData.default?.cronograma || discData.cronograma || [];
+        
+        // Checa dinamicamente quais semanas do cronograma possuem conteudo
+        const cronogramaComStatus = await Promise.all(
+          cronograma.map(async (sem) => {
+            const numSemStr = sem.semana_numero.toString().toLowerCase() === 'extra'
+              ? 'extra'
+              : parseInt(sem.semana_numero, 10).toString().padStart(2, '0');
+            try {
+              const semData = await import(`../data/${disciplinaSlug}/semana${numSemStr}.json`);
+              const dados = semData.default || semData;
+              const temConteudo = dados && 
+                                  !!dados.bloco_A && 
+                                  !!dados.bloco_A.titulo && 
+                                  dados.bloco_A.conteudo !== "Em breve." && 
+                                  dados.bloco_A.conteudo !== "Em breve" && 
+                                  dados.bloco_A.conteudo !== "A definir" &&
+                                  !dados.contexto_aluno?.includes("Conteúdo em desenvolvimento");
+              return {
+                ...sem,
+                temConteudo
+              };
+            } catch {
+              return {
+                ...sem,
+                temConteudo: false
+              };
+            }
+          })
+        );
+
         if (active) {
           setDisciplina(discData.default || discData);
-          setCronograma(discData.default?.cronograma || discData.cronograma || []);
-          const cronogramaFiltrado = (discData.default?.cronograma || discData.cronograma || []).filter(s => s.semana_numero.toString().toLowerCase() !== 'extra');
+          setCronograma(cronogramaComStatus);
+          const cronogramaFiltrado = cronograma.filter(s => s.semana_numero.toString().toLowerCase() !== 'extra');
           setTotalSemanas(cronogramaFiltrado.length || 20);
           setAula(aulaData.default || aulaData);
           setLoading(false);
@@ -1803,22 +1894,26 @@ export default function Aula() {
                 <div className="space-y-1">
                   {semanas.map((sem) => {
                     const isAtivo = sem.semana_numero.toString().toLowerCase() === semanaId.toLowerCase();
-                    const temConteudo = parseInt(sem.semana_numero, 10) === 1 || sem.semana_numero.toString().toLowerCase() === 'extra' || !!sem.bloco_A;
+                    const temConteudo = sem.temConteudo;
 
                     return (
                       <button
                         key={sem.semana_numero}
+                        disabled={!temConteudo}
                         onClick={() => {
+                          if (!temConteudo) return;
                           const destSemana = isNaN(parseInt(sem.semana_numero, 10)) ? sem.semana_numero.toString().toLowerCase() : parseInt(sem.semana_numero, 10);
                           navigate(`/disciplina/${disciplinaSlug}/semana/${destSemana}`);
                           if (window.innerWidth < 1024) {
                             setSidebarOpen(false);
                           }
                         }}
-                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-all duration-300 font-sans cursor-pointer group ${
-                          isAtivo 
-                            ? 'bg-custom-accent/15 text-custom-accent border border-custom-accent/25 font-bold' 
-                            : 'text-custom-muted hover:text-custom-text hover:bg-custom-bg/50 border border-transparent'
+                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-all duration-300 font-sans group ${
+                          !temConteudo 
+                            ? 'opacity-40 cursor-not-allowed border border-transparent' 
+                            : (isAtivo 
+                                ? 'bg-custom-accent/15 text-custom-accent border border-custom-accent/25 font-bold cursor-pointer' 
+                                : 'text-custom-muted hover:text-custom-text hover:bg-custom-bg/50 border border-transparent cursor-pointer')
                         }`}
                       >
                         <div className="flex items-center gap-2 min-w-0">
@@ -2117,6 +2212,7 @@ export default function Aula() {
                   <AudioPlayerWithTranscription 
                     audioFile={`/arquivos/${disciplinaSlug}/${aula.recursos_multimidia.resumo_audio}`}
                     titulo={aula.recursos_multimidia.resumo_audio.replace(/\.[^/.]+$/, "")}
+                    disciplinaSlug={disciplinaSlug}
                   />
                 )}
               </div>

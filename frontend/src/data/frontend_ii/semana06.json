@@ -1,6 +1,67 @@
 {
   "semana_numero": "06",
-  "titulo": "Semana 06: Comunicação com o Mundo Exterior (Fetch API)",
+  "titulo": "Semana 06: Comunicação com o Mundo Exterior (Fetch API e JSON)",
   "situacao_aprendizagem": "SA1",
-  "contexto_aluno": "A quebra da 'bolha' da aplicação local. Aprendizado de requisições HTTP assíncronas e consumo de dados no formato JSON usando APIs externas reais."
+  "contexto_aluno": "Até agora, as nossas aplicações são incríveis, mas vivem numa 'bolha'. Elas só conhecem os dados que nós mesmos digitamos e esquecem tudo ao fechar a aba, a não ser que usemos o Web Storage. E se quiséssemos mostrar a previsão do tempo, a cotação do dólar ou buscar o endereço do usuário digitando apenas o CEP? Hoje, vamos aprender a quebrar essa bolha e ensinar as nossas aplicações a conversarem com outros servidores na internet através das APIs!",
+  "foco": "O conceito de Síncrono vs. Assíncrono, a instrução fetch(), a manipulação de Promises (.then() e .catch()), a versão moderna com async/await, conversão de dados e requisições do tipo GET e POST.",
+  "pratica": "Prática guiada construindo um Buscador de CEP, seguida por 3 laboratórios: Validador Avançado de CEP, Portal de Notícias do IBGE e o Mini-Projeto em Duplas construindo um CRUD de Contatos simulando um banco de dados real na nuvem.",
+  "bloco_A": {
+    "titulo": "A Quebra da Bolha e o Fetch API",
+    "conteudo": "Introdução ao conceito de APIs (Application Programming Interface) e ao formato JSON. Vamos explorar a diferença entre operações síncronas e assíncronas no JavaScript (a analogia do pager de restaurante). Mergulharemos na sintaxe nativa do fetch() para buscar dados públicos e exibiremos como tratar as promessas (Promises) de que a resposta chegará no futuro.",
+    "atividade_pratica": {
+      "nome": "Prática Guiada: Info CEP e Atividade Individual: Portal IBGE",
+      "instrucoes": "Na prática guiada, codificaremos juntos um buscador utilizando a API pública do ViaCEP. Em seguida, na atividade individual, você receberá a URL de Notícias do IBGE e deverá construir um fetch autônomo. O grande desafio será combinar o aprendizado de array.map() da Semana 02 para varrer a lista de notícias e gerar os cards visuais dinamicamente na tela."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa: Enviando Dados para o Mundo (POST)",
+    "conteudo": "Até aqui só fizemos requisições de leitura (GET). Agora, aprenderemos a gravar dados na nuvem enviando requisições do tipo POST. Vamos entender a anatomia de um objeto de opções no fetch, configurando o método, os cabeçalhos (headers) e usando o JSON.stringify() para transformar objetos JavaScript em texto de rede. Faremos tudo isso validando os cenários de erro com try/catch.",
+    "atividade_pratica": {
+      "nome": "Mini-Projeto: CRUD de Contatos na Nuvem",
+      "instrucoes": "Em duplas, vocês criarão uma API falsa na plataforma MockAPI.io. A interface da aplicação deverá listar os contatos existentes fazendo um GET assim que a página abrir. Além disso, deverá conter um formulário para cadastrar novos contatos. Ao clicar em enviar, o JS deve fazer um fetch(POST) para a MockAPI. Lembrem-se: ao final do bloco, a dupla deve compactar e enviar os exatos 9 arquivos da semana no Google Sala de Aula!"
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-Semana06.pdf",
+    "resumo_audio": "PFE2-Podcast-Semana06 - De_interfaces_estáticas_a_sistemas_dinâmicos.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "PFE2-Imagem08-Guia_Visual_Comunicação_com_APIs.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Chegou a hora de testar sua conexão de rede! Vamos verificar se você absorveu as regras fundamentais de comunicação entre sistemas front-end e servidores externos.",
+    "perguntas": [
+      {
+        "pergunta": "O que a instrução fetch() retorna imediatamente ao ser chamada pelo JavaScript?",
+        "opcoes": [
+          "a) Uma string contendo o HTML do site buscado.",
+          "b) Um objeto JSON já formatado e pronto para uso.",
+          "c) Uma Promise (Promessa) indicando que a resposta da rede chegará no futuro.",
+          "d) Um erro síncrono caso o servidor demore mais de 1 segundo."
+        ],
+        "resposta_correta": "c) Uma Promise (Promessa) indicando que a resposta da rede chegará no futuro."
+      },
+      {
+        "pergunta": "Na nossa requisição, para que serve a instrução encadeada .catch(erro => ...)?",
+        "opcoes": [
+          "a) Para capturar e tratar falhas de rede, como a falta de internet ou o servidor estar fora do ar.",
+          "b) Para forçar a API a responder mais rápido.",
+          "c) Para converter o texto bruto recebido em um objeto JavaScript.",
+          "d) Para converter os dados JavaScript em um texto estruturado para envio."
+        ],
+        "resposta_correta": "a) Para capturar e tratar falhas de rede, como a falta de internet ou o servidor estar fora do ar."
+      },
+      {
+        "pergunta": "Qual o comando correto para converter um Objeto JavaScript em uma String JSON estruturada, obrigatório ao enviar dados pelo corpo (body) de um método POST?",
+        "opcoes": [
+          "a) response.json()",
+          "b) JSON.parse()",
+          "c) dataTransfer.setData()",
+          "d) JSON.stringify()"
+        ],
+        "resposta_correta": "d) JSON.stringify()"
+      }
+    ]
+  }
 }

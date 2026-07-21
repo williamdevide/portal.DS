@@ -155,6 +155,13 @@
       "situacao_aprendizagem": "Recuperação",
       "contexto": "Fechamento do semestre letivo. Clínica de Código e Protocolo de Recuperação focados em refatoração e troubleshooting para alunos que não atingiram a proficiência técnica.",
       "duracao": "3h 45min (5 aulas)"
+    },
+    {
+      "semana_numero": "Extra",
+      "titulo": "Conteúdo Extra: A Jornada Contínua - Desafios e Gamificação!",
+      "situacao_aprendizagem": "Conteúdo Extra",
+      "contexto": "Fala, Dev! Você terminou suas tarefas da semana antes do tempo e acha que acabou? Para dominar o desenvolvimento de software e engolir as melhores vagas do mercado, a teoria não basta: é preciso 'escovar bytes'! Preparamos uma trilha pesada de atividades práticas individuais para você realizar fora da caixa. Vamos usar plataformas gamificadas, competições de código (HackerRanks) e laboratórios diretos na nuvem que vão desafiar sua lógica e simular problemas reais. Bora elevar o seu nível para Sênior?",
+      "duracao": "Autônomo"
     }
   ]
 }

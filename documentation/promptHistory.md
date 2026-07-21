@@ -350,3 +350,25 @@ no final da pagina da aula, onde temos a chamada para nosso quizz as fontes aind
 /grill-me /goal atualize nosso repositorio no github
 ```
 
+## Sessão: 2026-07-21
+
+### Prompt 1
+```text
+/grill-me /goal inseri o conteudo nos json para frontend_II até a semana 07 e o conteudo extra da disciplina. gere as paginas necessárias, no caso do conteudo extra deixe similar ao que fizemos na disciplina de banco de dados
+```
+
+### Prompt 2
+```text
+/grill-me /goal agora quero crie já os arquivos necessários para a disciplina Projeto de Software III. por enquanto com as semanas sem conteudo. quero também direto na pagina principal abaix de minhas disciplinas um bloco para informações uteis, ele deve ter uma chamada para uma página similar as paginas das aulas, mas diretamente só uma página, lá vou colocar calendario do semstre, agenda de aulas semanais e outras coisas mais necessárias, utilize a estrutura de uma pasta em src/data para o json e uma pasta em public/arquivos para os arquivos
+```
+
+### Prompt 3
+```text
+/grill-me /goal na disciplina de projeto de software III (PSOF3) todas as aulas e conteudo extra ainda devem aparecer como Aula Bloqueada, pois ainda não tem conteudo correto no json (igual está aparecendo nas aulas 8 a 20 em frontend ii), alem disso, o cadeado só deve aparecer na frente da aula para as aulas que ainda não possuem conteudo, a partir do momento que o json tiver conteudo completo o cadeado some
+```
+
+### Prompt 4
+```text
+/grill-me /goal na pagina  de informações uteis, tanto o bloco de calendario como de agenda de horários, não devem dar informações sobre as datas e horários, somente informam que existe disponível a mídia com essas informações e orientam o aluno a serem verificar essas informações. que elas podem ser alteradas ou adequadas as necessidades da escola. alem disso, não está exibindo a imagem com os horarios. verifique no arquivo json já esta o pdf com o calendario e o jpg com os horarios
+```
+

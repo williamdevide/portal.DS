@@ -25,7 +25,7 @@
     "apresentacao_pptx": "PFE2-Material-Semana02.pdf",
     "resumo_audio": "PFE2-Podcast-Semana02 - Do_código_manual_ao_JavaScript_moderno_ES6.m4a",
     "videos_correlacionados": [],
-    "imagens_correlacionadas": ["PFE2-Imagem04-Guia_Visual_JavaScript_Moderno_ES6+.png"]
+    "imagens_correlacionadas": ["PFE2-Imagem04b-Guia_Visual_JavaScript_Moderno_ES6+.png","PFE2-Imagem04-Guia_Visual_de_JavaScript_Moderno"]
   },
   "quiz_final": {
     "descricao": "Teste rápido de fixação sobre os superpoderes do JavaScript Moderno (ES6+) que aprendemos nesta aula.",

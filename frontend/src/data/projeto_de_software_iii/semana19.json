@@ -1,0 +1,34 @@
+{
+  "semana_numero": "19",
+  "titulo": "Semana 19: Preparação para a Banca: Documentação Final e Pitch",
+  "situacao_aprendizagem": "SA3",
+  "contexto_aluno": "Conteúdo em desenvolvimento para Projeto de Software III. Em breve serão disponibilizados os materiais desta semana contendo os detalhes, slides de aula e podcasts do instrutor.",
+  "foco": "Introdução dos conceitos da semana e alinhamento do TCC.",
+  "pratica": "Prática autônoma em laboratório e reuniões do time do TCC.",
+  "bloco_A": {
+    "titulo": "Exploração de Conceito",
+    "conteudo": "Em breve.",
+    "atividade_pratica": {
+      "nome": "Atividade do Bloco A",
+      "instrucoes": "As instruções detalhadas estarão disponíveis em breve."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa",
+    "conteudo": "Em breve.",
+    "atividade_pratica": {
+      "nome": "Atividade do Bloco B",
+      "instrucoes": "As instruções detalhadas estarão disponíveis em breve."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "",
+    "resumo_audio": "",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": []
+  },
+  "quiz_final": {
+    "descricao": "Quiz de fixação sobre o tema da aula em breve.",
+    "perguntas": []
+  }
+}

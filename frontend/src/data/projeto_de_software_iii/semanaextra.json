@@ -1,0 +1,34 @@
+{
+  "semana_numero": "Extra",
+  "titulo": "Conteúdo Extra: A Jornada Contínua - Desafios e Gamificação!",
+  "situacao_aprendizagem": "Conteúdo Extra",
+  "contexto_aluno": "Fala, Dev! Quer aprofundar em Engenharia de Software e Arquitetura? Selecionamos simuladores, repositórios de referência e HackerRanks de design patterns para você dominar o ciclo ágil.",
+  "foco": "Prática autônoma",
+  "pratica": "Prática livre",
+  "bloco_A": {
+    "titulo": "Arsenal de Ferramentas",
+    "conteudo": "Em breve.",
+    "atividade_pratica": {
+      "nome": "Exploração do Arsenal",
+      "instrucoes": "Em breve."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Missões Oficiais",
+    "conteudo": "Em breve.",
+    "atividade_pratica": {
+      "nome": "Execução de Desafios",
+      "instrucoes": "Em breve."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "",
+    "resumo_audio": "",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": []
+  },
+  "quiz_final": {
+    "descricao": "Quiz do Conteúdo Extra em breve.",
+    "perguntas": []
+  }
+}

@@ -1,6 +1,87 @@
 {
   "semana_numero": "04",
-  "titulo": "Semana 04: Memória do Navegador (Local/Session Storage)",
+  "titulo": "Missão 04: Salvando Dados no Navegador (Web Storage) - A Cura da Amnésia",
   "situacao_aprendizagem": "SA1",
-  "contexto_aluno": "O foco da semana é dar capacidade de 'lembrança' à aplicação, manipulando dados temporários e permanentes via APIs de Web Storage."
+  "contexto_aluno": "Fala, Dev! As aplicações que você construiu nas últimas semanas são fantásticas, processam eventos e até calculam dados de formulários. Mas... elas sofrem de 'amnésia'. Já percebeu que toda vez que você aperta F5 ou fecha a aba do navegador, tudo o que foi digitado se perde? Hoje, vamos curar essa amnésia. Você aprenderá a usar a 'memória' do próprio navegador para dar persistência aos seus projetos, garantindo que configurações e textos fiquem salvos. E, de quebra, vamos aprender a exportar arquivos de texto físicos direto para o computador do usuário!",
+  "foco": "Compreender a diferença de persistência entre localStorage (longo prazo) e sessionStorage (temporário), dominar a tríade de comandos setItem(), getItem() e removeItem(), e gerar arquivos nativos para download usando Blob e URL.createObjectURL().",
+  "pratica": "Prática guiada minimalista construindo um 'Painel de Boas-Vindas Persistente', seguida por 3 laboratórios entregando 9 arquivos: Lembrador de Tema (Atv 1), Auto-Save de Rascunho (Atv 2) e o Mini-Projeto em Duplas do 'Bloco de Notas Avançado com Exportação' (Atv 3).",
+  "bloco_A": {
+    "titulo": "A Fundação da Memória e o Web Storage",
+    "conteudo": "Neste bloco, vamos entender que o navegador funciona como um grande 'guarda-volumes'. Você entrega um dado (valor) e ele te dá uma etiqueta (chave) para buscar depois. Exploraremos as duas principais gavetas de memória do front-end: o localStorage, que dura indefinidamente, e o sessionStorage, que se apaga assim que a aba é fechada.",
+    "atividade_pratica": {
+      "nome": "Prática Guiada: Painel de Boas-Vindas Persistente",
+      "instrucoes": "Em conjunto com o instrutor, vamos criar um campo para digitar o nome e um botão 'Salvar'. Ao clicar, usaremos localStorage.setItem('usuario', nome). Ao carregar a página novamente, nosso código fará um localStorage.getItem('usuario') e, se encontrar o nome, esconderá o formulário para exibir apenas 'Bem-vindo de volta!'."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa (O Desafio dos 9 Arquivos)",
+    "conteudo": "Hora de transformar a teoria em aplicações úteis! Nosso laboratório vai exigir a criação e envio rigoroso de 9 arquivos. Vocês vão adicionar memória ao 'Dark Mode' da primeira semana, criar um sistema de rascunhos que não se perde no F5 e usar uma Pílula de Aprendizado rápida para aprender a gerar downloads de arquivos em JavaScript nativo.",
+    "atividade_pratica": {
+      "nome": "Tríade Prática: Temas, Rascunhos e Exportação",
+      "instrucoes": "Atividade 1 (Lembrador de Tema): Fazer o script ler o Storage ao abrir a página para aplicar a classe 'modo-noturno' instantaneamente. Atividade 2 (Auto-Save de Rascunho): Salvar o texto de uma textarea no sessionStorage a cada tecla digitada (evento de input). Atividade 3 (Bloco de Notas em Duplas): Juntar tudo e implementar o botão 'Exportar', usando new Blob() para criar um arquivo real com as anotações permanentes e forçar o download."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-Semana04.pdf",
+    "resumo_audio": "PFE2-Podcast-Semana04 - Web_Storage_e_exportação_de_arquivos.m4a",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": [
+      "PFE2-Imagem06-Guia_de_Persistência_e_Exportação.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Será que sua própria memória absorveu todo esse conteúdo? Responda a este quiz e prove que você domina a persistência de dados no navegador!",
+    "perguntas": [
+      {
+        "pergunta": "Qual a principal diferença de comportamento entre o localStorage e o sessionStorage?",
+        "opcoes": [
+          "a) O localStorage guarda apenas números, enquanto o sessionStorage guarda apenas textos.",
+          "b) O localStorage salva os dados de forma permanente no computador, enquanto o sessionStorage apaga os dados assim que a aba do navegador é fechada.",
+          "c) O sessionStorage salva no banco de dados do servidor, enquanto o localStorage salva na placa de vídeo.",
+          "d) Não há diferença, ambos funcionam exatamente da mesma maneira e expiram após 24 horas."
+        ],
+        "resposta_correta": "b) O localStorage salva os dados de forma permanente no computador, enquanto o sessionStorage apaga os dados assim que a aba do navegador é fechada."
+      },
+      {
+        "pergunta": "Qual é a sintaxe correta para GRAVAR uma informação na memória persistente do navegador?",
+        "opcoes": [
+          "a) localStorage.setItem('chave', 'valor');",
+          "b) localStorage.getItem('chave');",
+          "c) localStorage.save('chave', 'valor');",
+          "d) document.storage('chave') = 'valor';"
+        ],
+        "resposta_correta": "a) localStorage.setItem('chave', 'valor');"
+      },
+      {
+        "pergunta": "Na Pílula de Aprendizado desta semana, utilizamos o 'new Blob()'. Para que ele serve em nossa aplicação?",
+        "opcoes": [
+          "a) Para mudar a cor de fundo do site para uma textura em formato de gota (blob).",
+          "b) Para apagar tudo o que estava salvo no localStorage de uma vez só.",
+          "c) Para empacotar os dados de texto do nosso Bloco de Notas num objeto de arquivo físico que pode ser baixado.",
+          "d) Para converter letras minúsculas em maiúsculas."
+        ],
+        "resposta_correta": "c) Para empacotar os dados de texto do nosso Bloco de Notas num objeto de arquivo físico que pode ser baixado."
+      },
+      {
+        "pergunta": "Se quisermos APAGAR um dado específico da nossa memória de sessão porque o usuário 'Limpou o Rascunho', qual comando devemos utilizar?",
+        "opcoes": [
+          "a) sessionStorage.deleteItem('rascunho');",
+          "b) sessionStorage.removeItem('rascunho');",
+          "c) localStorage.clearAll();",
+          "d) document.remove('rascunho');"
+        ],
+        "resposta_correta": "b) sessionStorage.removeItem('rascunho');"
+      },
+      {
+        "pergunta": "Seguindo a nossa regra de entregas da disciplina de PFE2, o que você deve enviar no Google Sala de Aula ao final dos laboratórios do Bloco B desta semana?",
+        "opcoes": [
+          "a) Um único arquivo PDF com os códigos copiados e colados.",
+          "b) Exatamente 9 arquivos gerados nas atividades práticas (index.html, style.css e script.js de cada uma das 3 tarefas).",
+          "c) Apenas um link para um repositório vazio.",
+          "d) Um áudio explicando o que você aprendeu."
+        ],
+        "resposta_correta": "b) Exatamente 9 arquivos gerados nas atividades práticas (index.html, style.css e script.js de cada uma das 3 tarefas)."
+      }
+    ]
+  }
 }

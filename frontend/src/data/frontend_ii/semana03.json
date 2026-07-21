@@ -2,5 +2,88 @@
   "semana_numero": "03",
   "titulo": "Semana 03: Formulários Inteligentes e Cálculos",
   "situacao_aprendizagem": "SA1",
-  "contexto_aluno": "Evolução da interatividade. Criação de lógicas de validação de dados em tempo real no lado do cliente, prevenindo ações padrão de formulário."
+  "contexto_aluno": "Avançando na SA1. Até agora, as nossas interações foram simples e baseadas em cliques soltos de botões. Hoje, vamos evoluir para a coleta de dados de forma estruturada. Vocês vão aprender a dominar os formulários, a espinha dorsal da interatividade na web, garantindo que o sistema receba dados válidos e processe cálculos precisos no front-end, antes mesmo de pensar em enviar isso para um servidor.",
+  "foco": "Domínio do evento 'submit', uso do 'event.preventDefault()' para interceptar o recarregamento da página, conversão de tipos de dados (String para Número com parseFloat) e lógicas condicionais (if/else) para validação e feedback visual.",
+  "pratica": "Construção guiada de um Formulário de Cadastro com validação em tempo real, laboratório individual de conversão de tipos, e o desenvolvimento em duplas de um Painel de Avaliação Corporal (IMC) que calcula métricas de saúde e altera a interface dinamicamente.",
+  "bloco_A": {
+    "titulo": "Manipulação Avançada do DOM e Validação",
+    "conteudo": "A diferença crítica entre eventos de clique e submissão de formulários. O superpoder do event.preventDefault(). A captura de valores de inputs e a criação de lógicas de validação em tempo real utilizando propriedades de string como .length e métodos como .trim(), além de introdução a lógicas de tempo (Date).",
+    "atividade_pratica": {
+      "nome": "Prática Guiada: Construção do Formulário de Cadastro",
+      "instrucoes": "O professor codifica junto com a turma as regras de validação de um formulário de cadastro, verificando o tamanho do nome, o cálculo de maioridade baseado na data de nascimento e a validação/confirmação de senhas, fornecendo feedback visual de válido/inválido instantaneamente na tela."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Mão na Massa com Cálculos e Painel de Avaliação",
+    "conteudo": "A armadilha da concatenação de textos em campos numéricos no JavaScript. A necessidade imperativa da conversão de tipos com parseFloat() e Number(). O uso de estruturas de controle (if/else) integradas à manipulação de classes CSS (className ou classList) para reagir a resultados matemáticos.",
+    "atividade_pratica": {
+      "nome": "Mini-Projeto em Duplas: Painel de Avaliação Corporal",
+      "instrucoes": "Após a Atividade 1 (Armadilha do texto vs. número) e a Atividade 2 (Conversor Simples Individual), as duplas criam o projeto principal. O sistema captura peso e altura, evita o recarregamento da página, calcula o IMC, define a classificação médica e muda as bordas do painel (verde, amarelo ou vermelho) aplicando as regras do negócio."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "PFE2-Material-Semana03.pdf",
+    "resumo_audio": "PFE2-Podcast-Semana03 - Como_criar_formulários_inteligentes_com_JavaScript.m4a",
+    "videos_correlacionados": [
+      "PFE2-Video01-Controle_de_Formulários_JS.mp4"
+    ],
+    "imagens_correlacionadas": [
+      "PFE2-Imagem05-Guia_de_Formulários_e_Cálculos.png"
+    ]
+  },
+  "quiz_final": {
+    "descricao": "Teste de validação de conhecimentos sobre manipulação de formulários e processamento matemático no Front-end.",
+    "perguntas": [
+      {
+        "pergunta": "Qual é a função do comando 'event.preventDefault()' ao interceptar um formulário?",
+        "opcoes": [
+          "a) Ele limpa todos os campos digitados automaticamente.",
+          "b) Ele evita o comportamento padrão do navegador de recarregar a página ao enviar o formulário.",
+          "c) Ele envia os dados diretamente para o banco de dados de forma segura.",
+          "d) Ele criptografa a senha antes da validação."
+        ],
+        "resposta_correta": "b) Ele evita o comportamento padrão do navegador de recarregar a página ao enviar o formulário."
+      },
+      {
+        "pergunta": "Qual evento devemos escutar (usando addEventListener) para interceptar de forma segura o envio completo de um formulário?",
+        "opcoes": [
+          "a) O evento de 'click' no botão de enviar.",
+          "b) O evento de 'change' nos inputs de texto.",
+          "c) O evento de 'submit' no elemento <form>.",
+          "d) O evento de 'load' no <body> da página."
+        ],
+        "resposta_correta": "c) O evento de 'submit' no elemento <form>."
+      },
+      {
+        "pergunta": "Na nossa Atividade 1 do Bloco B, descobrimos uma 'armadilha'. Por que usar parseFloat() ou Number() é essencial antes de fazer somas com valores vindos de inputs?",
+        "opcoes": [
+          "a) Porque os inputs sempre devolvem valores booleanos (true/false).",
+          "b) Porque o JavaScript bloqueia variáveis sem o parseFloat().",
+          "c) Porque o valor capturado do input é, por padrão, uma String. Sem conversão, o operador '+' apenas junta (concatena) os textos (ex: '10' + '10' vira '1010').",
+          "d) Porque o parseFloat() é o único comando capaz de formatar a moeda em Reais."
+        ],
+        "resposta_correta": "c) Porque o valor capturado do input é, por padrão, uma String. Sem conversão, o operador '+' apenas junta (concatena) os textos (ex: '10' + '10' vira '1010')."
+      },
+      {
+        "pergunta": "O método de string '.trim()' foi usado na nossa validação de nome. O que exatamente ele faz?",
+        "opcoes": [
+          "a) Transforma todas as letras em maiúsculas.",
+          "b) Conta a quantidade de caracteres do texto.",
+          "c) Substitui caracteres especiais por espaços.",
+          "d) Remove espaços em branco desnecessários no início e no fim do texto digitado."
+        ],
+        "resposta_correta": "d) Remove espaços em branco desnecessários no início e no fim do texto digitado."
+      },
+      {
+        "pergunta": "No projeto do Painel de Avaliação Corporal, precisávamos mudar a cor da caixa de resultado para vermelho, verde ou amarelo. Qual a forma correta de fazer isso via JavaScript aliada às condicionais?",
+        "opcoes": [
+          "a) Usar 'if/else' para checar o resultado do cálculo e alterar as classes do CSS diretamente usando a propriedade 'className' ou 'classList'.",
+          "b) Criar três arquivos HTML diferentes, um para cada cor, e redirecionar o usuário.",
+          "c) Usar o método 'parseFloat()' para trocar as propriedades do CSS.",
+          "d) Mudar a cor diretamente alterando o 'event.preventDefault()'."
+        ],
+        "resposta_correta": "a) Usar 'if/else' para checar o resultado do cálculo e alterar as classes do CSS diretamente usando a propriedade 'className' ou 'classList'."
+      }
+    ]
+  }
 }

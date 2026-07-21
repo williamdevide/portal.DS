@@ -1,0 +1,30 @@
+{
+  "semana_numero": "Informações",
+  "titulo": "Secretaria Acadêmica & Informações Úteis",
+  "situacao_aprendizagem": "Secretaria",
+  "contexto_aluno": "Aqui você encontra as principais informações e documentos institucionais do nosso semestre no SENAI Ourinhos. Acesse o calendário acadêmico oficial, consulte a grade horária semanal e faça o download das principais diretrizes de estudo.",
+  "foco": "Calendário acadêmico, horários e rotina escolar.",
+  "pratica": "Acesso a documentos oficiais e links úteis.",
+  "bloco_A": {
+    "titulo": "Calendário Letivo do Semestre",
+    "conteudo": "O calendário letivo completo contendo todas as datas do semestre letivo está disponível em formato PDF no visualizador ao lado. Recomendamos fortemente que todos os alunos consultem atenciosamente o documento para acompanhar o início das aulas, datas de provas, feriados e demais marcos acadêmicos oficiais.\n\n**Importante**: As datas oficiais apresentadas no documento podem ser alteradas, adequadas ou reajustadas de acordo com as necessidades e decisões da direção da escola ao longo do semestre.",
+    "atividade_pratica": {
+      "nome": "Calendário Oficial",
+      "instrucoes": "Você pode visualizar e fazer o download do PDF completo do calendário escolar oficial do SENAI Ourinhos através do leitor ao lado."
+    }
+  },
+  "bloco_B": {
+    "titulo": "Grade Horária e Organização Semanal",
+    "conteudo": "A distribuição semanal das disciplinas, horários de aula nos laboratórios e os professores correspondentes estão detalhados na grade horária oficial anexada ao lado. Pedimos a todos os estudantes que acompanhem essa distribuição para o correto planejamento de estudos e pontualidade presencial diária.\n\n**Importante**: Os horários semanais e a grade de aulas podem ser alterados ou adequados no decorrer do período letivo para melhor atendimento das necessidades escolares.",
+    "atividade_pratica": {
+      "nome": "Agenda de Estudos",
+      "instrucoes": "Consulte a grade de horários ao lado para planejar a execução das entregas e sprints semanais de cada disciplina."
+    }
+  },
+  "recursos_multimidia": {
+    "apresentacao_pptx": "CALENDARIO 2 SEM - 2026 - DEV.pdf",
+    "resumo_audio": "",
+    "videos_correlacionados": [],
+    "imagens_correlacionadas": ["Agenda Semanal.jpg"]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "descricao": "A avaliação é baseada nas capacidades técnicas e socioemocionais no ciclo de desenvolvimento de sistemas (MSEP - Projeto de Software III).",
+  "matriz_criterios": [
+    {
+      "id": "CT 1",
+      "capacidade": "Elaborar documentação técnica e modelagem de software.",
+      "conhecimento": "Modelagem UML (Diagrama de Classes, Casos de Uso, Sequência).",
+      "tipo": "Crítico",
+      "criterio_avaliacao": "Modelagem Arquitetural",
+      "descricao_criterio": "Modela o sistema conforme os requisitos funcionais e arquiteturais estabelecidos.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 4, 5)",
+        "SA2 (Sem. 11)",
+        "SA3 (Sem. 16, 17)",
+        "Entrevista (Sem. 19)",
+        "Recuperação (Sem. 20)"
+      ]
+    },
+    {
+      "id": "CS 1",
+      "capacidade": "Demonstrar raciocínio analítico e colaboração no time ágil.",
+      "conhecimento": "Metodologias Ágeis (Scrum, Kanban).",
+      "tipo": "Desejável",
+      "criterio_avaliacao": "Colaboração Ágil",
+      "descricao_criterio": "Colabora na divisão de tarefas e execução das sprints de desenvolvimento do TCC.",
+      "aplicacao_aulas": [
+        "SA1 (Sem. 3)",
+        "SA2 (Sem. 12, 13)",
+        "SA3 (Sem. 17)",
+        "Entrevista (Sem. 19)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "nome": "Projeto de Software III (PS3)",
+  "semestre": "4º Semestre",
+  "carga_horaria": "45 horas",
+  "abertura": "Bem-vindos a Projeto de Software III! Foco na modelagem, arquitetura e gestão ágil do ciclo de vida de projetos de software aplicando padrões de mercado (MSEP) e engenharia de requisitos na construção de uma solução para um problema real captado na plataforma SAGA Senai e construído no formato de um Trabalho de Conclusão de Curso (TCC).",
+  "conclusao": "A engenharia de software é a arte de transformar necessidades do mundo real em soluções tecnológicas robustas e sustentáveis. Parabéns por entregarem o seu projeto final e defenderem seu TCC!",
+  "projetos": [
+    "Projeto Integrador: Planejamento, Engenharia de Requisitos e Modelagem do TCC",
+    "Projeto Integrador: Arquitetura, Implementação, Validação e Pitch Final"
+  ],
+  "atividades_praticas": [
+    "Elicitação de Requisitos e Termo de Abertura do Projeto",
+    "Modelagem Visual de Arquitetura (UML e Entidades)",
+    "Execução de Sprints Ágeis e Gerenciamento de Tasks",
+    "Deploy, Homologação e Defesa do TCC perante Banca Examinadora"
+  ],
+  "cronograma": [
+    {
+      "semana_numero": "01",
+      "titulo": "Introdução à Engenharia de Software e o Desafio TCC (MSEP/SAGA)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Boas-vindas à UC! Mapeamento de problemas reais na plataforma SAGA Senai e definição do escopo do Trabalho de Conclusão de Curso (TCC).",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "02",
+      "titulo": "Engenharia de Requisitos: Especicação e Análise de Necessidades",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Elicitação de requisitos funcionais e não-funcionais. Criação do dicionário de requisitos e regras de negócio do sistema.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "03",
+      "titulo": "Gestão de Projetos Ágeis: Scrum, Kanban e Papéis do Time",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Organização do backlog do produto. Divisão de tarefas e definição de ritos ágeis (sprints, plannings, dailies).",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "04",
+      "titulo": "Modelagem Estrutural: Diagramas de Casos de Uso e Classes UML",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Construção de plantas-baixas estruturais do sistema usando a notação padrão UML para classes e atores.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "05",
+      "titulo": "Modelagem Comportamental: Diagrama de Sequência e Atividades",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Mapeamento dos fluxos dinâmicos do software. Passagem de mensagens entre objetos e desvios condicionais de processos.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "06",
+      "titulo": "Arquitetura de Software: Padrões de Projeto (MVC, Clean Architecture)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Estruturação interna do código. Organização das pastas e separação de responsabilidades para facilidade de manutenção.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "07",
+      "titulo": "Projeto da Interface: UI/UX, Protótipos e Wireframes",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Desenho das telas e mapeamento do fluxo do usuário. Criação do protótipo navegável em baixa e alta fidelidade.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "08",
+      "titulo": "Engenharia de Usabilidade: Heurísticas e Validação de Fluxo",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Aplicação de conceitos de experiência do usuário e testes de usabilidade simulados com feedback de terceiros.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "09",
+      "titulo": "Modelagem de Banco de Dados: Diagrama Entidade-Relacionamento (DER)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Definição do modelo lógico e físico de dados do TCC. Normalização das tabelas de negócio.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "10",
+      "titulo": "Planejamento de Testes e Garantia de Qualidade (QA)",
+      "situacao_aprendizagem": "SA1",
+      "contexto": "Definição do plano de testes de software. Criação de cenários de teste manuais e automatizados para a aplicação.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "11",
+      "titulo": "Definição da Stack Tecnológica e Setup do Ambiente do Projeto",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Início do desenvolvimento prático. Escolha das tecnologias (frontend/backend) e configuração de repositórios do Git.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "12",
+      "titulo": "Desenvolvimento Ágil: Execução da Sprint 1 e Integração Contínua",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Desenvolvimento progressivo do MVP. Criação da estrutura base de rotas e banco de dados local.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "13",
+      "titulo": "Desenvolvimento Ágil: Execução da Sprint 2 e Controle de Versão",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Avanço no desenvolvimento de CRUDs e validação de regras de negócio. Gestão de branches de feature.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "14",
+      "titulo": "Desenvolvimento Ágil: Execução da Sprint 3 e Testes Unitários",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Implementação e execução de testes na lógica de código para garantir estabilidade funcional no TCC.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "15",
+      "titulo": "Desenvolvimento Ágil: Execução da Sprint 4 e Revisão de Código",
+      "situacao_aprendizagem": "SA2",
+      "contexto": "Refinamento do software. Realização de code reviews nos pull requests e polimento de UI/UX.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "16",
+      "titulo": "Integração de Sistemas: APIs, Consumo de Serviços e Segurança",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Conexão do frontend ao backend real. Tratamento de chamadas assíncronas e segurança contra invasões comuns.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "17",
+      "titulo": "Homologação e Validação do Software com o Cliente Real",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Apresentação e testes de aceitação com usuários ou instrutor. Levantamento de melhorias finais do sistema.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "18",
+      "titulo": "Deploy, Infraestrutura de Nuvem e Manutenção",
+      "situacao_aprendizagem": "SA3",
+      "contexto": "Publicação do aplicativo na internet (Vercel/Netlify/Firebase) e configuração de servidores de banco de dados em nuvem.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "19",
+      "titulo": "Preparação para a Banca: Documentação Final e Pitch",
+      "situacao_aprendizagem": "Entrevista",
+      "contexto": "Polimento da documentação do software. Elaboração do slide de apresentação e treinamento do Pitch de vendas para a banca.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "20",
+      "titulo": "Demo Day: Apresentação Final do TCC (Banca de Avaliação)",
+      "situacao_aprendizagem": "Recuperação",
+      "contexto": "Apresentação de gala do Trabalho de Conclusão de Curso (TCC) perante banca avaliadora com convidados do mercado.",
+      "duracao": "2h 15min (3 aulas)"
+    },
+    {
+      "semana_numero": "Extra",
+      "titulo": "Conteúdo Extra: A Jornada Contínua - Desafios e Gamificação!",
+      "situacao_aprendizagem": "Conteúdo Extra",
+      "contexto": "Fala, Dev! Quer aprofundar em Engenharia de Software e Arquitetura? Selecionamos simuladores, repositórios de referência e HackerRanks de design patterns para você dominar o ciclo ágil.",
+      "duracao": "Autônomo"
+    }
+  ]
+}
