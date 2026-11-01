@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Clock, Users, CheckCircle2, AlertCircle, 
   Sparkles, FileText, MapPin, Eye, EyeOff, KeyRound
 } from 'lucide-react';
 import { obterConfiguracao, listarAgendamentos, salvarAgendamento } from '../../services/agendamentoService';
+import PalavraIncorretaModal from './PalavraIncorretaModal';
 
 export default function AgendamentoForm({ onNavigateToQuadro }) {
   const [config, setConfig] = useState(null);
@@ -12,6 +13,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [sucesso, setSucesso] = useState(null);
+  const [modalErroPalavra, setModalErroPalavra] = useState('');
 
   // Estados do formulário
   const [selectedTurmaId, setSelectedTurmaId] = useState('');
@@ -21,6 +23,9 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
   const [observacoes, setObservacoes] = useState('');
   const [palavraChave, setPalavraChave] = useState('');
   const [showPalavraChave, setShowPalavraChave] = useState(false);
+
+  // Referência para o campo de input da palavra-chave
+  const palavraChaveInputRef = useRef(null);
 
   // Carrega configuração e agendamentos existentes
   const carregarDados = async () => {
@@ -127,6 +132,18 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       return;
     }
 
+    // Validação prévia caso a palavra secreta esteja presente nos dados locais
+    const grupoConfig = turmaAtual?.grupos?.find(g => {
+      const nome = typeof g === 'string' ? g : g.nome;
+      return nome?.trim().toLowerCase() === selectedGrupo.trim().toLowerCase();
+    });
+    if (grupoConfig && typeof grupoConfig === 'object' && grupoConfig.palavra_secreta) {
+      if (palavraChave.trim().toLowerCase() !== grupoConfig.palavra_secreta.trim().toLowerCase()) {
+        setModalErroPalavra(`A palavra-chave informada para o "${selectedGrupo}" está incorreta. Verifique a palavra secreta entregue pessoalmente pelo Professor William e tente novamente.`);
+        return;
+      }
+    }
+
     setSubmitting(true);
 
     try {
@@ -158,7 +175,17 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       setObservacoes('');
       setPalavraChave('');
     } catch (err) {
-      setError(err.message || 'Falha ao processar agendamento. Tente novamente.');
+      const errMsg = err.message || 'Falha ao processar agendamento. Tente novamente.';
+      if (
+        errMsg.toLowerCase().includes('palavra') || 
+        errMsg.toLowerCase().includes('chave') || 
+        errMsg.toLowerCase().includes('secreta') ||
+        errMsg.toLowerCase().includes('403')
+      ) {
+        setModalErroPalavra(errMsg);
+      } else {
+        setError(errMsg);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -594,6 +621,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
 
               <div className="relative max-w-md">
                 <input
+                  ref={palavraChaveInputRef}
                   type={showPalavraChave ? 'text' : 'password'}
                   value={palavraChave}
                   onChange={(e) => setPalavraChave(e.target.value)}
@@ -650,6 +678,20 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
           </>
         )}
       </form>
+
+      {/* Modal de Alerta de Palavra-Chave Incorreta */}
+      <PalavraIncorretaModal
+        isOpen={!!modalErroPalavra}
+        onClose={() => setModalErroPalavra('')}
+        onTentarNovamente={() => {
+          setPalavraChave('');
+          setTimeout(() => {
+            palavraChaveInputRef.current?.focus();
+          }, 100);
+        }}
+        mensagem={modalErroPalavra}
+        grupoNome={selectedGrupo}
+      />
     </div>
   );
 }

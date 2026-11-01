@@ -461,6 +461,11 @@ Desafio 02: Painel administrativo e horário personalizável para entrega",https
 a seleção do dia da apresentação deixe com 4 colunas tambem
 ```
 
+### Prompt 3
+```text
+quando uma palavra chave estiver errada exiba uma mensagem de erro modal
+```
+
 
 
 
