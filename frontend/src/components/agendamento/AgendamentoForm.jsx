@@ -449,7 +449,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                 </span>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {turmaAtual.dias_disponiveis?.map((diaItem) => {
                   const isSelected = selectedData === diaItem.data;
                   // Calcula quantas vagas estão disponíveis neste dia
@@ -463,7 +463,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                       type="button"
                       onClick={() => setSelectedData(diaItem.data)}
                       disabled={vagasRestantes <= 0}
-                      className={`text-left p-4 rounded-xl border transition-all relative ${
+                      className={`text-left p-3 sm:p-4 rounded-xl border transition-all relative ${
                         vagasRestantes <= 0
                           ? 'opacity-50 bg-custom-bg border-custom-border cursor-not-allowed'
                           : isSelected
@@ -471,21 +471,22 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                             : 'bg-custom-bg border-custom-border text-custom-muted hover:border-[#E30613]/50 hover:text-custom-text'
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47]">
+                      <div className="flex items-center justify-between mb-1 gap-1">
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] truncate">
                           {diaItem.dia_semana || 'Data da Banca'}
                         </span>
-                        {isSelected && <CheckCircle2 className="h-4 w-4 text-[#E30613] dark:text-[#ff3b47]" />}
+                        {isSelected && <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#E30613] dark:text-[#ff3b47] shrink-0" />}
                       </div>
 
-                      <div className="text-base font-bold text-custom-text font-mono">
+                      <div className="text-xs sm:text-base font-bold text-custom-text font-mono truncate">
                         {diaItem.data}
                       </div>
 
-                      <div className="mt-2 pt-2 border-t border-custom-border text-[11px] flex items-center justify-between">
-                        <span>Vagas Livres:</span>
+                      <div className="mt-2 pt-2 border-t border-custom-border text-[10px] sm:text-[11px] flex items-center justify-between">
+                        <span className="hidden sm:inline">Vagas Livres:</span>
+                        <span className="sm:hidden">Vagas:</span>
                         <span className={`font-bold font-mono ${vagasRestantes > 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
-                          {vagasRestantes} de {totalVagasDia}
+                          {vagasRestantes}/{totalVagasDia}
                         </span>
                       </div>
                     </button>

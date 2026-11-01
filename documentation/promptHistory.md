@@ -456,6 +456,11 @@ I2DEV-B,12,Henry,Otávio,Vagner,Fila Zero,Sesi alimentação,0.5,0.85,"Desafio 0
 Desafio 02: Painel administrativo e horário personalizável para entrega",https://plataforma.gpinovacao.senai.br/plataforma/demandas-da-industria/interna/11697,https://github.com/otaviofiel/cantinasenai ,,OK,OK,OK,,OK,,OK,,,,,,
 ```
 
+### Prompt 2
+```text
+a seleção do dia da apresentação deixe com 4 colunas tambem
+```
+
 
 
 

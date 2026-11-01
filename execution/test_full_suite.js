@@ -107,3 +107,4 @@ testEndpoints().catch(err => {
   console.error('❌ Falha nos testes:', err);
   process.exit(1);
 });
+
