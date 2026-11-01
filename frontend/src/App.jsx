@@ -46,6 +46,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/disciplina/:disciplinaSlug" element={<Disciplina />} />
+            {/* Rotas diretas para agendamento e quadro de bancas do TCC */}
+            <Route path="/disciplina/:disciplinaSlug/agendamento" element={<Disciplina initialTab="agendamento" />} />
+            <Route path="/disciplina/:disciplinaSlug/agendamentos" element={<Disciplina initialTab="quadro" />} />
+            
             {/* Template dinâmico para a aula da semana */}
             <Route path="/disciplina/:disciplinaSlug/semana/:semanaId" element={<Aula />} />
             

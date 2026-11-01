@@ -188,7 +188,7 @@ export default function Home() {
                   </p>
                 </div>
                 
-                <div className="mt-8 pt-4 border-t border-custom-border">
+                <div className="mt-8 pt-4 border-t border-custom-border space-y-2">
                   <Link 
                     to={`/disciplina/${disc.pasta}`}
                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-100 hover:bg-custom-accent text-slate-500 hover:text-white dark:bg-slate-800 dark:hover:bg-custom-accent dark:text-slate-300 dark:hover:text-white px-4 py-3.5 text-sm font-bold shadow-sm transition-all cursor-pointer"
@@ -196,6 +196,15 @@ export default function Home() {
                     Acessar Disciplina
                     <ArrowRight className="h-4.5 w-4.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
+
+                  {disc.pasta === 'projeto_de_software_iii' && (
+                    <Link
+                      to="/disciplina/projeto_de_software_iii/agendamento"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-custom-accent/10 hover:bg-custom-accent text-custom-accent hover:text-white border border-custom-accent/20 px-4 py-2.5 text-xs font-bold transition-all cursor-pointer"
+                    >
+                      <span>📅 Agendamento de Bancas de TCC</span>
+                    </Link>
+                  )}
                 </div>
               </div>
             ))

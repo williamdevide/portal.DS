@@ -1,0 +1,24 @@
+{
+  "name": "portal-ds-backend",
+  "version": "1.0.0",
+  "description": "Backend API para o Portal Educacional do SENAI Ourinhos - Agendamento de TCC e persistência SQLite",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "senai",
+    "express",
+    "sqlite",
+    "portal-ds"
+  ],
+  "author": "William Devidé Komel",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}

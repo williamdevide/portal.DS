@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight, Lock } from 'lucide-react';
+import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight, Lock, CalendarClock, ClipboardList } from 'lucide-react';
 import CriterioCard from '../components/CriterioCard';
+import AgendamentoForm from '../components/agendamento/AgendamentoForm';
+import QuadroAgendamentos from '../components/agendamento/QuadroAgendamentos';
 
 const obterSaBadgeClass = (situacao) => {
   if (!situacao) return '';
@@ -18,7 +20,7 @@ const obterSaBadgeClass = (situacao) => {
   return 'bg-custom-accent/10 text-custom-accent border border-custom-accent/25';
 };
 
-export default function Disciplina() {
+export default function Disciplina({ initialTab = 'cronograma' }) {
   const { disciplinaSlug } = useParams();
 
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,13 @@ export default function Disciplina() {
   const [criteriosMsep, setCriteriosMsep] = useState(null);
   const [escalaAutonomia, setEscalaAutonomia] = useState([]);
 
-  const [activeTab, setActiveTab] = useState('cronograma'); // 'cronograma' ou 'msep'
+  const [activeTab, setActiveTab] = useState(initialTab); // 'cronograma', 'msep', 'agendamento' ou 'quadro'
+
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
   const [criterioView, setCriterioView] = useState('cards'); // 'cards' ou 'tabela'
   
   // Controle de estado para a aula ampliada no centro da tela
@@ -370,6 +378,26 @@ export default function Disciplina() {
                   "{disciplina.conclusao}"
                 </div>
               )}
+
+              {/* Ações Rápidas de TCC para PSOF3 */}
+              {disciplinaSlug === 'projeto_de_software_iii' && (
+                <div className="mt-6 flex flex-wrap items-center gap-3 animate-fade-in">
+                  <button
+                    onClick={() => setActiveTab('agendamento')}
+                    className="inline-flex items-center gap-2 rounded-xl bg-custom-accent px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-custom-accent/25 hover:opacity-90 transition-all hover:scale-[1.02]"
+                  >
+                    <CalendarClock className="h-4 w-4" />
+                    Agendar Apresentação de TCC
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('quadro')}
+                    className="inline-flex items-center gap-2 rounded-xl bg-white/10 text-white hover:bg-white/15 px-5 py-2.5 text-xs sm:text-sm font-semibold backdrop-blur-md border border-white/15 transition-all"
+                  >
+                    <ClipboardList className="h-4 w-4 text-emerald-400" />
+                    Ver Quadro de Agendamentos
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Painel de Estatísticas Acadêmicas em Vidro (Glassmorphism no Primeiro Plano) */}
@@ -449,6 +477,34 @@ export default function Disciplina() {
               <ShieldCheck className="h-4.5 w-4.5" />
               Critérios de Avaliação (MSEP)
             </button>
+
+            {/* Abas Exclusivas da Disciplina de PSOF3 (Agendamento de TCC) */}
+            {disciplinaSlug === 'projeto_de_software_iii' && (
+              <>
+                <button
+                  onClick={() => setActiveTab('agendamento')}
+                  className={`flex items-center gap-2 border-b-2 px-6 py-3.5 text-sm font-bold transition-all duration-300 ${
+                    activeTab === 'agendamento'
+                      ? 'border-custom-accent text-custom-accent'
+                      : 'border-transparent text-custom-muted hover:text-custom-text'
+                  }`}
+                >
+                  <CalendarClock className="h-4.5 w-4.5" />
+                  Agendar TCC
+                </button>
+                <button
+                  onClick={() => setActiveTab('quadro')}
+                  className={`flex items-center gap-2 border-b-2 px-6 py-3.5 text-sm font-bold transition-all duration-300 ${
+                    activeTab === 'quadro'
+                      ? 'border-custom-accent text-custom-accent'
+                      : 'border-transparent text-custom-muted hover:text-custom-text'
+                  }`}
+                >
+                  <ClipboardList className="h-4.5 w-4.5" />
+                  Quadro de Agendamentos
+                </button>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -918,6 +974,16 @@ export default function Disciplina() {
               </div>
             )}
           </div>
+        )}
+
+        {/* Aba 3: Agendamento da Apresentação de TCC (PSOF3) */}
+        {activeTab === 'agendamento' && (
+          <AgendamentoForm onNavigateToQuadro={() => setActiveTab('quadro')} />
+        )}
+
+        {/* Aba 4: Quadro Geral de Agendamentos (PSOF3) */}
+        {activeTab === 'quadro' && (
+          <QuadroAgendamentos onNavigateToNovo={() => setActiveTab('agendamento')} />
         )}
 
       </main>

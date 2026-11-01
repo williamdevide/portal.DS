@@ -1,0 +1,15 @@
+{
+  "name": "portal-ds-root",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Portal Educacional SENAI Ourinhos - Técnico em Desenvolvimento de Sistemas",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "start:backend": "npm --prefix backend start"
+  },
+  "author": "William Devidé Komel",
+  "license": "ISC"
+}

@@ -18,9 +18,9 @@ html.dark {
   --text-color: #f5f5f7;          /* Offwhite */
   --text-muted: #8e8e93;          /* Cinza */
   --border-color: #2c2c2e;        /* Grafite claro para bordas */
-  --accent-color: #007acc;        /* Azul */
-  --accent-hover: #005ca9;
-  --accent-glow: rgba(0, 122, 204, 0.15);
+  --accent-color: #E30613;        /* Vermelho SENAI */
+  --accent-hover: #b8050f;
+  --accent-glow: rgba(227, 6, 19, 0.25);
 }
 
 @theme {

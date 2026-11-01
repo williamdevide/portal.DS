@@ -1,0 +1,387 @@
+{
+  "disciplina": "Projeto de Software III (PSOF3)",
+  "descricao": "Cronograma de Apresentação e Defesa dos Trabalhos de Conclusão de Curso (TCC) perante a banca examinadora do SENAI Ourinhos.",
+  "duracao_apresentacao_minutos": 35,
+  "intervalo_minutos": 5,
+  "turmas": [
+    {
+      "id": "turma-i2dev-a",
+      "nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "sala_ou_local": "Metrologia",
+      "grupos": [
+        {
+          "numero": 1,
+          "nome": "Grupo 01",
+          "projeto": "Agenda+",
+          "tema": "Desafio no processo de marcação de consultas: Como tornar o processo mais eficiente e acessível",
+          "integrantes": [
+            "Arthur",
+            "José",
+            "Rafael"
+          ],
+          "palavra_secreta": "algoritmo"
+        },
+        {
+          "numero": 2,
+          "nome": "Grupo 02",
+          "projeto": "Acesso Livre",
+          "tema": "A falha no Mercado de Eventos e Ingressos Online",
+          "integrantes": [
+            "Caroline",
+            "Elienai"
+          ],
+          "palavra_secreta": "variavel"
+        },
+        {
+          "numero": 3,
+          "nome": "Grupo 03",
+          "projeto": "Fitlink",
+          "tema": "Serviços para Personal Trainer",
+          "integrantes": [
+            "Cassiano",
+            "Gabriel"
+          ],
+          "palavra_secreta": "funcao"
+        },
+        {
+          "numero": 4,
+          "nome": "Grupo 04",
+          "projeto": "EPI Control",
+          "tema": "Controle de EPI",
+          "integrantes": [
+            "Amanda",
+            "Giovana",
+            "Matheus L"
+          ],
+          "palavra_secreta": "banco"
+        },
+        {
+          "numero": 5,
+          "nome": "Grupo 05",
+          "projeto": "Reposicionamento da Marca LabWare",
+          "tema": "Projeto Integrador 2025/02 1.34_04: Estratégia de Reposicionamento de Marca para Atração de Jovens Talentos no Segmento de Soluções para Gestão Laboratorial",
+          "integrantes": [
+            "Antonio",
+            "Isabelle",
+            "Nicolle"
+          ],
+          "palavra_secreta": "codigo"
+        },
+        {
+          "numero": 6,
+          "nome": "Grupo 06",
+          "projeto": "Nexus",
+          "tema": "Projeto Integrador 2025/02 1.34_02: Integração de Plataformas de Aprendizado e Desenvolvimento para o Segmento de TI",
+          "integrantes": [
+            "Hector",
+            "João Pedro",
+            "Miguel"
+          ],
+          "palavra_secreta": "servidor"
+        },
+        {
+          "numero": 7,
+          "nome": "Grupo 07",
+          "projeto": "Stock Sense",
+          "tema": "Onde Está? Um Gargalo na Logística Interna",
+          "integrantes": [
+            "Gustavo",
+            "João Victor",
+            "Joaquim"
+          ],
+          "palavra_secreta": "conexao"
+        },
+        {
+          "numero": 8,
+          "nome": "Grupo 08",
+          "projeto": "PetAlert",
+          "tema": "Plataforma para Centralização e Gestão de Denúncias e Doações para Causas Animais",
+          "integrantes": [
+            "Maria E",
+            "Mariana",
+            "Verginia"
+          ],
+          "palavra_secreta": "classe"
+        },
+        {
+          "numero": 9,
+          "nome": "Grupo 09",
+          "projeto": "SafeFlow",
+          "tema": "Controle de EPI",
+          "integrantes": [
+            "Eduardo",
+            "Matheus N"
+          ],
+          "palavra_secreta": "metodo"
+        },
+        {
+          "numero": 10,
+          "nome": "Grupo 10",
+          "projeto": "Comuni+",
+          "tema": "Déficit de Acessibilidade Comunicacional no Setor Industrial",
+          "integrantes": [
+            "Bianca",
+            "Nathalia",
+            "Vitória"
+          ],
+          "palavra_secreta": "objeto"
+        },
+        {
+          "numero": 11,
+          "nome": "Grupo 11",
+          "projeto": "BRIO",
+          "tema": "BRIO: Plataforma Gamificada para Foco, Disciplina e Constância",
+          "integrantes": [
+            "Pedro"
+          ],
+          "palavra_secreta": "consulta"
+        },
+        {
+          "numero": 12,
+          "nome": "Grupo 12",
+          "projeto": "BRIO",
+          "tema": "BRIO: Plataforma Gamificada para Foco, Disciplina e Constância",
+          "integrantes": [
+            "Laura",
+            "Rayane"
+          ],
+          "palavra_secreta": "tabela"
+        },
+        {
+          "numero": 13,
+          "nome": "Grupo 13",
+          "projeto": "TechSupport",
+          "tema": "TI Eficaz: Inovação na Gestão de Chamados Internos para a OMPI",
+          "integrantes": [
+            "Otávio"
+          ],
+          "palavra_secreta": "pacote"
+        }
+      ],
+      "dias_disponiveis": [
+        {
+          "data": "2026-11-17",
+          "dia_semana": "Terça-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário"
+          ]
+        },
+        {
+          "data": "2026-11-24",
+          "dia_semana": "Terça-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário"
+          ]
+        },
+        {
+          "data": "2026-12-01",
+          "dia_semana": "Terça-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário"
+          ]
+        },
+        {
+          "data": "2026-12-08",
+          "dia_semana": "Terça-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário",
+            "Quarto Horário"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turma-i2dev-b",
+      "nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "sala_ou_local": "Metrologia",
+      "grupos": [
+        {
+          "numero": 1,
+          "nome": "Grupo 01",
+          "projeto": "ARVA",
+          "tema": "Impactos Operacionais por Falta de Automação no Campo",
+          "integrantes": [
+            "Cassiane",
+            "Heloisa"
+          ],
+          "palavra_secreta": "vetor"
+        },
+        {
+          "numero": 2,
+          "nome": "Grupo 02",
+          "projeto": "AprimorAI",
+          "tema": "Transformando a preparação e condução de aulas com inteligência artificial",
+          "integrantes": [
+            "Danielle",
+            "Maria G",
+            "Samuel"
+          ],
+          "palavra_secreta": "matriz"
+        },
+        {
+          "numero": 3,
+          "nome": "Grupo 03",
+          "projeto": "Guardião Animal",
+          "tema": "Plataforma para Centralização e Gestão de Denúncias e Doações para Causas Animais",
+          "integrantes": [
+            "Arthur",
+            "Davi K",
+            "Vinicius"
+          ],
+          "palavra_secreta": "arquivo"
+        },
+        {
+          "numero": 4,
+          "nome": "Grupo 04",
+          "projeto": "Apoio Pet",
+          "tema": "Apoio Pet",
+          "integrantes": [
+            "Davi M",
+            "Davi P",
+            "Mauricio"
+          ],
+          "palavra_secreta": "memoria"
+        },
+        {
+          "numero": 5,
+          "nome": "Grupo 05",
+          "projeto": "CyberSecurity",
+          "tema": "Boas práticas de segurança na era da informação",
+          "integrantes": [
+            "Felipe",
+            "Nikolas",
+            "Miguel"
+          ],
+          "palavra_secreta": "processo"
+        },
+        {
+          "numero": 6,
+          "nome": "Grupo 06",
+          "projeto": "BRIO",
+          "tema": "BRIO: Plataforma Gamificada para Foco, Disciplina e Constância",
+          "integrantes": [
+            "Isadora",
+            "Vitória C",
+            "Vitória N"
+          ],
+          "palavra_secreta": "sistema"
+        },
+        {
+          "numero": 7,
+          "nome": "Grupo 07",
+          "projeto": "Central Pet",
+          "tema": "Plataforma para Centralização e Gestão de Denúncias e Doações para Causas Animais",
+          "integrantes": [
+            "Kamyla",
+            "Mikaella"
+          ],
+          "palavra_secreta": "interface"
+        },
+        {
+          "numero": 8,
+          "nome": "Grupo 08",
+          "projeto": "OrganizAI",
+          "tema": "Consumo Impulsivo e Endividamento: o Desafio do Controle Financeiro na Era Digital",
+          "integrantes": [
+            "Leonardo",
+            "João Sergio",
+            "Ramon"
+          ],
+          "palavra_secreta": "modulo"
+        },
+        {
+          "numero": 9,
+          "nome": "Grupo 09",
+          "projeto": "ECOA",
+          "tema": "Consumo Impulsivo e Endividamento: o Desafio do Controle Financeiro na Era Digital",
+          "integrantes": [
+            "Luiza",
+            "Maria L",
+            "Sophia"
+          ],
+          "palavra_secreta": "logica"
+        },
+        {
+          "numero": 10,
+          "nome": "Grupo 10",
+          "projeto": "MVM (Movement)",
+          "tema": "Gestão Inteligente Do Ciclo de Vida dos Produtos",
+          "integrantes": [
+            "Murilo B",
+            "Murilo D",
+            "Vitor"
+          ],
+          "palavra_secreta": "registro"
+        },
+        {
+          "numero": 11,
+          "nome": "Grupo 11",
+          "projeto": "RESTCONTROL",
+          "tema": "Operação Enxuta na Cozinha: o dia em que o fluxo ‘cozinhou’ os custos",
+          "integrantes": [
+            "Nicole"
+          ],
+          "palavra_secreta": "indice"
+        },
+        {
+          "numero": 12,
+          "nome": "Grupo 12",
+          "projeto": "Fila Zero",
+          "tema": "Sesi alimentação",
+          "integrantes": [
+            "Henry",
+            "Otávio",
+            "Vagner"
+          ],
+          "palavra_secreta": "commit"
+        }
+      ],
+      "dias_disponiveis": [
+        {
+          "data": "2026-11-16",
+          "dia_semana": "Segunda-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário"
+          ]
+        },
+        {
+          "data": "2026-11-23",
+          "dia_semana": "Segunda-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário"
+          ]
+        },
+        {
+          "data": "2026-11-30",
+          "dia_semana": "Segunda-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário"
+          ]
+        },
+        {
+          "data": "2026-12-07",
+          "dia_semana": "Segunda-feira",
+          "horarios": [
+            "Primeiro Horário",
+            "Segundo Horário",
+            "Terceiro Horário"
+          ]
+        }
+      ]
+    }
+  ]
+}
