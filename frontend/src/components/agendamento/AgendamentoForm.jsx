@@ -3,7 +3,7 @@ import {
   Clock, Users, CheckCircle2, AlertCircle, 
   Sparkles, FileText, MapPin, Eye, EyeOff, KeyRound
 } from 'lucide-react';
-import { obterConfiguracao, listarAgendamentos, salvarAgendamento } from '../../services/agendamentoService';
+import { obterConfiguracao, listarAgendamentos, salvarAgendamento, normalizarTexto } from '../../services/agendamentoService';
 import PalavraIncorretaModal from './PalavraIncorretaModal';
 
 export default function AgendamentoForm({ onNavigateToQuadro }) {
@@ -99,6 +99,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setModalErroPalavra('');
 
     if (!selectedTurmaId) {
       setError('Por favor, selecione uma turma.');
@@ -135,10 +136,10 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
     // Validação prévia caso a palavra secreta esteja presente nos dados locais
     const grupoConfig = turmaAtual?.grupos?.find(g => {
       const nome = typeof g === 'string' ? g : g.nome;
-      return nome?.trim().toLowerCase() === selectedGrupo.trim().toLowerCase();
+      return normalizarTexto(nome) === normalizarTexto(selectedGrupo);
     });
     if (grupoConfig && typeof grupoConfig === 'object' && grupoConfig.palavra_secreta) {
-      if (palavraChave.trim().toLowerCase() !== grupoConfig.palavra_secreta.trim().toLowerCase()) {
+      if (normalizarTexto(palavraChave) !== normalizarTexto(grupoConfig.palavra_secreta)) {
         setModalErroPalavra(`A palavra-chave informada para o "${selectedGrupo}" está incorreta. Verifique a palavra secreta entregue pessoalmente pelo Professor William e tente novamente.`);
         return;
       }

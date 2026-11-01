@@ -21,6 +21,16 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const ADMIN_PIN = process.env.ADMIN_PIN || 'senai@2026';
 
+// Função utilitária para normalizar strings (remove acentos, espaços extras e ignora maiúsculas)
+function normalizarTexto(str) {
+  return (str || '')
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase();
+}
+
 app.use(cors());
 app.use(express.json());
 
@@ -160,7 +170,7 @@ app.post('/api/agendamentos', (req, res) => {
 
     const grupoConfig = turma.grupos?.find(g => {
       const nome = typeof g === 'string' ? g : g.nome;
-      return nome.trim().toLowerCase() === grupo_nome.trim().toLowerCase();
+      return normalizarTexto(nome) === normalizarTexto(grupo_nome);
     });
 
     if (!grupoConfig) {
@@ -169,14 +179,14 @@ app.post('/api/agendamentos', (req, res) => {
 
     const palavraEsperada = typeof grupoConfig === 'string' ? null : grupoConfig.palavra_secreta;
     if (palavraEsperada) {
-      const palavraDigitada = (palavra_chave || '').toString().trim().toLowerCase();
+      const palavraDigitada = (palavra_chave || '').toString().trim();
       if (!palavraDigitada) {
         return res.status(400).json({
           erro: 'A palavra-chave secreta do grupo é obrigatória para concluir o agendamento.'
         });
       }
 
-      if (palavraDigitada !== palavraEsperada.trim().toLowerCase()) {
+      if (normalizarTexto(palavraDigitada) !== normalizarTexto(palavraEsperada)) {
         return res.status(403).json({
           erro: `Palavra-chave incorreta para o "${grupo_nome}". Verifique a palavra secreta fornecida pelo Professor William e tente novamente.`
         });
