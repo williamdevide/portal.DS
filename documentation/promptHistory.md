@@ -489,6 +489,13 @@ quando atualizo alguma subpagina da erro, preciso voltar o link original
 voltou a dar problema quando preencho correto e clico em salvar agendamento. não salvou
 ```
 
+### Prompt 8
+```text
+/agente-orquestrador /grill-me /goal o botão Confirmar Agendamento da Banca ainda não funciona, corrija.
+a navbar onde esta Portal do Professor coloque Portal do Professor (v.1.0.2)
+```
+
+
 
 
 

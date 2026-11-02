@@ -127,7 +127,11 @@ export async function salvarAgendamento(dados) {
   }
 
   // --- Modo Fallback Offline (Executa quando o servidor backend está desligado) ---
-  const turma = fallbackConfig.turmas?.find(t => t.id === dados.turma_id);
+  const turma = fallbackConfig.turmas?.find(t => 
+    t.id === dados.turma_id || 
+    normalizarTexto(t.id) === normalizarTexto(dados.turma_id) || 
+    normalizarTexto(t.nome) === normalizarTexto(dados.turma_nome)
+  );
   const grupo = turma?.grupos?.find(g => {
     const nome = typeof g === 'string' ? g : g.nome;
     return normalizarTexto(nome) === normalizarTexto(dados.grupo_nome);

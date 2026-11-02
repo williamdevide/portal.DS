@@ -106,28 +106,37 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
 
   // Tratamento do envio do formulário
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+    }
     setError('');
     setModalErroPalavra('');
 
     if (!selectedTurmaId) {
-      setError('Por favor, selecione uma turma.');
+      setError('Por favor, selecione a sua Turma no Passo 1.');
+      document.getElementById('passo-1-turma')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
     if (!selectedGrupo) {
-      setError('Por favor, selecione o grupo de TCC.');
+      setError('Por favor, selecione o seu Grupo de TCC no Passo 2.');
+      document.getElementById('passo-2-grupo')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
     if (!selectedData) {
-      setError('Por favor, selecione o dia da apresentação.');
+      setError('Por favor, selecione o Dia da Apresentação no Passo 3.');
+      document.getElementById('passo-3-data')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
     if (!selectedHorario) {
-      setError('Por favor, selecione um horário disponível.');
+      setError('Por favor, selecione o Horário Desejado no Passo 4.');
+      document.getElementById('passo-4-horario')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
     if (!palavraChave.trim()) {
-      setError('Por favor, informe a palavra-chave secreta do seu grupo.');
+      setError('Por favor, informe a Palavra-Chave Secreta do seu grupo no Passo 6.');
+      palavraChaveInputRef.current?.focus();
+      document.getElementById('passo-6-palavra-chave')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
@@ -185,9 +194,13 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
         id: res.agendamento?.id
       });
 
-      // Recarrega lista para atualizar slots ocupados
-      const novosAgend = await listarAgendamentos();
-      setAgendamentos(novosAgend);
+      // Recarrega lista para atualizar slots ocupados (sem abortar em caso de aviso)
+      try {
+        const novosAgend = await listarAgendamentos();
+        setAgendamentos(novosAgend);
+      } catch (e) {
+        console.warn('Aviso ao sincronizar agendamentos:', e);
+      }
 
       // Limpa os campos selecionados
       setSelectedGrupo('');
@@ -202,6 +215,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (err) {
+      console.error('Erro ao salvar agendamento:', err);
       const errMsg = err.message || 'Falha ao processar agendamento. Tente novamente.';
       if (
         errMsg.toLowerCase().includes('palavra') || 
@@ -316,7 +330,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       <form onSubmit={handleSubmit} className="space-y-6">
         
         {/* Passo 1: Seleção da Turma */}
-        <div className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
+        <div id="passo-1-turma" className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
           <div className="flex items-center justify-between border-b border-custom-border pb-3">
             <label className="text-sm font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans flex items-center gap-2">
               <span className="flex items-center justify-center h-5 w-5 rounded-full bg-[#E30613] text-white text-[10px] font-bold">1</span>
@@ -374,7 +388,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
         {turmaAtual && (
           <>
             {/* Passo 2: Seleção do Grupo de TCC */}
-            <div className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
+            <div id="passo-2-grupo" className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-custom-border pb-3">
                 <label className="text-sm font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans flex items-center gap-2">
                   <span className="flex items-center justify-center h-5 w-5 rounded-full bg-[#E30613] text-white text-[10px] font-bold">2</span>
@@ -508,7 +522,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
             </div>
 
             {/* Passo 3: Seleção do Dia da Apresentação */}
-            <div className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
+            <div id="passo-3-data" className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-custom-border pb-3">
                 <label className="text-sm font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans flex items-center gap-2">
                   <span className="flex items-center justify-center h-5 w-5 rounded-full bg-[#E30613] text-white text-[10px] font-bold">3</span>
@@ -567,7 +581,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
 
             {/* Passo 4: Seleção do Horário (Exatamente 4 Colunas) */}
             {selectedData && (
-              <div className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4 animate-fade-in">
+              <div id="passo-4-horario" className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4 animate-fade-in">
                 <div className="flex items-center justify-between border-b border-custom-border pb-3">
                   <label className="text-sm font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans flex items-center gap-2">
                     <span className="flex items-center justify-center h-5 w-5 rounded-full bg-[#E30613] text-white text-[10px] font-bold">4</span>
@@ -630,7 +644,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
             )}
 
             {/* Passo 5: Observações Opcionais */}
-            <div className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-3">
+            <div id="passo-5-observacoes" className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-3">
               <label className="text-sm font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans flex items-center gap-2">
                 <span className="flex items-center justify-center h-5 w-5 rounded-full bg-[#E30613] text-white text-[10px] font-bold">5</span>
                 <FileText className="h-4 w-4" />
@@ -646,7 +660,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
             </div>
 
             {/* Passo 6: Palavra-Chave Secreta do Grupo */}
-            <div className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
+            <div id="passo-6-palavra-chave" className="bg-custom-card border border-custom-border rounded-2xl p-6 shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-custom-border pb-3">
                 <label className="text-sm font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans flex items-center gap-2">
                   <span className="flex items-center justify-center h-5 w-5 rounded-full bg-[#E30613] text-white text-[10px] font-bold">6</span>
@@ -682,40 +696,81 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
               </div>
             </div>
 
-            {/* Botão de Envio */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-xs text-custom-muted font-sans">
-                * Uma vez confirmado, o horário será gravado no banco SQLite local do projeto.
+            {/* Painel de Validação e Envio */}
+            <div className="space-y-4 pt-2">
+              {/* Barra de Checklist das Etapas */}
+              <div className="p-4 rounded-2xl bg-custom-card border border-custom-border text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                <span className="font-bold uppercase tracking-wider text-[11px] text-custom-muted flex items-center gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5 text-custom-accent" />
+                  Status do Preenchimento:
+                </span>
+                <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
+                  <span className={`px-2.5 py-1 rounded-lg border font-medium ${selectedTurmaId ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 font-bold' : 'bg-custom-bg text-custom-muted border-custom-border'}`}>
+                    {selectedTurmaId ? '✓ Turma OK' : '1. Turma pendente'}
+                  </span>
+                  <span className={`px-2.5 py-1 rounded-lg border font-medium ${selectedGrupo ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 font-bold' : 'bg-custom-bg text-custom-muted border-custom-border'}`}>
+                    {selectedGrupo ? `✓ ${selectedGrupo}` : '2. Grupo pendente'}
+                  </span>
+                  <span className={`px-2.5 py-1 rounded-lg border font-medium ${selectedData ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 font-bold' : 'bg-custom-bg text-custom-muted border-custom-border'}`}>
+                    {selectedData ? `✓ ${selectedData.slice(5).replace('-', '/')}` : '3. Data pendente'}
+                  </span>
+                  <span className={`px-2.5 py-1 rounded-lg border font-medium ${selectedHorario ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 font-bold' : 'bg-custom-bg text-custom-muted border-custom-border'}`}>
+                    {selectedHorario ? `✓ ${selectedHorario}` : '4. Horário pendente'}
+                  </span>
+                  <span className={`px-2.5 py-1 rounded-lg border font-medium ${palavraChave.trim() ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 font-bold' : 'bg-custom-bg text-custom-muted border-custom-border'}`}>
+                    {palavraChave.trim() ? '✓ Palavra OK' : '5. Palavra pendente'}
+                  </span>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3 w-full sm:w-auto">
-                {onNavigateToQuadro && (
+              {/* Mensagem de Erro Imediata junto ao Botão de Ação */}
+              {error && (
+                <div className="flex items-start gap-3 p-4 rounded-2xl bg-rose-500/15 border-2 border-rose-500/40 text-rose-500 text-sm animate-shake shadow-lg">
+                  <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
+                  <div className="flex-1 space-y-1">
+                    <p className="font-bold font-sans">Atenção ao agendar:</p>
+                    <p className="font-medium text-xs sm:text-sm font-sans">{error}</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Linha dos Botões de Ação */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-xs text-custom-muted font-sans">
+                  * O agendamento salva automaticamente no banco SQLite e no histórico local.
+                </div>
+
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  {onNavigateToQuadro && (
+                    <button
+                      type="button"
+                      onClick={onNavigateToQuadro}
+                      className="flex-1 sm:flex-none px-5 py-3.5 text-sm font-semibold text-custom-muted hover:text-custom-text rounded-xl border border-custom-border hover:bg-white/5 transition-colors cursor-pointer"
+                    >
+                      Ver Agendamentos
+                    </button>
+                  )}
+
                   <button
                     type="button"
-                    onClick={onNavigateToQuadro}
-                    className="flex-1 sm:flex-none px-5 py-3 text-sm font-semibold text-custom-muted hover:text-custom-text rounded-xl border border-custom-border hover:bg-white/5 transition-colors"
+                    onClick={handleSubmit}
+                    disabled={submitting}
+                    id="btn-confirmar-agendamento"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-bold text-white bg-[#E30613] hover:bg-[#b8050f] active:scale-95 transition-all rounded-xl shadow-xl shadow-[#E30613]/30 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
-                    Ver Agendamentos
+                    {submitting ? (
+                      <>
+                        <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Gravando no Banco SQLite...
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle2 className="h-4 w-4" />
+                        Confirmar Agendamento da Banca
+                      </>
+                    )}
                   </button>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={submitting || !selectedTurmaId || !selectedGrupo || !selectedData || !selectedHorario || !palavraChave.trim()}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-bold text-white bg-[#E30613] hover:bg-[#b8050f] active:scale-95 transition-all rounded-xl shadow-xl shadow-[#E30613]/25 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {submitting ? (
-                    <>
-                      <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Gravando no Banco SQLite...
-                    </>
-                  ) : (
-                    <>
-                      <CheckCircle2 className="h-4 w-4" />
-                      Confirmar Agendamento da Banca
-                    </>
-                  )}
-                </button>
+                </div>
               </div>
             </div>
           </>
