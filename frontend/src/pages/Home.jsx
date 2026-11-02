@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Database, ArrowRight, Code, Terminal, Brain, Calendar } from 'lucide-react';
+import { Database, ArrowRight, Code, Terminal, Brain, Calendar, ExternalLink } from 'lucide-react';
 import informacoes_gerais from '../data/informacoes_gerais.json';
 import listaDisciplinas from '../data/disciplinas.json';
 
@@ -204,6 +204,19 @@ export default function Home() {
                     >
                       <span>📅 Agendamento de Bancas de TCC</span>
                     </Link>
+                  )}
+
+                  {disc.pasta === 'banco_de_dados' && (
+                    <a
+                      href="https://wdk-sqleditor.vercel.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-custom-accent/10 hover:bg-custom-accent text-custom-accent hover:text-white border border-custom-accent/20 px-4 py-2.5 text-xs font-bold transition-all cursor-pointer group/sql"
+                    >
+                      <Database className="h-3.5 w-3.5" />
+                      <span>SQL Editor Online</span>
+                      <ExternalLink className="h-3 w-3 opacity-70 group-hover/sql:opacity-100" />
+                    </a>
                   )}
                 </div>
               </div>

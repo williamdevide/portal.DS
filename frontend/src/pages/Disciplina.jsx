@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight, Lock, CalendarClock, ClipboardList } from 'lucide-react';
+import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight, Lock, CalendarClock, ClipboardList, Database, ExternalLink } from 'lucide-react';
 import CriterioCard from '../components/CriterioCard';
 import AgendamentoForm from '../components/agendamento/AgendamentoForm';
 import QuadroAgendamentos from '../components/agendamento/QuadroAgendamentos';
@@ -411,6 +411,22 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
                     <ClipboardList className="h-4 w-4 text-emerald-400" />
                     Ver Quadro de Agendamentos
                   </button>
+                </div>
+              )}
+
+              {/* Ação Rápida para Banco de Dados: SQL Editor */}
+              {disciplinaSlug === 'banco_de_dados' && (
+                <div className="mt-6 flex flex-wrap items-center gap-3 animate-fade-in">
+                  <a
+                    href="https://wdk-sqleditor.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-custom-accent px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-custom-accent/25 hover:opacity-90 transition-all hover:scale-[1.02] cursor-pointer"
+                  >
+                    <Database className="h-4 w-4" />
+                    Abrir SQL Editor Online
+                    <ExternalLink className="h-3.5 w-3.5 opacity-80" />
+                  </a>
                 </div>
               )}
             </div>

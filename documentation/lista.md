@@ -41,3 +41,4 @@
 * As palavras-chave são individuais para cada grupo e devem ser tratadas de forma confidencial.
 * O sistema aceita a digitação com tolerância a maiúsculas/minúsculas e acentuação gráfica.
 * Caso algum grupo necessite de alteração ou reagendamento de banca, o Professor poderá utilizar o **Modo Professor** com PIN administrativo no próprio Portal.
+

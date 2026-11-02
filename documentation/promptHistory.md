@@ -505,6 +505,12 @@ a navbar onde esta Portal do Professor coloque Portal do Professor (v.1.0.2)
 /agente-orquestrador /grill-me /goal prepare em documentation um arquivo lista.md com 4 colunas em cada linha: turma, grupo, integrantes, palavra-chave
 ```
 
+### Prompt 11
+```text
+/agente-orquestrador /grill-me /goal no card da disciplina de banco de dados, quero um botão que leve para o SQL Editor similar ao botão de agendamento de TCC. endereço: wdk-sqleditor.vercel.app
+```
+
+
 
 
 
