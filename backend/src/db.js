@@ -66,7 +66,7 @@ export function buscarAgendamentoPorId(id) {
  * Verifica se grupo já possui agendamento
  */
 export function buscarPorGrupo(turmaId, grupoNome) {
-  const stmt = db.prepare('SELECT * FROM agendamentos WHERE turma_id = ? AND grupo_nome = ?');
+  const stmt = db.prepare('SELECT * FROM agendamentos WHERE turma_id = ? AND LOWER(grupo_nome) = LOWER(?)');
   return stmt.get(turmaId, grupoNome);
 }
 

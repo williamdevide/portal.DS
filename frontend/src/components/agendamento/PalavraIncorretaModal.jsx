@@ -87,3 +87,4 @@ export default function PalavraIncorretaModal({ isOpen, onClose, onTentarNovamen
     </div>
   );
 }
+

@@ -77,12 +77,13 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
   }, [selectedData]);
 
   // Lista de agendamentos da turma atual
-  const agendamentosTurma = agendamentos.filter(a => a.turma_id === selectedTurmaId);
+  const agendamentosTurma = agendamentos.filter(a => normalizarTexto(a.turma_id) === normalizarTexto(selectedTurmaId));
 
   // Mapeamento dos grupos que já agendaram
   const gruposAgendadosMap = new Map();
   agendamentosTurma.forEach(a => {
     gruposAgendadosMap.set(a.grupo_nome, a);
+    gruposAgendadosMap.set(normalizarTexto(a.grupo_nome), a);
   });
 
   // Mapeamento dos horários ocupados para a data selecionada: horario -> agendamento
@@ -92,8 +93,16 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       .filter(a => a.data === selectedData)
       .forEach(a => {
         horariosOcupadosMap.set(a.horario, a);
+        horariosOcupadosMap.set(normalizarTexto(a.horario), a);
       });
   }
+
+  // Se o grupo selecionado já estiver agendado, desmarca automaticamente
+  useEffect(() => {
+    if (selectedGrupo && (gruposAgendadosMap.has(selectedGrupo) || gruposAgendadosMap.has(normalizarTexto(selectedGrupo)))) {
+      setSelectedGrupo('');
+    }
+  }, [agendamentos, selectedGrupo]);
 
   // Tratamento do envio do formulário
   const handleSubmit = async (e) => {
@@ -123,12 +132,12 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
     }
 
     // Verificação de segurança local
-    if (gruposAgendadosMap.has(selectedGrupo)) {
+    if (gruposAgendadosMap.has(selectedGrupo) || gruposAgendadosMap.has(normalizarTexto(selectedGrupo))) {
       setError(`O grupo "${selectedGrupo}" já possui agendamento confirmado.`);
       return;
     }
 
-    if (horariosOcupadosMap.has(selectedHorario)) {
+    if (horariosOcupadosMap.has(selectedHorario) || horariosOcupadosMap.has(normalizarTexto(selectedHorario))) {
       setError(`O horário ${selectedHorario} acabou de ser reservado por outro grupo.`);
       return;
     }
@@ -159,6 +168,17 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       };
 
       const res = await salvarAgendamento(payload);
+
+      // Salva feedback para ser exibido imediatamente no Quadro Geral
+      try {
+        sessionStorage.setItem('feedback_agendamento', JSON.stringify({
+          tipo: 'sucesso',
+          texto: `Agendamento do "${selectedGrupo}" confirmado com sucesso para ${selectedData} às ${selectedHorario}!`
+        }));
+      } catch (e) {
+        console.warn('Erro ao salvar feedback em sessionStorage:', e);
+      }
+
       setSucesso({
         ...payload,
         sala_ou_local: turmaAtual.sala_ou_local,
@@ -170,11 +190,17 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       setAgendamentos(novosAgend);
 
       // Limpa os campos selecionados
+      const grupoFinalizado = selectedGrupo;
       setSelectedGrupo('');
       setSelectedData('');
       setSelectedHorario('');
       setObservacoes('');
       setPalavraChave('');
+
+      // Redireciona imediatamente para a tela de agendamentos efetuados (Quadro Geral)
+      if (onNavigateToQuadro) {
+        onNavigateToQuadro();
+      }
     } catch (err) {
       const errMsg = err.message || 'Falha ao processar agendamento. Tente novamente.';
       if (
@@ -355,7 +381,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                   Selecione o Grupo de TCC
                 </label>
                 <span className="text-xs text-custom-muted font-sans">
-                  {gruposAgendadosMap.size} de {turmaAtual.grupos.length} já agendados
+                  {agendamentosTurma.length} de {turmaAtual.grupos.length} já agendados
                 </span>
               </div>
 
@@ -366,9 +392,14 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                   const grupoTema = typeof grupoItem === 'object' ? grupoItem.tema : '';
                   const grupoIntegrantes = typeof grupoItem === 'object' && Array.isArray(grupoItem.integrantes) ? grupoItem.integrantes : [];
 
-                  const jaAgendado = gruposAgendadosMap.has(grupoNome);
-                  const dadosAgendamento = gruposAgendadosMap.get(grupoNome);
-                  const isSelected = selectedGrupo === grupoNome;
+                  const jaAgendado = Boolean(
+                    gruposAgendadosMap.get(grupoNome) || 
+                    gruposAgendadosMap.get(normalizarTexto(grupoNome))
+                  );
+                  const dadosAgendamento = 
+                    gruposAgendadosMap.get(grupoNome) || 
+                    gruposAgendadosMap.get(normalizarTexto(grupoNome));
+                  const isSelected = !jaAgendado && selectedGrupo === grupoNome;
 
                   return (
                     <button
@@ -376,6 +407,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                       type="button"
                       disabled={jaAgendado}
                       onClick={() => {
+                        if (jaAgendado) return;
                         setSelectedGrupo(grupoNome);
                         if (grupoProjeto && !observacoes) {
                           setObservacoes(`Projeto: ${grupoProjeto}${grupoTema ? ` - ${grupoTema}` : ''}`);
@@ -383,7 +415,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                       }}
                       className={`text-left p-4 rounded-xl border transition-all text-xs font-sans relative flex flex-col justify-between ${
                         jaAgendado
-                          ? 'opacity-60 bg-custom-bg/50 border-custom-border/60 cursor-not-allowed'
+                          ? 'opacity-65 bg-custom-bg/40 border-custom-border/60 cursor-not-allowed select-none'
                           : isSelected
                             ? 'bg-[#E30613]/10 border-[#E30613] text-custom-text shadow-md shadow-[#E30613]/15 ring-2 ring-[#E30613]'
                             : 'bg-custom-bg border-custom-border text-custom-text hover:border-[#E30613]/60 hover:bg-[#E30613]/5'
@@ -393,23 +425,33 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex flex-wrap items-center gap-2">
                             <span className={`px-2 py-0.5 rounded-md text-[11px] font-black font-mono ${
-                              isSelected
-                                ? 'bg-[#E30613] text-white'
-                                : 'bg-custom-card border border-custom-border text-[#E30613] dark:text-[#ff3b47]'
+                              jaAgendado
+                                ? 'bg-custom-card border border-custom-border text-custom-muted'
+                                : isSelected
+                                  ? 'bg-[#E30613] text-white'
+                                  : 'bg-custom-card border border-custom-border text-[#E30613] dark:text-[#ff3b47]'
                             }`}>
                               {grupoNome}
                             </span>
                             {grupoProjeto && (
-                              <span className="font-extrabold text-sm text-custom-text leading-tight">
+                              <span className={`font-extrabold text-sm leading-tight ${jaAgendado ? 'text-custom-muted opacity-80' : 'text-custom-text'}`}>
                                 {grupoProjeto}
                               </span>
                             )}
                           </div>
 
                           {jaAgendado ? (
-                            <span className="shrink-0 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-500/15 text-amber-500 border border-amber-500/25">
-                              {dadosAgendamento?.data ? `${dadosAgendamento.data.slice(5)} às ${dadosAgendamento.horario}` : 'Confirmado'}
-                            </span>
+                            <div className="flex flex-col items-end gap-1 shrink-0">
+                              <span className="px-2.5 py-1 rounded-md text-[11px] font-black uppercase tracking-wide bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5 shadow-sm">
+                                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
+                                Agendado
+                              </span>
+                              {dadosAgendamento?.data && (
+                                <span className="text-[10px] font-mono font-semibold text-custom-muted">
+                                  {dadosAgendamento.data.slice(5).replace('-', '/')} às {dadosAgendamento.horario}
+                                </span>
+                              )}
+                            </div>
                           ) : isSelected ? (
                             <CheckCircle2 className="h-5 w-5 text-[#E30613] dark:text-[#ff3b47] shrink-0" />
                           ) : null}

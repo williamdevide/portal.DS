@@ -91,6 +91,16 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
 
   useEffect(() => {
     carregarDados();
+    try {
+      const fb = sessionStorage.getItem('feedback_agendamento');
+      if (fb) {
+        setFeedback(JSON.parse(fb));
+        sessionStorage.removeItem('feedback_agendamento');
+        setTimeout(() => setFeedback(null), 7000);
+      }
+    } catch (e) {
+      console.warn('Erro ao ler feedback_agendamento:', e);
+    }
   }, []);
 
   // Login de Sucesso no Modal do Professor

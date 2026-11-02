@@ -471,3 +471,10 @@ quando uma palavra chave estiver errada exiba uma mensagem de erro modal
 nem com a palavra chave certa esta agendando
 ```
 
+### Prompt 5
+```text
+/agente-orquestrador /grill-me /goal após um agendamento feito, aquele grupo não pode mais ser selecionado e aparece no card já com os dizeres agendado.
+o agendamento ainda não esta funcionando, preencho tudo certo e não salva o agendamento. após concluir o agendamento vai para a tela de agendamentos efetuados.
+```
+
+

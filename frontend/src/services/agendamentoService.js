@@ -110,22 +110,15 @@ export async function salvarAgendamento(dados) {
       return resposta;
     }
 
-    // Se o backend respondeu com erro de validação (ex: 403 palavra errada, 400, 409 conflito)
-    if (res.status === 403 || res.status === 400 || res.status === 409) {
+    // Se o backend respondeu com erro de cliente/validação (4xx)
+    if (res.status >= 400 && res.status < 500) {
       throw new Error(resposta.erro || 'Erro ao processar agendamento.');
     }
 
     erroApi = resposta.erro || `Erro HTTP ${res.status}`;
   } catch (err) {
-    // Se foi erro de validação do backend (palavra-chave, conflito, etc.), propaga diretamente
-    if (
-      err.message.toLowerCase().includes('palavra') || 
-      err.message.toLowerCase().includes('chave') || 
-      err.message.toLowerCase().includes('secreta') ||
-      err.message.toLowerCase().includes('já possui') ||
-      err.message.toLowerCase().includes('já foi') ||
-      err.message.toLowerCase().includes('horário')
-    ) {
+    // Se foi erro de validação lançado intencionalmente, propaga diretamente
+    if (err.message && !err.message.includes('Failed to fetch') && !err.message.includes('NetworkError') && !err.message.includes('Erro HTTP 5')) {
       throw err;
     }
     console.warn('Backend indisponível ao salvar. Executando validação e persistência local:', err);
