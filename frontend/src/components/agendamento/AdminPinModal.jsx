@@ -91,8 +91,8 @@ export default function AdminPinModal({ isOpen, onClose, onSuccess }) {
                 {showPin ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
             </div>
-            <p className="mt-1.5 text-[11px] text-custom-muted italic font-sans">
-              Dica padrão de desenvolvimento: <span className="font-mono text-custom-accent">senai@2026</span>
+            <p className="mt-1.5 text-[11px] text-custom-muted font-sans">
+              * Acesso protegido exclusivo para o docente responsável pela disciplina.
             </p>
           </div>
 

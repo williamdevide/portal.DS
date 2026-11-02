@@ -10,7 +10,9 @@ import {
   listarAgendamentos, 
   excluirAgendamento, 
   atualizarAgendamento,
-  obterPalavrasSecretas
+  obterPalavrasSecretas,
+  obterStatusAgendamento,
+  alternarStatusAgendamento
 } from '../../services/agendamentoService';
 import AdminPinModal from './AdminPinModal';
 
@@ -151,6 +153,8 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
   const [adminPin, setAdminPin] = useState(() => {
     return sessionStorage.getItem('admin_pin_session') || '';
   });
+  const [agendamentoLiberado, setAgendamentoLiberado] = useState(false);
+  const [toggleLoading, setToggleLoading] = useState(false);
 
   // Modal de Edição de Agendamento
   const [editItem, setEditItem] = useState(null);
@@ -212,6 +216,19 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
 
   useEffect(() => {
     carregarDados();
+
+    let ativo = true;
+    obterStatusAgendamento().then(res => {
+      if (ativo && res) setAgendamentoLiberado(Boolean(res.liberado));
+    }).catch(() => {});
+
+    const statusHandler = (e) => {
+      if (e?.detail && typeof e.detail.liberado === 'boolean') {
+        setAgendamentoLiberado(e.detail.liberado);
+      }
+    };
+    window.addEventListener('portal_status_agendamento_changed', statusHandler);
+
     try {
       const fb = sessionStorage.getItem('feedback_agendamento');
       if (fb) {
@@ -222,7 +239,34 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
     } catch (e) {
       console.warn('Erro ao ler feedback_agendamento:', e);
     }
+
+    return () => {
+      ativo = false;
+      window.removeEventListener('portal_status_agendamento_changed', statusHandler);
+    };
   }, []);
+
+  // Alterna o status de liberação dos agendamentos (Modo Professor com PIN)
+  const handleToggleLiberacao = async () => {
+    if (!adminPin) return;
+    setToggleLoading(true);
+    try {
+      const novoStatus = !agendamentoLiberado;
+      await alternarStatusAgendamento(novoStatus, adminPin);
+      setAgendamentoLiberado(novoStatus);
+      setFeedback({
+        tipo: 'sucesso',
+        texto: novoStatus 
+          ? 'Agendamento permitido com sucesso! Os alunos agora podem escolher os horários das bancas.'
+          : 'Agendamentos bloqueados com sucesso! O acesso dos alunos ao formulário está suspenso.'
+      });
+      setTimeout(() => setFeedback(null), 5000);
+    } catch (err) {
+      setError(err.message || 'Erro ao alterar liberação de agendamentos.');
+    } finally {
+      setToggleLoading(false);
+    }
+  };
 
   // Login de Sucesso no Modal do Professor
   const handleAdminSuccess = (pin) => {
@@ -366,15 +410,30 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
         </div>
 
         {/* Botões do Topo (Novo Agendamento e Modo Professor) */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-4">
           {onNavigateToNovo && (
-            <button
-              onClick={onNavigateToNovo}
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-custom-accent hover:opacity-90 active:scale-95 transition-all rounded-xl shadow-md shadow-custom-accent/20"
-            >
-              <PlusCircle className="h-4 w-4" />
-              Agendar Nova Banca
-            </button>
+            <div className="flex flex-col items-center">
+              <button
+                onClick={onNavigateToNovo}
+                className="inline-flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-custom-accent hover:opacity-90 active:scale-95 transition-all rounded-xl shadow-md shadow-custom-accent/20 cursor-pointer"
+              >
+                <PlusCircle className="h-4 w-4" />
+                Agendar Nova Banca
+              </button>
+              <div className="mt-1 text-[11px] font-semibold flex items-center gap-1.5 py-0.5">
+                {agendamentoLiberado ? (
+                  <span className="text-emerald-500 flex items-center gap-1 font-mono">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Agendamentos liberados
+                  </span>
+                ) : (
+                  <span className="text-rose-500 dark:text-rose-400 flex items-center gap-1 font-mono">
+                    <Lock className="h-3 w-3 shrink-0" />
+                    Agendamentos bloqueados
+                  </span>
+                )}
+              </div>
+            </div>
           )}
 
           {adminPin ? (
@@ -386,16 +445,39 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                 </span>
                 <button
                   onClick={handleLogoutAdmin}
-                  className="text-[11px] font-semibold text-custom-muted hover:text-rose-400 underline ml-2 transition-colors"
+                  className="text-[11px] font-semibold text-custom-muted hover:text-rose-400 underline ml-2 transition-colors cursor-pointer"
                   title="Sair do modo de edição"
                 >
                   Bloquear
                 </button>
               </div>
 
+              {/* Botão de Liberação Docente conforme diretriz do usuário */}
+              <button
+                onClick={handleToggleLiberacao}
+                disabled={toggleLoading}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl border transition-all shadow-sm cursor-pointer ${
+                  agendamentoLiberado
+                    ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30 hover:bg-rose-500/25'
+                    : 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/25'
+                }`}
+                title="Configuração de liberação de agendamento para os alunos"
+              >
+                {toggleLoading ? (
+                  <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                ) : agendamentoLiberado ? (
+                  <Lock className="h-3.5 w-3.5 text-rose-500" />
+                ) : (
+                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
+                )}
+                <span>
+                  {agendamentoLiberado ? 'Bloquear agendamentos' : 'Agendamento permitido'}
+                </span>
+              </button>
+
               <button
                 onClick={abrirModalPalavras}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-custom-accent rounded-xl border border-custom-accent/30 bg-custom-accent/10 hover:bg-custom-accent/20 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-custom-accent rounded-xl border border-custom-accent/30 bg-custom-accent/10 hover:bg-custom-accent/20 transition-colors shadow-sm cursor-pointer"
                 title="Consultar palavras-chave secretas dos grupos"
               >
                 <KeyRound className="h-3.5 w-3.5" />
@@ -723,22 +805,52 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                                           />
                                         </div>
                                       ) : permiteHorario ? (
-                                        <div className="h-full min-h-[170px] p-4 rounded-xl border-2 border-dashed border-emerald-500/25 bg-emerald-500/5 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all flex flex-col items-center justify-center text-center gap-2 group/slot">
-                                          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 font-sans">
-                                            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                                            Horário Disponível
+                                        <div className={`h-full min-h-[170px] p-4 rounded-xl border-2 border-dashed transition-all flex flex-col items-center justify-center text-center gap-2 group/slot ${
+                                          agendamentoLiberado || adminPin
+                                            ? 'border-emerald-500/25 bg-emerald-500/5 hover:border-emerald-500/50 hover:bg-emerald-500/10'
+                                            : 'border-rose-500/20 bg-rose-500/5'
+                                        }`}>
+                                          <div className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-bold font-sans ${
+                                            agendamentoLiberado || adminPin
+                                              ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400'
+                                              : 'bg-rose-500/15 border-rose-500/30 text-rose-600 dark:text-rose-400'
+                                          }`}>
+                                            {agendamentoLiberado || adminPin ? (
+                                              <>
+                                                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                                                Horário Disponível
+                                              </>
+                                            ) : (
+                                              <>
+                                                <Lock className="h-2.5 w-2.5 shrink-0" />
+                                                Bloqueado
+                                              </>
+                                            )}
                                           </div>
                                           <p className="text-[11px] font-mono text-custom-muted">
-                                            Slot vago para apresentação
+                                            {agendamentoLiberado || adminPin ? 'Slot vago para apresentação' : 'Aguardando liberação docente'}
                                           </p>
                                           {onNavigateToNovo && (
                                             <button
                                               type="button"
                                               onClick={onNavigateToNovo}
-                                              className="mt-1 inline-flex items-center gap-1 px-3 py-1 text-[11px] font-bold text-white bg-[#E30613] hover:bg-[#b8050f] rounded-lg shadow-sm transition-all cursor-pointer opacity-90 group-hover/slot:opacity-100"
+                                              className={`mt-1 inline-flex items-center gap-1 px-3 py-1 text-[11px] font-bold text-white rounded-lg shadow-sm transition-all cursor-pointer opacity-90 group-hover/slot:opacity-100 ${
+                                                agendamentoLiberado || adminPin
+                                                  ? 'bg-[#E30613] hover:bg-[#b8050f]'
+                                                  : 'bg-slate-700 hover:bg-slate-600'
+                                              }`}
                                             >
-                                              <PlusCircle className="h-3 w-3" />
-                                              Agendar
+                                              {agendamentoLiberado || adminPin ? (
+                                                <>
+                                                  <PlusCircle className="h-3 w-3" />
+                                                  Agendar
+                                                </>
+                                              ) : (
+                                                <>
+                                                  <Lock className="h-3 w-3" />
+                                                  Ver Status
+                                                </>
+                                              )}
                                             </button>
                                           )}
                                         </div>

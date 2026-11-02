@@ -32,6 +32,14 @@ db.exec(`
 
   CREATE INDEX IF NOT EXISTS idx_agendamentos_turma ON agendamentos (turma_id);
   CREATE INDEX IF NOT EXISTS idx_agendamentos_data ON agendamentos (data);
+
+  CREATE TABLE IF NOT EXISTS configuracoes_sistema (
+    chave TEXT PRIMARY KEY,
+    valor TEXT NOT NULL,
+    atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  INSERT OR IGNORE INTO configuracoes_sistema (chave, valor) VALUES ('agendamento_liberado', 'false');
 `);
 
 /**
@@ -158,6 +166,29 @@ export function excluirAgendamento(id) {
   const stmt = db.prepare('DELETE FROM agendamentos WHERE id = ?');
   stmt.run(Number(id));
   return atual;
+}
+
+/**
+ * Consulta uma configuração do sistema (ex: agendamento_liberado)
+ */
+export function obterConfiguracaoSistema(chave) {
+  const stmt = db.prepare('SELECT valor FROM configuracoes_sistema WHERE chave = ?');
+  const row = stmt.get(chave);
+  return row ? row.valor : null;
+}
+
+/**
+ * Define ou atualiza uma configuração do sistema
+ */
+export function definirConfiguracaoSistema(chave, valor) {
+  const valorStr = valor.toString();
+  const stmt = db.prepare(`
+    INSERT INTO configuracoes_sistema (chave, valor, atualizado_em) 
+    VALUES (?, ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(chave) DO UPDATE SET valor = excluded.valor, atualizado_em = CURRENT_TIMESTAMP
+  `);
+  stmt.run(chave, valorStr);
+  return valorStr;
 }
 
 export default db;

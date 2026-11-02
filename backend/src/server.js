@@ -9,7 +9,9 @@ import {
   buscarAgendamentoPorId,
   criarAgendamento,
   atualizarAgendamento,
-  excluirAgendamento
+  excluirAgendamento,
+  obterConfiguracaoSistema,
+  definirConfiguracaoSistema
 } from './db.js';
 
 dotenv.config();
@@ -34,23 +36,10 @@ function normalizarTexto(str) {
 app.use(cors());
 app.use(express.json());
 
-// Carrega o arquivo de configuração de agendamento de TCC (verifica backend e frontend dinamicamente)
+// Carrega o arquivo de configuração seguro de agendamento de TCC (dados canônicos do backend)
 function lerConfiguracao() {
-  const caminhoFront = path.resolve(__dirname, '../../frontend/src/data/projeto_de_software_iii/agendamento_config.json');
   const caminhoBack = path.resolve(__dirname, '../data/agendamento_config.json');
-
-  let arquivoParaLer = caminhoBack;
-  if (fs.existsSync(caminhoFront)) {
-    try {
-      const statsFront = fs.statSync(caminhoFront);
-      const statsBack = fs.existsSync(caminhoBack) ? fs.statSync(caminhoBack) : null;
-      if (!statsBack || statsFront.mtimeMs >= statsBack.mtimeMs) {
-        arquivoParaLer = caminhoFront;
-      }
-    } catch (e) {
-      console.warn('Erro ao verificar mtime do frontend, usando backend:', e);
-    }
-  }
+  const arquivoParaLer = caminhoBack;
 
   try {
     const rawData = fs.readFileSync(arquivoParaLer, 'utf-8');
@@ -102,10 +91,12 @@ app.get('/api/health', (req, res) => {
 app.get('/api/config', (req, res) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   const config = lerConfiguracao();
+  const agendamentoLiberado = obterConfiguracaoSistema('agendamento_liberado') === 'true';
 
   // Oculta as palavras secretas para os alunos, enviando apenas os dados públicos dos grupos
   const configPublica = {
     ...config,
+    agendamento_liberado: agendamentoLiberado,
     turmas: config.turmas?.map(turma => ({
       ...turma,
       grupos: turma.grupos?.map(g => {
@@ -117,6 +108,31 @@ app.get('/api/config', (req, res) => {
   };
 
   res.json(configPublica);
+});
+
+// Endpoint público para consultar o status de liberação dos agendamentos
+app.get('/api/status-agendamento', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  const agendamentoLiberado = obterConfiguracaoSistema('agendamento_liberado') === 'true';
+  res.json({ 
+    liberado: agendamentoLiberado,
+    agendamento_liberado: agendamentoLiberado 
+  });
+});
+
+// Endpoint exclusivo do professor para alterar a liberação de agendamentos de TCC
+app.post('/api/admin/toggle-agendamento', requireAdminPin, (req, res) => {
+  const { liberado } = req.body;
+  const novoValor = (liberado === true || liberado === 'true' || liberado === '1' || liberado === 1) ? 'true' : 'false';
+  definirConfiguracaoSistema('agendamento_liberado', novoValor);
+  res.json({
+    sucesso: true,
+    liberado: novoValor === 'true',
+    agendamento_liberado: novoValor === 'true',
+    mensagem: novoValor === 'true'
+      ? 'Agendamentos liberados com sucesso! Os alunos agora podem escolher os horários de apresentação.'
+      : 'Agendamentos bloqueados com sucesso! Nenhum aluno poderá realizar novos agendamentos.'
+  });
 });
 
 // Endpoint exclusivo do professor para consultar todas as palavras secretas dos grupos
@@ -158,6 +174,14 @@ app.post('/api/agendamentos', (req, res) => {
     if (!turma_id || !turma_nome || !grupo_nome || !data || !horario) {
       return res.status(400).json({
         erro: 'Campos obrigatórios ausentes: turma, grupo, data e horário devem ser informados.'
+      });
+    }
+
+    // Validação de liberação dos agendamentos pelo professor
+    const agendamentoLiberado = obterConfiguracaoSistema('agendamento_liberado') === 'true';
+    if (!agendamentoLiberado) {
+      return res.status(403).json({
+        erro: 'Os agendamentos de bancas de TCC estão bloqueados pelo Professor. Aguarde a liberação em sala de aula.'
       });
     }
 

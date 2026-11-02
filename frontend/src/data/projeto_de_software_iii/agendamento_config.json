@@ -18,8 +18,7 @@
             "Arthur",
             "José",
             "Rafael"
-          ],
-          "palavra_secreta": "algoritmo"
+          ]
         },
         {
           "numero": 2,
@@ -29,8 +28,7 @@
           "integrantes": [
             "Caroline",
             "Elienai"
-          ],
-          "palavra_secreta": "variavel"
+          ]
         },
         {
           "numero": 3,
@@ -40,8 +38,7 @@
           "integrantes": [
             "Cassiano",
             "Gabriel"
-          ],
-          "palavra_secreta": "funcao"
+          ]
         },
         {
           "numero": 4,
@@ -52,8 +49,7 @@
             "Amanda",
             "Giovana",
             "Matheus L"
-          ],
-          "palavra_secreta": "banco"
+          ]
         },
         {
           "numero": 5,
@@ -64,8 +60,7 @@
             "Antonio",
             "Isabelle",
             "Nicolle"
-          ],
-          "palavra_secreta": "codigo"
+          ]
         },
         {
           "numero": 6,
@@ -76,8 +71,7 @@
             "Hector",
             "João Pedro",
             "Miguel"
-          ],
-          "palavra_secreta": "servidor"
+          ]
         },
         {
           "numero": 7,
@@ -88,8 +82,7 @@
             "Gustavo",
             "João Victor",
             "Joaquim"
-          ],
-          "palavra_secreta": "conexao"
+          ]
         },
         {
           "numero": 8,
@@ -100,8 +93,7 @@
             "Maria E",
             "Mariana",
             "Verginia"
-          ],
-          "palavra_secreta": "classe"
+          ]
         },
         {
           "numero": 9,
@@ -111,8 +103,7 @@
           "integrantes": [
             "Eduardo",
             "Matheus N"
-          ],
-          "palavra_secreta": "metodo"
+          ]
         },
         {
           "numero": 10,
@@ -123,8 +114,7 @@
             "Bianca",
             "Nathalia",
             "Vitória"
-          ],
-          "palavra_secreta": "objeto"
+          ]
         },
         {
           "numero": 11,
@@ -133,8 +123,7 @@
           "tema": "BRIO: Plataforma Gamificada para Foco, Disciplina e Constância",
           "integrantes": [
             "Pedro"
-          ],
-          "palavra_secreta": "consulta"
+          ]
         },
         {
           "numero": 12,
@@ -144,8 +133,7 @@
           "integrantes": [
             "Laura",
             "Rayane"
-          ],
-          "palavra_secreta": "tabela"
+          ]
         },
         {
           "numero": 13,
@@ -154,8 +142,7 @@
           "tema": "TI Eficaz: Inovação na Gestão de Chamados Internos para a OMPI",
           "integrantes": [
             "Otávio"
-          ],
-          "palavra_secreta": "pacote"
+          ]
         }
       ],
       "dias_disponiveis": [
@@ -211,8 +198,7 @@
           "integrantes": [
             "Cassiane",
             "Heloisa"
-          ],
-          "palavra_secreta": "vetor"
+          ]
         },
         {
           "numero": 2,
@@ -223,8 +209,7 @@
             "Danielle",
             "Maria G",
             "Samuel"
-          ],
-          "palavra_secreta": "matriz"
+          ]
         },
         {
           "numero": 3,
@@ -235,8 +220,7 @@
             "Arthur",
             "Davi K",
             "Vinicius"
-          ],
-          "palavra_secreta": "arquivo"
+          ]
         },
         {
           "numero": 4,
@@ -247,8 +231,7 @@
             "Davi M",
             "Davi P",
             "Mauricio"
-          ],
-          "palavra_secreta": "memoria"
+          ]
         },
         {
           "numero": 5,
@@ -259,8 +242,7 @@
             "Felipe",
             "Nikolas",
             "Miguel"
-          ],
-          "palavra_secreta": "processo"
+          ]
         },
         {
           "numero": 6,
@@ -271,8 +253,7 @@
             "Isadora",
             "Vitória C",
             "Vitória N"
-          ],
-          "palavra_secreta": "sistema"
+          ]
         },
         {
           "numero": 7,
@@ -282,8 +263,7 @@
           "integrantes": [
             "Kamyla",
             "Mikaella"
-          ],
-          "palavra_secreta": "interface"
+          ]
         },
         {
           "numero": 8,
@@ -294,8 +274,7 @@
             "Leonardo",
             "João Sergio",
             "Ramon"
-          ],
-          "palavra_secreta": "modulo"
+          ]
         },
         {
           "numero": 9,
@@ -306,8 +285,7 @@
             "Luiza",
             "Maria L",
             "Sophia"
-          ],
-          "palavra_secreta": "logica"
+          ]
         },
         {
           "numero": 10,
@@ -318,8 +296,7 @@
             "Murilo B",
             "Murilo D",
             "Vitor"
-          ],
-          "palavra_secreta": "registro"
+          ]
         },
         {
           "numero": 11,
@@ -328,8 +305,7 @@
           "tema": "Operação Enxuta na Cozinha: o dia em que o fluxo ‘cozinhou’ os custos",
           "integrantes": [
             "Nicole"
-          ],
-          "palavra_secreta": "indice"
+          ]
         },
         {
           "numero": 12,
@@ -340,8 +316,7 @@
             "Henry",
             "Otávio",
             "Vagner"
-          ],
-          "palavra_secreta": "commit"
+          ]
         }
       ],
       "dias_disponiveis": [

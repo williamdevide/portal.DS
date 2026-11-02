@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Database, ArrowRight, Code, Terminal, Brain, Calendar, ExternalLink } from 'lucide-react';
+import { Database, ArrowRight, Code, Terminal, Brain, Calendar, ExternalLink, Lock } from 'lucide-react';
 import informacoes_gerais from '../data/informacoes_gerais.json';
 import listaDisciplinas from '../data/disciplinas.json';
+import { obterStatusAgendamento } from '../services/agendamentoService';
 
 export default function Home() {
   const [disciplinas, setDisciplinas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [statusAgendamentoLiberado, setStatusAgendamentoLiberado] = useState(false);
 
   useEffect(() => {
     const loadDisciplinas = async () => {
@@ -26,6 +28,23 @@ export default function Home() {
       setLoading(false);
     };
     loadDisciplinas();
+
+    let ativo = true;
+    obterStatusAgendamento().then(res => {
+      if (ativo && res) setStatusAgendamentoLiberado(Boolean(res.liberado));
+    }).catch(() => {});
+
+    const statusHandler = (e) => {
+      if (e?.detail && typeof e.detail.liberado === 'boolean') {
+        setStatusAgendamentoLiberado(e.detail.liberado);
+      }
+    };
+    window.addEventListener('portal_status_agendamento_changed', statusHandler);
+
+    return () => {
+      ativo = false;
+      window.removeEventListener('portal_status_agendamento_changed', statusHandler);
+    };
   }, []);
 
   // Imagem de datacenter premium em alta resolução para plano de fundo cinemático
@@ -198,12 +217,27 @@ export default function Home() {
                   </Link>
 
                   {disc.pasta === 'projeto_de_software_iii' && (
-                    <Link
-                      to="/disciplina/projeto_de_software_iii/agendamento"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-custom-accent/10 hover:bg-custom-accent text-custom-accent hover:text-white border border-custom-accent/20 px-4 py-2.5 text-xs font-bold transition-all cursor-pointer"
-                    >
-                      <span>📅 Agendamento de Bancas de TCC</span>
-                    </Link>
+                    <div className="space-y-1.5 pt-1">
+                      <Link
+                        to="/disciplina/projeto_de_software_iii/agendamento"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-custom-accent/10 hover:bg-custom-accent text-custom-accent hover:text-white border border-custom-accent/20 px-4 py-2.5 text-xs font-bold transition-all cursor-pointer"
+                      >
+                        <span>📅 Agendamento de Bancas de TCC</span>
+                      </Link>
+                      <div className="text-center text-[11px] font-semibold flex items-center justify-center gap-1.5 py-0.5">
+                        {statusAgendamentoLiberado ? (
+                          <span className="text-emerald-500 flex items-center gap-1 font-mono">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                            Agendamentos liberados
+                          </span>
+                        ) : (
+                          <span className="text-rose-500 dark:text-rose-400 flex items-center gap-1 font-mono">
+                            <Lock className="h-3 w-3 shrink-0" />
+                            Agendamentos bloqueados
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   )}
 
                   {disc.pasta === 'banco_de_dados' && (

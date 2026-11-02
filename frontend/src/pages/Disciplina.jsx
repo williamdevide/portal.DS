@@ -4,6 +4,9 @@ import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clo
 import CriterioCard from '../components/CriterioCard';
 import AgendamentoForm from '../components/agendamento/AgendamentoForm';
 import QuadroAgendamentos from '../components/agendamento/QuadroAgendamentos';
+import BloqueioAgendamento from '../components/agendamento/BloqueioAgendamento';
+import AdminPinModal from '../components/agendamento/AdminPinModal';
+import { obterStatusAgendamento } from '../services/agendamentoService';
 
 const obterSaBadgeClass = (situacao) => {
   if (!situacao) return '';
@@ -31,6 +34,31 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
   const [escalaAutonomia, setEscalaAutonomia] = useState([]);
 
   const [activeTab, setActiveTab] = useState(initialTab); // 'cronograma', 'msep', 'agendamento' ou 'quadro'
+
+  const [agendamentoLiberado, setAgendamentoLiberado] = useState(false);
+  const [adminPin, setAdminPin] = useState(() => {
+    return sessionStorage.getItem('admin_pin_session') || '';
+  });
+  const [isPinModalOpen, setIsPinModalOpen] = useState(false);
+
+  useEffect(() => {
+    let ativo = true;
+    obterStatusAgendamento().then(res => {
+      if (ativo && res) setAgendamentoLiberado(Boolean(res.liberado));
+    }).catch(() => {});
+
+    const statusHandler = (e) => {
+      if (e?.detail && typeof e.detail.liberado === 'boolean') {
+        setAgendamentoLiberado(e.detail.liberado);
+      }
+    };
+    window.addEventListener('portal_status_agendamento_changed', statusHandler);
+
+    return () => {
+      ativo = false;
+      window.removeEventListener('portal_status_agendamento_changed', statusHandler);
+    };
+  }, []);
 
   useEffect(() => {
     if (initialTab) {
@@ -396,17 +424,32 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
 
               {/* Ações Rápidas de TCC para PSOF3 */}
               {disciplinaSlug === 'projeto_de_software_iii' && (
-                <div className="mt-6 flex flex-wrap items-center gap-3 animate-fade-in">
+                <div className="mt-6 flex flex-wrap items-start gap-4 animate-fade-in">
+                  <div className="flex flex-col items-start gap-1">
+                    <button
+                      onClick={() => handleMudarAba('agendamento')}
+                      className="inline-flex items-center gap-2 rounded-xl bg-custom-accent px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-custom-accent/25 hover:opacity-90 transition-all hover:scale-[1.02] cursor-pointer"
+                    >
+                      <CalendarClock className="h-4 w-4" />
+                      Agendar Apresentação de TCC
+                    </button>
+                    <div className="text-[11px] font-semibold flex items-center gap-1.5 px-1 py-0.5">
+                      {agendamentoLiberado ? (
+                        <span className="text-emerald-400 flex items-center gap-1 font-mono">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          Agendamentos liberados
+                        </span>
+                      ) : (
+                        <span className="text-rose-400 flex items-center gap-1 font-mono">
+                          <Lock className="h-3 w-3 shrink-0" />
+                          Agendamentos bloqueados
+                        </span>
+                      )}
+                    </div>
+                  </div>
                   <button
-                    onClick={() => setActiveTab('agendamento')}
-                    className="inline-flex items-center gap-2 rounded-xl bg-custom-accent px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-custom-accent/25 hover:opacity-90 transition-all hover:scale-[1.02]"
-                  >
-                    <CalendarClock className="h-4 w-4" />
-                    Agendar Apresentação de TCC
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('quadro')}
-                    className="inline-flex items-center gap-2 rounded-xl bg-white/10 text-white hover:bg-white/15 px-5 py-2.5 text-xs sm:text-sm font-semibold backdrop-blur-md border border-white/15 transition-all"
+                    onClick={() => handleMudarAba('quadro')}
+                    className="inline-flex items-center gap-2 rounded-xl bg-white/10 text-white hover:bg-white/15 px-5 py-2.5 text-xs sm:text-sm font-semibold backdrop-blur-md border border-white/15 transition-all cursor-pointer"
                   >
                     <ClipboardList className="h-4 w-4 text-emerald-400" />
                     Ver Quadro de Agendamentos
@@ -521,7 +564,13 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
                   }`}
                 >
                   <CalendarClock className="h-4.5 w-4.5" />
-                  Agendar TCC
+                  <span>Agendar TCC</span>
+                  {!agendamentoLiberado && !adminPin && (
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-500/15 text-rose-500 dark:text-rose-400 border border-rose-500/25">
+                      <Lock className="h-2.5 w-2.5" />
+                      Bloqueado
+                    </span>
+                  )}
                 </button>
                 <button
                   onClick={() => handleMudarAba('quadro')}
@@ -1009,7 +1058,14 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
 
         {/* Aba 3: Agendamento da Apresentação de TCC (PSOF3) */}
         {activeTab === 'agendamento' && (
-          <AgendamentoForm onNavigateToQuadro={() => handleMudarAba('quadro')} />
+          (!agendamentoLiberado && !adminPin) ? (
+            <BloqueioAgendamento 
+              onNavigateToQuadro={() => handleMudarAba('quadro')} 
+              onAbrirPinModal={() => setIsPinModalOpen(true)}
+            />
+          ) : (
+            <AgendamentoForm onNavigateToQuadro={() => handleMudarAba('quadro')} />
+          )
         )}
 
         {/* Aba 4: Quadro Geral de Agendamentos (PSOF3) */}
@@ -1018,6 +1074,17 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
         )}
 
       </main>
+
+      {/* Modal de PIN do Professor */}
+      <AdminPinModal
+        isOpen={isPinModalOpen}
+        onClose={() => setIsPinModalOpen(false)}
+        onSuccess={(pin) => {
+          setAdminPin(pin);
+          sessionStorage.setItem('admin_pin_session', pin);
+          setIsPinModalOpen(false);
+        }}
+      />
     </div>
   );
 }

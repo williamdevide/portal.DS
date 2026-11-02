@@ -35,6 +35,8 @@
 | **I2DEV-B (Segunda-feira)** | Grupo 11 - RESTCONTROL | Nicole | `indice` |
 | **I2DEV-B (Segunda-feira)** | Grupo 12 - Fila Zero | Henry, Otávio, Vagner | `commit` |
 
+Pessoal, os agendamentos para o TCC estarão abertos amanhã a partir das 7:30hrs.
+Quaisquer agendamentos realizados antes disso não são válidos.
 ---
 
 ### ℹ️ Informações Importantes

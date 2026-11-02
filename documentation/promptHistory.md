@@ -510,6 +510,15 @@ a navbar onde esta Portal do Professor coloque Portal do Professor (v.1.0.2)
 /agente-orquestrador /grill-me /goal no card da disciplina de banco de dados, quero um botão que leve para o SQL Editor similar ao botão de agendamento de TCC. endereço: wdk-sqleditor.vercel.app
 ```
 
+### Prompt 12
+```text
+/agente-orquestrador /grill-me /goal a respeito do agendamento para os TCCs garanta as seguintes diretrizes:
+- o agendamento só estará disponivel a partir do momento que o professor fizer o acesso de professor e clicar na configuração "Agendamento permitido".
+na janela onde aparece o botão para agendar, embaixo do botão aparece "Agendamentos bloqueados" ou "Agendamentos liberados".
+- enquanto estiver bloqueado nenhum aluno acessa a pagina de agendamentos.
+- garanta que ninguem consiga visualizar a senha do professor ou as palavras-chaves se acessar o codigo-fonte pelo navegador.
+```
+
 
 
 
