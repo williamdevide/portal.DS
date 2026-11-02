@@ -495,6 +495,12 @@ voltou a dar problema quando preencho correto e clico em salvar agendamento. nã
 a navbar onde esta Portal do Professor coloque Portal do Professor (v.1.0.2)
 ```
 
+### Prompt 9
+```text
+/agente-orquestrador /grill-me /goal no quadro de agendamento, exiba as informações do card dentro de uma tabela com cada data em uma linha e coluna para cada horário. o conteudo do card continua o mesmo
+```
+
+
 
 
 

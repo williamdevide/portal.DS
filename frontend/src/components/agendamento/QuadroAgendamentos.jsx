@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { 
   Calendar, Clock, ShieldCheck, Lock, Trash2, Edit3, 
   RefreshCw, PlusCircle, AlertCircle, CheckCircle2, Search, 
-  MapPin, X, AlertTriangle, Layers, KeyRound, Copy, Users
+  MapPin, X, AlertTriangle, Layers, KeyRound, Copy, Users,
+  Table, LayoutGrid
 } from 'lucide-react';
 import { 
   obterConfiguracao, 
@@ -13,12 +14,132 @@ import {
 } from '../../services/agendamentoService';
 import AdminPinModal from './AdminPinModal';
 
+/**
+ * Componente que renderiza o conteúdo completo do card de agendamento de uma banca
+ */
+function CardAgendamento({ item, config, adminPin, abrirEdicao, setItemParaExcluir, isHighlighted = false }) {
+  const turmaInfo = config?.turmas?.find(t => t.id === item.turma_id);
+  const grupoInfo = turmaInfo?.grupos?.find(g => {
+    const nome = typeof g === 'string' ? g : g.nome;
+    return nome?.toLowerCase() === item.grupo_nome?.toLowerCase();
+  });
+  const projetoNome = typeof grupoInfo === 'object' ? grupoInfo.projeto : '';
+  const tema = typeof grupoInfo === 'object' ? grupoInfo.tema : '';
+  const integrantes = typeof grupoInfo === 'object' && Array.isArray(grupoInfo.integrantes) ? grupoInfo.integrantes : [];
+
+  return (
+    <div className={`p-4 rounded-xl bg-custom-card border transition-all duration-200 flex flex-col justify-between h-full relative group shadow-sm ${
+      isHighlighted 
+        ? 'border-[#E30613] ring-2 ring-[#E30613]/50 shadow-md shadow-[#E30613]/10' 
+        : 'border-custom-border hover:border-[#E30613]/50'
+    }`}>
+      <div className="space-y-2.5">
+        {/* Topo do Card: Horário e Data */}
+        <div className="flex items-center justify-between gap-1.5 border-b border-custom-border pb-2.5">
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#E30613]/15 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/25 font-mono">
+            <Clock className="h-3 w-3 shrink-0" />
+            {item.horario}
+          </span>
+          <span className="text-[11px] font-bold font-mono text-custom-muted flex items-center gap-1">
+            <Calendar className="h-3 w-3 text-custom-muted" />
+            {item.data.slice(5).replace('-', '/')}
+          </span>
+        </div>
+
+        {/* Nome do Grupo e Projeto */}
+        <div className="space-y-1">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="px-2 py-0.5 rounded text-[11px] font-black font-mono bg-[#E30613]/10 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/20">
+              {item.grupo_nome}
+            </span>
+            {projetoNome && (
+              <h4 className="text-xs font-extrabold text-custom-text font-sans leading-snug">
+                {projetoNome}
+              </h4>
+            )}
+          </div>
+
+          {/* Integrantes */}
+          {integrantes.length > 0 && (
+            <div className="pt-1 flex items-center gap-1.5 text-[11px] text-custom-text font-sans">
+              <Users className="h-3.5 w-3.5 text-[#E30613] dark:text-[#ff3b47] shrink-0" />
+              <span className="truncate">
+                <strong className="text-custom-text">Integrantes:</strong> {integrantes.join(', ')}
+              </span>
+            </div>
+          )}
+
+          {/* Tema */}
+          {tema && (
+            <p className="text-[10px] text-custom-muted line-clamp-2 leading-relaxed pt-0.5">
+              <strong className="text-custom-text font-medium">Tema:</strong> {tema}
+            </p>
+          )}
+        </div>
+
+        {/* Turma e Sala */}
+        <div className="pt-2 border-t border-custom-border/60 space-y-0.5 text-[11px] text-custom-muted font-sans">
+          <p className="truncate font-semibold text-[#E30613] dark:text-[#ff3b47]">
+            {item.turma_nome}
+          </p>
+          {turmaInfo?.sala_ou_local && (
+            <p className="flex items-center gap-1 text-[10px]">
+              <MapPin className="h-2.5 w-2.5 shrink-0" />
+              <span className="truncate">{turmaInfo.sala_ou_local}</span>
+            </p>
+          )}
+        </div>
+
+        {/* Observações / Título TCC */}
+        {item.observacoes && (
+          <div className="p-2 rounded-lg bg-custom-bg border border-custom-border text-[10px] text-custom-muted italic font-sans leading-relaxed">
+            "{item.observacoes}"
+          </div>
+        )}
+      </div>
+
+      {/* Rodapé do Card: Data de Registro e Ações do Professor */}
+      <div className="mt-3 pt-2.5 border-t border-custom-border flex items-center justify-between text-[10px] text-custom-muted">
+        <span className="font-mono text-[9px] text-custom-muted/80">
+          ID #{item.id} • {item.criado_em?.split('T')[0] || 'Confirmado'}
+        </span>
+
+        {/* Botões do Modo Professor (só aparecem se adminPin estiver ativo) */}
+        {adminPin ? (
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => abrirEdicao(item)}
+              className="p-1 text-[#E30613] dark:text-[#ff3b47] hover:bg-[#E30613]/15 rounded-md transition-colors cursor-pointer"
+              title="Editar agendamento (Professor)"
+            >
+              <Edit3 className="h-3 w-3" />
+            </button>
+            <button
+              onClick={() => setItemParaExcluir(item)}
+              className="p-1 text-rose-500 hover:bg-rose-500/15 rounded-md transition-colors cursor-pointer"
+              title="Excluir agendamento (Professor)"
+            >
+              <Trash2 className="h-3 w-3" />
+            </button>
+          </div>
+        ) : (
+          <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1">
+            <CheckCircle2 className="h-3 w-3 text-emerald-400" />
+            Confirmado
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function QuadroAgendamentos({ onNavigateToNovo }) {
   const [config, setConfig] = useState(null);
   const [agendamentos, setAgendamentos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [feedback, setFeedback] = useState(null);
+  const [viewMode, setViewMode] = useState('tabela'); // 'tabela' (padrão) ou 'cards'
 
   // Filtros
   const [filtroTurma, setFiltroTurma] = useState('todas');
@@ -405,7 +526,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
             <select
               value={filtroTurma}
               onChange={(e) => setFiltroTurma(e.target.value)}
-              className="px-3 py-2 text-xs rounded-xl bg-custom-bg border border-custom-border text-custom-text focus:outline-none focus:border-custom-accent"
+              className="px-3 py-2 text-xs rounded-xl bg-custom-bg border border-custom-border text-custom-text focus:outline-none focus:border-custom-accent cursor-pointer"
             >
               <option value="todas">Todas as Turmas</option>
               {config?.turmas?.map(t => (
@@ -420,7 +541,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
             <select
               value={filtroData}
               onChange={(e) => setFiltroData(e.target.value)}
-              className="px-3 py-2 text-xs rounded-xl bg-custom-bg border border-custom-border text-custom-text focus:outline-none focus:border-custom-accent font-mono"
+              className="px-3 py-2 text-xs rounded-xl bg-custom-bg border border-custom-border text-custom-text focus:outline-none focus:border-custom-accent font-mono cursor-pointer"
             >
               <option value="todas">Todas as Datas</option>
               {datasDisponiveis.map(d => (
@@ -428,152 +549,258 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
               ))}
             </select>
           </div>
+
+          {/* Alternador de Visualização: Tabela vs Cards */}
+          <div className="flex items-center rounded-xl bg-custom-bg border border-custom-border p-1">
+            <button
+              type="button"
+              onClick={() => setViewMode('tabela')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                viewMode === 'tabela'
+                  ? 'bg-custom-card text-[#E30613] dark:text-[#ff3b47] shadow-sm'
+                  : 'text-custom-muted hover:text-custom-text'
+              }`}
+              title="Exibir em Tabela Matricial (Data x Horário)"
+            >
+              <Table className="h-3.5 w-3.5" />
+              Tabela
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('cards')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                viewMode === 'cards'
+                  ? 'bg-custom-card text-[#E30613] dark:text-[#ff3b47] shadow-sm'
+                  : 'text-custom-muted hover:text-custom-text'
+              }`}
+              title="Exibir em Grade de Cards"
+            >
+              <LayoutGrid className="h-3.5 w-3.5" />
+              Cards
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Lista de Agendamentos / Tabela Visual */}
+      {/* Exibição dos Agendamentos: Tabela ou Cards */}
       {loading ? (
         <div className="py-16 text-center text-custom-muted flex flex-col items-center justify-center">
           <div className="h-8 w-8 border-2 border-custom-accent border-t-transparent rounded-full animate-spin mb-3" />
           <p className="text-xs font-semibold">Atualizando quadro de bancas...</p>
         </div>
-      ) : agendamentosFiltrados.length === 0 ? (
-        <div className="py-16 text-center bg-custom-card border border-custom-border rounded-2xl p-8">
-          <Calendar className="h-12 w-12 text-custom-muted mx-auto mb-3 opacity-50" />
-          <h3 className="text-base font-bold text-custom-text font-sans">
-            Nenhum agendamento encontrado
-          </h3>
-          <p className="text-xs text-custom-muted mt-1 max-w-md mx-auto">
-            {termoBusca || filtroTurma !== 'todas' || filtroData !== 'todas'
-              ? 'Tente ajustar os filtros de busca ou turma selecionada.'
-              : 'Os alunos ainda não iniciaram a escolha dos horários para esta disciplina.'}
-          </p>
-          {onNavigateToNovo && (
-            <button
-              onClick={onNavigateToNovo}
-              className="mt-5 inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-custom-accent rounded-xl hover:opacity-90 transition-opacity"
-            >
-              <PlusCircle className="h-3.5 w-3.5" />
-              Realizar Primeiro Agendamento
-            </button>
-          )}
+      ) : viewMode === 'tabela' ? (
+        /* Visualização em TABELA (Cada Data em uma Linha e Coluna para cada Horário) */
+        <div className="space-y-8 animate-fade-in">
+          {(() => {
+            const turmasParaExibir = (config?.turmas || []).filter(t => 
+              filtroTurma === 'todas' || t.id === filtroTurma
+            );
+
+            if (turmasParaExibir.length === 0) {
+              return (
+                <div className="py-12 text-center bg-custom-card border border-custom-border rounded-2xl p-6">
+                  <Calendar className="h-10 w-10 text-custom-muted mx-auto mb-2 opacity-50" />
+                  <p className="text-sm font-bold text-custom-text">Nenhuma turma encontrada</p>
+                </div>
+              );
+            }
+
+            return turmasParaExibir.map((turma) => {
+              const diasDaTurma = (turma.dias_disponiveis || []).filter(d => 
+                filtroData === 'todas' || d.data === filtroData
+              );
+              const colunasHorarios = Array.from(
+                new Set(turma.dias_disponiveis?.flatMap(d => d.horarios) || [])
+              );
+              const agendadosTurmaTotal = agendamentos.filter(a => a.turma_id === turma.id).length;
+
+              return (
+                <div key={turma.id} className="space-y-3">
+                  {/* Cabeçalho da Turma */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-custom-border pb-3">
+                    <div>
+                      <h3 className="text-base sm:text-lg font-bold text-custom-text font-sans flex items-center gap-2">
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#E30613]" />
+                        {turma.nome}
+                      </h3>
+                      <p className="text-xs text-custom-muted flex flex-wrap items-center gap-2 mt-0.5">
+                        <span className="flex items-center gap-1 text-emerald-400">
+                          <MapPin className="h-3 w-3" />
+                          {turma.sala_ou_local || 'Metrologia'}
+                        </span>
+                        <span>•</span>
+                        <span>Duração da banca: {config?.duracao_apresentacao_minutos || 35} minutos</span>
+                      </p>
+                    </div>
+
+                    <div className="text-xs font-mono font-semibold px-3 py-1 rounded-xl bg-custom-card border border-custom-border text-custom-muted self-start sm:self-auto">
+                      <strong className="text-[#E30613] dark:text-[#ff3b47]">{agendadosTurmaTotal}</strong> de <strong>{turma.grupos.length}</strong> grupos agendados
+                    </div>
+                  </div>
+
+                  {/* Tabela com Cada Data em uma Linha e Coluna para cada Horário */}
+                  <div className="overflow-x-auto rounded-2xl border border-custom-border bg-custom-card shadow-sm">
+                    <table className="w-full text-left border-collapse min-w-[1080px]">
+                      <thead>
+                        <tr className="border-b border-custom-border bg-custom-bg/60">
+                          <th className="p-4 text-xs font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans w-56 sticky left-0 bg-custom-card z-20 border-r border-custom-border shadow-sm">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="h-4 w-4" />
+                              Data da Apresentação
+                            </div>
+                          </th>
+                          {colunasHorarios.map((horario) => (
+                            <th 
+                              key={horario} 
+                              className="p-3.5 text-xs font-bold uppercase tracking-wider text-custom-text font-sans border-r border-custom-border last:border-r-0 min-w-[270px]"
+                            >
+                              <div className="flex items-center gap-2">
+                                <Clock className="h-3.5 w-3.5 text-[#E30613] dark:text-[#ff3b47]" />
+                                <span className="font-mono text-sm tracking-tight">{horario}</span>
+                              </div>
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-custom-border">
+                        {diasDaTurma.length === 0 ? (
+                          <tr>
+                            <td colSpan={colunasHorarios.length + 1} className="p-8 text-center text-xs text-custom-muted">
+                              Nenhuma data encontrada com os filtros selecionados.
+                            </td>
+                          </tr>
+                        ) : (
+                          diasDaTurma.map((diaObj) => {
+                            const agendadosNesteDia = agendamentos.filter(
+                              a => a.turma_id === turma.id && a.data === diaObj.data
+                            );
+
+                            return (
+                              <tr key={diaObj.data} className="hover:bg-white/[0.015] transition-colors">
+                                {/* Linha - Coluna da Data (Fixa à esquerda para navegação horizontal) */}
+                                <td className="p-4 align-top sticky left-0 bg-custom-card z-10 border-r border-custom-border shadow-sm">
+                                  <div className="space-y-1.5">
+                                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] block">
+                                      {diaObj.dia_semana}
+                                    </span>
+                                    <div className="text-base font-extrabold font-mono text-custom-text tracking-tight">
+                                      {diaObj.data.split('-').reverse().join('/')}
+                                    </div>
+                                    <div className="pt-1">
+                                      <span className={`inline-block px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold ${
+                                        agendadosNesteDia.length >= diaObj.horarios.length
+                                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                                          : 'bg-custom-bg border border-custom-border text-custom-muted'
+                                      }`}>
+                                        {agendadosNesteDia.length} de {diaObj.horarios.length} agendados
+                                      </span>
+                                    </div>
+                                  </div>
+                                </td>
+
+                                {/* Colunas dos Horários com o conteúdo completo dos cards */}
+                                {colunasHorarios.map((horario) => {
+                                  const permiteHorario = diaObj.horarios.includes(horario);
+                                  const agendamentoItem = agendamentos.find(
+                                    a => a.turma_id === turma.id && a.data === diaObj.data && a.horario === horario
+                                  );
+                                  const isMatchBusca = !termoBusca || agendamentosFiltrados.some(f => f.id === agendamentoItem?.id);
+
+                                  return (
+                                    <td 
+                                      key={horario} 
+                                      className="p-3 align-top border-r border-custom-border last:border-r-0 min-w-[270px] max-w-[340px]"
+                                    >
+                                      {agendamentoItem ? (
+                                        <div className={`h-full ${!isMatchBusca && termoBusca ? 'opacity-25' : ''}`}>
+                                          <CardAgendamento
+                                            item={agendamentoItem}
+                                            config={config}
+                                            adminPin={adminPin}
+                                            abrirEdicao={abrirEdicao}
+                                            setItemParaExcluir={setItemParaExcluir}
+                                            isHighlighted={isMatchBusca && !!termoBusca}
+                                          />
+                                        </div>
+                                      ) : permiteHorario ? (
+                                        <div className="h-full min-h-[170px] p-4 rounded-xl border-2 border-dashed border-emerald-500/25 bg-emerald-500/5 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all flex flex-col items-center justify-center text-center gap-2 group/slot">
+                                          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 font-sans">
+                                            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                                            Horário Disponível
+                                          </div>
+                                          <p className="text-[11px] font-mono text-custom-muted">
+                                            Slot vago para apresentação
+                                          </p>
+                                          {onNavigateToNovo && (
+                                            <button
+                                              type="button"
+                                              onClick={onNavigateToNovo}
+                                              className="mt-1 inline-flex items-center gap-1 px-3 py-1 text-[11px] font-bold text-white bg-[#E30613] hover:bg-[#b8050f] rounded-lg shadow-sm transition-all cursor-pointer opacity-90 group-hover/slot:opacity-100"
+                                            >
+                                              <PlusCircle className="h-3 w-3" />
+                                              Agendar
+                                            </button>
+                                          )}
+                                        </div>
+                                      ) : (
+                                        <div className="h-full min-h-[170px] p-4 rounded-xl border border-dashed border-custom-border/40 bg-custom-bg/20 flex flex-col items-center justify-center text-center text-custom-muted/50 select-none">
+                                          <span className="text-sm font-mono font-bold text-custom-muted/40">—</span>
+                                          <span className="text-[10px] mt-1 text-custom-muted/60">Sem banca neste horário</span>
+                                        </div>
+                                      )}
+                                    </td>
+                                  );
+                                })}
+                              </tr>
+                            );
+                          })
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+            });
+          })()}
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {agendamentosFiltrados.map((item) => {
-            const turmaInfo = config?.turmas?.find(t => t.id === item.turma_id);
-            const grupoInfo = turmaInfo?.grupos?.find(g => {
-              const nome = typeof g === 'string' ? g : g.nome;
-              return nome?.toLowerCase() === item.grupo_nome?.toLowerCase();
-            });
-            const projetoNome = typeof grupoInfo === 'object' ? grupoInfo.projeto : '';
-            const tema = typeof grupoInfo === 'object' ? grupoInfo.tema : '';
-            const integrantes = typeof grupoInfo === 'object' && Array.isArray(grupoInfo.integrantes) ? grupoInfo.integrantes : [];
-
-            return (
-              <div
-                key={item.id}
-                className="p-5 rounded-2xl bg-custom-card border border-custom-border hover:border-[#E30613]/50 shadow-sm transition-all duration-200 flex flex-col justify-between relative group"
+        /* Visualização alternativa em GRADE DE CARDS */
+        agendamentosFiltrados.length === 0 ? (
+          <div className="py-16 text-center bg-custom-card border border-custom-border rounded-2xl p-8">
+            <Calendar className="h-12 w-12 text-custom-muted mx-auto mb-3 opacity-50" />
+            <h3 className="text-base font-bold text-custom-text font-sans">
+              Nenhum agendamento encontrado
+            </h3>
+            <p className="text-xs text-custom-muted mt-1 max-w-md mx-auto">
+              {termoBusca || filtroTurma !== 'todas' || filtroData !== 'todas'
+                ? 'Tente ajustar os filtros de busca ou turma selecionada.'
+                : 'Os alunos ainda não iniciaram a escolha dos horários para esta disciplina.'}
+            </p>
+            {onNavigateToNovo && (
+              <button
+                onClick={onNavigateToNovo}
+                className="mt-5 inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-custom-accent rounded-xl hover:opacity-90 transition-opacity"
               >
-                <div>
-                  {/* Topo do Card: Data e Horário */}
-                  <div className="flex items-center justify-between gap-2 border-b border-custom-border pb-3 mb-3">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#E30613]/15 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/25 font-mono">
-                      <Clock className="h-3.5 w-3.5" />
-                      {item.horario}
-                    </span>
-                    <span className="text-xs font-bold font-mono text-custom-text flex items-center gap-1">
-                      <Calendar className="h-3.5 w-3.5 text-custom-muted" />
-                      {item.data}
-                    </span>
-                  </div>
-
-                  {/* Nome do Grupo e Projeto */}
-                  <div className="space-y-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-2 py-0.5 rounded-md text-[11px] font-black font-mono bg-[#E30613]/10 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/20">
-                        {item.grupo_nome}
-                      </span>
-                      {projetoNome && (
-                        <h4 className="text-sm font-extrabold text-custom-text font-sans leading-snug">
-                          {projetoNome}
-                        </h4>
-                      )}
-                    </div>
-
-                    {/* Integrantes */}
-                    {integrantes.length > 0 && (
-                      <div className="pt-1.5 flex items-center gap-1.5 text-xs text-custom-text font-sans">
-                        <Users className="h-3.5 w-3.5 text-[#E30613] dark:text-[#ff3b47] shrink-0" />
-                        <span className="truncate">
-                          <strong className="text-custom-text">Integrantes:</strong> {integrantes.join(', ')}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Tema */}
-                    {tema && (
-                      <p className="text-[11px] text-custom-muted line-clamp-2 leading-relaxed pt-1">
-                        <strong className="text-custom-text font-medium">Tema:</strong> {tema}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Turma e Sala */}
-                  <div className="mt-3 pt-2.5 border-t border-custom-border/60 space-y-1 text-xs text-custom-muted font-sans">
-                    <p className="truncate font-semibold text-[#E30613] dark:text-[#ff3b47]">
-                      {item.turma_nome}
-                    </p>
-                    {turmaInfo?.sala_ou_local && (
-                      <p className="flex items-center gap-1 text-[11px]">
-                        <MapPin className="h-3 w-3 shrink-0" />
-                        <span className="truncate">{turmaInfo.sala_ou_local}</span>
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Observações / Título TCC */}
-                  {item.observacoes && (
-                    <div className="mt-2.5 p-2.5 rounded-xl bg-custom-bg border border-custom-border text-[11px] text-custom-muted italic font-sans leading-relaxed">
-                      "{item.observacoes}"
-                    </div>
-                  )}
-                </div>
-
-                {/* Rodapé do Card: Data de Registro e Ações do Professor */}
-                <div className="mt-4 pt-3 border-t border-custom-border flex items-center justify-between text-[10px] text-custom-muted">
-                  <span className="font-mono">
-                    ID #{item.id} • {item.criado_em?.split('T')[0] || 'Confirmado'}
-                  </span>
-
-                  {/* Botões do Modo Professor (só aparecem se adminPin estiver ativo) */}
-                  {adminPin ? (
-                    <div className="flex items-center gap-1.5">
-                      <button
-                        onClick={() => abrirEdicao(item)}
-                        className="p-1.5 text-[#E30613] dark:text-[#ff3b47] hover:bg-[#E30613]/15 rounded-lg transition-colors"
-                        title="Editar agendamento (Professor)"
-                      >
-                        <Edit3 className="h-3.5 w-3.5" />
-                      </button>
-                      <button
-                        onClick={() => setItemParaExcluir(item)}
-                        className="p-1.5 text-rose-500 hover:bg-rose-500/15 rounded-lg transition-colors"
-                        title="Excluir agendamento (Professor)"
-                      >
-                        <Trash2 className="h-3.5 w-3.5" />
-                      </button>
-                    </div>
-                  ) : (
-                    <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
-                      Confirmado
-                    </span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                <PlusCircle className="h-3.5 w-3.5" />
+                Realizar Primeiro Agendamento
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {agendamentosFiltrados.map((item) => (
+              <CardAgendamento
+                key={item.id}
+                item={item}
+                config={config}
+                adminPin={adminPin}
+                abrirEdicao={abrirEdicao}
+                setItemParaExcluir={setItemParaExcluir}
+                isHighlighted={false}
+              />
+            ))}
+          </div>
+        )
       )}
 
       {/* Modal de Autenticação com PIN do Professor */}
