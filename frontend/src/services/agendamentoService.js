@@ -1,4 +1,4 @@
-import fallbackConfig from '../data/projeto_de_software_iii/agendamento_config.json';
+import fallbackConfig from '../data/projeto_de_software_iii/agendamento_config.json' with { type: 'json' };
 
 const API_BASE = '/api';
 const LOCAL_STORAGE_KEY = 'portal_agendamentos_local';
@@ -89,8 +89,6 @@ export async function listarAgendamentos(turmaId = '') {
  * Salva um novo agendamento (Alunos) com validação de palavra-chave e tolerância a acentos
  */
 export async function salvarAgendamento(dados) {
-  let erroApi = null;
-
   try {
     const res = await fetch(`${API_BASE}/agendamentos`, {
       method: 'POST',
@@ -110,15 +108,19 @@ export async function salvarAgendamento(dados) {
       return resposta;
     }
 
-    // Se o backend respondeu com erro de cliente/validação (4xx)
-    if (res.status >= 400 && res.status < 500) {
-      throw new Error(resposta.erro || 'Erro ao processar agendamento.');
+    // Se o backend respondeu com erro de validação específico (400, 403, 409 com JSON de erro)
+    if ((res.status === 403 || res.status === 400 || res.status === 409) && resposta && resposta.erro) {
+      throw new Error(resposta.erro);
     }
-
-    erroApi = resposta.erro || `Erro HTTP ${res.status}`;
   } catch (err) {
     // Se foi erro de validação lançado intencionalmente, propaga diretamente
-    if (err.message && !err.message.includes('Failed to fetch') && !err.message.includes('NetworkError') && !err.message.includes('Erro HTTP 5')) {
+    if (
+      err.message && 
+      !err.message.includes('Failed to fetch') && 
+      !err.message.includes('NetworkError') && 
+      !err.message.includes('Erro HTTP') &&
+      !err.message.includes('404')
+    ) {
       throw err;
     }
     console.warn('Backend indisponível ao salvar. Executando validação e persistência local:', err);
