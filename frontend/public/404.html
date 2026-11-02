@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecionando - Portal Educacional SENAI</title>
+    <script>
+      // Tratamento de redirecionamento SPA para GitHub Pages / Servidores Estáticos
+      // Converte qualquer rota 404 em rota compatível com HashRouter
+      (function() {
+        var path = window.location.pathname;
+        // Detecta o repositório base caso esteja em subdiretório do GitHub Pages (ex: /portal.DS)
+        var segments = path.split('/').filter(Boolean);
+        var basePrefix = '';
+        var restOfPath = '';
+
+        if (segments.length > 0 && segments[0] === 'portal.DS') {
+          basePrefix = '/portal.DS/';
+          restOfPath = '/' + segments.slice(1).join('/');
+        } else {
+          basePrefix = '/';
+          restOfPath = path;
+        }
+
+        var searchAndHash = window.location.search + window.location.hash;
+        var destination = basePrefix + '#' + restOfPath + searchAndHash;
+        window.location.replace(destination);
+      })();
+    </script>
+  </head>
+  <body style="font-family: sans-serif; background: #0f172a; color: #94a3b8; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <div style="text-align: center;">
+      <p style="font-size: 14px; font-weight: 600;">Carregando página do Portal DS...</p>
+    </div>
+  </body>
+</html>

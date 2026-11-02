@@ -477,4 +477,12 @@ nem com a palavra chave certa esta agendando
 o agendamento ainda não esta funcionando, preencho tudo certo e não salva o agendamento. após concluir o agendamento vai para a tela de agendamentos efetuados.
 ```
 
+### Prompt 6
+```text
+/agente-orquestrador /grill-me /goal ao concluir o agendamento deve jogar para a pagina de quadro de agendamentos.
+o quadro de agendamentos não esta abrindo.
+quando atualizo alguma subpagina da erro, preciso voltar o link original
+```
+
+
 

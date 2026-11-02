@@ -190,7 +190,6 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       setAgendamentos(novosAgend);
 
       // Limpa os campos selecionados
-      const grupoFinalizado = selectedGrupo;
       setSelectedGrupo('');
       setSelectedData('');
       setSelectedHorario('');
@@ -200,6 +199,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       // Redireciona imediatamente para a tela de agendamentos efetuados (Quadro Geral)
       if (onNavigateToQuadro) {
         onNavigateToQuadro();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (err) {
       const errMsg = err.message || 'Falha ao processar agendamento. Tente novamente.';

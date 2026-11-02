@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Calendar, Clock, ShieldCheck, Lock, Trash2, Edit3, 
   RefreshCw, PlusCircle, AlertCircle, CheckCircle2, Search, 
-  MapPin, X, AlertTriangle, Layers, KeyRound, Copy
+  MapPin, X, AlertTriangle, Layers, KeyRound, Copy, Users
 } from 'lucide-react';
 import { 
   obterConfiguracao, 
@@ -758,20 +758,20 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
               </div>
             ) : (
               <div className="overflow-y-auto space-y-6 pr-1 custom-scrollbar">
-                {palavrasSecretas.map((turma) => (
-                  <div key={turma.id} className="space-y-3">
+                {palavrasSecretas.map((turma, tIdx) => (
+                  <div key={turma.turma_id || turma.id || tIdx} className="space-y-3">
                     <div className="flex items-center justify-between border-b border-custom-border pb-1">
                       <h4 className="text-xs font-bold uppercase tracking-wider text-custom-accent font-sans">
-                        {turma.nome}
+                        {turma.turma_nome || turma.nome}
                       </h4>
                       <span className="text-[11px] text-custom-muted font-mono">
-                        {turma.grupos.length} grupos cadastrados
+                        {turma.grupos?.length || 0} grupos cadastrados
                       </span>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {turma.grupos.map((g) => {
-                        const uniqueKey = `${turma.id}-${g.nome}`;
+                      {turma.grupos?.map((g) => {
+                        const uniqueKey = `${turma.turma_id || turma.id || tIdx}-${g.nome}`;
                         const isCopiado = copiadoIdx === uniqueKey;
 
                         return (

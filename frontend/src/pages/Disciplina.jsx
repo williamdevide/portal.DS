@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, BookOpen, Calendar, ShieldCheck, ChevronDown, ChevronUp, Clock, FileText, Award, Layers, Terminal, X, RefreshCw, ArrowRight, Lock, CalendarClock, ClipboardList } from 'lucide-react';
 import CriterioCard from '../components/CriterioCard';
 import AgendamentoForm from '../components/agendamento/AgendamentoForm';
@@ -22,6 +22,7 @@ const obterSaBadgeClass = (situacao) => {
 
 export default function Disciplina({ initialTab = 'cronograma' }) {
   const { disciplinaSlug } = useParams();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -36,6 +37,20 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
       setActiveTab(initialTab);
     }
   }, [initialTab]);
+
+  // Função centralizada para alternar abas e manter a URL sincronizada (evita 404 ao atualizar)
+  const handleMudarAba = (novaAba) => {
+    setActiveTab(novaAba);
+    if (disciplinaSlug === 'projeto_de_software_iii') {
+      if (novaAba === 'agendamento') {
+        navigate(`/disciplina/${disciplinaSlug}/agendamento`);
+      } else if (novaAba === 'quadro') {
+        navigate(`/disciplina/${disciplinaSlug}/agendamentos`);
+      } else {
+        navigate(`/disciplina/${disciplinaSlug}`);
+      }
+    }
+  };
   const [criterioView, setCriterioView] = useState('cards'); // 'cards' ou 'tabela'
   
   // Controle de estado para a aula ampliada no centro da tela
@@ -456,7 +471,7 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex border-b border-custom-border">
             <button
-              onClick={() => setActiveTab('cronograma')}
+              onClick={() => handleMudarAba('cronograma')}
               className={`flex items-center gap-2 border-b-2 px-6 py-3.5 text-sm font-bold transition-all duration-300 ${
                 activeTab === 'cronograma'
                   ? 'border-custom-accent text-custom-accent'
@@ -467,7 +482,7 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
               Linha do Tempo das Aulas
             </button>
             <button
-              onClick={() => setActiveTab('msep')}
+              onClick={() => handleMudarAba('msep')}
               className={`flex items-center gap-2 border-b-2 px-6 py-3.5 text-sm font-bold transition-all duration-300 ${
                 activeTab === 'msep'
                   ? 'border-custom-accent text-custom-accent'
@@ -482,7 +497,7 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
             {disciplinaSlug === 'projeto_de_software_iii' && (
               <>
                 <button
-                  onClick={() => setActiveTab('agendamento')}
+                  onClick={() => handleMudarAba('agendamento')}
                   className={`flex items-center gap-2 border-b-2 px-6 py-3.5 text-sm font-bold transition-all duration-300 ${
                     activeTab === 'agendamento'
                       ? 'border-custom-accent text-custom-accent'
@@ -493,7 +508,7 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
                   Agendar TCC
                 </button>
                 <button
-                  onClick={() => setActiveTab('quadro')}
+                  onClick={() => handleMudarAba('quadro')}
                   className={`flex items-center gap-2 border-b-2 px-6 py-3.5 text-sm font-bold transition-all duration-300 ${
                     activeTab === 'quadro'
                       ? 'border-custom-accent text-custom-accent'
@@ -978,12 +993,12 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
 
         {/* Aba 3: Agendamento da Apresentação de TCC (PSOF3) */}
         {activeTab === 'agendamento' && (
-          <AgendamentoForm onNavigateToQuadro={() => setActiveTab('quadro')} />
+          <AgendamentoForm onNavigateToQuadro={() => handleMudarAba('quadro')} />
         )}
 
         {/* Aba 4: Quadro Geral de Agendamentos (PSOF3) */}
         {activeTab === 'quadro' && (
-          <QuadroAgendamentos onNavigateToNovo={() => setActiveTab('agendamento')} />
+          <QuadroAgendamentos onNavigateToNovo={() => handleMudarAba('agendamento')} />
         )}
 
       </main>
