@@ -500,6 +500,12 @@ a navbar onde esta Portal do Professor coloque Portal do Professor (v.1.0.2)
 /agente-orquestrador /grill-me /goal no quadro de agendamento, exiba as informações do card dentro de uma tabela com cada data em uma linha e coluna para cada horário. o conteudo do card continua o mesmo
 ```
 
+### Prompt 10
+```text
+/agente-orquestrador /grill-me /goal prepare em documentation um arquivo lista.md com 4 colunas em cada linha: turma, grupo, integrantes, palavra-chave
+```
+
+
 
 
 
