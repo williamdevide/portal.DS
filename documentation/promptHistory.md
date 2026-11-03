@@ -535,6 +535,11 @@ não execute nenhuma alteração em arquivos.
 /agente-orquestrador atualize o repositorio no github
 ```
 
+### Prompt 16
+```text
+/agente-orquestrador /grill-me /goal verifique o erro que deu e conclua a alteração
+```
+
 
 
 
