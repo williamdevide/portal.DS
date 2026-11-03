@@ -5,6 +5,7 @@
   "private": true,
   "description": "Portal Educacional SENAI Ourinhos - Técnico em Desenvolvimento de Sistemas",
   "scripts": {
+    "build": "npm --prefix frontend run build",
     "dev:backend": "npm --prefix backend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "build:frontend": "npm --prefix frontend run build",

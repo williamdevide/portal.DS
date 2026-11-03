@@ -255,7 +255,7 @@ export async function obterStatusAgendamento() {
 export async function alternarStatusAgendamento(novoStatus, pin) {
   const pinNormalizado = normalizarTexto(pin);
   const pinHash = calcularSha256(pinNormalizado);
-  const pinValido = (pinHash === PIN_DOCENTE_HASH_OFFLINE || pin === 'senai@2026');
+  const pinValido = (pinHash === PIN_DOCENTE_HASH_OFFLINE);
 
   if (!pinValido) {
     throw new Error('Não autorizado. O PIN do professor é obrigatório para realizar esta ação.');
@@ -568,7 +568,7 @@ export async function salvarAgendamento(dados) {
  */
 export async function autenticarProfessor(pin) {
   const hashRecebido = calcularSha256(normalizarTexto(pin));
-  if (hashRecebido === PIN_DOCENTE_HASH_OFFLINE || pin === 'senai@2026') {
+  if (hashRecebido === PIN_DOCENTE_HASH_OFFLINE) {
     return { valido: true, mensagem: 'Modo Professor autenticado com sucesso!' };
   }
 
