@@ -8,6 +8,7 @@ import {
 import { 
   obterConfiguracao, 
   listarAgendamentos, 
+  inscreverAgendamentos,
   excluirAgendamento, 
   atualizarAgendamento,
   obterPalavrasSecretas,
@@ -217,6 +218,12 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
   useEffect(() => {
     carregarDados();
 
+    const unsubAgendamentos = inscreverAgendamentos(null, (lista) => {
+      if (Array.isArray(lista) && lista.length > 0) {
+        setAgendamentos(lista);
+      }
+    });
+
     let ativo = true;
     obterStatusAgendamento().then(res => {
       if (ativo && res) setAgendamentoLiberado(Boolean(res.liberado));
@@ -242,6 +249,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
 
     return () => {
       ativo = false;
+      if (typeof unsubAgendamentos === 'function') unsubAgendamentos();
       window.removeEventListener('portal_status_agendamento_changed', statusHandler);
     };
   }, []);

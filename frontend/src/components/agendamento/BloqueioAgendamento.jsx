@@ -72,3 +72,4 @@ export default function BloqueioAgendamento({ onNavigateToQuadro, onAbrirPinModa
     </div>
   );
 }
+

@@ -20,7 +20,7 @@ Este é o **Portal Educacional** desenvolvido para os alunos do curso técnico d
 Este projeto foi idealizado e codificado de forma autônoma e guiada utilizando o **Google Antigravity**, a IA especialista em engenharia de software da Google DeepMind.
 * **Agentes Utilizados:** Agente Orquestrador, Especialista Full Stack & Instrutor Senior (Perfis SENAI).
 * **Skills Utilizadas:** `@app-builder`, `@brainstorming`, `@frontend-design`, `@clean-code`.
-* **Plataforma de TCC Integrada (PSOF3):** Autoagendamento de bancas de TCC com validação atômica de slots, persistência em banco local **SQLite** (`agendamentos.db`) e governança exclusiva do professor via PIN administrativo.
+* **Plataforma de TCC Integrada (PSOF3):** Autoagendamento de bancas de TCC com validação atômica de slots, persistência em nuvem em tempo real com **Google Cloud Firestore**, fallback em banco local **SQLite** (`agendamentos.db`) e governança exclusiva do professor via PIN administrativo.
 
 ---
 
@@ -32,7 +32,7 @@ This is the **Educational Portal** developed for students of the **Systems Devel
 This project was conceptualized and coded autonomously using **Google Antigravity**, the software engineering specialist AI from Google DeepMind.
 * **Agents Used:** Orchestrator Agent, Full Stack Specialist & Senior Instructor (SENAI Profiles).
 * **Skills Used:** `@app-builder`, `@brainstorming`, `@frontend-design`, `@clean-code`.
-* **Integrated TCC Scheduling (PSOF3):** Self-scheduling defense sessions with atomic slot validation, local **SQLite** database persistence (`agendamentos.db`), and exclusive instructor governance protected by an administrative PIN.
+* **Integrated TCC Scheduling (PSOF3):** Self-scheduling defense sessions with atomic slot validation, real-time cloud persistence via **Google Cloud Firestore**, local **SQLite** database fallback (`agendamentos.db`), and exclusive instructor governance protected by an administrative PIN.
 
 ---
 

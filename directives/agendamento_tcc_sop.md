@@ -64,21 +64,30 @@ O arquivo canônico de dados das turmas e horários reside em:
 
 ---
 
-## 🗄️ 4. Banco de Dados SQLite
+## 🗄️ 4. Banco de Dados e Sincronização em Tempo Real (Firebase Firestore + SQLite)
 
-- **Arquivo Físico:** `backend/database/agendamentos.db`
-- **Inicialização Automática:** Caso o arquivo não exista, o módulo `db.js` o cria automaticamente com suas tabelas, índices e constraints de unicidade (`uq_turma_grupo` e `uq_turma_horario`).
-- **Reset do Banco (Opcional):** Para reiniciar todos os agendamentos para um novo semestre, basta apagar o arquivo `agendamentos.db`. O sistema criará um novo banco limpo na próxima requisição.
+- **Cloud Firestore (Nuvem em Tempo Real - Produção Vercel):**
+  - **Projeto:** `antigravityportalds`
+  - **Coleção de Configuração:** `config/tcc` (armazena `{ liberado: true/false, atualizado_em, modificado_por }`).
+  - **Coleção de Agendamentos:** `agendamentos/{turmaId___grupoNome}` com constraints de unicidade atômica e prevenção de duplicidade.
+  - **Sincronização em Tempo Real:** Utiliza listeners `onSnapshot` no frontend para sincronizar instantaneamente o status (liberado/bloqueado) e a lista de reservas entre todos os navegadores abertos (professores, alunos e dispositivos móveis) sem necessidade de recarregar a página.
+- **SQLite (Persistência Local / Fallback):**
+  - **Arquivo Físico:** `backend/database/agendamentos.db`
+  - Utilizado quando o desenvolvedor executa o backend Node.js localmente, mantendo integridade com SQLite e fallback automático para contingências offline.
 
 ---
 
 ## 🚀 5. Como Executar o Sistema Completo
 
-1. **Em Desenvolvimento:**
-   - Terminal 1 (Backend): `npm run dev:backend` (inicia em http://localhost:3001)
-   - Terminal 2 (Frontend): `npm run dev:frontend` (inicia em http://localhost:5173 com proxy para /api)
+1. **Em Produção (Vercel):**
+   - O frontend se comunica diretamente com o **Firebase Firestore** em tempo real, garantindo que qualquer alteração de status feita pelo professor seja propagada instantaneamente para todos os alunos em qualquer dispositivo ou navegador.
 
-2. **Acesso Direto às Telas:**
+2. **Em Desenvolvimento Local:**
+   - Terminal 1 (Backend - Opcional): `npm run dev:backend` (inicia em http://localhost:3001)
+   - Terminal 2 (Frontend): `npm run dev:frontend` (inicia em http://localhost:5173)
+
+3. **Acesso Direto às Telas:**
    - Pela disciplina: `/disciplina/projeto_de_software_iii`
    - Atalho direto Agendamento: `/disciplina/projeto_de_software_iii/agendamento`
    - Atalho direto Quadro de Bancas: `/disciplina/projeto_de_software_iii/agendamentos`
+

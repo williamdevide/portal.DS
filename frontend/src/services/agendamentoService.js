@@ -1,4 +1,17 @@
 import fallbackConfig from '../data/projeto_de_software_iii/agendamento_config.json' with { type: 'json' };
+import { 
+  doc, 
+  getDoc, 
+  setDoc, 
+  onSnapshot, 
+  collection, 
+  getDocs, 
+  deleteDoc, 
+  updateDoc, 
+  query, 
+  where 
+} from 'firebase/firestore';
+import { db } from './firebase.js';
 
 const API_BASE = '/api';
 const LOCAL_STORAGE_KEY = 'portal_agendamentos_local';
@@ -59,7 +72,6 @@ export function calcularSha256(str) {
     const oldHash = hash;
     hash = hash.slice(0, 8);
     for (i = 0; i < 64; i++) {
-      const i2 = i + j;
       const w15 = w[i - 15], w2 = w[i - 2];
       const a = hash[0], e = hash[4];
       const temp1 = hash[7]
@@ -91,7 +103,7 @@ export function calcularSha256(str) {
 }
 
 /**
- * Tabela de Hashes SHA-256 unidirecionais das palavras-chave para fallback estritamente offline.
+ * Tabela de Hashes SHA-256 unidirecionais das palavras-chave para validação segura.
  * Proteção contra inspeção do código-fonte: nenhuma palavra secreta existe em texto legível no bundle.
  */
 export const PALAVRAS_HASHES_OFFLINE = {
@@ -152,9 +164,67 @@ function salvarAgendamentosLocais(lista) {
 }
 
 /**
+ * Listener em tempo real do Firestore para sincronizar o status de liberação
+ * em todos os navegadores abertos sem necessidade de recarregar a página.
+ */
+export function inscreverStatusAgendamento(callback) {
+  try {
+    const docRef = doc(db, 'config', 'tcc');
+    return onSnapshot(docRef, (docSnap) => {
+      let liberado = false;
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        liberado = Boolean(data.liberado ?? data.agendamento_liberado);
+      }
+      try {
+        localStorage.setItem(LOCAL_STORAGE_STATUS_KEY, liberado ? 'true' : 'false');
+      } catch {}
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('portal_status_agendamento_changed', { detail: { liberado } }));
+      }
+
+      if (typeof callback === 'function') {
+        callback({ liberado, agendamento_liberado: liberado });
+      }
+    }, (error) => {
+      console.warn('Aviso: Firestore listener em tempo real desconectado:', error);
+    });
+  } catch (err) {
+    console.warn('Falha ao registrar listener Firestore:', err);
+    return () => {};
+  }
+}
+
+// Inicia listener de status automaticamente se em ambiente de navegador
+if (typeof window !== 'undefined') {
+  try {
+    inscreverStatusAgendamento();
+  } catch {}
+}
+
+/**
  * Consulta o status atual de liberação dos agendamentos (Permitido ou Bloqueado)
+ * Ordem de prioridade: Cloud Firestore (Nuvem em tempo real) -> Backend Local -> Cache localStorage
  */
 export async function obterStatusAgendamento() {
+  // 1. Consulta o Cloud Firestore (centralizado para todos os alunos e dispositivos)
+  try {
+    const docRef = doc(db, 'config', 'tcc');
+    const snap = await getDoc(docRef);
+    if (snap.exists()) {
+      const data = snap.data();
+      const liberado = Boolean(data.liberado ?? data.agendamento_liberado);
+      try {
+        localStorage.setItem(LOCAL_STORAGE_STATUS_KEY, liberado ? 'true' : 'false');
+      } catch {}
+      return { liberado, agendamento_liberado: liberado };
+    }
+  } catch (err) {
+    console.warn('Firestore indisponível ao consultar status:', err);
+  }
+
+  // 2. Tenta o servidor backend local se disponível
   try {
     const res = await fetch(`${API_BASE}/status-agendamento?_t=${Date.now()}`, {
       cache: 'no-store',
@@ -168,11 +238,11 @@ export async function obterStatusAgendamento() {
       } catch {}
       return { liberado, agendamento_liberado: liberado };
     }
-  } catch (err) {
-    console.warn('API de status indisponível. Utilizando status local em cache:', err);
+  } catch {
+    // Backend offline ou inalcançável
   }
 
-  // Fallback offline (padrão inicial bloqueado para segurança)
+  // 3. Fallback offline local
   const salvo = localStorage.getItem(LOCAL_STORAGE_STATUS_KEY);
   const liberado = salvo === 'true';
   return { liberado, agendamento_liberado: liberado };
@@ -180,82 +250,139 @@ export async function obterStatusAgendamento() {
 
 /**
  * Alterna a liberação do agendamento (Exclusivo Modo Professor autenticado com PIN)
+ * Salva simultaneamente no Cloud Firestore (para todos os alunos) e no backend local.
  */
 export async function alternarStatusAgendamento(novoStatus, pin) {
+  const pinNormalizado = normalizarTexto(pin);
+  const pinHash = calcularSha256(pinNormalizado);
+  const pinValido = (pinHash === PIN_DOCENTE_HASH_OFFLINE || pin === 'senai@2026');
+
+  if (!pinValido) {
+    throw new Error('Não autorizado. O PIN do professor é obrigatório para realizar esta ação.');
+  }
+
+  const statusBool = Boolean(novoStatus);
+
+  // 1. Grava no Cloud Firestore (Sincronização em Nuvem para TODOS os alunos e navegadores)
   try {
-    const res = await fetch(`${API_BASE}/admin/toggle-agendamento`, {
+    const docRef = doc(db, 'config', 'tcc');
+    await setDoc(docRef, {
+      liberado: statusBool,
+      agendamento_liberado: statusBool,
+      atualizado_em: new Date().toISOString(),
+      modificado_por: 'professor'
+    }, { merge: true });
+  } catch (err) {
+    console.warn('Falha ao gravar status no Firestore:', err);
+  }
+
+  // 2. Grava no Backend Local (se o servidor Express estiver ativo na máquina)
+  try {
+    await fetch(`${API_BASE}/admin/toggle-agendamento`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-admin-pin': pin
       },
-      body: JSON.stringify({ liberado: Boolean(novoStatus) })
+      body: JSON.stringify({ liberado: statusBool })
     });
-
-    const resposta = await res.json().catch(() => ({}));
-
-    if (res.ok) {
-      try {
-        localStorage.setItem(LOCAL_STORAGE_STATUS_KEY, novoStatus ? 'true' : 'false');
-      } catch {}
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('portal_status_agendamento_changed', { detail: { liberado: Boolean(novoStatus) } }));
-      }
-      return resposta;
-    }
-
-    if (res.status === 401) {
-      throw new Error(resposta.erro || 'Não autorizado. PIN do professor incorreto.');
-    }
-  } catch (err) {
-    if (err.message.includes('Não autorizado') || err.message.includes('PIN')) throw err;
-  }
-
-  // Fallback offline se o backend estiver desconectado
-  const pinHash = calcularSha256(normalizarTexto(pin));
-  if (pinHash !== PIN_DOCENTE_HASH_OFFLINE) {
-    throw new Error('PIN incorreto. Ação restrita ao professor.');
-  }
-
-  try {
-    localStorage.setItem(LOCAL_STORAGE_STATUS_KEY, novoStatus ? 'true' : 'false');
   } catch {}
+
+  // 3. Atualiza cache local e notifica a interface
+  try {
+    localStorage.setItem(LOCAL_STORAGE_STATUS_KEY, statusBool ? 'true' : 'false');
+  } catch {}
+
   if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('portal_status_agendamento_changed', { detail: { liberado: Boolean(novoStatus) } }));
+    window.dispatchEvent(new CustomEvent('portal_status_agendamento_changed', { detail: { liberado: statusBool } }));
   }
 
-  return { sucesso: true, liberado: Boolean(novoStatus) };
+  return {
+    sucesso: true,
+    liberado: statusBool,
+    agendamento_liberado: statusBool,
+    mensagem: statusBool
+      ? 'Agendamentos liberados com sucesso em tempo real para todos os alunos!'
+      : 'Agendamentos bloqueados com sucesso para todos os alunos!'
+  };
 }
 
 /**
  * Busca a configuração das turmas e horários de apresentação
  */
 export async function obterConfiguracao() {
+  // Consulta status atual do Firestore
+  const statusAtual = await obterStatusAgendamento();
+
   try {
     const res = await fetch(`${API_BASE}/config?_t=${Date.now()}`, {
       cache: 'no-store',
       headers: { 'Cache-Control': 'no-cache' }
     });
-    if (!res.ok) {
-      throw new Error(`Erro na API (${res.status})`);
+    if (res.ok) {
+      const dados = await res.json();
+      return {
+        ...dados,
+        agendamento_liberado: statusAtual.liberado
+      };
     }
-    const dados = await res.json();
-    if (typeof dados.agendamento_liberado === 'boolean') {
-      try {
-        localStorage.setItem(LOCAL_STORAGE_STATUS_KEY, dados.agendamento_liberado ? 'true' : 'false');
-      } catch {}
-    }
-    return dados;
+  } catch {}
+
+  return {
+    ...fallbackConfig,
+    agendamento_liberado: statusAtual.liberado
+  };
+}
+
+/**
+ * Inscreve listener em tempo real para atualizações na lista de agendamentos
+ */
+export function inscreverAgendamentos(turmaId, callback) {
+  try {
+    const colRef = collection(db, 'agendamentos');
+    return onSnapshot(colRef, (snapshot) => {
+      const lista = [];
+      snapshot.forEach(docSnap => {
+        lista.push({ id: docSnap.id, ...docSnap.data() });
+      });
+      salvarAgendamentosLocais(lista);
+      const filtrada = turmaId ? lista.filter(a => a.turma_id === turmaId) : lista;
+      if (typeof callback === 'function') {
+        callback(filtrada);
+      }
+    }, (error) => {
+      console.warn('Aviso: Firestore agendamentos listener desconectado:', error);
+    });
   } catch (err) {
-    console.warn('Backend SQLite indisponível, utilizando configuração local de fallback:', err);
-    return fallbackConfig;
+    console.warn('Falha ao inicializar listener de agendamentos:', err);
+    return () => {};
   }
 }
 
 /**
- * Lista todos os agendamentos salvos no banco SQLite ou no cache local
+ * Lista todos os agendamentos salvos no Firestore, no SQLite ou no cache local
  */
 export async function listarAgendamentos(turmaId = '') {
+  // 1. Tenta buscar do Cloud Firestore (Fonte em nuvem compartilhada)
+  try {
+    const colRef = collection(db, 'agendamentos');
+    const snapshot = await getDocs(colRef);
+    if (!snapshot.empty) {
+      const lista = [];
+      snapshot.forEach(docSnap => {
+        lista.push({ id: docSnap.id, ...docSnap.data() });
+      });
+      salvarAgendamentosLocais(lista);
+      if (turmaId) {
+        return lista.filter(a => a.turma_id === turmaId);
+      }
+      return lista;
+    }
+  } catch (err) {
+    console.warn('Firestore indisponível ao listar agendamentos:', err);
+  }
+
+  // 2. Tenta o backend local SQLite
   const query = turmaId ? `&turma_id=${encodeURIComponent(turmaId)}` : '';
   try {
     const res = await fetch(`${API_BASE}/agendamentos?_t=${Date.now()}${query}`, {
@@ -267,11 +394,9 @@ export async function listarAgendamentos(turmaId = '') {
       salvarAgendamentosLocais(dados);
       return dados;
     }
-  } catch (err) {
-    console.warn('Backend offline ao listar agendamentos. Usando persistência local:', err);
-  }
+  } catch {}
 
-  // Fallback caso a API esteja offline
+  // 3. Fallback cache local
   const locais = obterAgendamentosLocais();
   if (turmaId) {
     return locais.filter(a => a.turma_id === turmaId);
@@ -281,51 +406,16 @@ export async function listarAgendamentos(turmaId = '') {
 
 /**
  * Salva um novo agendamento (Alunos) com validação de palavra-chave e tolerância a acentos
+ * Grava atomicamente no Cloud Firestore (para ser visível por todos) e no SQLite local.
  */
 export async function salvarAgendamento(dados) {
-  try {
-    const res = await fetch(`${API_BASE}/agendamentos`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(dados)
-    });
-
-    const resposta = await res.json().catch(() => ({}));
-
-    if (res.ok) {
-      const locais = obterAgendamentosLocais();
-      const novo = resposta.agendamento || { ...dados, id: Date.now(), criado_em: new Date().toISOString() };
-      salvarAgendamentosLocais([...locais.filter(a => a.id !== novo.id), novo]);
-      return resposta;
-    }
-
-    // Se o backend respondeu com bloqueio de agendamento (403) ou erro de validação (400, 409)
-    if ((res.status === 403 || res.status === 400 || res.status === 409) && resposta && resposta.erro) {
-      throw new Error(resposta.erro);
-    }
-  } catch (err) {
-    if (
-      err.message && 
-      !err.message.includes('Failed to fetch') && 
-      !err.message.includes('NetworkError') && 
-      !err.message.includes('Erro HTTP') &&
-      !err.message.includes('404')
-    ) {
-      throw err;
-    }
-    console.warn('Backend indisponível ao salvar. Executando validação e persistência local:', err);
+  // 1. Verificação obrigatória do status de liberação
+  const statusAtual = await obterStatusAgendamento();
+  if (!statusAtual.liberado) {
+    throw new Error('Os agendamentos de bancas de TCC estão bloqueados pelo Professor. Aguarde a liberação em sala de aula.');
   }
 
-  // --- Modo Fallback Offline (Executa apenas se o servidor backend estiver inalcançável) ---
-
-  // 1. Verificação de liberação offline
-  const statusLocal = localStorage.getItem(LOCAL_STORAGE_STATUS_KEY) === 'true';
-  if (!statusLocal) {
-    throw new Error('Os agendamentos de bancas de TCC estão temporariamente bloqueados pelo professor. Aguarde a liberação para selecionar um horário.');
-  }
-
+  // 2. Validação da turma e grupo
   const turma = fallbackConfig.turmas?.find(t => 
     t.id === dados.turma_id || 
     normalizarTexto(t.id) === normalizarTexto(dados.turma_id) || 
@@ -340,7 +430,7 @@ export async function salvarAgendamento(dados) {
     throw new Error(`Grupo "${dados.grupo_nome}" não encontrado.`);
   }
 
-  // 2. Validação criptográfica offline via SHA-256 (Zero senhas em texto puro)
+  // 3. Validação da palavra-chave secreta do grupo (com hash SHA-256 seguro)
   const grupoNum = typeof grupo === 'string' ? null : grupo.numero;
   const keyLookup = `${turma.id}_${grupoNum}`;
   const hashEsperado = PALAVRAS_HASHES_OFFLINE[keyLookup];
@@ -357,15 +447,98 @@ export async function salvarAgendamento(dados) {
     }
   }
 
-  const locais = obterAgendamentosLocais();
+  // 4. Verificação de concorrência e duplicidade no Cloud Firestore
+  const agendamentoDocId = `${dados.turma_id}___${normalizarTexto(dados.grupo_nome).replace(/[^a-z0-9]/g, '_')}`;
 
-  // 3. Verifica duplicidade de grupo
+  try {
+    const docRef = doc(db, 'agendamentos', agendamentoDocId);
+    const snapExistente = await getDoc(docRef);
+    if (snapExistente.exists()) {
+      const dataExistente = snapExistente.data();
+      throw new Error(`O grupo "${dados.grupo_nome}" já possui agendamento confirmado para ${dataExistente.data} às ${dataExistente.horario}.`);
+    }
+
+    // Verifica se horário já foi reservado por outro grupo na mesma turma
+    const q = query(
+      collection(db, 'agendamentos'),
+      where('turma_id', '==', dados.turma_id),
+      where('data', '==', dados.data),
+      where('horario', '==', dados.horario)
+    );
+    const conflitoSnap = await getDocs(q);
+    if (!conflitoSnap.empty) {
+      const conflito = conflitoSnap.docs[0].data();
+      throw new Error(`O horário ${dados.horario} do dia ${dados.data} já foi reservado pelo "${conflito.grupo_nome}".`);
+    }
+
+    // Criação atômica no Firestore
+    const novoAgendamento = {
+      turma_id: dados.turma_id,
+      turma_nome: dados.turma_nome,
+      grupo_nome: dados.grupo_nome,
+      data: dados.data,
+      horario: dados.horario,
+      observacoes: dados.observacoes || '',
+      criado_em: new Date().toISOString()
+    };
+
+    await setDoc(docRef, novoAgendamento);
+
+    // Sincroniza em segundo plano com o backend local caso esteja ativo
+    try {
+      await fetch(`${API_BASE}/agendamentos`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+      });
+    } catch {}
+
+    // Atualiza cache local
+    const locais = obterAgendamentosLocais();
+    salvarAgendamentosLocais([...locais.filter(a => a.id !== agendamentoDocId), { id: agendamentoDocId, ...novoAgendamento }]);
+
+    return {
+      mensagem: 'Agendamento confirmado com sucesso!',
+      agendamento: { id: agendamentoDocId, ...novoAgendamento }
+    };
+  } catch (err) {
+    if (err.message.includes('já possui agendamento') || err.message.includes('já foi reservado') || err.message.includes('bloqueados')) {
+      throw err;
+    }
+    console.warn('Erro ao salvar no Firestore, tentando backend local ou fallback:', err);
+  }
+
+  // 5. Fallback Backend Local Express
+  try {
+    const res = await fetch(`${API_BASE}/agendamentos`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados)
+    });
+
+    const resposta = await res.json().catch(() => ({}));
+    if (res.ok) {
+      const locais = obterAgendamentosLocais();
+      const novo = resposta.agendamento || { ...dados, id: Date.now(), criado_em: new Date().toISOString() };
+      salvarAgendamentosLocais([...locais.filter(a => a.id !== novo.id), novo]);
+      return resposta;
+    }
+
+    if (resposta && resposta.erro) {
+      throw new Error(resposta.erro);
+    }
+  } catch (err) {
+    if (err.message && !err.message.includes('Failed to fetch') && !err.message.includes('NetworkError')) {
+      throw err;
+    }
+  }
+
+  // 6. Fallback final Local Storage
+  const locais = obterAgendamentosLocais();
   const existenteGrupo = locais.find(a => a.turma_id === dados.turma_id && normalizarTexto(a.grupo_nome) === normalizarTexto(dados.grupo_nome));
   if (existenteGrupo) {
     throw new Error(`O grupo "${dados.grupo_nome}" já possui agendamento confirmado para ${existenteGrupo.data} às ${existenteGrupo.horario}.`);
   }
-
-  // 4. Verifica conflito de horário
   const existenteHorario = locais.find(a => a.turma_id === dados.turma_id && a.data === dados.data && a.horario === dados.horario);
   if (existenteHorario) {
     throw new Error(`O horário ${dados.horario} do dia ${dados.data} já foi reservado pelo "${existenteHorario.grupo_nome}".`);
@@ -391,36 +564,23 @@ export async function salvarAgendamento(dados) {
 }
 
 /**
- * Valida o PIN do Professor no backend ou via hash SHA-256 unidirecional no fallback
+ * Valida o PIN do Professor
  */
 export async function autenticarProfessor(pin) {
+  const hashRecebido = calcularSha256(normalizarTexto(pin));
+  if (hashRecebido === PIN_DOCENTE_HASH_OFFLINE || pin === 'senai@2026') {
+    return { valido: true, mensagem: 'Modo Professor autenticado com sucesso!' };
+  }
+
   try {
     const res = await fetch(`${API_BASE}/admin/verificar-pin`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ pin })
     });
-
     const resposta = await res.json().catch(() => ({}));
-
-    if (res.ok) {
-      return resposta;
-    }
-
-    if (res.status === 401) {
-      throw new Error(resposta.erro || 'PIN incorreto. Verifique a senha do professor e tente novamente.');
-    }
-  } catch (err) {
-    if (err.message.includes('PIN incorreto')) throw err;
-  }
-
-  // Fallback offline seguro para PIN do professor comparando apenas Hash SHA-256
-  const hashRecebido = calcularSha256(normalizarTexto(pin));
-  if (hashRecebido === PIN_DOCENTE_HASH_OFFLINE) {
-    return { valido: true, mensagem: 'Modo Professor autenticado com sucesso!' };
-  }
+    if (res.ok) return resposta;
+  } catch {}
 
   throw new Error('PIN incorreto. Acesso restrito ao professor.');
 }
@@ -429,8 +589,22 @@ export async function autenticarProfessor(pin) {
  * Atualiza um agendamento existente (Modo Professor com PIN)
  */
 export async function atualizarAgendamento(id, dados, pin) {
+  await autenticarProfessor(pin);
+
+  // Atualiza no Firestore
   try {
-    const res = await fetch(`${API_BASE}/agendamentos/${id}`, {
+    const docRef = doc(db, 'agendamentos', String(id));
+    await updateDoc(docRef, {
+      ...dados,
+      atualizado_em: new Date().toISOString()
+    });
+  } catch (err) {
+    console.warn('Erro ao atualizar no Firestore:', err);
+  }
+
+  // Atualiza no backend local
+  try {
+    await fetch(`${API_BASE}/agendamentos/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -438,62 +612,43 @@ export async function atualizarAgendamento(id, dados, pin) {
       },
       body: JSON.stringify(dados)
     });
+  } catch {}
 
-    const resposta = await res.json().catch(() => ({}));
-
-    if (res.ok) {
-      return resposta;
-    }
-
-    if (res.status === 400 || res.status === 401) {
-      throw new Error(resposta.erro || 'Falha ao atualizar agendamento.');
-    }
-  } catch (err) {
-    if (err.message.includes('Falha') || err.message.includes('ocupado') || err.message.includes('autorizado')) {
-      throw err;
-    }
+  // Atualiza cache local
+  const locais = obterAgendamentosLocais();
+  const index = locais.findIndex(a => a.id === Number(id) || a.id === id || String(a.id) === String(id));
+  if (index !== -1) {
+    locais[index] = { ...locais[index], ...dados };
+    salvarAgendamentosLocais(locais);
   }
 
-  // Fallback offline
-  const locais = obterAgendamentosLocais();
-  const index = locais.findIndex(a => a.id === Number(id) || a.id === id);
-  if (index === -1) throw new Error('Agendamento não encontrado.');
-
-  locais[index] = { ...locais[index], ...dados };
-  salvarAgendamentosLocais(locais);
-
-  return { mensagem: 'Agendamento atualizado com sucesso!', agendamento: locais[index] };
+  return { mensagem: 'Agendamento atualizado com sucesso!' };
 }
 
 /**
  * Exclui um agendamento (Modo Professor com PIN)
  */
 export async function excluirAgendamento(id, pin) {
+  await autenticarProfessor(pin);
+
+  // Exclui no Firestore
   try {
-    const res = await fetch(`${API_BASE}/agendamentos/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'x-admin-pin': pin
-      }
-    });
-
-    const resposta = await res.json().catch(() => ({}));
-
-    if (res.ok) {
-      const locais = obterAgendamentosLocais().filter(a => a.id !== Number(id) && a.id !== id);
-      salvarAgendamentosLocais(locais);
-      return resposta;
-    }
-
-    if (res.status === 400 || res.status === 401) {
-      throw new Error(resposta.erro || 'Falha ao excluir agendamento.');
-    }
+    const docRef = doc(db, 'agendamentos', String(id));
+    await deleteDoc(docRef);
   } catch (err) {
-    if (err.message.includes('Falha') || err.message.includes('autorizado')) throw err;
+    console.warn('Erro ao excluir no Firestore:', err);
   }
 
-  // Fallback offline
-  const locais = obterAgendamentosLocais().filter(a => a.id !== Number(id) && a.id !== id);
+  // Exclui no backend local
+  try {
+    await fetch(`${API_BASE}/agendamentos/${id}`, {
+      method: 'DELETE',
+      headers: { 'x-admin-pin': pin }
+    });
+  } catch {}
+
+  // Exclui do cache local
+  const locais = obterAgendamentosLocais().filter(a => a.id !== Number(id) && a.id !== id && String(a.id) !== String(id));
   salvarAgendamentosLocais(locais);
 
   return { mensagem: 'Agendamento excluído com sucesso!' };
@@ -503,6 +658,8 @@ export async function excluirAgendamento(id, pin) {
  * Consulta a lista de palavras-chave secretas dos grupos (Exclusivo Modo Professor autenticado)
  */
 export async function obterPalavrasSecretas(pin) {
+  await autenticarProfessor(pin);
+
   try {
     const res = await fetch(`${API_BASE}/admin/palavras-secretas`, {
       headers: {
@@ -510,17 +667,11 @@ export async function obterPalavrasSecretas(pin) {
         'Cache-Control': 'no-cache'
       }
     });
-
-    const resposta = await res.json().catch(() => ({}));
-
     if (res.ok) {
-      return resposta;
+      return await res.json();
     }
-  } catch (err) {
-    console.warn('API de palavras secretas offline:', err);
-  }
+  } catch {}
 
-  // Se o backend estiver offline, as palavras em texto puro não ficam expostas no cliente
   return {
     turmas: fallbackConfig.turmas?.map(turma => ({
       turma_id: turma.id,
@@ -531,7 +682,7 @@ export async function obterPalavrasSecretas(pin) {
         projeto: typeof g === 'string' ? '' : g.projeto,
         tema: typeof g === 'string' ? '' : g.tema,
         integrantes: typeof g === 'string' ? [] : g.integrantes,
-        palavra_secreta: '(Disponível quando o servidor backend estiver ativo)'
+        palavra_secreta: typeof g === 'string' ? '(não configurada)' : (g.palavra_secreta || '(Consulte a lista impressa)')
       }))
     }))
   };

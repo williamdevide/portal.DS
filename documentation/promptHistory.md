@@ -519,6 +519,22 @@ na janela onde aparece o botão para agendar, embaixo do botão aparece "Agendam
 - garanta que ninguem consiga visualizar a senha do professor ou as palavras-chaves se acessar o codigo-fonte pelo navegador.
 ```
 
+### Prompt 13
+```text
+/agente-orquestrador /grill-me /goal me responda onde está sendo armazenado e de onde esta sendo lido a informação de que esta bloqueado ou liberado para agendamentos do TCC?
+não execute nenhuma alteração em arquivos.
+```
+
+### Prompt 14
+```text
+/agente-orquestrador /grill-me /goal o pproblema que ocorreu é que no navegador em que eu (professor) liberei o agendamento o mesmo passou a estar liberado, mas em outro navegador na mesma maquina e também para os alunos ainda aparecia como bloqueado. preciso que quando eu liberar, libere para todos
+```
+
+### Prompt 15
+```text
+/agente-orquestrador atualize o repositorio no github
+```
+
 
 
 
