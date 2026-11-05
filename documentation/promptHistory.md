@@ -595,3 +595,8 @@ não carregou o repositorio github aqui no source control e nem a lista de commi
 ```text
 não funcionou dar refresh na source control
 ```
+
+### Prompt 6
+```text
+/agente-orquestrador /grill-me /goal agora preciso do seguinte auxilio: o banco criado no firebase esta como periodo de teste. preciso transformá-lo em banco permanente (produção), mas sem perder os agendamentos que já fizemos
+```
