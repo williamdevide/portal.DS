@@ -50,3 +50,4 @@ A cada ciclo de modificação concluído:
 5. **Deploy Automático na Vercel:**
    * O repositório GitHub `williamdevide/portal.DS` possui integração contínua (CI/CD) com a Vercel.
    * O push para a branch `main` dispara automaticamente o build e deploy para produção em `portal-ds.vercel.app`.
+

@@ -484,7 +484,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
   return (
     <div className="space-y-8 animate-fade-in max-w-6xl mx-auto">
       {/* Banner de Cabeçalho do Quadro */}
-      <div className="rounded-3xl p-6 sm:p-8 bg-custom-card border border-custom-border shadow-lg relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="rounded-3xl p-6 sm:p-8 bg-custom-card border border-custom-border shadow-lg relative flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold bg-custom-accent/15 text-custom-accent border border-custom-accent/20">
             <Layers className="h-3.5 w-3.5" />
@@ -574,7 +574,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
               </button>
 
               {/* Botão de Exportação com Menu Suspenso (PDF e CSV) - Modo Professor */}
-              <div className="relative" ref={exportMenuRef}>
+              <div className="relative z-30" ref={exportMenuRef}>
                 <button
                   type="button"
                   onClick={() => setIsExportMenuOpen(prev => !prev)}
@@ -588,7 +588,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                 </button>
 
                 {isExportMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-60 rounded-2xl bg-custom-card border border-custom-border shadow-2xl p-1.5 z-50 animate-fade-in backdrop-blur-md">
+                  <div className="absolute right-0 top-full mt-2 w-60 rounded-2xl bg-custom-card border border-custom-border shadow-2xl p-1.5 z-50 animate-fade-in backdrop-blur-md">
                     <div className="px-3 py-2 border-b border-custom-border/60">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-custom-muted block">
                         Exportar Agendamentos

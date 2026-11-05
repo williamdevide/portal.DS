@@ -68,3 +68,4 @@ export default PORTAL_VERSION;
 }
 
 bump();
+

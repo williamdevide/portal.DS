@@ -578,3 +578,9 @@ não execute nenhuma alteração em arquivos.
 /agente-orquestrador /grill-me /goal a partir de agora quero que a cada pedido de novo modulo, novos recursos ou correções no portal-ds automaticamente atualize a versão do portal. nossas versões são no formato v1.0.2 , o 1 mudo quando se acrescentar um novo modulo, o 0 quando se pede um novo recurso em um modulo e o 2 quando se faz alguma correção. assim que atualizar no github já atualize também na vercel.
 analise o quadro de agendamentos, nas duas turmas as colunas estão estourando a largura da div
 ```
+
+
+### Prompt 3
+```text
+/agente-orquestrador o menu suspenso de exportação está ficando escondido dentro da div em que esta o botão. corrija
+```
