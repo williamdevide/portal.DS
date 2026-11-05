@@ -590,3 +590,8 @@ analise o quadro de agendamentos, nas duas turmas as colunas estão estourando a
 ```text
 não carregou o repositorio github aqui no source control e nem a lista de commits
 ```
+
+### Prompt 5
+```text
+não funcionou dar refresh na source control
+```
