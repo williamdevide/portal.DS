@@ -584,3 +584,9 @@ analise o quadro de agendamentos, nas duas turmas as colunas estão estourando a
 ```text
 /agente-orquestrador o menu suspenso de exportação está ficando escondido dentro da div em que esta o botão. corrija
 ```
+
+
+### Prompt 4
+```text
+não carregou o repositorio github aqui no source control e nem a lista de commits
+```
