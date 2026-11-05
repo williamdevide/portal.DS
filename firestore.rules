@@ -1,8 +1,65 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    /**
+     * Portal Educacional SENAI - Regras de Segurança do Cloud Firestore
+     * Ambiente: Produção Permanente (sem prazo de expiração)
+     */
+
+    // Função validadora para a coleção de configurações de agendamento de TCC
+    function isValidConfigTcc(data) {
+      return data.keys().hasOnly(['liberado', 'agendamento_liberado', 'atualizado_em', 'modificado_por'])
+        && (!('liberado' in data) || data.liberado is bool)
+        && (!('agendamento_liberado' in data) || data.agendamento_liberado is bool)
+        && (!('atualizado_em' in data) || (data.atualizado_em is string && data.atualizado_em.size() <= 50))
+        && (!('modificado_por' in data) || (data.modificado_por is string && data.modificado_por.size() <= 50));
+    }
+
+    // Função validadora para os agendamentos das bancas de TCC
+    function isValidAgendamento(data) {
+      return data.keys().hasAll(['turma_id', 'turma_nome', 'grupo_nome', 'data', 'horario'])
+        && data.keys().hasOnly(['turma_id', 'turma_nome', 'grupo_nome', 'data', 'horario', 'observacoes', 'criado_em', 'atualizado_em', 'id'])
+        && data.turma_id is string && data.turma_id.size() > 0 && data.turma_id.size() <= 100
+        && data.turma_nome is string && data.turma_nome.size() > 0 && data.turma_nome.size() <= 100
+        && data.grupo_nome is string && data.grupo_nome.size() > 0 && data.grupo_nome.size() <= 150
+        && data.data is string && data.data.size() > 0 && data.data.size() <= 50
+        && data.horario is string && data.horario.size() > 0 && data.horario.size() <= 30
+        && (!('observacoes' in data) || (data.observacoes is string && data.observacoes.size() <= 500))
+        && (!('criado_em' in data) || (data.criado_em is string && data.criado_em.size() <= 50))
+        && (!('atualizado_em' in data) || (data.atualizado_em is string && data.atualizado_em.size() <= 50))
+        && (!('id' in data) || (data.id is string && data.id.size() <= 100));
+    }
+
+    // Coleção: config
+    // Gerencia as variáveis de controle global do portal (ex: liberação de agendamentos)
+    match /config/tcc {
+      // Leitura pública para que alunos e professores consultem o status em tempo real
+      allow read: if true;
+
+      // Criação ou atualização permitida validando campos e tipos estritamente
+      allow create, update: if isValidConfigTcc(request.resource.data);
+
+      // Não permite remoção do documento de configuração
+      allow delete: if false;
+    }
+
+    // Coleção: agendamentos
+    // Armazena as bancas marcadas pelos alunos para o TCC
+    match /agendamentos/{agendamentoId} {
+      // Leitura pública para exibição do quadro geral de bancas para alunos e professores
+      allow read: if true;
+
+      // Criação e atualização com validação de campos obrigatórios e sanitização de tamanho
+      allow create, update: if isValidAgendamento(request.resource.data);
+
+      // Exclusão permitida para viabilizar cancelamentos no Modo Professor
+      allow delete: if true;
+    }
+
+    // Bloqueio padrão para qualquer outra coleção ou documento não mapeado
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
   }
 }

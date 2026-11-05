@@ -77,7 +77,42 @@ O arquivo canônico de dados das turmas e horários reside em:
 
 ---
 
-## 🚀 5. Como Executar o Sistema Completo
+## 🛡️ 5. Regras de Segurança Permanentes (Produção) e Publicação no Firebase
+
+O banco Cloud Firestore opera em modo permanente de produção com regras estritas descritas no arquivo `firestore.rules`.
+- **Sem Prazo de Validade:** Foram removidas todas as cláusulas temporárias de teste (`request.time < timestamp.date(...)`).
+- **Leitura Pública:** Leitura liberada para `config/tcc` e `agendamentos/{id}` para permitir que alunos e bancas acompanhem os horários em tempo real.
+- **Escrita Validada:** Validação granular de campos obrigatórios (`turma_id`, `turma_nome`, `grupo_nome`, `data`, `horario`) e limites de caracteres para evitar injeção ou corrupção de dados.
+- **Bloqueio Padrão:** Todas as outras coleções têm acesso negado (`allow read, write: if false;`).
+
+### Como Publicar as Regras no Firebase Console:
+1. Acesse o [Console do Firebase](https://console.firebase.google.com/project/antigravityportalds/firestore/rules).
+2. Selecione a aba **Regras (Rules)** do Cloud Firestore.
+3. Substitua o conteúdo pelo código do arquivo local `firestore.rules`.
+4. Clique no botão **Publicar (Publish)**.
+5. O banner amarelo de "modo de teste" desaparecerá imediatamente e o banco estará ativo permanentemente sem risco de bloqueio.
+
+---
+
+## 💾 6. Rotinas de Backup e Restauração Determinísticas
+
+Para garantir 100% de segurança contra perda acidental de agendamentos, o projeto dispõe de scripts automatizados na Camada 3 (`/execution`):
+
+- **Executar Backup do Firestore:**
+  ```bash
+  node execution/backup_firestore.js
+  ```
+  *Gera o arquivo `backend/data/backup_firestore_tcc.json` contendo o snapshot completo de todos os agendamentos e o status do TCC.*
+
+- **Executar Restauração no Firestore:**
+  ```bash
+  node execution/restore_firestore.js
+  ```
+  *Restaura atomicamente todos os registros salvos no arquivo de backup de volta para o Cloud Firestore.*
+
+---
+
+## 🚀 7. Como Executar o Sistema Completo
 
 1. **Em Produção (Vercel):**
    - O frontend se comunica diretamente com o **Firebase Firestore** em tempo real, garantindo que qualquer alteração de status feita pelo professor seja propagada instantaneamente para todos os alunos em qualquer dispositivo ou navegador.

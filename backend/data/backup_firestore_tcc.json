@@ -1,0 +1,262 @@
+{
+  "data_backup": "2026-11-05T11:47:40.762Z",
+  "total_agendamentos": 25,
+  "config_tcc": {
+    "atualizado_em": "2026-11-03T16:11:32.696Z",
+    "liberado": true,
+    "modificado_por": "professor",
+    "agendamento_liberado": true
+  },
+  "agendamentos": [
+    {
+      "id": "turma-i2dev-a___grupo_01",
+      "criado_em": "2026-11-03T16:50:58.088Z",
+      "data": "2026-11-17",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "horario": "Primeiro Horário",
+      "grupo_nome": "Grupo 01",
+      "observacoes": "Teste offline bloqueado",
+      "turma_id": "turma-i2dev-a"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_02",
+      "observacoes": "Acesso Livre",
+      "turma_id": "turma-i2dev-a",
+      "criado_em": "2026-11-03T17:13:30.020Z",
+      "grupo_nome": "Grupo 02",
+      "data": "2026-12-08",
+      "horario": "Terceiro Horário",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_03",
+      "observacoes": "Projeto: Fitlink - Serviços para Personal Trainer",
+      "data": "2026-11-17",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "grupo_nome": "Grupo 03",
+      "criado_em": "2026-11-03T16:59:04.420Z",
+      "horario": "Terceiro Horário",
+      "turma_id": "turma-i2dev-a"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_04",
+      "horario": "Segundo Horário",
+      "data": "2026-11-24",
+      "turma_id": "turma-i2dev-a",
+      "grupo_nome": "Grupo 04",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "observacoes": "Projeto: EPI Control - Controle de EPI",
+      "criado_em": "2026-11-03T17:01:38.905Z"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_05",
+      "data": "2026-11-24",
+      "observacoes": "Projeto: Reposicionamento da Marca LabWare - Projeto Integrador 2025/02 1.34_04: Estratégia de Reposicionamento de Marca para Atração de Jovens Talentos no Segmento de Soluções para Gestão Laboratorial",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "grupo_nome": "Grupo 05",
+      "criado_em": "2026-11-03T17:04:07.070Z",
+      "horario": "Primeiro Horário",
+      "turma_id": "turma-i2dev-a"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_06",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "horario": "Segundo Horário",
+      "observacoes": "Projeto: Nexus - Projeto Integrador 2025/02 1.34_02: Integração de Plataformas de Aprendizado e Desenvolvimento para o Segmento de TI",
+      "data": "2026-12-01",
+      "criado_em": "2026-11-03T16:31:54.958Z",
+      "turma_id": "turma-i2dev-a",
+      "grupo_nome": "Grupo 06"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_07",
+      "observacoes": "Projeto: Stock Sense - Onde Está? Um Gargalo na Logística Interna",
+      "turma_id": "turma-i2dev-a",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "data": "2026-12-01",
+      "criado_em": "2026-11-03T17:00:55.736Z",
+      "grupo_nome": "Grupo 07",
+      "horario": "Primeiro Horário"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_08",
+      "horario": "Terceiro Horário",
+      "data": "2026-11-24",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "grupo_nome": "Grupo 08",
+      "turma_id": "turma-i2dev-a",
+      "observacoes": "Projeto: PetAlert - Plataforma para Centralização e Gestão de Denúncias e Doações para Causas Animais",
+      "criado_em": "2026-11-03T17:01:38.988Z"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_09",
+      "observacoes": "Gerenciamento EPI- Matheus Neves e Eduardo",
+      "grupo_nome": "Grupo 09",
+      "turma_id": "turma-i2dev-a",
+      "data": "2026-12-08",
+      "criado_em": "2026-11-03T17:06:04.698Z",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "horario": "Primeiro Horário"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_10",
+      "observacoes": "Projeto: Comuni+ - Déficit de Acessibilidade Comunicacional no Setor Industrial",
+      "grupo_nome": "Grupo 10",
+      "criado_em": "2026-11-03T17:04:38.420Z",
+      "turma_id": "turma-i2dev-a",
+      "data": "2026-12-08",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "horario": "Segundo Horário"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_11",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "horario": "Terceiro Horário",
+      "observacoes": "Projeto: BRIO - BRIO: Plataforma Gamificada para Foco, Disciplina e Constância",
+      "turma_id": "turma-i2dev-a",
+      "grupo_nome": "Grupo 11",
+      "criado_em": "2026-11-03T17:01:16.385Z",
+      "data": "2026-12-01"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_12",
+      "criado_em": "2026-11-03T16:59:55.185Z",
+      "data": "2026-11-17",
+      "observacoes": "Projeto: BRIO - BRIO: Plataforma Gamificada para Foco, Disciplina e Constância",
+      "turma_id": "turma-i2dev-a",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "grupo_nome": "Grupo 12",
+      "horario": "Segundo Horário"
+    },
+    {
+      "id": "turma-i2dev-a___grupo_13",
+      "grupo_nome": "Grupo 13",
+      "turma_id": "turma-i2dev-a",
+      "data": "2026-12-08",
+      "criado_em": "2026-11-03T17:16:38.661Z",
+      "observacoes": "Projeto: TechSupport - TI Eficaz: Inovação na Gestão de Chamados Internos para a OMPI",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-A (Terça-feira)",
+      "horario": "Quarto Horário"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_01",
+      "observacoes": "Projeto: ARVA - Impactos Operacionais por Falta de Automação no Campo",
+      "turma_id": "turma-i2dev-b",
+      "data": "2026-11-23",
+      "grupo_nome": "Grupo 01",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "criado_em": "2026-11-03T16:32:03.187Z",
+      "horario": "Terceiro Horário"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_02",
+      "horario": "Terceiro Horário",
+      "data": "2026-11-30",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "turma_id": "turma-i2dev-b",
+      "grupo_nome": "Grupo 02",
+      "observacoes": "Projeto: AprimorAI - Transformando a preparação e condução de aulas com inteligência artificial",
+      "criado_em": "2026-11-03T16:29:57.340Z"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_03",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "horario": "Segundo Horário",
+      "turma_id": "turma-i2dev-b",
+      "observacoes": "Projeto: Guardião Animal - Plataforma para Centralização e Gestão de Denúncias e Doações para Causas Animais",
+      "criado_em": "2026-11-03T16:38:08.446Z",
+      "grupo_nome": "Grupo 03",
+      "data": "2026-11-16"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_04",
+      "observacoes": "Projeto: Apoio Pet - Apoio Pet",
+      "grupo_nome": "Grupo 04",
+      "horario": "Primeiro Horário",
+      "turma_id": "turma-i2dev-b",
+      "criado_em": "2026-11-03T17:03:53.027Z",
+      "data": "2026-12-07",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_05",
+      "criado_em": "2026-11-03T16:40:46.348Z",
+      "grupo_nome": "Grupo 05",
+      "observacoes": "Projeto: CyberSecurity - Boas práticas de segurança na era da informação",
+      "data": "2026-11-16",
+      "horario": "Terceiro Horário",
+      "turma_id": "turma-i2dev-b",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_06",
+      "turma_id": "turma-i2dev-b",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "data": "2026-11-23",
+      "grupo_nome": "Grupo 06",
+      "criado_em": "2026-11-03T15:33:30.534Z",
+      "observacoes": "Projeto: BRIO - BRIO: Plataforma Gamificada para Foco, Disciplina e Constância",
+      "horario": "Primeiro Horário"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_07",
+      "turma_id": "turma-i2dev-b",
+      "observacoes": "Projeto: Central Pet - Plataforma para Centralização e Gestão de Denúncias e Doações para Causas Animais",
+      "data": "2026-11-30",
+      "grupo_nome": "Grupo 07",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "criado_em": "2026-11-03T16:29:31.277Z",
+      "horario": "Segundo Horário"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_08",
+      "observacoes": "Projeto: OrganizAI - Consumo Impulsivo e Endividamento: o Desafio do Controle Financeiro na Era Digital",
+      "turma_id": "turma-i2dev-b",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "grupo_nome": "Grupo 08",
+      "data": "2026-11-16",
+      "horario": "Primeiro Horário",
+      "criado_em": "2026-11-03T17:02:58.803Z"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_09",
+      "criado_em": "2026-11-03T16:30:26.593Z",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "data": "2026-11-23",
+      "turma_id": "turma-i2dev-b",
+      "grupo_nome": "Grupo 09",
+      "observacoes": "ECOA",
+      "horario": "Segundo Horário"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_10",
+      "turma_id": "turma-i2dev-b",
+      "observacoes": "Projeto: MVM (Movement) - Gestão Inteligente Do Ciclo de Vida dos Produtos",
+      "criado_em": "2026-11-03T16:42:01.715Z",
+      "data": "2026-12-07",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "grupo_nome": "Grupo 10",
+      "horario": "Segundo Horário"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_11",
+      "horario": "Primeiro Horário",
+      "criado_em": "2026-11-03T16:32:01.724Z",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "turma_id": "turma-i2dev-b",
+      "grupo_nome": "Grupo 11",
+      "data": "2026-11-30",
+      "observacoes": "Projeto: RESTCONTROL - Operação Enxuta na Cozinha: o dia em que o fluxo ‘cozinhou’ os custos"
+    },
+    {
+      "id": "turma-i2dev-b___grupo_12",
+      "horario": "Terceiro Horário",
+      "data": "2026-12-07",
+      "criado_em": "2026-11-03T16:42:32.719Z",
+      "observacoes": "Projeto: Fila Zero - Sesi alimentação",
+      "turma_id": "turma-i2dev-b",
+      "turma_nome": "Técnico em Desenvolvimento de Sistemas - I2DEV-B (Segunda-feira)",
+      "grupo_nome": "Grupo 12"
+    }
+  ]
+}
