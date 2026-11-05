@@ -1,4 +1,5 @@
 import React from 'react';
+import { PORTAL_VERSION } from '../version';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,8 +10,11 @@ export default function Footer() {
           <p className="text-center text-sm text-custom-muted">
             &copy; {currentYear} • William D. Komel. Todos os direitos reservados.
           </p>
-          <p className="text-center text-xs text-custom-muted">
-            Curso Técnico em Desenvolvimento de Sistemas • Disciplina de Banco de Dados
+          <p className="text-center text-xs text-custom-muted flex items-center gap-2">
+            <span>Curso Técnico em Desenvolvimento de Sistemas • Disciplina de Banco de Dados e PSOF3</span>
+            <span className="font-mono px-2 py-0.5 rounded-md bg-custom-bg border border-custom-border text-custom-accent font-bold">
+              {PORTAL_VERSION}
+            </span>
           </p>
         </div>
       </div>

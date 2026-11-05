@@ -1,6 +1,8 @@
----
+﻿---
+name: remember
 description: Save information to persistent memory for cross-session recall. Stores preferences, conventions, decisions, and context.
 ---
+
 
 # /remember — Persistent Memory Management
 

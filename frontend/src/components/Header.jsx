@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Sun, Moon, GraduationCap } from 'lucide-react';
+import { PORTAL_VERSION } from '../version';
 
 export default function Header({ isDark, toggleTheme }) {
   return (
@@ -17,7 +18,7 @@ export default function Header({ isDark, toggleTheme }) {
               William <span className="text-custom-accent">D. Komel</span>
             </span>
             <span className="hidden sm:block text-xs text-custom-muted font-medium">
-              Portal do Professor (v.1.0.2)
+              Portal do Professor ({PORTAL_VERSION})
             </span>
           </div>
         </Link>

@@ -1,6 +1,8 @@
----
+﻿---
+name: verify
 description: Verify code changes work by running them. Proves through execution, not just inspection.
 ---
+
 
 # /verify — Prove Code Works
 

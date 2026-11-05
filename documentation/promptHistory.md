@@ -547,6 +547,12 @@ não execute nenhuma alteração em arquivos.
 /agente-orquestrador /grill-me /goal atualize o repositorio no github e no vercel
 ```
 
+## Sessão: 2026-11-04
+
+### Prompt 1
+```text
+/migrate-workflows
+```
 
 
 
@@ -555,3 +561,20 @@ não execute nenhuma alteração em arquivos.
 
 
 
+
+
+
+
+## Sessão: 2026-11-05
+
+### Prompt 1
+```text
+/agente-orquestrador /grill-me /goal na area do quadro de agendamentos do TCC, quando estiver no modo professor, quero uma opção de exportar para pdf (formatado profissionalmente) ou para csv. os agendamentos já realizados.
+```
+
+
+### Prompt 2
+```text
+/agente-orquestrador /grill-me /goal a partir de agora quero que a cada pedido de novo modulo, novos recursos ou correções no portal-ds automaticamente atualize a versão do portal. nossas versões são no formato v1.0.2 , o 1 mudo quando se acrescentar um novo modulo, o 0 quando se pede um novo recurso em um modulo e o 2 quando se faz alguma correção. assim que atualizar no github já atualize também na vercel.
+analise o quadro de agendamentos, nas duas turmas as colunas estão estourando a largura da div
+```

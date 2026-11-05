@@ -1,6 +1,8 @@
----
+﻿---
+name: coordinate
 description: Advanced multi-agent coordination with parallel dispatch and synthesis. Use for complex tasks requiring multiple specialist perspectives.
 ---
+
 
 # /coordinate — Advanced Multi-Agent Coordination
 

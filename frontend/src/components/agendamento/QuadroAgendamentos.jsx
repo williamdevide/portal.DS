@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Calendar, Clock, ShieldCheck, Lock, Trash2, Edit3, 
   RefreshCw, PlusCircle, AlertCircle, CheckCircle2, Search, 
   MapPin, X, AlertTriangle, Layers, KeyRound, Copy, Users,
-  Table, LayoutGrid
+  Table, LayoutGrid, Download, FileText, FileSpreadsheet, ChevronDown
 } from 'lucide-react';
 import { 
   obterConfiguracao, 
@@ -15,6 +15,10 @@ import {
   obterStatusAgendamento,
   alternarStatusAgendamento
 } from '../../services/agendamentoService';
+import { 
+  exportarAgendamentosParaPDF, 
+  exportarAgendamentosParaCSV 
+} from '../../services/exportAgendamentosService';
 import AdminPinModal from './AdminPinModal';
 
 /**
@@ -31,32 +35,32 @@ function CardAgendamento({ item, config, adminPin, abrirEdicao, setItemParaExclu
   const integrantes = typeof grupoInfo === 'object' && Array.isArray(grupoInfo.integrantes) ? grupoInfo.integrantes : [];
 
   return (
-    <div className={`p-4 rounded-xl bg-custom-card border transition-all duration-200 flex flex-col justify-between h-full relative group shadow-sm ${
+    <div className={`p-3 sm:p-3.5 rounded-xl bg-custom-card border transition-all duration-200 flex flex-col justify-between h-full relative group shadow-sm min-w-0 overflow-hidden ${
       isHighlighted 
         ? 'border-[#E30613] ring-2 ring-[#E30613]/50 shadow-md shadow-[#E30613]/10' 
         : 'border-custom-border hover:border-[#E30613]/50'
     }`}>
-      <div className="space-y-2.5">
+      <div className="space-y-2 min-w-0">
         {/* Topo do Card: Horário e Data */}
-        <div className="flex items-center justify-between gap-1.5 border-b border-custom-border pb-2.5">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#E30613]/15 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/25 font-mono">
-            <Clock className="h-3 w-3 shrink-0" />
-            {item.horario}
+        <div className="flex items-center justify-between gap-1 border-b border-custom-border pb-2 min-w-0">
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold bg-[#E30613]/15 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/25 font-mono shrink-0">
+            <Clock className="h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0" />
+            <span className="truncate max-w-[90px] sm:max-w-none">{item.horario}</span>
           </span>
-          <span className="text-[11px] font-bold font-mono text-custom-muted flex items-center gap-1">
-            <Calendar className="h-3 w-3 text-custom-muted" />
+          <span className="text-[10px] sm:text-[11px] font-bold font-mono text-custom-muted flex items-center gap-1 shrink-0">
+            <Calendar className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-custom-muted" />
             {item.data.slice(5).replace('-', '/')}
           </span>
         </div>
 
         {/* Nome do Grupo e Projeto */}
-        <div className="space-y-1">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="px-2 py-0.5 rounded text-[11px] font-black font-mono bg-[#E30613]/10 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/20">
+        <div className="space-y-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+            <span className="px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] font-black font-mono bg-[#E30613]/10 text-[#E30613] dark:text-[#ff3b47] border border-[#E30613]/20 shrink-0">
               {item.grupo_nome}
             </span>
             {projetoNome && (
-              <h4 className="text-xs font-extrabold text-custom-text font-sans leading-snug">
+              <h4 className="text-xs font-extrabold text-custom-text font-sans leading-snug break-words line-clamp-2 min-w-0">
                 {projetoNome}
               </h4>
             )}
@@ -64,29 +68,29 @@ function CardAgendamento({ item, config, adminPin, abrirEdicao, setItemParaExclu
 
           {/* Integrantes */}
           {integrantes.length > 0 && (
-            <div className="pt-1 flex items-center gap-1.5 text-[11px] text-custom-text font-sans">
-              <Users className="h-3.5 w-3.5 text-[#E30613] dark:text-[#ff3b47] shrink-0" />
-              <span className="truncate">
-                <strong className="text-custom-text">Integrantes:</strong> {integrantes.join(', ')}
+            <div className="pt-0.5 flex items-start gap-1.5 text-[10px] sm:text-[11px] text-custom-text font-sans min-w-0">
+              <Users className="h-3.5 w-3.5 text-[#E30613] dark:text-[#ff3b47] shrink-0 mt-0.5" />
+              <span className="line-clamp-2 break-words leading-tight min-w-0">
+                <strong className="text-custom-text font-medium">Integrantes:</strong> {integrantes.join(', ')}
               </span>
             </div>
           )}
 
           {/* Tema */}
           {tema && (
-            <p className="text-[10px] text-custom-muted line-clamp-2 leading-relaxed pt-0.5">
+            <p className="text-[10px] text-custom-muted line-clamp-2 break-words leading-relaxed pt-0.5 min-w-0">
               <strong className="text-custom-text font-medium">Tema:</strong> {tema}
             </p>
           )}
         </div>
 
         {/* Turma e Sala */}
-        <div className="pt-2 border-t border-custom-border/60 space-y-0.5 text-[11px] text-custom-muted font-sans">
+        <div className="pt-1.5 border-t border-custom-border/60 space-y-0.5 text-[10px] sm:text-[11px] text-custom-muted font-sans min-w-0">
           <p className="truncate font-semibold text-[#E30613] dark:text-[#ff3b47]">
             {item.turma_nome}
           </p>
           {turmaInfo?.sala_ou_local && (
-            <p className="flex items-center gap-1 text-[10px]">
+            <p className="flex items-center gap-1 text-[9px] sm:text-[10px] truncate">
               <MapPin className="h-2.5 w-2.5 shrink-0" />
               <span className="truncate">{turmaInfo.sala_ou_local}</span>
             </p>
@@ -95,21 +99,21 @@ function CardAgendamento({ item, config, adminPin, abrirEdicao, setItemParaExclu
 
         {/* Observações / Título TCC */}
         {item.observacoes && (
-          <div className="p-2 rounded-lg bg-custom-bg border border-custom-border text-[10px] text-custom-muted italic font-sans leading-relaxed">
+          <div className="p-1.5 sm:p-2 rounded-lg bg-custom-bg border border-custom-border text-[9px] sm:text-[10px] text-custom-muted italic font-sans leading-relaxed line-clamp-2 break-words min-w-0">
             "{item.observacoes}"
           </div>
         )}
       </div>
 
       {/* Rodapé do Card: Data de Registro e Ações do Professor */}
-      <div className="mt-3 pt-2.5 border-t border-custom-border flex items-center justify-between text-[10px] text-custom-muted">
-        <span className="font-mono text-[9px] text-custom-muted/80">
-          ID #{item.id} • {item.criado_em?.split('T')[0] || 'Confirmado'}
+      <div className="mt-2.5 pt-2 border-t border-custom-border flex items-center justify-between text-[10px] text-custom-muted min-w-0">
+        <span className="font-mono text-[9px] text-custom-muted/80 truncate">
+          ID #{item.id}
         </span>
 
         {/* Botões do Modo Professor (só aparecem se adminPin estiver ativo) */}
         {adminPin ? (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={() => abrirEdicao(item)}
               className="p-1 text-[#E30613] dark:text-[#ff3b47] hover:bg-[#E30613]/15 rounded-md transition-colors cursor-pointer"
@@ -126,7 +130,7 @@ function CardAgendamento({ item, config, adminPin, abrirEdicao, setItemParaExclu
             </button>
           </div>
         ) : (
-          <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1">
+          <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1 shrink-0">
             <CheckCircle2 className="h-3 w-3 text-emerald-400" />
             Confirmado
           </span>
@@ -174,6 +178,11 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
   const [loadingPalavras, setLoadingPalavras] = useState(false);
   const [palavrasError, setPalavrasError] = useState('');
   const [copiadoIdx, setCopiadoIdx] = useState(null);
+
+  // Menu de Exportação de Agendamentos (Modo Professor)
+  const [isExportMenuOpen, setIsExportMenuOpen] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const exportMenuRef = useRef(null);
 
   const abrirModalPalavras = async () => {
     if (!adminPin) return;
@@ -253,6 +262,78 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
       window.removeEventListener('portal_status_agendamento_changed', statusHandler);
     };
   }, []);
+
+  // Fecha o dropdown de exportação ao clicar fora do componente
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (exportMenuRef.current && !exportMenuRef.current.contains(event.target)) {
+        setIsExportMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Exportação para PDF (A4 Paisagem formatado profissionalmente)
+  const handleExportarPDF = () => {
+    try {
+      if (!agendamentosFiltrados || agendamentosFiltrados.length === 0) {
+        setError('Nenhum agendamento realizado encontrado para exportar com os filtros atuais.');
+        setTimeout(() => setError(''), 5000);
+        return;
+      }
+      setIsExporting(true);
+      const turmaObj = config?.turmas?.find(t => t.id === filtroTurma);
+      const filtroTurmaNome = turmaObj ? turmaObj.nome : 'Todas as Turmas';
+      const res = exportarAgendamentosParaPDF({
+        agendamentos: agendamentosFiltrados,
+        config,
+        filtroTurmaNome,
+        filtroDataStr: filtroData !== 'todas' ? filtroData : ''
+      });
+      setFeedback({
+        tipo: 'sucesso',
+        texto: `Documento PDF gerado com sucesso! ${res.total} ${res.total === 1 ? 'banca exportada' : 'bancas exportadas'} em ${res.totalPaginas} ${res.totalPaginas === 1 ? 'página' : 'páginas'}.`
+      });
+      setTimeout(() => setFeedback(null), 5000);
+    } catch (err) {
+      console.error('Erro ao exportar PDF:', err);
+      setError(err.message || 'Falha ao gerar relatório PDF.');
+      setTimeout(() => setError(''), 5000);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  // Exportação para CSV (Padrão Excel pt-BR)
+  const handleExportarCSV = () => {
+    try {
+      if (!agendamentosFiltrados || agendamentosFiltrados.length === 0) {
+        setError('Nenhum agendamento realizado encontrado para exportar com os filtros atuais.');
+        setTimeout(() => setError(''), 5000);
+        return;
+      }
+      setIsExporting(true);
+      const turmaObj = config?.turmas?.find(t => t.id === filtroTurma);
+      const filtroTurmaNome = turmaObj ? turmaObj.nome : 'Todas as Turmas';
+      const res = exportarAgendamentosParaCSV({
+        agendamentos: agendamentosFiltrados,
+        config,
+        filtroTurmaNome
+      });
+      setFeedback({
+        tipo: 'sucesso',
+        texto: `Planilha CSV exportada com sucesso! ${res.total} ${res.total === 1 ? 'agendamento incluído' : 'agendamentos incluídos'}.`
+      });
+      setTimeout(() => setFeedback(null), 5000);
+    } catch (err) {
+      console.error('Erro ao exportar CSV:', err);
+      setError(err.message || 'Falha ao gerar planilha CSV.');
+      setTimeout(() => setError(''), 5000);
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   // Alterna o status de liberação dos agendamentos (Modo Professor com PIN)
   const handleToggleLiberacao = async () => {
@@ -491,6 +572,80 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                 <KeyRound className="h-3.5 w-3.5" />
                 Palavras-Chave dos Grupos
               </button>
+
+              {/* Botão de Exportação com Menu Suspenso (PDF e CSV) - Modo Professor */}
+              <div className="relative" ref={exportMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setIsExportMenuOpen(prev => !prev)}
+                  disabled={isExporting}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-custom-text rounded-xl border border-custom-border bg-custom-bg hover:bg-white/10 active:scale-95 transition-all shadow-sm cursor-pointer"
+                  title={`Exportar agendamentos realizados (${agendamentosFiltrados.length} no filtro atual)`}
+                >
+                  <Download className="h-3.5 w-3.5 text-[#E30613] dark:text-[#ff3b47]" />
+                  <span>Exportar</span>
+                  <ChevronDown className={`h-3 w-3 text-custom-muted transition-transform duration-200 ${isExportMenuOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {isExportMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-60 rounded-2xl bg-custom-card border border-custom-border shadow-2xl p-1.5 z-50 animate-fade-in backdrop-blur-md">
+                    <div className="px-3 py-2 border-b border-custom-border/60">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-custom-muted block">
+                        Exportar Agendamentos
+                      </span>
+                      <span className="text-[11px] font-semibold text-custom-text">
+                        {agendamentosFiltrados.length} {agendamentosFiltrados.length === 1 ? 'banca realizada' : 'bancas realizadas'}
+                      </span>
+                    </div>
+
+                    <div className="py-1 space-y-0.5">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsExportMenuOpen(false);
+                          handleExportarPDF();
+                        }}
+                        disabled={isExporting}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-custom-text hover:bg-custom-bg rounded-xl transition-colors text-left cursor-pointer group"
+                      >
+                        <div className="p-1.5 rounded-lg bg-rose-500/15 text-rose-600 dark:text-rose-400 group-hover:bg-rose-500/25 transition-colors">
+                          <FileText className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <div className="font-bold text-custom-text group-hover:text-[#E30613] dark:group-hover:text-[#ff3b47] transition-colors">
+                            Exportar para PDF
+                          </div>
+                          <div className="text-[10px] text-custom-muted">
+                            Formatado A4 Paisagem (Oficial)
+                          </div>
+                        </div>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsExportMenuOpen(false);
+                          handleExportarCSV();
+                        }}
+                        disabled={isExporting}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-custom-text hover:bg-custom-bg rounded-xl transition-colors text-left cursor-pointer group"
+                      >
+                        <div className="p-1.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-500/25 transition-colors">
+                          <FileSpreadsheet className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <div className="font-bold text-custom-text group-hover:text-emerald-500 transition-colors">
+                            Exportar para CSV
+                          </div>
+                          <div className="text-[10px] text-custom-muted">
+                            Compatível com Excel (pt-BR)
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             <button
@@ -704,8 +859,13 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
               );
               const agendadosTurmaTotal = agendamentos.filter(a => a.turma_id === turma.id).length;
 
+              // Proporções dinâmicas para que as colunas ocupem exatamente 100% da largura da div sem estourar
+              const totalColunasSlots = colunasHorarios.length || 1;
+              const dataColPercent = totalColunasSlots >= 4 ? 16 : 19;
+              const slotColPercent = (100 - dataColPercent) / totalColunasSlots;
+
               return (
-                <div key={turma.id} className="space-y-3">
+                <div key={turma.id} className="space-y-3 min-w-0">
                   {/* Cabeçalho da Turma */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-custom-border pb-3">
                     <div>
@@ -728,25 +888,31 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                     </div>
                   </div>
 
-                  {/* Tabela com Cada Data em uma Linha e Coluna para cada Horário */}
-                  <div className="overflow-x-auto rounded-2xl border border-custom-border bg-custom-card shadow-sm">
-                    <table className="w-full text-left border-collapse min-w-[1080px]">
+                  {/* Tabela com dimensionamento fluido (100% da largura da div no desktop) */}
+                  <div className="overflow-x-auto rounded-2xl border border-custom-border bg-custom-card shadow-sm w-full max-w-full">
+                    <table className="w-full text-left border-collapse table-fixed min-w-[720px] lg:min-w-full">
+                      <colgroup>
+                        <col style={{ width: `${dataColPercent}%`, minWidth: '135px' }} />
+                        {colunasHorarios.map(h => (
+                          <col key={h} style={{ width: `${slotColPercent}%`, minWidth: '190px' }} />
+                        ))}
+                      </colgroup>
                       <thead>
                         <tr className="border-b border-custom-border bg-custom-bg/60">
-                          <th className="p-4 text-xs font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans w-56 sticky left-0 bg-custom-card z-20 border-r border-custom-border shadow-sm">
-                            <div className="flex items-center gap-2">
-                              <Calendar className="h-4 w-4" />
-                              Data da Apresentação
+                          <th className="p-3 sm:p-4 text-xs font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] font-sans sticky left-0 bg-custom-card z-20 border-r border-custom-border shadow-sm truncate">
+                            <div className="flex items-center gap-1.5 sm:gap-2">
+                              <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+                              <span className="truncate">Data</span>
                             </div>
                           </th>
                           {colunasHorarios.map((horario) => (
                             <th 
                               key={horario} 
-                              className="p-3.5 text-xs font-bold uppercase tracking-wider text-custom-text font-sans border-r border-custom-border last:border-r-0 min-w-[270px]"
+                              className="p-2.5 sm:p-3.5 text-xs font-bold uppercase tracking-wider text-custom-text font-sans border-r border-custom-border last:border-r-0 truncate"
                             >
-                              <div className="flex items-center gap-2">
-                                <Clock className="h-3.5 w-3.5 text-[#E30613] dark:text-[#ff3b47]" />
-                                <span className="font-mono text-sm tracking-tight">{horario}</span>
+                              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                                <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#E30613] dark:text-[#ff3b47] shrink-0" />
+                                <span className="font-mono text-xs sm:text-sm tracking-tight truncate">{horario}</span>
                               </div>
                             </th>
                           ))}
@@ -768,21 +934,21 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                             return (
                               <tr key={diaObj.data} className="hover:bg-white/[0.015] transition-colors">
                                 {/* Linha - Coluna da Data (Fixa à esquerda para navegação horizontal) */}
-                                <td className="p-4 align-top sticky left-0 bg-custom-card z-10 border-r border-custom-border shadow-sm">
-                                  <div className="space-y-1.5">
-                                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] block">
+                                <td className="p-3 sm:p-4 align-top sticky left-0 bg-custom-card z-10 border-r border-custom-border shadow-sm min-w-0">
+                                  <div className="space-y-1 sm:space-y-1.5 min-w-0">
+                                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#E30613] dark:text-[#ff3b47] block truncate">
                                       {diaObj.dia_semana}
                                     </span>
-                                    <div className="text-base font-extrabold font-mono text-custom-text tracking-tight">
+                                    <div className="text-sm sm:text-base font-extrabold font-mono text-custom-text tracking-tight truncate">
                                       {diaObj.data.split('-').reverse().join('/')}
                                     </div>
-                                    <div className="pt-1">
-                                      <span className={`inline-block px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold ${
+                                    <div className="pt-0.5">
+                                      <span className={`inline-block px-1.5 sm:px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-mono font-semibold truncate max-w-full ${
                                         agendadosNesteDia.length >= diaObj.horarios.length
                                           ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                                           : 'bg-custom-bg border border-custom-border text-custom-muted'
                                       }`}>
-                                        {agendadosNesteDia.length} de {diaObj.horarios.length} agendados
+                                        {agendadosNesteDia.length}/{diaObj.horarios.length} agendados
                                       </span>
                                     </div>
                                   </div>
@@ -799,10 +965,10 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                                   return (
                                     <td 
                                       key={horario} 
-                                      className="p-3 align-top border-r border-custom-border last:border-r-0 min-w-[270px] max-w-[340px]"
+                                      className="p-2 sm:p-2.5 align-top border-r border-custom-border last:border-r-0 min-w-0 overflow-hidden"
                                     >
                                       {agendamentoItem ? (
-                                        <div className={`h-full ${!isMatchBusca && termoBusca ? 'opacity-25' : ''}`}>
+                                        <div className={`h-full min-w-0 ${!isMatchBusca && termoBusca ? 'opacity-25' : ''}`}>
                                           <CardAgendamento
                                             item={agendamentoItem}
                                             config={config}
@@ -813,36 +979,36 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                                           />
                                         </div>
                                       ) : permiteHorario ? (
-                                        <div className={`h-full min-h-[170px] p-4 rounded-xl border-2 border-dashed transition-all flex flex-col items-center justify-center text-center gap-2 group/slot ${
+                                        <div className={`h-full min-h-[140px] sm:min-h-[160px] p-2.5 sm:p-3 rounded-xl border-2 border-dashed transition-all flex flex-col items-center justify-center text-center gap-1.5 min-w-0 overflow-hidden group/slot ${
                                           agendamentoLiberado || adminPin
                                             ? 'border-emerald-500/25 bg-emerald-500/5 hover:border-emerald-500/50 hover:bg-emerald-500/10'
                                             : 'border-rose-500/20 bg-rose-500/5'
                                         }`}>
-                                          <div className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-bold font-sans ${
+                                          <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border text-[10px] sm:text-[11px] font-bold font-sans max-w-full truncate ${
                                             agendamentoLiberado || adminPin
                                               ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400'
                                               : 'bg-rose-500/15 border-rose-500/30 text-rose-600 dark:text-rose-400'
                                           }`}>
                                             {agendamentoLiberado || adminPin ? (
                                               <>
-                                                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                                                Horário Disponível
+                                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                                                <span className="truncate">Disponível</span>
                                               </>
                                             ) : (
                                               <>
                                                 <Lock className="h-2.5 w-2.5 shrink-0" />
-                                                Bloqueado
+                                                <span className="truncate">Bloqueado</span>
                                               </>
                                             )}
                                           </div>
-                                          <p className="text-[11px] font-mono text-custom-muted">
-                                            {agendamentoLiberado || adminPin ? 'Slot vago para apresentação' : 'Aguardando liberação docente'}
+                                          <p className="text-[10px] sm:text-[11px] font-mono text-custom-muted line-clamp-2">
+                                            {agendamentoLiberado || adminPin ? 'Slot vago para banca' : 'Aguardando liberação'}
                                           </p>
                                           {onNavigateToNovo && (
                                             <button
                                               type="button"
                                               onClick={onNavigateToNovo}
-                                              className={`mt-1 inline-flex items-center gap-1 px-3 py-1 text-[11px] font-bold text-white rounded-lg shadow-sm transition-all cursor-pointer opacity-90 group-hover/slot:opacity-100 ${
+                                              className={`mt-0.5 inline-flex items-center gap-1 px-2.5 py-1 text-[10px] sm:text-[11px] font-bold text-white rounded-lg shadow-sm transition-all cursor-pointer opacity-90 group-hover/slot:opacity-100 ${
                                                 agendamentoLiberado || adminPin
                                                   ? 'bg-[#E30613] hover:bg-[#b8050f]'
                                                   : 'bg-slate-700 hover:bg-slate-600'
@@ -850,22 +1016,22 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                                             >
                                               {agendamentoLiberado || adminPin ? (
                                                 <>
-                                                  <PlusCircle className="h-3 w-3" />
-                                                  Agendar
+                                                  <PlusCircle className="h-3 w-3 shrink-0" />
+                                                  <span>Agendar</span>
                                                 </>
                                               ) : (
                                                 <>
-                                                  <Lock className="h-3 w-3" />
-                                                  Ver Status
+                                                  <Lock className="h-3 w-3 shrink-0" />
+                                                  <span>Ver Status</span>
                                                 </>
                                               )}
                                             </button>
                                           )}
                                         </div>
                                       ) : (
-                                        <div className="h-full min-h-[170px] p-4 rounded-xl border border-dashed border-custom-border/40 bg-custom-bg/20 flex flex-col items-center justify-center text-center text-custom-muted/50 select-none">
-                                          <span className="text-sm font-mono font-bold text-custom-muted/40">—</span>
-                                          <span className="text-[10px] mt-1 text-custom-muted/60">Sem banca neste horário</span>
+                                        <div className="h-full min-h-[140px] sm:min-h-[160px] p-2.5 sm:p-3 rounded-xl border border-dashed border-custom-border/40 bg-custom-bg/20 flex flex-col items-center justify-center text-center text-custom-muted/50 select-none min-w-0">
+                                          <span className="text-xs sm:text-sm font-mono font-bold text-custom-muted/40">—</span>
+                                          <span className="text-[9px] sm:text-[10px] mt-1 text-custom-muted/60">Sem banca</span>
                                         </div>
                                       )}
                                     </td>

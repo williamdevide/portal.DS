@@ -1,6 +1,8 @@
----
+﻿---
+name: brainstorm
 description: Structured brainstorming for projects and features. Explores multiple options before implementation.
 ---
+
 
 # /brainstorm - Structured Idea Exploration
 
