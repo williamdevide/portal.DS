@@ -608,20 +608,5 @@ não funcionou dar refresh na source control
 
 ### Prompt 8
 ```text
-Por favor, atualize o arquivo `firestore.rules` do projeto Portal Educacional SENAI (`g:\antigravity\projetos\portal.DS\firestore.rules`) com as novas regras de alta segurança contra invasões e adulterações.
-
-Requisitos Mandatórios de Segurança:
-1. Definir uma função `isProfessor()` que valida se a requisição é feita por um usuário autenticado no Firebase Authentication com o e-mail exato do professor: `request.auth != null && request.auth.token.email != null && request.auth.token.email.lower() == 'williamdevide@gmail.com'`.
-2. Coleção `config/tcc`:
-   - `allow read: if true;` (público para alunos consultarem o status de liberação).
-   - `allow create, update: if isProfessor() && isValidConfigTcc(request.resource.data);` (SOMENTE o professor William pode alterar a liberação!).
-   - `allow delete: if false;`
-3. Coleção `agendamentos/{agendamentoId}`:
-   - `allow read: if true;` (público para visualização do quadro).
-   - `allow create: if isValidAgendamento(request.resource.data);` (para novos agendamentos válidos).
-   - `allow update, delete: if isProfessor();` (SOMENTE o professor William pode editar ou excluir bancas marcadas!).
-4. Bloqueio padrão:
-   - `match /{document=**} { allow read, write: if false; }`
-5. Sem qualquer prazo ou expiração de modo de teste.
-6. Use a ferramenta `write_file` com `Overwrite: true` no arquivo `g:\antigravity\projetos\portal.DS\firestore.rules` com comentários claros e didáticos em português.
+/agente-orquestrador /grill-me /goal o modal de autenticação do professor deve ficar por cima de todas as sessões da pagina (tem momentos em que esta ficando escondida). outra coisa. altere a mensagem dessa tela, não quero que em momento algum seja informado que o email correto para logar é o email williamdevide@gmail.com, retire essa informação. também não precisa dizer que é o email do professor william. deixe só que: Para garantir a integridade total do cronograma, o Modo Professor requer autenticação oficial com a Conta Google.
 ```

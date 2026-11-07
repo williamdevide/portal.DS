@@ -99,3 +99,4 @@ if (errors === 0) {
   console.error(`💥 AUDITORIA REPROVADA COM ${errors} VULNERABILIDADE(S).`);
   process.exit(1);
 }
+

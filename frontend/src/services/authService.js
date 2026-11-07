@@ -11,7 +11,7 @@ export const PROFESSOR_EMAIL = 'williamdevide@gmail.com';
 
 /**
  * Realiza autenticação via Popup com Conta Google.
- * Garante que apenas o professor williamdevide@gmail.com obtenha acesso.
+ * Valida a autorização de acesso ao Modo Professor.
  */
 export async function loginComGoogle() {
   try {
@@ -35,13 +35,13 @@ export async function loginComGoogle() {
     if (emailAutenticado !== PROFESSOR_EMAIL.toLowerCase()) {
       // Desconecta imediatamente qualquer usuário não autorizado
       await signOut(auth);
-      throw new Error(`Acesso não autorizado: A conta "${user.email}" não tem permissão de docente. Apenas ${PROFESSOR_EMAIL} pode acessar o Modo Professor.`);
+      throw new Error('Acesso não autorizado: Esta conta Google não possui permissão para acessar o Modo Professor.');
     }
 
     return {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName || 'Professor William Devidé',
+      displayName: user.displayName || 'Professor',
       photoURL: user.photoURL || null
     };
   } catch (error) {
@@ -85,7 +85,7 @@ export function obterProfessorAtual() {
   return {
     uid: user.uid,
     email: user.email,
-    displayName: user.displayName || 'Professor William Devidé',
+    displayName: user.displayName || 'Professor',
     photoURL: user.photoURL || null
   };
 }
@@ -101,12 +101,12 @@ export function observarEstadoAuth(callback) {
         callback({
           uid: user.uid,
           email: user.email,
-          displayName: user.displayName || 'Professor William Devidé',
+          displayName: user.displayName || 'Professor',
           photoURL: user.photoURL || null
         });
         return;
       } else {
-        // Usuário diferente de williamdevide@gmail.com -> desconecta imediatamente
+        // Usuário não autorizado -> desconecta imediatamente
         await signOut(auth);
       }
     }

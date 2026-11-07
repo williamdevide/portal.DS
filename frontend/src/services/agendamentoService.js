@@ -448,9 +448,9 @@ export async function salvarAgendamento(dados) {
  */
 export async function autenticarProfessor() {
   if (isProfessorAutenticado()) {
-    return { valido: true, mensagem: 'Professor William Devidé autenticado via Google!' };
+    return { valido: true, mensagem: 'Autenticação de docente ativa via Google.' };
   }
-  throw new Error('Acesso restrito: Requer autenticação com a conta Google do professor (williamdevide@gmail.com).');
+  throw new Error('Acesso restrito: Requer autenticação oficial com a Conta Google autorizada.');
 }
 
 /**

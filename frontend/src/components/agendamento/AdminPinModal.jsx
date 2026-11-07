@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ShieldCheck, X, AlertCircle, LogOut } from 'lucide-react';
-import { loginComGoogle, logoutProfessor, obterProfessorAtual, PROFESSOR_EMAIL } from '../../services/authService';
+import { loginComGoogle, logoutProfessor, obterProfessorAtual } from '../../services/authService';
 
 export default function AdminPinModal({ isOpen, onClose, onSuccess }) {
   const [loading, setLoading] = useState(false);
@@ -13,6 +14,19 @@ export default function AdminPinModal({ isOpen, onClose, onSuccess }) {
       setCurrentUser(obterProfessorAtual());
     }
   }, [isOpen]);
+
+  // Fechar com tecla Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -44,8 +58,11 @@ export default function AdminPinModal({ isOpen, onClose, onSuccess }) {
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+  const modalContent = (
+    <div 
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
       <div 
         className="relative w-full max-w-md bg-custom-card border border-custom-border rounded-2xl p-6 shadow-2xl transition-all"
         onClick={(e) => e.stopPropagation()}
@@ -74,13 +91,10 @@ export default function AdminPinModal({ isOpen, onClose, onSuccess }) {
           </div>
         </div>
 
-        {/* Mensagem Explicativa */}
+        {/* Mensagem Explicativa Solicitada */}
         <div className="bg-custom-bg/60 border border-custom-border/80 rounded-xl p-3.5 mb-5 text-xs text-custom-muted font-sans leading-relaxed">
-          <p className="mb-1 text-custom-text font-medium">
-            🛡️ Proteção de Segurança Máxima
-          </p>
-          <p>
-            Para garantir a integridade total do cronograma e evitar manipulações indevidas, o Modo Professor requer autenticação oficial com a Conta Google do docente responsável: <strong className="text-custom-accent font-mono">{PROFESSOR_EMAIL}</strong>.
+          <p className="text-custom-text font-normal leading-relaxed">
+            Para garantir a integridade total do cronograma, o Modo Professor requer autenticação oficial com a Conta Google.
           </p>
         </div>
 
@@ -92,24 +106,24 @@ export default function AdminPinModal({ isOpen, onClose, onSuccess }) {
           </div>
         )}
 
-        {/* Estado: Usuário já autenticado como o Professor William */}
+        {/* Estado: Usuário já autenticado */}
         {currentUser ? (
           <div className="space-y-4">
             <div className="flex items-center gap-3 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
               {currentUser.photoURL ? (
                 <img 
                   src={currentUser.photoURL} 
-                  alt={currentUser.displayName} 
+                  alt={currentUser.displayName || 'Docente'} 
                   className="h-10 w-10 rounded-full border border-emerald-500/30 object-cover"
                 />
               ) : (
                 <div className="h-10 w-10 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center">
-                  W
+                  P
                 </div>
               )}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold text-custom-text truncate">
-                  {currentUser.displayName}
+                  {currentUser.displayName || 'Professor'}
                 </p>
                 <p className="text-xs text-emerald-600 dark:text-emerald-400 font-mono truncate">
                   {currentUser.email}
@@ -179,13 +193,11 @@ export default function AdminPinModal({ isOpen, onClose, onSuccess }) {
                 </>
               )}
             </button>
-
-            <p className="text-center text-[11px] text-custom-muted font-sans">
-              * Apenas a conta Google oficial do professor será aceita pelo sistema.
-            </p>
           </div>
         )}
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 }
