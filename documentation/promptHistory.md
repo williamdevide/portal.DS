@@ -615,3 +615,9 @@ não funcionou dar refresh na source control
 ```text
 /agente-orquestrador /grill-me /goal dentro do acesso do professor mude o botão Agendamento permitido para Permitir Agendamento
 ```
+
+### Prompt 10
+```text
+/agente-orquestrador /grill-me /goal o botão Atualizar dados do Banco SQLite ainda tem sentido de existir? caso não, remova-o. 
+alias, não quero mais a existencia do banco em sqlite, se ainda tiver algum uso, transponha para o firebase. 
+```

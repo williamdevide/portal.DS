@@ -213,7 +213,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
     setTimeout(() => setCopiadoIdx(null), 2000);
   };
 
-  // Carrega dados da API SQLite
+  // Carrega configuração e agendamentos em nuvem (Firebase)
   const carregarDados = async () => {
     try {
       setLoading(true);
@@ -226,7 +226,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
       setAgendamentos(agendData);
     } catch (err) {
       console.error('Erro ao carregar agendamentos:', err);
-      setError('Falha ao comunicar com o banco SQLite. Verifique se o servidor está ativo.');
+      setError('Falha ao carregar agendamentos em nuvem. Verifique sua conexão.');
     } finally {
       setLoading(false);
     }
@@ -502,7 +502,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold bg-custom-accent/15 text-custom-accent border border-custom-accent/20">
             <Layers className="h-3.5 w-3.5" />
-            Persistência SQLite
+            Nuvem em Tempo Real (Firebase)
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-custom-text font-sans tracking-tight">
             Quadro Geral de Apresentações
@@ -679,15 +679,6 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
               Login Professor (Google)
             </button>
           )}
-
-          <button
-            onClick={carregarDados}
-            disabled={loading}
-            className="p-2.5 text-custom-muted hover:text-custom-text rounded-xl border border-custom-border hover:bg-white/5 transition-colors"
-            title="Atualizar dados do banco SQLite"
-          >
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin text-custom-accent' : ''}`} />
-          </button>
         </div>
       </div>
 
@@ -744,11 +735,11 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
           <div className="mt-2 flex items-center gap-2">
             <span className="inline-block h-3 w-3 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-lg font-bold text-emerald-400 font-mono">
-              SQLite Conectado
+              Firestore Ativo
             </span>
           </div>
           <p className="mt-2 text-[11px] text-custom-muted font-mono truncate">
-            backend/database/agendamentos.db
+            Google Cloud Firestore (Produção)
           </p>
         </div>
       </div>
@@ -1137,7 +1128,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
             </div>
 
             <p className="text-xs text-custom-muted font-sans leading-relaxed">
-              Você está prestes a cancelar a banca do <strong className="text-custom-text">{itemParaExcluir.grupo_nome}</strong> agendada para <strong>{itemParaExcluir.data} às {itemParaExcluir.horario}</strong>. Essa ação liberará o horário imediatamente para outros grupos no banco SQLite.
+              Você está prestes a cancelar a banca do <strong className="text-custom-text">{itemParaExcluir.grupo_nome}</strong> agendada para <strong>{itemParaExcluir.data} às {itemParaExcluir.horario}</strong>. Essa ação liberará o horário imediatamente para outros grupos em tempo real.
             </p>
 
             <div className="flex items-center justify-end gap-3 pt-2">
@@ -1248,7 +1239,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                   disabled={editLoading}
                   className="px-5 py-2 text-xs font-bold text-white bg-custom-accent rounded-xl hover:opacity-90 transition-all shadow-md shadow-custom-accent/20"
                 >
-                  {editLoading ? 'Salvando...' : 'Salvar Alterações no SQLite'}
+                  {editLoading ? 'Salvando...' : 'Salvar Alterações'}
                 </button>
               </div>
             </form>

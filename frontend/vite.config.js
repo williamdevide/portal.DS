@@ -8,13 +8,5 @@ export default defineConfig({
   plugins: [react()],
   define: {
     'import.meta.env.VITE_COMPUTER_NAME': JSON.stringify(os.hostname())
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true
-      }
-    }
   }
 })

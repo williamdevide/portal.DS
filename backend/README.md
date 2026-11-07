@@ -1,8 +1,10 @@
-# Backend - Portal Educacional
+# Backend - Portal Educacional SENAI
 
-Este diretório está reservado para futuras extensões de lógica de servidor, funções serverless ou APIs.
+Este diretório mantém a estrutura arquitetural oficial do projeto.
 
-## 💾 Persistência de Dados
-Seguindo as diretrizes arquiteturais, caso o portal necessite de persistência dinâmica (como logins de alunos, postagem de dúvidas ou notas), utilizaremos o **Firebase** (Firestore e Firebase Auth) por meio da integração do cliente diretamente no frontend ou encapsulado aqui por meio do Firebase Admin SDK.
+## 💾 Persistência de Dados e Serverless
 
-Por enquanto, toda a renderização do portal é estática, alimentada pelo arquivo estruturado `portalData.json` no frontend.
+Seguindo as diretrizes arquiteturais e a modernização de infraestrutura:
+* Toda a persistência dinâmica (agendamentos de bancas de TCC, controle de liberação docente e autenticação segura com Google) opera de forma **100% Serverless no Google Cloud Firestore e Firebase Authentication**.
+* O banco de dados local SQLite (`agendamentos.db`) foi completamente descontinuado e transposto para o Firebase.
+* Não há dependência de servidores locais ativos para a execução em produção na **Vercel**.

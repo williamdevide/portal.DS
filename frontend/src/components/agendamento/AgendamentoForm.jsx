@@ -35,7 +35,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
       const [confData, agendData] = await Promise.all([
         obterConfiguracao(),
         listarAgendamentos().catch((err) => {
-          console.warn('Backend SQLite offline ou não iniciado:', err);
+          console.warn('Falha ao carregar agendamentos:', err);
           return [];
         })
       ]);
@@ -279,7 +279,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
             <CheckCircle2 className="h-6 w-6 text-emerald-400 shrink-0 mt-0.5" />
             <div className="space-y-1">
               <h3 className="text-base font-bold text-custom-text font-sans">
-                Agendamento Confirmado com Sucesso no SQLite!
+                Agendamento Confirmado com Sucesso!
               </h3>
               <p className="text-xs text-custom-muted leading-relaxed font-sans">
                 A banca examinadora foi registrada para o <strong className="text-custom-text">{sucesso.grupo_nome}</strong> na turma <strong className="text-custom-text">{sucesso.turma_nome}</strong>.
@@ -737,7 +737,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
               {/* Linha dos Botões de Ação */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-xs text-custom-muted font-sans">
-                  * O agendamento salva automaticamente no banco SQLite e no histórico local.
+                  * O agendamento é sincronizado instantaneamente em nuvem (Firebase).
                 </div>
 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -761,7 +761,7 @@ export default function AgendamentoForm({ onNavigateToQuadro }) {
                     {submitting ? (
                       <>
                         <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Gravando no Banco SQLite...
+                        Gravando Agendamento...
                       </>
                     ) : (
                       <>
