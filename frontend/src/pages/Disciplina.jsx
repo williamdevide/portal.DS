@@ -7,6 +7,7 @@ import QuadroAgendamentos from '../components/agendamento/QuadroAgendamentos';
 import BloqueioAgendamento from '../components/agendamento/BloqueioAgendamento';
 import AdminPinModal from '../components/agendamento/AdminPinModal';
 import { obterStatusAgendamento } from '../services/agendamentoService';
+import { observarEstadoAuth, obterProfessorAtual } from '../services/authService';
 
 const obterSaBadgeClass = (situacao) => {
   if (!situacao) return '';
@@ -36,9 +37,8 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
   const [activeTab, setActiveTab] = useState(initialTab); // 'cronograma', 'msep', 'agendamento' ou 'quadro'
 
   const [agendamentoLiberado, setAgendamentoLiberado] = useState(false);
-  const [adminPin, setAdminPin] = useState(() => {
-    return sessionStorage.getItem('admin_pin_session') || '';
-  });
+  const [professorUser, setProfessorUser] = useState(() => obterProfessorAtual());
+  const isProfessor = Boolean(professorUser);
   const [isPinModalOpen, setIsPinModalOpen] = useState(false);
 
   useEffect(() => {
@@ -46,6 +46,10 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
     obterStatusAgendamento().then(res => {
       if (ativo && res) setAgendamentoLiberado(Boolean(res.liberado));
     }).catch(() => {});
+
+    const unsubAuth = observarEstadoAuth((user) => {
+      setProfessorUser(user);
+    });
 
     const statusHandler = (e) => {
       if (e?.detail && typeof e.detail.liberado === 'boolean') {
@@ -56,6 +60,7 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
 
     return () => {
       ativo = false;
+      if (typeof unsubAuth === 'function') unsubAuth();
       window.removeEventListener('portal_status_agendamento_changed', statusHandler);
     };
   }, []);
@@ -565,7 +570,7 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
                 >
                   <CalendarClock className="h-4.5 w-4.5" />
                   <span>Agendar TCC</span>
-                  {!agendamentoLiberado && !adminPin && (
+                  {!agendamentoLiberado && !isProfessor && (
                     <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-500/15 text-rose-500 dark:text-rose-400 border border-rose-500/25">
                       <Lock className="h-2.5 w-2.5" />
                       Bloqueado
@@ -1058,7 +1063,7 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
 
         {/* Aba 3: Agendamento da Apresentação de TCC (PSOF3) */}
         {activeTab === 'agendamento' && (
-          (!agendamentoLiberado && !adminPin) ? (
+          (!agendamentoLiberado && !isProfessor) ? (
             <BloqueioAgendamento 
               onNavigateToQuadro={() => handleMudarAba('quadro')} 
               onAbrirPinModal={() => setIsPinModalOpen(true)}
@@ -1075,13 +1080,12 @@ export default function Disciplina({ initialTab = 'cronograma' }) {
 
       </main>
 
-      {/* Modal de PIN do Professor */}
+      {/* Modal de Autenticação do Professor via Google */}
       <AdminPinModal
         isOpen={isPinModalOpen}
         onClose={() => setIsPinModalOpen(false)}
-        onSuccess={(pin) => {
-          setAdminPin(pin);
-          sessionStorage.setItem('admin_pin_session', pin);
+        onSuccess={(user) => {
+          setProfessorUser(user);
           setIsPinModalOpen(false);
         }}
       />

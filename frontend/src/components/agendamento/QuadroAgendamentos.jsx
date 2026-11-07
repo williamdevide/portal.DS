@@ -20,11 +20,17 @@ import {
   exportarAgendamentosParaCSV 
 } from '../../services/exportAgendamentosService';
 import AdminPinModal from './AdminPinModal';
+import { 
+  observarEstadoAuth, 
+  logoutProfessor, 
+  obterProfessorAtual 
+} from '../../services/authService';
 
 /**
  * Componente que renderiza o conteúdo completo do card de agendamento de uma banca
  */
-function CardAgendamento({ item, config, adminPin, abrirEdicao, setItemParaExcluir, isHighlighted = false }) {
+function CardAgendamento({ item, config, adminPin, isProfessor, abrirEdicao, setItemParaExcluir, isHighlighted = false }) {
+  const isDocente = Boolean(isProfessor || adminPin);
   const turmaInfo = config?.turmas?.find(t => t.id === item.turma_id);
   const grupoInfo = turmaInfo?.grupos?.find(g => {
     const nome = typeof g === 'string' ? g : g.nome;
@@ -111,8 +117,8 @@ function CardAgendamento({ item, config, adminPin, abrirEdicao, setItemParaExclu
           ID #{item.id}
         </span>
 
-        {/* Botões do Modo Professor (só aparecem se adminPin estiver ativo) */}
-        {adminPin ? (
+        {/* Botões do Modo Professor (só aparecem se isDocente estiver ativo) */}
+        {isDocente ? (
           <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={() => abrirEdicao(item)}
@@ -153,11 +159,10 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
   const [filtroData, setFiltroData] = useState('todas');
   const [termoBusca, setTermoBusca] = useState('');
 
-  // Modo Professor e Segurança
+  // Modo Professor e Segurança (Firebase Auth Google)
   const [isPinModalOpen, setIsPinModalOpen] = useState(false);
-  const [adminPin, setAdminPin] = useState(() => {
-    return sessionStorage.getItem('admin_pin_session') || '';
-  });
+  const [professorUser, setProfessorUser] = useState(() => obterProfessorAtual());
+  const isProfessor = Boolean(professorUser);
   const [agendamentoLiberado, setAgendamentoLiberado] = useState(false);
   const [toggleLoading, setToggleLoading] = useState(false);
 
@@ -185,12 +190,15 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
   const exportMenuRef = useRef(null);
 
   const abrirModalPalavras = async () => {
-    if (!adminPin) return;
+    if (!isProfessor) {
+      setIsPinModalOpen(true);
+      return;
+    }
     setIsPalavrasModalOpen(true);
     setLoadingPalavras(true);
     setPalavrasError('');
     try {
-      const dados = await obterPalavrasSecretas(adminPin);
+      const dados = await obterPalavrasSecretas();
       setPalavrasSecretas(dados?.turmas || []);
     } catch (err) {
       setPalavrasError(err.message || 'Falha ao consultar palavras-chave.');
@@ -233,6 +241,10 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
       }
     });
 
+    const unsubAuth = observarEstadoAuth((user) => {
+      setProfessorUser(user);
+    });
+
     let ativo = true;
     obterStatusAgendamento().then(res => {
       if (ativo && res) setAgendamentoLiberado(Boolean(res.liberado));
@@ -259,6 +271,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
     return () => {
       ativo = false;
       if (typeof unsubAgendamentos === 'function') unsubAgendamentos();
+      if (typeof unsubAuth === 'function') unsubAuth();
       window.removeEventListener('portal_status_agendamento_changed', statusHandler);
     };
   }, []);
@@ -335,13 +348,16 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
     }
   };
 
-  // Alterna o status de liberação dos agendamentos (Modo Professor com PIN)
+  // Alterna o status de liberação dos agendamentos (Modo Professor com Google)
   const handleToggleLiberacao = async () => {
-    if (!adminPin) return;
+    if (!isProfessor) {
+      setIsPinModalOpen(true);
+      return;
+    }
     setToggleLoading(true);
     try {
       const novoStatus = !agendamentoLiberado;
-      await alternarStatusAgendamento(novoStatus, adminPin);
+      await alternarStatusAgendamento(novoStatus);
       setAgendamentoLiberado(novoStatus);
       setFeedback({
         tipo: 'sucesso',
@@ -357,35 +373,34 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
     }
   };
 
-  // Login de Sucesso no Modal do Professor
-  const handleAdminSuccess = (pin) => {
-    setAdminPin(pin);
-    sessionStorage.setItem('admin_pin_session', pin);
+  // Login de Sucesso no Modal do Professor (Google)
+  const handleAdminSuccess = (user) => {
+    setProfessorUser(user);
     setFeedback({
       tipo: 'sucesso',
-      texto: 'Modo Professor desbloqueado com sucesso! Ações de edição e cancelamento liberadas.'
+      texto: `Bem-vindo, Professor ${user.displayName || 'William'}! Acesso autenticado com Google liberado.`
     });
     setTimeout(() => setFeedback(null), 5000);
   };
 
   // Encerrar sessão do professor
-  const handleLogoutAdmin = () => {
-    setAdminPin('');
-    sessionStorage.removeItem('admin_pin_session');
+  const handleLogoutAdmin = async () => {
+    await logoutProfessor();
+    setProfessorUser(null);
     setFeedback({
       tipo: 'info',
-      texto: 'Modo Professor encerrado. A interface voltou para modo somente leitura.'
+      texto: 'Modo Professor desconectado. A interface voltou para modo somente leitura.'
     });
     setTimeout(() => setFeedback(null), 4000);
   };
 
   // Confirmação e Execução de Exclusão
   const confirmarExclusao = async () => {
-    if (!itemParaExcluir || !adminPin) return;
+    if (!itemParaExcluir || !isProfessor) return;
 
     setDeleteLoading(true);
     try {
-      await excluirAgendamento(itemParaExcluir.id, adminPin);
+      await excluirAgendamento(itemParaExcluir.id);
       setFeedback({
         tipo: 'sucesso',
         texto: `Agendamento do grupo "${itemParaExcluir.grupo_nome}" foi excluído. O horário está vago novamente!`
@@ -411,7 +426,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
   // Salvar Edição
   const salvarEdicao = async (e) => {
     e.preventDefault();
-    if (!editItem || !adminPin) return;
+    if (!editItem || !isProfessor) return;
 
     setEditLoading(true);
     try {
@@ -421,13 +436,12 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
           data: editData,
           horario: editHorario,
           observacoes: editObservacoes
-        },
-        adminPin
+        }
       );
 
       setFeedback({
         tipo: 'sucesso',
-        texto: `Agendamento do grupo "${editItem.grupo_nome}" atualizado com sucesso no SQLite!`
+        texto: `Agendamento do grupo "${editItem.grupo_nome}" atualizado com sucesso!`
       });
       setEditItem(null);
       await carregarDados();
@@ -525,19 +539,27 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
             </div>
           )}
 
-          {adminPin ? (
+          {isProfessor ? (
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-xl">
+                {professorUser?.photoURL ? (
+                  <img 
+                    src={professorUser.photoURL} 
+                    alt="Foto Docente" 
+                    className="h-5 w-5 rounded-full object-cover border border-emerald-500/40"
+                  />
+                ) : (
+                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                )}
                 <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
-                  <ShieldCheck className="h-4 w-4" />
-                  Modo Professor Ativo
+                  Prof. William
                 </span>
                 <button
                   onClick={handleLogoutAdmin}
                   className="text-[11px] font-semibold text-custom-muted hover:text-rose-400 underline ml-2 transition-colors cursor-pointer"
-                  title="Sair do modo de edição"
+                  title="Desconectar conta Google do professor"
                 >
-                  Bloquear
+                  Sair
                 </button>
               </div>
 
@@ -650,11 +672,11 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
           ) : (
             <button
               onClick={() => setIsPinModalOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-semibold text-custom-muted hover:text-custom-text rounded-xl border border-custom-border hover:bg-white/5 transition-colors"
-              title="Acesso exclusivo do professor com PIN"
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-semibold text-custom-muted hover:text-custom-text rounded-xl border border-custom-border hover:bg-white/5 transition-colors cursor-pointer"
+              title="Acesso exclusivo do professor com Conta Google"
             >
-              <Lock className="h-4 w-4 text-custom-accent" />
-              Modo Professor
+              <ShieldCheck className="h-4 w-4 text-custom-accent" />
+              Login Professor (Google)
             </button>
           )}
 
@@ -972,7 +994,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                                           <CardAgendamento
                                             item={agendamentoItem}
                                             config={config}
-                                            adminPin={adminPin}
+                                            isProfessor={isProfessor}
                                             abrirEdicao={abrirEdicao}
                                             setItemParaExcluir={setItemParaExcluir}
                                             isHighlighted={isMatchBusca && !!termoBusca}
@@ -980,16 +1002,16 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                                         </div>
                                       ) : permiteHorario ? (
                                         <div className={`h-full min-h-[140px] sm:min-h-[160px] p-2.5 sm:p-3 rounded-xl border-2 border-dashed transition-all flex flex-col items-center justify-center text-center gap-1.5 min-w-0 overflow-hidden group/slot ${
-                                          agendamentoLiberado || adminPin
+                                          agendamentoLiberado || isProfessor
                                             ? 'border-emerald-500/25 bg-emerald-500/5 hover:border-emerald-500/50 hover:bg-emerald-500/10'
                                             : 'border-rose-500/20 bg-rose-500/5'
                                         }`}>
                                           <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border text-[10px] sm:text-[11px] font-bold font-sans max-w-full truncate ${
-                                            agendamentoLiberado || adminPin
+                                            agendamentoLiberado || isProfessor
                                               ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400'
                                               : 'bg-rose-500/15 border-rose-500/30 text-rose-600 dark:text-rose-400'
                                           }`}>
-                                            {agendamentoLiberado || adminPin ? (
+                                            {agendamentoLiberado || isProfessor ? (
                                               <>
                                                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                                                 <span className="truncate">Disponível</span>
@@ -1002,19 +1024,19 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                                             )}
                                           </div>
                                           <p className="text-[10px] sm:text-[11px] font-mono text-custom-muted line-clamp-2">
-                                            {agendamentoLiberado || adminPin ? 'Slot vago para banca' : 'Aguardando liberação'}
+                                            {agendamentoLiberado || isProfessor ? 'Slot vago para banca' : 'Aguardando liberação'}
                                           </p>
                                           {onNavigateToNovo && (
                                             <button
                                               type="button"
                                               onClick={onNavigateToNovo}
                                               className={`mt-0.5 inline-flex items-center gap-1 px-2.5 py-1 text-[10px] sm:text-[11px] font-bold text-white rounded-lg shadow-sm transition-all cursor-pointer opacity-90 group-hover/slot:opacity-100 ${
-                                                agendamentoLiberado || adminPin
+                                                agendamentoLiberado || isProfessor
                                                   ? 'bg-[#E30613] hover:bg-[#b8050f]'
                                                   : 'bg-slate-700 hover:bg-slate-600'
                                               }`}
                                             >
-                                              {agendamentoLiberado || adminPin ? (
+                                              {agendamentoLiberado || isProfessor ? (
                                                 <>
                                                   <PlusCircle className="h-3 w-3 shrink-0" />
                                                   <span>Agendar</span>
@@ -1079,7 +1101,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                 key={item.id}
                 item={item}
                 config={config}
-                adminPin={adminPin}
+                isProfessor={isProfessor}
                 abrirEdicao={abrirEdicao}
                 setItemParaExcluir={setItemParaExcluir}
                 isHighlighted={false}

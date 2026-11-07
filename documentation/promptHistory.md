@@ -600,3 +600,28 @@ não funcionou dar refresh na source control
 ```text
 /agente-orquestrador /grill-me /goal agora preciso do seguinte auxilio: o banco criado no firebase esta como periodo de teste. preciso transformá-lo em banco permanente (produção), mas sem perder os agendamentos que já fizemos
 ```
+
+### Prompt 7
+```text
+/agente-orquestrador /grill-me /goal recebi a informação atraves de um aluno, de que ele acessou o portalds, foi em inspecionar, pegou a senha do professor criptografada e pediu para uma IA descriptografar e conseguiu a minha senha. isso não pode ocorrer. inicialmente quero que mude a forma como eu me conecto. quero login seguro com conta do google. minha conta para logar como professor é: williamdevide@gmail.com. além disso faça uma varredura por qualquer outra falha de segurança.
+```
+
+### Prompt 8
+```text
+Por favor, atualize o arquivo `firestore.rules` do projeto Portal Educacional SENAI (`g:\antigravity\projetos\portal.DS\firestore.rules`) com as novas regras de alta segurança contra invasões e adulterações.
+
+Requisitos Mandatórios de Segurança:
+1. Definir uma função `isProfessor()` que valida se a requisição é feita por um usuário autenticado no Firebase Authentication com o e-mail exato do professor: `request.auth != null && request.auth.token.email != null && request.auth.token.email.lower() == 'williamdevide@gmail.com'`.
+2. Coleção `config/tcc`:
+   - `allow read: if true;` (público para alunos consultarem o status de liberação).
+   - `allow create, update: if isProfessor() && isValidConfigTcc(request.resource.data);` (SOMENTE o professor William pode alterar a liberação!).
+   - `allow delete: if false;`
+3. Coleção `agendamentos/{agendamentoId}`:
+   - `allow read: if true;` (público para visualização do quadro).
+   - `allow create: if isValidAgendamento(request.resource.data);` (para novos agendamentos válidos).
+   - `allow update, delete: if isProfessor();` (SOMENTE o professor William pode editar ou excluir bancas marcadas!).
+4. Bloqueio padrão:
+   - `match /{document=**} { allow read, write: if false; }`
+5. Sem qualquer prazo ou expiração de modo de teste.
+6. Use a ferramenta `write_file` com `Overwrite: true` no arquivo `g:\antigravity\projetos\portal.DS\firestore.rules` com comentários claros e didáticos em português.
+```

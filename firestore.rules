@@ -4,10 +4,18 @@ service cloud.firestore {
 
     /**
      * Portal Educacional SENAI - Regras de Segurança do Cloud Firestore
-     * Ambiente: Produção Permanente (sem prazo de expiração)
+     * Ambiente: Produção Permanente (Alta Segurança - sem prazo de expiração)
+     * Autenticação Docente: Exclusiva via Firebase Auth / Google Auth (williamdevide@gmail.com)
      */
 
-    // Função validadora para a coleção de configurações de agendamento de TCC
+    // Função que valida se o usuário solicitante é o Professor William autenticado via Firebase Auth
+    function isProfessor() {
+      return request.auth != null 
+        && request.auth.token.email != null 
+        && request.auth.token.email.lower() == 'williamdevide@gmail.com';
+    }
+
+    // Função validadora de schema para a coleção de configurações de agendamento de TCC
     function isValidConfigTcc(data) {
       return data.keys().hasOnly(['liberado', 'agendamento_liberado', 'atualizado_em', 'modificado_por'])
         && (!('liberado' in data) || data.liberado is bool)
@@ -16,7 +24,7 @@ service cloud.firestore {
         && (!('modificado_por' in data) || (data.modificado_por is string && data.modificado_por.size() <= 50));
     }
 
-    // Função validadora para os agendamentos das bancas de TCC
+    // Função validadora de schema para os agendamentos das bancas de TCC
     function isValidAgendamento(data) {
       return data.keys().hasAll(['turma_id', 'turma_nome', 'grupo_nome', 'data', 'horario'])
         && data.keys().hasOnly(['turma_id', 'turma_nome', 'grupo_nome', 'data', 'horario', 'observacoes', 'criado_em', 'atualizado_em', 'id'])
@@ -31,33 +39,33 @@ service cloud.firestore {
         && (!('id' in data) || (data.id is string && data.id.size() <= 100));
     }
 
-    // Coleção: config
-    // Gerencia as variáveis de controle global do portal (ex: liberação de agendamentos)
+    // Coleção: config/tcc
+    // Gerencia o controle global de liberação/bloqueio dos agendamentos de TCC
     match /config/tcc {
       // Leitura pública para que alunos e professores consultem o status em tempo real
       allow read: if true;
 
-      // Criação ou atualização permitida validando campos e tipos estritamente
-      allow create, update: if isValidConfigTcc(request.resource.data);
+      // Criação ou atualização permitida SOMENTE para o Professor William autenticado, validando o schema
+      allow create, update: if isProfessor() && isValidConfigTcc(request.resource.data);
 
-      // Não permite remoção do documento de configuração
+      // Bloqueio total de exclusão do documento de configuração
       allow delete: if false;
     }
 
-    // Coleção: agendamentos
+    // Coleção: agendamentos/{agendamentoId}
     // Armazena as bancas marcadas pelos alunos para o TCC
     match /agendamentos/{agendamentoId} {
       // Leitura pública para exibição do quadro geral de bancas para alunos e professores
       allow read: if true;
 
-      // Criação e atualização com validação de campos obrigatórios e sanitização de tamanho
-      allow create, update: if isValidAgendamento(request.resource.data);
+      // Criação de novos agendamentos por alunos com validação estrita de integridade e sanitização
+      allow create: if isValidAgendamento(request.resource.data);
 
-      // Exclusão permitida para viabilizar cancelamentos no Modo Professor
-      allow delete: if true;
+      // Edição e exclusão de bancas marcadas permitidas SOMENTE para o Professor William autenticado
+      allow update, delete: if isProfessor();
     }
 
-    // Bloqueio padrão para qualquer outra coleção ou documento não mapeado
+    // Bloqueio padrão de alta segurança: qualquer outra coleção ou rota não mapeada tem acesso negado
     match /{document=**} {
       allow read, write: if false;
     }

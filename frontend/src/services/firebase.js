@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 // Configuração oficial do projeto Firebase "antigravityportalds"
 const firebaseConfig = {
@@ -16,5 +17,9 @@ export const app = initializeApp(firebaseConfig);
 
 // Instância do Cloud Firestore com sincronização em tempo real
 export const db = getFirestore(app);
+
+// Autenticação oficial Firebase com Provedor Google
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
 
 export default db;

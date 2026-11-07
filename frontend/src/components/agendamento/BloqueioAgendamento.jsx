@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, ShieldAlert, Calendar, KeyRound, Sparkles } from 'lucide-react';
+import { Lock, ShieldAlert, Calendar, ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function BloqueioAgendamento({ onNavigateToQuadro, onAbrirPinModal }) {
   return (
@@ -61,10 +61,10 @@ export default function BloqueioAgendamento({ onNavigateToQuadro, onAbrirPinModa
               type="button"
               onClick={onAbrirPinModal}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 text-xs sm:text-sm font-semibold text-custom-muted hover:text-custom-text rounded-xl border border-custom-border hover:bg-white/5 transition-all cursor-pointer"
-              title="Acesso privativo do professor para desbloquear"
+              title="Acesso privativo do professor via Google"
             >
-              <KeyRound className="h-4 w-4 text-custom-accent" />
-              Acesso do Professor (Liberar Agendamentos)
+              <ShieldCheck className="h-4 w-4 text-custom-accent" />
+              Acesso do Professor (Google)
             </button>
           )}
         </div>

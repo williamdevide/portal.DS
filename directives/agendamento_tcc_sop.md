@@ -54,13 +54,16 @@ O arquivo canônico de dados das turmas e horários reside em:
 
 ---
 
-## 🔐 3. Modo Professor e Gestão de Permissões
+## 🔐 3. Modo Professor e Gestão de Permissões (Autenticação Google)
 
-- **PIN Padrão:** `senai@2026`
-- **Configuração de Novo PIN:** Definir a variável de ambiente `ADMIN_PIN` no arquivo `backend/.env`.
-- **Regra de Negócio:**
-  - Alunos têm permissão exclusiva para **consultar** e **agendar vagas disponíveis**.
-  - Apenas quem possuir o **PIN do Professor** pode **excluir** ou **editar** reservas de bancas.
+- **Provedor Oficial:** Firebase Authentication com Google Sign-In (OAuth 2.0).
+- **Conta Docente Autorizada:** `williamdevide@gmail.com`.
+- **Blindagem de Segurança:**
+  - Zero senhas ou hashes no código-fonte ou no bundle do frontend.
+  - Qualquer outra conta Google que tentar se conectar é desconectada imediatamente com recusa de autorização.
+- **Regras de Negócio e RBAC:**
+  - **Alunos:** Têm permissão de leitura pública do cronograma e agendamento de slots disponíveis.
+  - **Professor (`williamdevide@gmail.com`):** Exclusividade total para **bloquear/liberar agendamentos**, **editar bancas**, **excluir reservas**, **exportar relatórios em PDF/CSV** e **visualizar palavras-chave**.
 
 ---
 
@@ -77,20 +80,19 @@ O arquivo canônico de dados das turmas e horários reside em:
 
 ---
 
-## 🛡️ 5. Regras de Segurança Permanentes (Produção) e Publicação no Firebase
+## 🛡️ 5. Regras de Segurança Permanentes (Produção) e Proteção RBAC no Firestore
 
-O banco Cloud Firestore opera em modo permanente de produção com regras estritas descritas no arquivo `firestore.rules`.
-- **Sem Prazo de Validade:** Foram removidas todas as cláusulas temporárias de teste (`request.time < timestamp.date(...)`).
+O Cloud Firestore opera sob regras de segurança estritas descritas no arquivo `firestore.rules`:
+- **Validação de Token Criptográfico (`isProfessor()`):** Apenas requisições com token JWT do Firebase Auth emitido para `williamdevide@gmail.com` podem alterar a configuração do TCC ou excluir agendamentos.
 - **Leitura Pública:** Leitura liberada para `config/tcc` e `agendamentos/{id}` para permitir que alunos e bancas acompanhem os horários em tempo real.
-- **Escrita Validada:** Validação granular de campos obrigatórios (`turma_id`, `turma_nome`, `grupo_nome`, `data`, `horario`) e limites de caracteres para evitar injeção ou corrupção de dados.
-- **Bloqueio Padrão:** Todas as outras coleções têm acesso negado (`allow read, write: if false;`).
+- **Criação de Agendamentos:** Validação granular de campos obrigatórios (`turma_id`, `turma_nome`, `grupo_nome`, `data`, `horario`) e limites de caracteres para evitar injeção ou corrupção de dados.
+- **Bloqueio Padrão (Default Deny):** Todas as outras coleções têm acesso negado (`allow read, write: if false;`).
 
-### Como Publicar as Regras no Firebase Console:
-1. Acesse o [Console do Firebase](https://console.firebase.google.com/project/antigravityportalds/firestore/rules).
-2. Selecione a aba **Regras (Rules)** do Cloud Firestore.
-3. Substitua o conteúdo pelo código do arquivo local `firestore.rules`.
-4. Clique no botão **Publicar (Publish)**.
-5. O banner amarelo de "modo de teste" desaparecerá imediatamente e o banco estará ativo permanentemente sem risco de bloqueio.
+### Como Publicar as Regras Atualizadas no Firebase Console:
+1. Acesse o [Console do Firebase - Regras](https://console.firebase.google.com/project/antigravityportalds/firestore/rules).
+2. Substitua o conteúdo pelo código do arquivo local `firestore.rules`.
+3. Clique em **Publicar (Publish)**.
+4. No menu lateral, acesse **Authentication** > aba **Sign-in method** > certifique-se de que o provedor **Google** está ativado.
 
 ---
 

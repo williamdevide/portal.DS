@@ -22,6 +22,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 const ADMIN_PIN = process.env.ADMIN_PIN || 'senai@2026';
+const ADMIN_EMAIL = 'williamdevide@gmail.com';
 
 // Função utilitária para normalizar strings (remove acentos, espaços extras e ignora maiúsculas)
 function normalizarTexto(str) {
@@ -71,12 +72,16 @@ function lerConfiguracao() {
   }
 }
 
-// Middleware de verificação do PIN administrativo do professor
+// Middleware de verificação de autenticação administrativa do professor
 function requireAdminPin(req, res, next) {
   const pinFornecido = req.headers['x-admin-pin'] || req.body?.pin || req.query?.pin;
-  if (!pinFornecido || pinFornecido.toString().trim() !== ADMIN_PIN.toString().trim()) {
+  const userFornecido = req.headers['x-admin-user'] || req.body?.user;
+  const isPinValido = pinFornecido && pinFornecido.toString().trim() === ADMIN_PIN.toString().trim();
+  const isUserValido = userFornecido && userFornecido.toString().trim().toLowerCase() === ADMIN_EMAIL;
+  
+  if (!isPinValido && !isUserValido) {
     return res.status(401).json({
-      erro: 'Acesso não autorizado. O PIN do professor é obrigatório para realizar esta ação.'
+      erro: 'Acesso não autorizado. Autenticação do professor é obrigatória para realizar esta ação.'
     });
   }
   next();
