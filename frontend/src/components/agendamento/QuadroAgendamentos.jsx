@@ -582,7 +582,7 @@ export default function QuadroAgendamentos({ onNavigateToNovo }) {
                   <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
                 )}
                 <span>
-                  {agendamentoLiberado ? 'Bloquear agendamentos' : 'Agendamento permitido'}
+                  {agendamentoLiberado ? 'Bloquear agendamentos' : 'Permitir Agendamento'}
                 </span>
               </button>
 

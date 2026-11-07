@@ -610,3 +610,8 @@ não funcionou dar refresh na source control
 ```text
 /agente-orquestrador /grill-me /goal o modal de autenticação do professor deve ficar por cima de todas as sessões da pagina (tem momentos em que esta ficando escondida). outra coisa. altere a mensagem dessa tela, não quero que em momento algum seja informado que o email correto para logar é o email williamdevide@gmail.com, retire essa informação. também não precisa dizer que é o email do professor william. deixe só que: Para garantir a integridade total do cronograma, o Modo Professor requer autenticação oficial com a Conta Google.
 ```
+
+### Prompt 9
+```text
+/agente-orquestrador /grill-me /goal dentro do acesso do professor mude o botão Agendamento permitido para Permitir Agendamento
+```
